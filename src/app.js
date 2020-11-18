@@ -1,7 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+<<<<<<< HEAD
 import cors from 'cors';
+=======
+>>>>>>> hotel-models-CRUD-operations
 
 import hotelRoutes from './routes/hotelRoute';
 
