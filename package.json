@@ -41,8 +41,7 @@
     "nodemon": "^2.0.6"
   },
   "scripts": {
-    "lint": "eslint ./",
-    "test": "src/utiles/index.js"
+    "test": "node src/utiles/index.js"
   },
   "repository": {
     "type": "git",

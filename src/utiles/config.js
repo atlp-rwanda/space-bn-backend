@@ -11,4 +11,3 @@ export const client = new Client.Pool({
     port : process.env.PORT,
     database : process.env.DATABASE
 })
-
