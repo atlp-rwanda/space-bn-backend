@@ -19,8 +19,7 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/register": "^7.12.1",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "pg": "^8.5.1",
-    "save-dev": "0.0.1-security"
+    "pg": "^8.5.1"
   },
   "devDependencies": {
     "mocha": "^8.2.1",
@@ -56,5 +55,6 @@
     "url": "https://github.com/atlp-rwanda/space-bn-backend/issues"
   },
   "homepage": "https://github.com/atlp-rwanda/space-bn-backend#readme"
-  
+
 }
+
