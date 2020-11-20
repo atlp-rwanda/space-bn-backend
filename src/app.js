@@ -7,45 +7,43 @@ dotenv.config();
 
 const app = express();
 
-
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
-
 const swaggerOptions = {
-	swaggerDefinition: {
-	  openapi: '3.0.0', 
+  swaggerDefinition: {
+	  openapi: '3.0.0',
 	  info: {
-		title: 'BareFoot Nomad Project',
-		version: '1.0.0',
-		description: 'Your API description'
+      title: 'BareFoot Nomad Project',
+      version: '1.0.0',
+      description: 'Your API description'
 	  },
 	  basePath: '/',
 	  components: {
-		securitySchemes: {
+      securitySchemes: {
 		  bearerAuth: {
-			type: 'http',
-			scheme: 'bearer',
-			in: 'header',
-			bearerFormat: 'JWT',
+          type: 'http',
+          scheme: 'bearer',
+          in: 'header',
+          bearerFormat: 'JWT',
 		  }
-		}
+      }
 	  },
 	  security: [{
-		bearerAuth: []
+      bearerAuth: []
 	  }]
-	},
-	apis: ['./src/routes/*.js']
-  };
+  },
+  apis: ['./src/routes/*.js']
+};
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.use(bodyParser.json());                                     
-app.use(bodyParser.urlencoded({extended: true}));               
-app.use(bodyParser.text());                                    
-app.use(bodyParser.json({ type: 'application/json'})); 
-app.use(cors())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: 'application/json' }));
+app.use(cors());
 
 const userRoutes = require('./routes/user');
 
