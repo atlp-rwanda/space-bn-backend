@@ -1,1 +1,11 @@
 node_modules
+<<<<<<< HEAD
+=======
+node_modules
+.node_modules
+/node.modules
+package-lock.json
+.env
+coverage
+.nyc_output
+>>>>>>> [finishes #175743307] configuring unit tests
