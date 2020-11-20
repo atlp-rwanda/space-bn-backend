@@ -1,10 +1,6 @@
-'use strict';
-
 import bcrypt from 'bcrypt';
 
-
 module.exports = (sequelize, DataTypes) => {
-
   const User = sequelize.define('User', {
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
@@ -23,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     identification_type: DataTypes.STRING,
     identification_number: DataTypes.STRING,
     user_image: DataTypes.STRING,
-    isVerified: DataTypes.BOOLEAN ,
+    isVerified: DataTypes.BOOLEAN,
   }, {});
 
   User.beforeSave((user, options) => {
@@ -33,18 +29,17 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.prototype.comparePassword = function (passw, cb) {
-    bcrypt.compare(passw, this.password, function (err, isMatch) {
-        if (err) {
-            return cb(err);
-        }
-        cb(null, isMatch);
+    bcrypt.compare(passw, this.password, (err, isMatch) => {
+      if (err) {
+        return cb(err);
+      }
+      cb(null, isMatch);
     });
   };
 
-  User.associate = function(models) {
+  User.associate = function (models) {
     // associations can be defined here
   };
 
   return User;
-
 };
