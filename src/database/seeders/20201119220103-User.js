@@ -5,14 +5,14 @@ module.exports = {
     'Users',
     [
       {
-        name: 'Jane Doe',
-        email: 'janedoe@example.com',
+        name: 'Jane Mugisha',
+        email: 'jane@gmail.com',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        name: 'Jon Doe',
-        email: 'jondoe@example.com',
+        name: 'Joshua Mahoro',
+        email: 'joshua@gmail.com',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
