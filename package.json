@@ -4,10 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-    "lint": "eslint ./",
-=======
->>>>>>> a75eaead85d2c65885e6a01693792b3674c82944
+    "lint": "eslint ./"
     "test": " nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -18,7 +15,7 @@
 <<<<<<< HEAD
   "keywords": [],
 =======
->>>>>>> a75eaead85d2c65885e6a01693792b3674c82944
+>>>>>>> [finishes #175743307] configuring unit tests
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -32,9 +29,8 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-hooks": "^4.2.0"
 =======
->>>>>>> a75eaead85d2c65885e6a01693792b3674c82944
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "coveralls": "^3.1.0",
@@ -51,5 +47,6 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/register": "^7.12.1",
     "dotenv": "^8.2.0"
+>>>>>>> [finishes #175743307] configuring unit tests
   }
 }
