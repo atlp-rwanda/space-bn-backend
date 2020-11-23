@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "lint": "eslint ./",
+=======
+>>>>>>> a75eaead85d2c65885e6a01693792b3674c82944
     "test": " nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -12,7 +15,10 @@
     "type": "git",
     "url": "git+https://github.com/atlp-rwanda/space-bn-backend.git"
   },
+<<<<<<< HEAD
   "keywords": [],
+=======
+>>>>>>> a75eaead85d2c65885e6a01693792b3674c82944
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -20,12 +26,15 @@
   },
   "homepage": "https://github.com/atlp-rwanda/space-bn-backend#readme",
   "devDependencies": {
+<<<<<<< HEAD
     "eslint": "^7.13.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
+=======
+>>>>>>> a75eaead85d2c65885e6a01693792b3674c82944
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "coveralls": "^3.1.0",
