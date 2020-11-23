@@ -1,7 +1,10 @@
-import app from './app';
+// import client from './config';
 
-const port = process.env.PORT;
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`App connected on port ${port}`);
-});
+const client = require ('./config');
+
+ if (client){
+    console.log("DB connected successfully");
+ }
+else{
+    console.log("DB not connected ");
+}

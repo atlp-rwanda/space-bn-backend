@@ -1,5 +1,9 @@
 jshint:
+<<<<<<< HEAD
   enabled: false
 
 jshint:
   ignore_file: .jshintignore
+=======
+    enabled: false
+>>>>>>> adding seeds successfully
