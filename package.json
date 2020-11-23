@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ./"
+    "lint": "eslint ./",
     "test": " nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -12,10 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/atlp-rwanda/space-bn-backend.git"
   },
-<<<<<<< HEAD
   "keywords": [],
-=======
->>>>>>> [finishes #175743307] configuring unit tests
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -23,14 +20,12 @@
   },
   "homepage": "https://github.com/atlp-rwanda/space-bn-backend#readme",
   "devDependencies": {
-<<<<<<< HEAD
     "eslint": "^7.13.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.2.0"
-=======
+    "eslint-plugin-react-hooks": "^4.2.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "coveralls": "^3.1.0",
@@ -47,6 +42,5 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/register": "^7.12.1",
     "dotenv": "^8.2.0"
->>>>>>> [finishes #175743307] configuring unit tests
   }
 }

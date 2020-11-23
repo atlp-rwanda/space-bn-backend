@@ -1,18 +1,10 @@
 node_modules
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> a75eaead85d2c65885e6a01693792b3674c82944
 node_modules
 .node_modules
 /node.modules
 package-lock.json
 .env
 coverage
-<<<<<<< HEAD
 .nyc_output
->>>>>>> [finishes #175743307] configuring unit tests
-=======
 .nyc_output
->>>>>>> a75eaead85d2c65885e6a01693792b3674c82944
+
