@@ -1,11 +1,11 @@
 /* eslint-disable linebreak-style */
-const express = require('express');
+import express from 'express';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerUI = require('swagger-ui-express');
+import swaggerJsDoc from 'swagger-jsdoc';
+import { serve, setup } from 'swagger-ui-express';
 
 const swaggerOptions = {
 	swaggerDefinition: {
@@ -34,7 +34,7 @@ const swaggerOptions = {
   };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+app.use('/api-docs', serve, setup(swaggerDocs));
 
 
 app.get('/', (req, res) => {
