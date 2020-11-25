@@ -41,7 +41,7 @@
     "nodemon": "^2.0.6"
   },
   "scripts": {
-    "test": "node src/utiles/index.js",
+    "test": "node src/index.js",
     "createTables": "npx sequelize db:migrate",
     "dropTables": "npx sequelize db:migrate:undo:all",
     "seeders" : "npx sequelize-cli db:seed:all"

@@ -1,8 +1,8 @@
-// import dotenv from 'dotenv';
-// import Client from 'pg';
+import dotenv from 'dotenv';
+import Client from 'pg';
 
-const {dotenv} = require('dotenv');
-const Client = require('pg');
+// const {dotenv} = require('dotenv');
+// const Client = require('pg');
 
 
 dotenv.config();
