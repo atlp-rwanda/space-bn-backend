@@ -41,10 +41,11 @@
     "nodemon": "^2.0.6"
   },
   "scripts": {
-    "test": "node src/index.js",
+    "test": " nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "createTables": "npx sequelize db:migrate",
     "dropTables": "npx sequelize db:migrate:undo:all",
-    "seeders" : "npx sequelize-cli db:seed:all"
+    "seeders": "npx sequelize-cli db:seed:all"
   },
   "repository": {
     "type": "git",
@@ -57,6 +58,4 @@
     "url": "https://github.com/atlp-rwanda/space-bn-backend/issues"
   },
   "homepage": "https://github.com/atlp-rwanda/space-bn-backend#readme"
-
 }
-
