@@ -9,7 +9,7 @@ install:
   - npm install
 
 services:
-  - mongodb
+  - postgresql
 
 env:
   global:
