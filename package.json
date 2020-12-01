@@ -43,7 +43,8 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "coverage": "nyc reporter --reporter=text --lcov | coveralls",
     "start:dev": "nodemon --exec babel-node src/index.js",
-    "start": "babel-node src/index.js",
+    "start": "npm run build && node dist/index",
+    "build": "babel src --out-dir dist",
     "migrate": "sequelize db:migrate",
     "dropTables": "sequelize db:migrate:undo:all",
     "seeders": "sequelize db:seed:all"
