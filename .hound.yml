@@ -1,4 +1,3 @@
 jshint:
   ignore_file: .jshintignore
-  ignore_file: .jshintignore
-    enabled: false
+  enabled: false
