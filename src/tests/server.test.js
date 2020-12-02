@@ -8,6 +8,7 @@ describe('Server!', () => {
     request(app)
       .get('/')
       .end((err, res) => {
+        if (err) done(err);
         // eslint-disable-next-line no-undef
         expect(res).to.have.status(200);
         // eslint-disable-next-line no-undef
