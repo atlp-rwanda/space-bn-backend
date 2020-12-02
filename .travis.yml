@@ -11,8 +11,6 @@ before_script:
 
 script: 
   - npm install
-  - sequelize db:migrate
-  - sequelize db:seed:all
   - npm test
 
 after_success: 
