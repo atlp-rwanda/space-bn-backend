@@ -42,10 +42,15 @@
   },
   "scripts": {
     "test": " nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "createTables": "npx sequelize db:migrate",
-    "dropTables": "npx sequelize db:migrate:undo:all",
-    "seeders": "npx sequelize-cli db:seed:all"
+    "build": "babel src --out-dir dist",
+    "start": "npm run build && node dist/index",
+    "coverage": "nyc reporter --reporter=text --lcov | coveralls",
+    "overalls": "cat ./coverage/lcov.info | coveralls",
+    "start:dev" : "nodemon --exec babel-node src/index.js",
+    "lint": "eslint ./",
+    "createTables": "sequelize db:migrate",
+    "dropTables": "sequelize db:migrate:undo:all",
+    "seeders": "sequelize-cli db:seed:all"
   },
   "repository": {
     "type": "git",
