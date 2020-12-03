@@ -52,8 +52,14 @@ app.get('/', (req, res) => {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 app.use('/user', userRoutes);
 
 =======
 >>>>>>> fixing bugs associated with Travis-ci
 export default app;
+=======
+export default app;
+
+
+>>>>>>> bg(postgres):fix travis configuration
