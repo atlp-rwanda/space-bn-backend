@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import bcrypt from 'bcrypt';
 
 module.exports = (sequelize, DataTypes) => {
@@ -44,23 +43,3 @@ module.exports = (sequelize, DataTypes) => {
 
   return User;
 };
-=======
-import { Model } from 'sequelize';
-
-export default (sequelize, DataTypes) => {
-  class ExampleTable extends Model {
-   
-    static associate(models) {
-      // define association here
-    }
-  };
-  ExampleTable.init({
-    name: DataTypes.STRING,
-    email: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'exampleTable',
-  });
-  return ExampleTable;
-};
->>>>>>> fixing bugs associated with Travis-ci

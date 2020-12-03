@@ -51,15 +51,7 @@ app.get('/', (req, res) => {
   res.json({ status: 'success', message: 'Welcome to my server' });
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 app.use('/user', userRoutes);
 
-=======
->>>>>>> fixing bugs associated with Travis-ci
-export default app;
-=======
 export default app;
 
-
->>>>>>> bg(postgres):fix travis configuration
