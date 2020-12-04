@@ -1,3 +1,5 @@
 jshint:
-  ignore_file: .jshintignore
   enabled: false
+
+jshint:
+  ignore_file: .jshintignore
