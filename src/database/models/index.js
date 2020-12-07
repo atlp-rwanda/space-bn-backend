@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
 import Config from '../config/config.js';
-import model from 'path.join(__dirname, file)';
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
