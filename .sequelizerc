@@ -1,4 +1,6 @@
-require ('@babel/register')
+
+require('@babel/register');
+
 const path = require('path')
 
 module.exports = {
@@ -7,4 +9,3 @@ module.exports = {
   'seeders-path': path.resolve('./src/database/seeders'),
   'migrations-path': path.resolve('./src/database/migrations'),
 }
-

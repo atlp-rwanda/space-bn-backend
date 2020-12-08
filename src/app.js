@@ -1,17 +1,17 @@
-import express from 'express';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import express, { json } from 'express';
 
 const app = express();
 
-// app.use(json());
-// app.use(urlencoded( { extended:false} ))
+app.use(json());
 
 app.get('/', (req, res) => {
   res.json({ status: 'success', message: 'Welcome to my server' });
 });
 
-export default app;
+const PORT = process.env.PORT || 3000;
 
+// eslint-disable-next-line no-console
+app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
+
+export default app;
 
