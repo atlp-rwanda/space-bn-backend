@@ -1,8 +1,21 @@
 {
+<<<<<<< HEAD
   "presets": ["@babel/preset-env"],
   "plugins": [
     [
       "@babel/plugin-transform-runtime"
     ]
+=======
+  "presets": [
+      [
+          "@babel/preset-env",
+          {
+              "useBuiltIns": false
+          }
+      ]
+  ],
+  "plugins": [
+      "@babel/plugin-transform-runtime"
+>>>>>>> 76af3817a1f520aea42f993fea557dad094091c6
   ]
 }

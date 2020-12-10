@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+require ('@babel/register')
+>>>>>>> 76af3817a1f520aea42f993fea557dad094091c6
 const path = require('path')
 
 module.exports = {
@@ -6,3 +10,4 @@ module.exports = {
   'seeders-path': path.resolve('./src/database/seeders'),
   'migrations-path': path.resolve('./src/database/migrations'),
 }
+
