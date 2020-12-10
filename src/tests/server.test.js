@@ -2,7 +2,6 @@ import { use, request, expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
 
-// const { expect } = chai;
 use(chaiHttp);
 describe('Server!', () => {
   it('welcomes user to the api', (done) => {

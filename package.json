@@ -4,18 +4,13 @@
   "description": "[![Build Status](https://travis-ci.org/atlp-rwanda/space-bn-backend.svg?branch=develop)](https://travis-ci.org/atlp-rwanda/space-bn-backend)",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --timeout 150000 -r @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js  --exit",
+    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit",
     "lint": "eslint ./",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "coverage": "nyc reporter --reporter=text --lcov | coveralls",
     "start:dev": "nodemon --exec babel-node src/index.js",
-    "start": "npm run build && npm run migrate && npm run seeders && node dist/index",
-    "build": "babel src --out-dir dist",
-     
-    "model:create": "sequelize model:generate --name sampleModel --attributes name:string,tel:string",
-    "migrate": "sequelize db:migrate",
-    "seeders": "sequelize db:seed:all"
-
+    "start": "nodemon --exec babel-node src/index.js",
+    "build": "babel src --out-dir dist"
   },
   "repository": {
     "type": "git",
@@ -35,7 +30,7 @@
     "@babel/plugin-transform-regenerator": "^7.12.1",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
-    "@babel/register": "^7.12.1",
+    "@babel/register": "^7.12.10",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "coveralls": "^3.1.0",
