@@ -6,6 +6,7 @@ import {
 
 const router = Router();
 
+router.get('/', (req, res) => res.send('Welcome to Barefoot Nomad'));
 router.post('/createHotel', createHotel);
 router.get('/allHotels', getAllHotels);
 router.delete('/deleteHotel/:id', deleteHotel);
