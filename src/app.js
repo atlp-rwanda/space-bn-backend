@@ -3,6 +3,13 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
+import hotelRoutes from './routes/hotelRoute';
+
+// const createHotel = require('./routes/hotelRoute');
+// const getHotels = require('./routes/hotelRoute');
+// const deleteHotel = require('./routes/hotelRoute');
+// const getHotel = require('./routes/hotelRoute');
+
 dotenv.config();
 
 const app = express();
