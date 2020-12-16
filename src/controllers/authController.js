@@ -2,6 +2,8 @@ import { hash, compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { Sequelize, Model, DataTypes } from 'sequelize';
 
+const model = require('../database/models');
+
 export async function register(req, res) {
   const {
     username, email, password, confirmpassword

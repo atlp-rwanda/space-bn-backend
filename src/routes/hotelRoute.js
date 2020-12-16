@@ -1,9 +1,16 @@
 import { Router } from 'express';
-import { allHotels } from '../controllers/authController';
-import { requiredLogin } from '../middlewares/required';
+import {
+  getAllHotels, createHotel, deleteHotel, getHotel, getHotelRooms, updateHotel
+} from '../controllers/hotelController';
+// import { requiredLogin } from '../middlewares/required';
 
 const router = Router();
 
-router.get('/allhotels', requiredLogin, allHotels);
+router.post('/createHotel', createHotel);
+router.get('/allHotels', getAllHotels);
+router.delete('/deleteHotel/:id', deleteHotel);
+router.get('/hotel/:id', getHotel);
+router.get('/hotelRooms', getHotelRooms);
+router.put('/updateHotel', updateHotel);
 
 export default router;

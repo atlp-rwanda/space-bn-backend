@@ -1,35 +1,87 @@
-import { getConnection } from '../database/data';
-
-export function allHotels(res) {
-  getConnection((err, connection) => {
-    if (err) throw err;
-    else {
-      connection.query('SELECT * FROM hotels', (err, results) => {
-        if (err) throw err;
-        else {
-          res.send({
-            data: results
-          });
-        }
-        connection.release();
-      });
-    }
-  });
-}
-
-
-const allHotels = async (req, res) => {
-    try {
-      const posts = await models.Post.findAll({
-        include: [
-          {
-            model: models.hotels,
-            as: 'hotels'
-          },
-        ]
-      });
-      return res.status(200).json({ hotels });
-    } catch (error) {
-      return res.status(500).send(error.message);
-    }
+import model from '../database/Models';
+// creating a hotel
+const createHotel = async (req, res) => {
+  try {
+    const hotel = await model.hotel.create(req.body);
+    return res.status(201).json({
+      hotel,
+    });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
+};
+// Getting all hotels
+const getAllHotels = async (req, res) => {
+  try {
+    const hotels = await model.hotel.findAll();
+    return res.status(200).json({ hotels });
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+  // Deleting a particular hotel by id
+const deleteHotel = async (req, res) => {
+  try {
+    const { hotelId } = req.params;
+    const deleted = await model.hotel.destroy({
+      where: { id: hotelId }
+    });
+    await model.roommodel.destroy({
+      where: { hotelId }
+    });
+    if (deleted) {
+      return res.status(200).json({ message: 'Hotel deleted successfully.' });
+    }
+    throw new Error('Hotel not found');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+  // Getting  a particular room by id
+const getHotel = async (req, res) => {
+  try {
+    const { hotelId } = req.params;
+    const hotel = await model.hotel.findOne({
+      where: { id: hotelId }
+    });
+    if (hotel) {
+      return res.status(200).json({ hotel });
+    }
+    return res.status(404).send('Hotel with the specified ID does not exists');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+const getHotelRooms = async (req, res) => {
+  try {
+    const { hotelId } = req.params;
+    const rooms = await model.roommodel.findAll({
+      where: { hotelId }
+    });
+    if (rooms) {
+      return res.status(200).json({ rooms });
+    }
+    return res.status(404).send('There is an error !');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+const updateHotel = async (req, res) => {
+  try {
+    const { idhotel } = req.params;
+    const [updated] = await model.hotel.update(req.body, {
+      where: { id: idhotel }
+    });
+    if (updated) {
+      const updatedHotel = await model.hotel.findOne({ where: { id: idhotel } });
+      return res.status(200).json({ room: updatedHotel });
+    }
+    throw new Error('Hotel not found');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+  // Exporting functions
+module.exports = {
+  createHotel, getAllHotels, deleteHotel, getHotel, getHotelRooms, updateHotel
+};

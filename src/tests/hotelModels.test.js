@@ -1,11 +1,11 @@
 import { use, request, expect } from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../app';
+import hotels from '../routes/hotelRoute';
 
 use(chaiHttp);
 describe('Server!', () => {
   it('Displayes hotels and their details', (done) => {
-    request(app)
+    request(hotels)
       .get('/allhotels')
       .end((err, res) => {
         // eslint-disable-next-line no-undef
