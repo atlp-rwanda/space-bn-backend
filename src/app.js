@@ -6,6 +6,10 @@ import rooms from './routes';
 import hotel from './routes';
 
 dotenv.config();
+const app = express();
+
+const welcome = require('./routes/index');
+const rooms = require('./routes/rooms');
 
 const app = express();
 

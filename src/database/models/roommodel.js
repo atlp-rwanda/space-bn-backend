@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
    roomType: DataTypes.STRING,
    description: DataTypes.STRING,
    roomLabel: DataTypes.STRING,
-   hotelId: DataTypes.UUID,
+   hotelId: DataTypes.INTEGER,
    status: DataTypes.STRING,
    price: DataTypes.STRING
   },
@@ -13,12 +13,7 @@ module.exports = (sequelize, DataTypes) => {
    onUpdate: 'CASCADE',
    onDelete: 'CASCADE'
  });
- 
-  roommodel.associate = (models) => {
-    roommodel.belongsTo(models.hotel, {
-      foreignKey: 'hotelId',
-    });
- };
+
   
    return roommodel;
  };
