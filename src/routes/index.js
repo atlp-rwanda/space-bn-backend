@@ -17,7 +17,6 @@ const updateRoom = controller.updateRoom;
 const deleteRoom = controller.deleteRoom;
 const getHotelRooms = controller.roomByHotel;
 
-
 //Rooms routes
 
 router.post('/rooms',protection, createRoom);
