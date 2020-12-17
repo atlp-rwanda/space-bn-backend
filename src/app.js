@@ -62,10 +62,6 @@ app.get('/', (req, res) => {
   res.json({ status: 'success', message: 'Welcome to my server' });
 });
 
-app.use('/user', userRoutes);
-app.use('/hotels', hotelRoutes);
-app.use(express.json());
-app.use('/api', welcome);
 
 
 export default app;
