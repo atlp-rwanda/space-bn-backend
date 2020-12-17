@@ -131,6 +131,7 @@ router.get('/rooms/:id', getRoom);
  *            
  *
  */
+
 router.put('/rooms/:idroom',updateRoom);
 
 /**
