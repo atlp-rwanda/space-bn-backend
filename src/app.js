@@ -1,11 +1,13 @@
 
 import express from 'express';
 import dotenv from 'dotenv';
+
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import rooms from './routes';
 import hotel from './routes';
 import hotelRoutes from './routes/hotelRoute';
+
 
 dotenv.config();
 
@@ -60,6 +62,10 @@ app.use(cors())
 const userRoutes = require('./routes/user');
 app.use(rooms);
 app.use(hotel);
+
+app.get('/', (req, res) => {
+  res.json({ status: 'success', message: 'Welcome to my server' });
+});
 
 app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
