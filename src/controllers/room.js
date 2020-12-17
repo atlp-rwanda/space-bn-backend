@@ -6,17 +6,10 @@ const model = require('../database/models');
 const createRoom = async (req, res) => {
   try {
     const room = await model.roommodel.create(req.body);
-
-    let hotel = await model.hotel.findOne({
-      where: {id: req.body.hotelId}
-    });
-
-    if (hotel) {
+    if (room) {
 
       return res.status(200).json({ room });
     }
-    
-    return res.status(404).send('Sorry, the hotel to which assigned this room does not exists');
 
   } catch (error) {
     return res.status(500).json({error: error.message})

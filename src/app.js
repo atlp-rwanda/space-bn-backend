@@ -21,7 +21,6 @@ const app = express();
 
 const welcome = require('./routes/index');
 const rooms = require('./routes/rooms');
-const hotels = require('./routes/hotel');
 
 //request routes
 
@@ -105,7 +104,7 @@ const swaggerOptions = {
              email:"furebodidace582@gmail.com"
          },
      },
-     apis:["/app.js"]
+     apis:["./src/routes/*.js"]
  }
  
  const swaggerDocs = swaggerJsDoc(swaggerOptions)
@@ -126,7 +125,6 @@ export default app;
 
 app.use('/api', welcome);
 app.use(rooms);
-app.use(hotels);
 
 const PORT = process.env.PORT || 3000;
 // eslint-disable-next-line no-console
