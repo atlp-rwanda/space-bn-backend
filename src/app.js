@@ -53,15 +53,14 @@ const userRoutes = require('./routes/user');
 app.use(rooms);
 app.use(hotel);
 
-// app.use(json());
-// app.use(urlencoded( { extended:false} ))
-
-app.get('/', (req, res) => {
-  res.json({ status: 'success', message: 'Welcome to my server' });
-});
-
 app.use('/user', userRoutes);
 
-export default app;
+app.use(express.json());
 
+app.use('/api', welcome);
 
+const PORT = process.env.PORT || 3000;
+// eslint-disable-next-line no-console
+app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
+
+module.exports = app;
