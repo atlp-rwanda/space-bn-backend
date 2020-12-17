@@ -253,6 +253,7 @@ router.get('/rooms/:id', getRoom);
  *            
  *
  */
+
 router.put('/rooms/:idroom',updateRoom);
 >>>>>>> 4ed03cf... removes the hotel
 
