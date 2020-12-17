@@ -65,12 +65,21 @@ app.use(rooms);
 app.use(hotel);
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.json({ status: 'success', message: 'Welcome to my server' });
-});
 
 app.use('/user', userRoutes);
 
 export default app;
 
+ app.use(express.json());
 
+app.use('/api', welcome);
+app.use(rooms);
+app.use(hotels);
+
+
+
+const PORT = process.env.PORT || 3000;
+// eslint-disable-next-line no-console
+app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
+
+module.exports = app;
