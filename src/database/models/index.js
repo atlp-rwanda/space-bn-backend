@@ -11,6 +11,7 @@ const config = envConfigs[env];
 const db = {};
 
 let sequelize;
+
 if (config.url) {
   sequelize = new Sequelize(config.url, config);
 } else {
@@ -83,6 +84,6 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 export default db;
-<<<<<<< HEAD
+
 
 */

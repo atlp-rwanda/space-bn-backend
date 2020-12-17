@@ -53,11 +53,6 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.use(bodyParser.json());                                     
-app.use(bodyParser.urlencoded({extended: true}));               
-app.use(bodyParser.text());                                    
-app.use(bodyParser.json({ type: 'application/json'})); 
-app.use(cors())
 
 const userRoutes = require('./routes/user');
 app.use(rooms);
@@ -71,7 +66,10 @@ app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
 app.use(express.json());
 app.use('/api', welcome);
-app.use(rooms);
+
 
 export default app;
+
+
+
 
