@@ -1,21 +1,16 @@
+
 import express from 'express';
 import dotenv from 'dotenv';
-<<<<<<< HEAD
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import rooms from './routes';
 import hotel from './routes';
 import hotelRoutes from './routes/hotelRoute';
-=======
-import rooms from './routes';
-import hotel from './routes';
->>>>>>> 87686e8... room routes created
 
 dotenv.config();
 
 const app = express();
 
-<<<<<<< HEAD
 const welcome = require('./routes/index');
 const rooms = require('./routes/rooms');
 app.use(cors());
@@ -24,9 +19,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());                                    
 app.use(bodyParser.json({ type: 'application/json'})); 
 
-
-const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
@@ -57,33 +49,6 @@ const swaggerOptions = {
 };
 
 
-
- const swaggerOptions = {
- 	swaggerDefinition: {
- 	  openapi: '3.0.0', 
- 	  info: {
- 		title: 'BareFoot Nomad Project',
- 		version: '1.0.0',
- 		description: 'Your API description'
- 	  },
- 	  basePath: '/',
- 	  components: {
- 		securitySchemes: {
- 		  bearerAuth: {
- 			type: 'http',
- 			scheme: 'bearer',
- 			in: 'header',
- 			bearerFormat: 'JWT',
- 		  }
- 		}
- 	  },
- 	  security: [{
- 		bearerAuth: []
- 	  }]
- 	},
- 	apis: ['./src/routes/*.js']
-   };
-
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
@@ -94,49 +59,8 @@ app.use(bodyParser.json({ type: 'application/json'}));
 app.use(cors())
 
 const userRoutes = require('./routes/user');
-=======
->>>>>>> 87686e8... room routes created
 app.use(rooms);
 app.use(hotel);
-
-// app.use(json());
-// app.use(urlencoded( { extended:false} ))
-
-const swaggerOptions = {
-    swaggerDefinition:{
-         openapi: "3.0.0",
-         info:{
-             version: "1.0.0",
-             title:"Develloper operations on rooms ",
-             description:"This API is for CRUD on rooms of hotels",
-         },
-         basePath: '/',
-         components: {
-             securitySchemes: {
-               bearerAuth: {
-                 type: 'http',
-                 scheme: 'bearer',
-                 in: 'header',
-                 bearerFormat: 'JWT',
-               }
-             }
-           },
- 
-            security: [{
-              bearerAuth: []
-               }],
- 
-         contacts:{
-             name:"Furebo Didace",
-             email:"furebodidace582@gmail.com"
-         },
-     },
-     apis:["./src/routes/*.js"]
- }
- 
- const swaggerDocs = swaggerJsDoc(swaggerOptions)
- 
- app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocs))
 
 app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
@@ -149,3 +73,4 @@ app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
 
 export default app;
 
+module.exports = app;
