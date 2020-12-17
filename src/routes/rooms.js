@@ -139,8 +139,13 @@ router.get('/rooms/:roomId', getRoom);
  *            
  *
  */
+<<<<<<< HEAD
 router.put('/rooms/:idroom', updateRoom);
 
+=======
+
+router.put('/rooms/:idroom',updateRoom);
+>>>>>>> ece470b... tests , swagger documentation and CRUD operations on rooms
 
 /**
  * @swagger
