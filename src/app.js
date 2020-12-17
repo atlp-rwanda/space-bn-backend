@@ -1,12 +1,18 @@
 import express from 'express';
 import dotenv from 'dotenv';
+<<<<<<< HEAD
 import bodyParser from 'body-parser';
 import cors from 'cors';
+=======
+import rooms from './routes';
+import hotel from './routes';
+>>>>>>> 87686e8... room routes created
 
 dotenv.config();
 
 const app = express();
 
+<<<<<<< HEAD
 
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -48,6 +54,13 @@ app.use(bodyParser.json({ type: 'application/json'}));
 app.use(cors())
 
 const userRoutes = require('./routes/user');
+=======
+app.use(rooms);
+app.use(hotel);
+
+// app.use(json());
+// app.use(urlencoded( { extended:false} ))
+>>>>>>> 87686e8... room routes created
 
 app.get('/', (req, res) => {
   res.json({ status: 'success', message: 'Welcome to my server' });
