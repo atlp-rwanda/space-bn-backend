@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import express from 'express';
 import dotenv from 'dotenv';
 <<<<<<< HEAD
@@ -13,10 +14,23 @@ dotenv.config();
 const app = express();
 
 <<<<<<< HEAD
+=======
+const express = require('express')
+
+const app = express();
+
+const welcome = require('./routes/index');
+const rooms = require('./routes/rooms');
+const hotels = require('./routes/hotel');
+
+//request routes
+
+>>>>>>> 2127b20... created routes for rooms
 
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
+<<<<<<< HEAD
 
 const swaggerOptions = {
 	swaggerDefinition: {
@@ -61,13 +75,63 @@ app.use(hotel);
 // app.use(json());
 // app.use(urlencoded( { extended:false} ))
 >>>>>>> 87686e8... room routes created
+=======
+const swaggerOptions = {
+    swaggerDefinition:{
+         openapi: "3.0.0",
+         info:{
+             version: "1.0.0",
+             title:"Develloper operations on rooms ",
+             description:"This API is for CRUD on rooms of hotels",
+         },
+         basePath: '/',
+         components: {
+             securitySchemes: {
+               bearerAuth: {
+                 type: 'http',
+                 scheme: 'bearer',
+                 in: 'header',
+                 bearerFormat: 'JWT',
+               }
+             }
+           },
+ 
+            security: [{
+              bearerAuth: []
+               }],
+ 
+         contacts:{
+             name:"Furebo Didace",
+             email:"furebodidace582@gmail.com"
+         },
+     },
+     apis:["/app.js"]
+ }
+ 
+ const swaggerDocs = swaggerJsDoc(swaggerOptions)
+ 
+ app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocs))
 
-app.get('/', (req, res) => {
-  res.json({ status: 'success', message: 'Welcome to my server' });
-});
+>>>>>>> 2127b20... created routes for rooms
 
+
+<<<<<<< HEAD
 app.use('/user', userRoutes);
 
 export default app;
+=======
+>>>>>>> 2127b20... created routes for rooms
+
+ app.use(express.json());
+
+app.use('/api', welcome);
+app.use(rooms);
+app.use(hotels);
 
 
+
+const PORT = process.env.PORT || 3000;
+// eslint-disable-next-line no-console
+app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
+
+module.exports = app;
