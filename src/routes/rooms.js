@@ -89,6 +89,51 @@ router.post('/rooms',protection,createRoom);
  */     
 router.get('/rooms/:roomId', getRoom);
 
+/**
+ * @swagger
+ *
+ * /rooms:
+ *    post:
+ *      summary: add a room
+ *      tags: [rooms]
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/room'
+ *      responses:
+ *        "201":
+ *          description: Article schema
+ *
+ * components:
+ *    schemas:
+ *      room:
+ *        type: object
+ *        required:
+ *          - roomType
+ *          - description
+ *          - roomLabel
+ *          - hotelId
+ *          - status
+ *          - price 
+ *        properties:
+ *          roomType:
+ *            type: string
+ *          description:
+ *              type: string
+ *          roomLabel:
+ *              type: string
+ *          hotelId:
+ *              type: string
+ *          status:
+ *              type: string
+ *          price:
+ *              type: string
+ *                      
+ *       
+ */
+
 
 
 /**
