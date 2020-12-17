@@ -1,15 +1,21 @@
 import express from 'express';
 import dotenv from 'dotenv';
+<<<<<<< HEAD
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import rooms from './routes';
 import hotel from './routes';
 import hotelRoutes from './routes/hotelRoute';
+=======
+import rooms from './routes';
+import hotel from './routes';
+>>>>>>> 87686e8... room routes created
 
 dotenv.config();
 
 const app = express();
 
+<<<<<<< HEAD
 const welcome = require('./routes/index');
 const rooms = require('./routes/rooms');
 app.use(cors());
@@ -88,6 +94,8 @@ app.use(bodyParser.json({ type: 'application/json'}));
 app.use(cors())
 
 const userRoutes = require('./routes/user');
+=======
+>>>>>>> 87686e8... room routes created
 app.use(rooms);
 app.use(hotel);
 
