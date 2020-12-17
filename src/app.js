@@ -1,3 +1,4 @@
+
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
@@ -9,6 +10,8 @@ dotenv.config();
 
 const app = express();
 
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
@@ -54,12 +57,55 @@ app.use(hotel);
 
 // app.use(json());
 // app.use(urlencoded( { extended:false} ))
-
-app.get('/', (req, res) => {
-  res.json({ status: 'success', message: 'Welcome to my server' });
-});
+const swaggerOptions = {
+    swaggerDefinition:{
+         openapi: "3.0.0",
+         info:{
+             version: "1.0.0",
+             title:"Develloper operations on rooms ",
+             description:"This API is for CRUD on rooms of hotels",
+         },
+         basePath: '/',
+         components: {
+             securitySchemes: {
+               bearerAuth: {
+                 type: 'http',
+                 scheme: 'bearer',
+                 in: 'header',
+                 bearerFormat: 'JWT',
+               }
+             }
+           },
+ 
+            security: [{
+              bearerAuth: []
+               }],
+ 
+         contacts:{
+             name:"Furebo Didace",
+             email:"furebodidace582@gmail.com"
+         },
+     },
+     apis:["/app.js"]
+ }
+ 
+ const swaggerDocs = swaggerJsDoc(swaggerOptions)
+ 
+ app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocs))
 
 app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
 
 export default app;
+
+app.use(express.json());
+
+app.use('/api', welcome);
+app.use(rooms);
+app.use(hotels);
+
+const PORT = process.env.PORT || 3000;
+// eslint-disable-next-line no-console
+app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
+
+module.exports = app;
