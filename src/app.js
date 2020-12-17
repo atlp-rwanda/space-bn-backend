@@ -1,6 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+const Requests = require('./routes/requestRoute');
+const userRoutes = require('./routes/user');
 
 dotenv.config();
 
@@ -45,14 +47,18 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());                                    
 app.use(bodyParser.json({ type: 'application/json'})); 
 
-const userRoutes = require('./routes/user');
-
 app.get('/', (req, res) => {
-  res.json({ status: 'success', message: 'Welcome to my server' });
+  // res.json({ status: 'success', message: 'Welcome to my serverrrrrrre' });
+  res.json({ message: 'WELCOME TO SEQUELIZE-POSTGRES API' });
 });
-
+ 
+// request middleware
+app.use(express.json());
+app.use('/Request',Requests);
 app.use('/user', userRoutes);
 
-export default app;
+const PORT = process.env.PORT || 5000; 
+ 
+app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
 
-
+module.exports = app;
