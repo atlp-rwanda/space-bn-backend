@@ -86,7 +86,7 @@ const swaggerOptions = {
              email:"furebodidace582@gmail.com"
          },
      },
-     apis:["/app.js"]
+     apis:["./src/routes/*.js"]
  }
  
  const swaggerDocs = swaggerJsDoc(swaggerOptions)
@@ -102,7 +102,6 @@ app.use(express.json());
 
 app.use('/api', welcome);
 app.use(rooms);
-app.use(hotels);
 
 const PORT = process.env.PORT || 3000;
 // eslint-disable-next-line no-console
