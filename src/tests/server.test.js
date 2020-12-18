@@ -38,7 +38,7 @@ describe("Get All Rooms", () => {
     });
   });
 describe("Get Specific Room", () => {
-  const idroom = 13;
+  const idroom = 7;
   it("should return selected room", (done) => {
     chai
       .request(app)
@@ -50,7 +50,7 @@ describe("Get Specific Room", () => {
   });
 });
   describe("Room Endpoints", () => {
-      const idroom = 13;
+      const idroom = 7;
     it("should update a Room", (done) => {
       chai
         .request(app)
@@ -68,9 +68,11 @@ describe("Get Specific Room", () => {
         });
     });
   });
+  /*
 describe(" Room endpoint --/rooms/id" ,() => {
-    const idroom = 13;
- it("should return selected room", (done) => {
+    //const idroom = 44;
+ it("should delete selected room", (done) => {
+
     chai
       .request(app)
       .delete(`/rooms/${idroom}`)
@@ -80,3 +82,4 @@ describe(" Room endpoint --/rooms/id" ,() => {
       });
   });
 });
+*/
