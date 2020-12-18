@@ -81,7 +81,6 @@ router.post('/rooms',createRoom);
  */     
 router.get('/rooms/:roomId', getRoom);
 
-
 /**
  * @swagger
  *
