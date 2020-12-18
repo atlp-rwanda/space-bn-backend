@@ -158,7 +158,11 @@ describe("Get Specific Room", () => {
 });
 /*
   describe("Room Endpoints", () => {
+<<<<<<< HEAD:src/tests/room.test.js
       const idroom = 1;
+=======
+      const idroom = 7;
+>>>>>>> f080f4e... Implementation for rooms CRUD operations:src/tests/server.test.js
     it("should update a Room", (done) => {
       chai
         .request(app)
@@ -176,10 +180,14 @@ describe("Get Specific Room", () => {
         });
     });
   });
+<<<<<<< HEAD:src/tests/room.test.js
   */
 
 
  /* 
+=======
+  /*
+>>>>>>> f080f4e... Implementation for rooms CRUD operations:src/tests/server.test.js
 describe(" Room endpoint --/rooms/id" ,() => {
     //const idroom = 44;
  it("should delete selected room", (done) => {
