@@ -90,7 +90,6 @@ router.get('/rooms/:roomId', getRoom);
 =======
 >>>>>>> 771fdbf... Implementation for room  CRUD operations
 
-
 /**
  * @swagger
  *
