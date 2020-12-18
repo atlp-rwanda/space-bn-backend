@@ -48,8 +48,6 @@ const swaggerOptions = {
  app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocs))
 
 
-
-
  app.use(express.json());
 
 app.use('/api', welcome);
