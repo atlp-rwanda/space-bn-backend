@@ -57,14 +57,17 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 const userRoutes = require('./routes/user');
 app.use(rooms);
 app.use(hotel);
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.json({ status: 'success', message: 'Welcome to my server' });
 });
 
-
+app.use('/user', userRoutes);
 
 export default app;
+
+
 
 
 
