@@ -4,7 +4,7 @@ env:
 language: node_js
 
 node_js:
-  - 'stable'
+ - "12.18.4"
 install:
   - npm install
 services:
