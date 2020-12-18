@@ -182,7 +182,6 @@ router.get('/rooms',getRooms);
  *       200:
  *         description: Successfully deleted
  */
-
 router.delete('/rooms/:roomId',protection,deleteRoom);
 
 /**
@@ -207,7 +206,6 @@ router.delete('/rooms/:roomId',protection,deleteRoom);
  *         description: Server Error
  */ 
 router.get('/rooms/hotels/:hotelId/rooms', getHotelRooms);
-
 
 module.exports = router;
 
