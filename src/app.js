@@ -92,14 +92,9 @@ const swaggerOptions = {
  const swaggerDocs = swaggerJsDoc(swaggerOptions)
  
  app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocs))
-
 app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
-
-export default app;
-
 app.use(express.json());
-
 app.use('/api', welcome);
 app.use(rooms);
 
@@ -107,4 +102,4 @@ const PORT = process.env.PORT || 3000;
 // eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
 
-module.exports = app;
+export default app;
