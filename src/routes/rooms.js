@@ -209,7 +209,7 @@ router.get('/rooms',getRooms);
 
 /**
  * @swagger
- * /rooms/{roomid}:
+ * /rooms/{roomId}:
  *   delete:
  *     summary: Deletes a room based on ID
  *     tags:
