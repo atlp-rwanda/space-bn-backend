@@ -115,12 +115,15 @@ const swaggerOptions = {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 app.use('/user', userRoutes);
 
 export default app;
 =======
 >>>>>>> 2127b20... created routes for rooms
 
+=======
+>>>>>>> 771fdbf... Implementation for room  CRUD operations
  app.use(express.json());
 
 app.use('/api', welcome);

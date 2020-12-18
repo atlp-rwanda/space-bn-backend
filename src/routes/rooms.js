@@ -60,7 +60,7 @@ router.post('/rooms',createRoom);
 
 /**
  * @swagger
- * /rooms/{id}:
+ * /rooms/{roomId}:
  *   get:
  *     summary: For getting a single room 
  *     tags:
@@ -69,7 +69,7 @@ router.post('/rooms',createRoom);
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: id
+ *       - name: roomId
  *         description: Particular Room Object's ID (Automatically assigned by database)
  *         in: path
  *         required: true
@@ -79,7 +79,7 @@ router.post('/rooms',createRoom);
  *       500:
  *         description: Server Error
  */     
-router.get('/rooms/:id', getRoom);
+router.get('/rooms/:roomId', getRoom);
 
 
 /**
@@ -151,7 +151,7 @@ router.get('/rooms',getRooms);
 
 /**
  * @swagger
- * /rooms/{roomid}:
+ * /rooms/{roomId}:
  *   delete:
  *     summary: Deletes a room based on ID
  *     tags:
@@ -160,16 +160,16 @@ router.get('/rooms',getRooms);
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: roomid
+ *       - name: roomId
  *         description: room's id
  *         in: path
  *         required: true
- *         type: string
+ *         type: integer
  *     responses:
  *       200:
  *         description: Successfully deleted
  */
-router.delete('/rooms/:roomid',deleteRoom);
+router.delete('/rooms/:roomId',deleteRoom);
 
 module.exports = router;
 
