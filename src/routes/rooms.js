@@ -85,7 +85,10 @@ router.post('/rooms',protection,createRoom);
  *         description: Server Error
  */     
 router.get('/rooms/:roomId', getRoom);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 771fdbf... Implementation for room  CRUD operations
 
 
 /**
@@ -184,6 +187,7 @@ router.get('/rooms',getRooms);
  *       200:
  *         description: Successfully deleted
  */
+<<<<<<< HEAD
 router.delete('/rooms/:roomId',protection,deleteRoom);
 
 /**
@@ -209,6 +213,9 @@ router.delete('/rooms/:roomId',protection,deleteRoom);
  */ 
 router.get('/rooms/hotels/:hotelId/rooms', getHotelRooms);
 
+=======
+router.delete('/rooms/:roomId',deleteRoom);
+>>>>>>> 771fdbf... Implementation for room  CRUD operations
 
 module.exports = router;
 
