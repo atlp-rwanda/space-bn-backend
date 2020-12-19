@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 process.env.NODE_ENV = 'test'
 /*
 import {chai} from 'chai';
-=======
-// import dotenv from 'dotenv';
-// dotenv.config();
->>>>>>> bc5dc40... changes the configurationn file
 
 import { use, request, expect } from 'chai';
 import chaiHttp from 'chai-http';
