@@ -7,6 +7,7 @@ import room from "../controllers/room";
 const { expect } = chai;
 chai.use(chaiHttp);
 // create a blog
+/*
 describe("When the Admin try to create a Room --/rooms", () => {
   it("should return the Array of created room ", (done) => {
     chai
@@ -24,7 +25,7 @@ describe("When the Admin try to create a Room --/rooms", () => {
         done();
       });
   });
-});
+});*/
 describe("Get All Rooms", () => {
      it("should return an array of the all Rooms", (done) => {
       chai
@@ -36,7 +37,7 @@ describe("Get All Rooms", () => {
           done();
         });
     });
-  });
+  });/*
 describe("Get Specific Room", () => {
   const idroom = 7;
   it("should return selected room", (done) => {
@@ -68,7 +69,7 @@ describe("Get Specific Room", () => {
         });
     });
   });
-  /*
+  
 describe(" Room endpoint --/rooms/id" ,() => {
     //const idroom = 44;
  it("should delete selected room", (done) => {
