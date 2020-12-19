@@ -1,13 +1,8 @@
-process.env.NODE_ENV='test'; 
- 
- import dotenv from 'dotenv';
- dotenv.config();
+process.env.NODE_ENV = 'test'; 
 
-
-
+import app from "../app";
 import chai from "chai";
 import chaiHttp from "chai-http";
-import app from "../app";
 import room from "../controllers/room";
 const { expect } = chai;
 chai.use(chaiHttp);
