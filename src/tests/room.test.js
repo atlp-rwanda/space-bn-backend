@@ -39,7 +39,7 @@ describe("Get All Rooms", () => {
     });
   });
 describe("Get Specific Room", () => {
-  const idroom = 7;
+  const idroom = 1;
   it("should return selected room", (done) => {
     chai
       .request(app)
@@ -51,7 +51,7 @@ describe("Get Specific Room", () => {
   });
 });
   describe("Room Endpoints", () => {
-      const idroom = 7;
+      const idroom = 1;
     it("should update a Room", (done) => {
       chai
         .request(app)
