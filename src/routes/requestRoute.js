@@ -8,10 +8,25 @@ const updateR = controller.updateRequest;
 const deleteR = controller.deleteRequest;
 const getR = controller.getAllRequests;
 
-router.post('/',createR);
-router.put('/:idRequest',updateR);
-router.delete('/:idRequest',deleteR);
-router.get('/',getR);
+router.post('/Request',createR);
+router.put('/Request/:idRequest',updateR);
+router.delete('/Request/:idRequest',deleteR);
+
+
+/**
+ * @swagger
+ * /Request:
+ *  get:
+ *    tags:
+ *    - All requests
+ *    summary: All requests from database
+ *    description: Requests are desplayed from DB
+ *    responses:
+ *      '200':
+ *        description: Requests are desplayed succesffuly.
+ *      
+*/
+router.get('/Request',getR);
 
 module.exports = router;
 
