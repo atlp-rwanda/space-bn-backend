@@ -4,7 +4,7 @@
   "description": "[![Build Status](https://travis-ci.org/atlp-rwanda/space-bn-backend.svg?branch=develop)](https://travis-ci.org/atlp-rwanda/space-bn-backend)",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit",
+    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit",
     "lint": "eslint ./",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "coverage": "nyc reporter --reporter=text --lcov | coveralls",
