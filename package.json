@@ -45,7 +45,11 @@
     "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "coveralls": "^3.1.0",
+<<<<<<< HEAD
     "dotenv": "^8.2.0",
+=======
+    "cross-env": "^7.0.3",
+>>>>>>> 61cd644... Implementation for rooms CRUD operations
     "ejs": "^3.1.5",
     "eslint-plugin-react-hooks": "^4.2.0",
     "express": "^4.17.1",
