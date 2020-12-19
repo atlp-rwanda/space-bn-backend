@@ -1,4 +1,4 @@
-
+/*
 require('dotenv').config()
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
   },
 }
 
-/*
+*/
 require('dotenv').config()
 
 export const development = {
@@ -31,4 +31,4 @@ export const production = {
   url: process.env.DATABASE_URL,
   dialect: 'postgres',
 }
-*/
+
