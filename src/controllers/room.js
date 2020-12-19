@@ -5,11 +5,7 @@ const model = require('../database/models');
 
 const createRoom = async (req, res) => {
   try {
-<<<<<<< HEAD
     const room = await model.RoomModel.create(req.body);
-=======
-    const room = await model.roommodel.create(req.body);
->>>>>>> fbdcee4... removes the hotel
     if (room) {
 
       return res.status(200).json({ room });
