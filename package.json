@@ -4,11 +4,15 @@
   "description": "[![Build Status](https://travis-ci.org/atlp-rwanda/space-bn-backend.svg?branch=develop)](https://travis-ci.org/atlp-rwanda/space-bn-backend)",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all",
     "migrate:reset": "sequelize db:migrate:undo:all && npm run migrate",
     "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit --timeout 20000",
     "pretest": "cross-env NODE_ENV=test npm run migrate:reset",
+=======
+    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit",
+>>>>>>> 73cec4b... Implementation for rooms CRUD operations
     "lint": "eslint ./",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "coverage": "nyc reporter --reporter=text --lcov | coveralls",
