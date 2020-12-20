@@ -8,10 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      hotelName: {
+      hotelname: {
         type: Sequelize.STRING
       },
-      priceRange: {
+      pricerange: {
         type: Sequelize.STRING
       },
       location: {
@@ -26,14 +26,17 @@ module.exports = {
       wifi: {
         type: Sequelize.STRING
       },
-      swimmingPool: {
+      swimmingpool: {
         type: Sequelize.STRING
       },
       breakfast: {
         type: Sequelize.STRING
       },
       rooms: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.STRING
+      },
+      avatar: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
