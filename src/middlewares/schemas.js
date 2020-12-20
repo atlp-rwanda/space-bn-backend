@@ -16,7 +16,8 @@ const personDataSchema = Joi.object().keys({
     profession: Joi.string().required(),
     age: Joi.number().integer().required(),
     identification_type: Joi.string().valid('Passport', 'ID').required(),
-    identification_number: Joi.string().required()
+    identification_number: Joi.string().required(),
+    user_image: Joi.string()
 
 });
 
