@@ -27,7 +27,8 @@ const signup = (req, res) => {
           profession: req.body.profession,
           age: req.body.age,
           identification_type: req.body.identification_type,
-          identification_number: req.body.identification_number
+          identification_number: req.body.identification_number,
+          user_image: req.file.filename
         })
         .then((user) => {
           
