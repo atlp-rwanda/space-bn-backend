@@ -12,6 +12,6 @@ router.get('/allHotels', getAllHotels);
 router.delete('/deleteHotel/:id', deleteHotel);
 router.get('/hotel/:id', getHotel);
 router.get('/hotelRooms', getHotelRooms);
-router.put('/updateHotel', updateHotel);
+router.patch('/updateHotel/:id', updateHotel);
 
 export default router;

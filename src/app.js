@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { urlencoded, json } from 'express';
 
 import dotenv from 'dotenv';
 
@@ -12,6 +12,9 @@ import hotelRoutes from './routes/hotelRoute';
 dotenv.config();
 
 const app = express();
+
+app.use(json());
+app.use(urlencoded({ extended: false }));
 
 // app.use(json());
 // app.use(urlencoded( { extended:false} ))

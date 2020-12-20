@@ -1,8 +1,4 @@
-import { json, urlencoded } from 'body-parser';
 import app from './app';
-
-app.use(json());
-app.use(urlencoded({ extended: false }));
 
 const port = process.env.PORT || 5000;
 

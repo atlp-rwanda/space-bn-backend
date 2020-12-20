@@ -19,15 +19,12 @@ const getAllHotels = async (req, res) => {
     return res.status(500).send(error.message);
   }
 };
-  // Deleting a particular hotel by id
+// Deleting a particular hotel by id
 const deleteHotel = async (req, res) => {
   try {
-    const { hotelId } = req.params;
+    const { id } = req.params;
     const deleted = await model.hotel.destroy({
-      where: { id: hotelId }
-    });
-    await model.roommodel.destroy({
-      where: { hotelId }
+      where: { id: id }
     });
     if (deleted) {
       return res.status(200).json({ message: 'Hotel deleted successfully.' });
@@ -40,9 +37,9 @@ const deleteHotel = async (req, res) => {
   // Getting  a particular room by id
 const getHotel = async (req, res) => {
   try {
-    const { hotelId } = req.params;
+    const { id } = req.params;
     const hotel = await model.hotel.findOne({
-      where: { id: hotelId }
+      where: { id: id }
     });
     if (hotel) {
       return res.status(200).json({ hotel });
@@ -68,12 +65,12 @@ const getHotelRooms = async (req, res) => {
 };
 const updateHotel = async (req, res) => {
   try {
-    const { idhotel } = req.params;
+    const { id } = req.params;
     const [updated] = await model.hotel.update(req.body, {
-      where: { id: idhotel }
+      where: { id: id }
     });
     if (updated) {
-      const updatedHotel = await model.hotel.findOne({ where: { id: idhotel } });
+      const updatedHotel = await model.hotel.findOne({ where: { id: id } });
       return res.status(200).json({ room: updatedHotel });
     }
     throw new Error('Hotel not found');
