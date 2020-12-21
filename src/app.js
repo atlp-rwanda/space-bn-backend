@@ -5,11 +5,6 @@ import cors from 'cors';
 
 import hotelRoutes from './routes/hotelRoute';
 
-// const createHotel = require('./routes/hotelRoute');
-// const getHotels = require('./routes/hotelRoute');
-// const deleteHotel = require('./routes/hotelRoute');
-// const getHotel = require('./routes/hotelRoute');
-
 dotenv.config();
 
 const app = express();
@@ -59,5 +54,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/user', userRoutes);
+app.use(`${process.env.API_VERSION}/hotels`, hotelRoutes);
 
 export default app;

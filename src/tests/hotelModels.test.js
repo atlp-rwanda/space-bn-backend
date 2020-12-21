@@ -59,7 +59,7 @@ describe('Testing hotel endpoints', () => {
     });
 
     describe('Get Specific hotel', () => {
-      // const id = hotelId;
+      const id = hotelId;
       it('should return selected hotel', (done) => {
         chai
           .request(app)
