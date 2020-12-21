@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   hotel.init({
+    hotelId: DataTypes.INTEGER,
     hotelname: DataTypes.STRING,
     pricerange: DataTypes.STRING,
     location: DataTypes.STRING,
@@ -22,8 +23,9 @@ module.exports = (sequelize, DataTypes) => {
     wifi: DataTypes.STRING,
     swimmingpool: DataTypes.STRING,
     breakfast: DataTypes.STRING,
-    rooms: DataTypes.STRING,
-    avatar: DataTypes.STRING
+    rooms: DataTypes.ARRAY(DataTypes.STRING),
+    images: DataTypes.ARRAY(DataTypes.STRING),
+    hotelemail: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'hotel',
