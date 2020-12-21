@@ -1,70 +1,110 @@
-process.env.NODE_ENV = 'test';
-
 import chai from 'chai';
 
 import http from 'chai-http';
 
 import app from '../app';
 
-import db from '../database/config/test_db';
-
 import data from './util';
+
+process.env.NODE_ENV = 'test';
+
+let hotelId = 1;
+
+const { expect } = chai;
 
 const should = chai.should();
 
 chai.use(http);
 
-const { expect } = chai;
+describe('Hotel models', () => {
+  describe('All hotels', () => {
+    it('should return all hotels', (done) => {
+      chai
+        .request(app)
+        .get('/api/v1/hotels/allHotels')
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(200);
+          done();
+        });
+    });
+  });
 
-// describe('User registration', () => {
-//   before('clear database', () => {
-//     db.query('DELETE FROM hotels', (err, results) => {
-//       if (err) throw err;
-//       // eslint-disable-next-line no-console
-//       else console.log('OK!!!!');
-//     });
-//   });
-//   it('create a hotel on /api/v1/hotels/createHotel POST', (done) => {
-//     chai.request(app)
-//       .post('/api/v1/hotels/createHotel')
-//       .send(data.postHotel)
-//       .then((res) => {
-//         expect(res).to.have.status(201);
-//         res.should.be.json;
-//         // expect(res.body.message).to.be.equal('User registered');
-//         // expect(res.body.postHotel.id).to.exist;
-//         expect(res.body.postHotel.hotelname).to.exist;
-//         expect(res.body.postHotel.priceRange).to.exist;
-//         expect(res.body.postHotel.location).to.exist;
-//         expect(res.body.postHotel.ranking).to.exist;
-//         expect(res.body.postHotel.parking).to.exist;
-//         expect(res.body.postHotel.wifi).to.exist;
-//         expect(res.body.postHotel.swimmingPool).to.exist;
-//         expect(res.body.postHotel.breakfast).to.exist;
-//         expect(res.body.postHotel.rooms).to.exist;
-//         expect(res.body.postHotel.avatar).to.exist;
-//         done();
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   });
-// });
+  describe('When the Admin try to create a hotel --/createHotel', () => {
+    it('should return the created hotel ', (done) => {
+      chai
+        .request(app)
+        .post('/api/v1/hotels/createHotel')
+        .send({
+          hotelname: 'Umubavu Hotel',
+          pricerange: '$80',
+          location: 'Musanze',
+          ranking: '3 star',
+          parking: 'Yes',
+          wifi: 'Yes',
+          swimmingpool: 'no',
+          breakfast: 'Yes',
+          rooms: ['Double rooms', 'Single rooms', 'complex rooms'],
+          images: ['www.unsplash.com/umubavu', 'www.gettyimages/umubavuhotel'],
+          hotelemail: 'five@yahoo.com'
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          console.log('===========$$$$$$$', res.body.hotel.hotelId);
+          hotelId = res.body.hotel.hotelId;
+          done();
+        });
+    });
+  });
 
-describe('hotels', () => {
-  it('should list All hotels on /api/v1/hotels/allHotels GET', function(done) {
-    chai.request(app)
-      .get('/api/v1/hotels/allHotels')
-      .end(function(err, res){
-        res.should.have.status(200);
-        res.should.be.json;
-        res.body.should.be.a('object');
-        console.log(res.body);
-        done();
-      });
-});
-  it('should list a SINGLE hotel on /api/v1/hotels/hotel/<id> GET');
-  it('should add a SINGLE hotel on /api/v1/hotels/createHotel POST');
-  it('should update a SINGLE hotel on /api/v1/hotels/updateHotel/<id> PATCH');
-  it('should delete a SINGLE hotel on /api/v1/hotels/deleteHotel/<id> DELETE');
+  describe('Get Specific hotel', () => {
+    const id = hotelId;
+    it('should return selected hotel', (done) => {
+      chai
+        .request(app)
+        .get(`/api/v1/hotels/hotel/${hotelId}`)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+  });
+
+  describe('Update specific hotel', () => {
+    // const id = hotelId;
+    it('should update a hotel', (done) => {
+      chai
+        .request(app)
+        .patch(`/api/v1/hotels/updateHotel/${hotelId}`)
+        .send({
+          hotelname: 'Amahuwezi Hotel',
+          pricerange: '$80',
+          location: 'Musanze',
+          ranking: '3 star',
+          parking: 'Yes',
+          wifi: 'Yes',
+          swimmingpool: 'no',
+          breakfast: 'depends',
+          rooms: ['Double rooms', 'Single rooms', 'complex rooms'],
+          images: ['www.unsplash.com/umubavu', 'www.gettyimages/umubavuhotel'],
+          hotelemail: 'five@yahoo.com'
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+  });
+  describe(' Delete endpoint selected hotel', () => {
+    // const id = hotelId;
+    it('should delete selected hotel', (done) => {
+      chai
+        .request(app)
+        .delete(`/api/v1/hotels/deleteHotel/${hotelId}`)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          done();
+        });
+    });
+  });
 });
