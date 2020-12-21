@@ -1,8 +1,17 @@
 'use strict';
+
+// const { DataTypes } = require('sequelize/types');
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('hotels', {
       id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: false,
+        type: Sequelize.INTEGER
+      },
+      hotelId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -33,9 +42,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       rooms: {
-        type: Sequelize.STRING
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
-      avatar: {
+      images: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+      },
+      hotelemail: {
         type: Sequelize.STRING
       },
       createdAt: {

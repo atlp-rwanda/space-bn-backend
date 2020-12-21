@@ -24,7 +24,7 @@ const deleteHotel = async (req, res) => {
   try {
     const { id } = req.params;
     const deleted = await model.hotel.destroy({
-      where: { id: id }
+      where: { id }
     });
     if (deleted) {
       return res.status(200).json({ message: 'Hotel deleted successfully.' });
@@ -39,7 +39,7 @@ const getHotel = async (req, res) => {
   try {
     const { id } = req.params;
     const hotel = await model.hotel.findOne({
-      where: { id: id }
+      where: { id }
     });
     if (hotel) {
       return res.status(200).json({ hotel });
@@ -67,11 +67,11 @@ const updateHotel = async (req, res) => {
   try {
     const { id } = req.params;
     const [updated] = await model.hotel.update(req.body, {
-      where: { id: id }
+      where: { id }
     });
     if (updated) {
-      const updatedHotel = await model.hotel.findOne({ where: { id: id } });
-      return res.status(200).json({ room: updatedHotel });
+      const updatedHotel = await model.hotel.findOne({ where: { id } });
+      return res.status(200).json({ hotel: updatedHotel });
     }
     throw new Error('Hotel not found');
   } catch (error) {
