@@ -4,15 +4,11 @@ import http from 'chai-http';
 
 import app from '../app';
 
-import data from './util';
-
 process.env.NODE_ENV = 'test';
 
 let hotelId = 1;
 
 const { expect } = chai;
-
-const should = chai.should();
 
 chai.use(http);
 
@@ -59,7 +55,7 @@ describe('Testing hotel endpoints', () => {
     });
 
     describe('Get Specific hotel', () => {
-      const id = hotelId;
+      // const id = hotelId;
       it('should return selected hotel', (done) => {
         chai
           .request(app)
