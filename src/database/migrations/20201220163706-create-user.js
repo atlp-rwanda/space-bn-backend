@@ -44,6 +44,9 @@ module.exports = {
       identification_number: {
         type: Sequelize.STRING
       },
+      user_image: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

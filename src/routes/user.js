@@ -1,11 +1,37 @@
 import express from 'express';
+import multer from 'multer';
 
 const router = express.Router();
-
 const userController = require('../controllers/user');
 const SchemaValidator = require('../middlewares/SchemaValidator');
 
 const validateRequest = SchemaValidator(true);
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, './src/uploads/');
+    },
+    filename: function(req, file, cb) {
+      cb(null, new Date().toISOString() + file.originalname);
+    }
+});
+  
+  const fileFilter = (req, file, cb) => {
+    // reject a file
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+      cb(null, true);
+    } else {
+      cb(null, false);
+    }
+  };
+  
+  const upload = multer({
+    storage: storage,
+    limits: {
+      fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+});
 
 /**
  * @swagger
@@ -16,7 +42,7 @@ const validateRequest = SchemaValidator(true);
  *      requestBody:
  *        required: true
  *        content:
- *          application/json:
+ *          multipart/form-data:
  *            schema:
  *              $ref: '#/components/schemas/user'
  *      responses:
@@ -40,6 +66,7 @@ const validateRequest = SchemaValidator(true);
  *          - age
  *          - identification_type
  *          - identification_number
+ *          - user_image
  *        properties:
  *          firstname:
  *            type: string
@@ -65,8 +92,11 @@ const validateRequest = SchemaValidator(true);
  *            type: string
  *          identification_number:
  *            type: string
+ *          user_image:
+ *            type: string
+ *            format: binary
  */
-router.post('/signup', validateRequest, userController.signup);
+router.post('/signup', upload.single('user_image'), validateRequest, userController.signup);
 
 
 /**

@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     profession: DataTypes.STRING,
     age: DataTypes.INTEGER,
     identification_type: DataTypes.STRING,
-    identification_number: DataTypes.STRING
+    identification_number: DataTypes.STRING,
+    user_image: DataTypes.STRING
   }, {});
 
   User.beforeSave((user, options) => {

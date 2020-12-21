@@ -4,6 +4,8 @@ import http from 'chai-http';
 
 import app from '../app';
 
+const fs = require('fs');
+
 chai.use(http);
 
 const expect = chai.expect;
@@ -11,22 +13,25 @@ const expect = chai.expect;
 
 describe('User registration', () => {
   it('should return 201 and confirmation for valid input', (done) => {
-    let user_input = {
-      "firstname": "keza",
-      "lastname": "janet",
-      "telephone": "0783977618",
-      "email": "keza@gmail.com",
-      "password": "1234567avb$#8",
-      "role": "Hotel Manager",
-      "gender": "Male",
-      "origin": "rwandan",
-      "profession": "banking",
-      "age": "27",
-      "identification_type": "ID",
-      "identification_number": "1122020333"
-    };
 
-        chai.request(app).post('/user/signup').send(user_input).then(res => {
+        chai.request(app).post('/user/signup')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .field('firstname', 'keza')
+        .field('lastname', 'janet')
+        .field('telephone', '0783977618')
+        .field('email', 'keza@gmail.com')
+        .field('password', '1234567avb$#8')
+        .field('role', 'Hotel Manager')
+        .field('gender', 'Male')
+        .field('origin', 'rwandan')
+        .field('profession', 'banking')
+        .field('age', '27')
+        .field('identification_type', 'ID')
+        .field('identification_number', '1122020333')
+        .attach('user_image', 
+          fs.readFileSync('./src/tests/malume.png'), 'malume.png')
+          
+        .then(res => {
     
             expect(res).to.have.status(201);
             expect(res.body.message).to.be.equal('User registered');
@@ -42,60 +47,72 @@ describe('User registration', () => {
             expect(res.body.user_details.age).to.exist;
             expect(res.body.user_details.identification_type).to.exist;
             expect(res.body.user_details.identification_number).to.exist;
+            expect(res.body.user_details.user_image).to.exist;
             done();
           }).catch(err => {
             console.log(err);
           });
-    })
+    });
 
     //test for invalid input
     it('should return 422 for invalid email input', (done) => {
-        let user_invalid_input = {
-                "firstname": "keza",
-                "lastname": "janet",
-                "telephone": "0783977618",
-                "email": "",
-                "password": "1234567avb$#8",
-                "role": "Hotel Manager",
-                "gender": "Male",
-                "origin": "rwandan",
-                "profession": "banking",
-                "age": "27",
-                "identification_type": "ID",
-                "identification_number": "1122020333"
-        }
-        chai.request(app).post('/user/signup').send(user_invalid_input).then(res => {
-            expect(res).to.have.status(422);
-            done();
+
+      chai.request(app).post('/user/signup')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .field('firstname', 'keza')
+        .field('lastname', 'janet')
+        .field('telephone', '0783977618')
+        .field('email', '')
+        .field('password', '1234567avb$#8')
+        .field('role', 'Hotel Manager')
+        .field('gender', 'Male')
+        .field('origin', 'rwandan')
+        .field('profession', 'banking')
+        .field('age', '27')
+        .field('identification_type', 'ID')
+        .field('identification_number', '1122020333')
+        .attach('user_image', 
+          fs.readFileSync('./src/tests/malume.png'), 'malume.png')
+        
+      .then(res => {
+  
+          expect(res).to.have.status(422);
+          done();
         }).catch(err => {
-            console.log(err);
+          console.log(err);
         });
-    });
+    }); 
 
     //test an existing e-mail
     it('Should return error 409 when email already registered', (done) => {
-         let new_user = {
-                "firstname": "keza",
-                "lastname": "janet",
-                "telephone": "0783977618",
-                "email": "keza@gmail.com",
-                "password": "1234567avb$#8",
-                "role": "Hotel Manager",
-                "gender": "Male",
-                "origin": "rwandan",
-                "profession": "banking",
-                "age": "27",
-                "identification_type": "ID",
-                "identification_number": "1122020333"
-        }
-        chai.request(app).post('/user/signup').send(new_user).then((res) => {
-            expect(res).to.have.status(409);
-            expect(res.body.message).to.be.equal('Email already registered');
-            done();
+      
+      chai.request(app).post('/user/signup')
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .field('firstname', 'keza')
+        .field('lastname', 'janet')
+        .field('telephone', '0783977618')
+        .field('email', 'keza@gmail.com')
+        .field('password', '1234567avb$#8')
+        .field('role', 'Hotel Manager')
+        .field('gender', 'Male')
+        .field('origin', 'rwandan')
+        .field('profession', 'banking')
+        .field('age', '27')
+        .field('identification_type', 'ID')
+        .field('identification_number', '1122020333')
+        .attach('user_image', 
+          fs.readFileSync('./src/tests/malume.png'), 'malume.png')
+        
+      .then(res => {
+          expect(res).to.have.status(409);
+          expect(res.body.message).to.be.equal('Email already registered');
+          done();
         }).catch(err => {
-            console.log(err.message);
+          console.log(err);
         });
-    });    
+  });
+
+    
 
 });
 
