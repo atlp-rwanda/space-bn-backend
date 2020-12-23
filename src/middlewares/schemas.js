@@ -10,7 +10,7 @@ const personDataSchema = Joi.object().keys({
     telephone: Joi.string(),
     email: Joi.string().email().required(),
     password: Joi.string().regex(/[^a-zA-Z\d\s:]/, 'Your password must be non-alphanumeric characters.').min(8).required(),
-    role: Joi.string().valid('Nomad', 'Hotel Manager'),
+    role: Joi.string().valid('Nomad', 'Hotel Manager', 'Admin'),
     gender: Joi.string().valid(['Male', 'Female']),
     origin: Joi.string(),
     profession: Joi.string(),
