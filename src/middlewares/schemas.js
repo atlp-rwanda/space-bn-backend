@@ -7,16 +7,16 @@ const name = Joi.string().required();
 const personDataSchema = Joi.object().keys({
     firstname: name,
     lastname: name,
-    telephone: Joi.string().required(),
+    telephone: Joi.string(),
     email: Joi.string().email().required(),
     password: Joi.string().regex(/[^a-zA-Z\d\s:]/, 'Your password must be non-alphanumeric characters.').min(8).required(),
-    role: Joi.string().valid('Nomad', 'Hotel Manager').required(),
-    gender: Joi.string().valid(['Male', 'Female']).required(),
-    origin: Joi.string().required(),
-    profession: Joi.string().required(),
-    age: Joi.number().integer().required(),
-    identification_type: Joi.string().valid('Passport', 'ID').required(),
-    identification_number: Joi.string().required(),
+    role: Joi.string().valid('Nomad', 'Hotel Manager'),
+    gender: Joi.string().valid(['Male', 'Female']),
+    origin: Joi.string(),
+    profession: Joi.string(),
+    age: Joi.number().integer(),
+    identification_type: Joi.string().valid('Passport', 'ID'),
+    identification_number: Joi.string(),
     user_image: Joi.string()
 
 });
