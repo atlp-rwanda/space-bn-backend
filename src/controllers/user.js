@@ -23,9 +23,9 @@ const signup = (req, res) => {
           password: req.body.password,
           role: req.body.role || 'Nomad',
           gender: req.body.gender || '',
-          origin: req.body.origin || 'Country',
+          origin: req.body.origin || '',
           profession: req.body.profession || '',
-          age: req.body.age || 16,
+          age: req.body.age || 0,
           identification_type: req.body.identification_type || 'ID',
           identification_number: req.body.identification_number || '',
           user_image: req.file ? req.file.filename : ''
@@ -46,32 +46,5 @@ const signup = (req, res) => {
   .catch((error) => res.status(400).send(error.message));
 }
 
-const signin = (req, res) => {
-  User.findOne({
-    where: {
-      email: req.body.email
-    }
-  })
-  .then((user) => {
-    if (!user) {
-      return res.status(401).send({
-        message: 'Authentication failed. User not found.',
-      });
-    }
-    user.comparePassword(req.body.password, (err, isMatch) => {
-      if(isMatch && !err) {
-        var token = jwt.sign(JSON.parse(JSON.stringify(user)), process.env.JWT_KEY, {expiresIn: '1h'});
-        jwt.verify(token, process.env.JWT_KEY, function(err, data){
-          console.log(err, data);
-        })
-        res.json({success: true, token: 'JWT ' + token});
-      } else {
-        res.status(401).send({success: false, message: 'Authentication failed. Wrong password.'});
-      }
-    })
-  })
-  .catch((error) => res.status(400).send(error));
-  
-}
 
-module.exports = { signup, signin};
+module.exports = { signup };
