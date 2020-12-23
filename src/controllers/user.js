@@ -18,16 +18,17 @@ const signup = (req, res) => {
     User.create({
           firstname: req.body.firstname,
           lastname: req.body.lastname,
-          telephone: req.body.telephone || 'No telephone',
+          telephone: req.body.telephone || '',
           email: req.body.email,
           password: req.body.password,
           role: req.body.role || 'Nomad',
-          gender: req.body.gender || 'Male',
+          gender: req.body.gender || '',
           origin: req.body.origin || 'Country',
-          profession: req.body.profession || 'No Job',
+          profession: req.body.profession || '',
           age: req.body.age || 16,
           identification_type: req.body.identification_type || 'ID',
-          identification_number: req.body.identification_number || 'Document number',
+          identification_number: req.body.identification_number || '',
+          user_image: req.file ? req.file.filename : ''
         })
         .then((user) => {
           
