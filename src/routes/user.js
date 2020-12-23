@@ -99,35 +99,4 @@ const storage = multer.diskStorage({
 router.post('/signup', upload.single('user_image'), validateRequest, userController.signup);
 
 
-/**
- * @swagger
- * /user/signin:
- *    post:
- *      summary: User can signin
- *      tags: [Users]
- *      requestBody:
- *        required: true
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/users'
- *      responses:
- *        "201":
- *          description: A user schema
- *
- * components:
- *    schemas:
- *      users:
- *        type: object
- *        required:
- *          - email
- *          - password
- *        properties:
- *          email:
- *            type: string
- *          password:
- *            type: string
- */
-router.post('/signin', validateRequest, userController.signin);
-
 module.exports = router;
