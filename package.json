@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "migrate": "npx sequelize-cli db:migrate",
-<<<<<<< HEAD
     "seed": "npx sequelize-cli db:seed:all",
-=======
->>>>>>> added the some configuration packages
     "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
     "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit --timeout 20000",
     "pretest": "cross-env NODE_ENV=test npm run migrate:reset",
