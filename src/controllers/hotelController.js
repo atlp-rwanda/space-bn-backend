@@ -1,5 +1,7 @@
 import model from '../database/Models';
-// creating a hotel
+
+require('dotenv').config();
+
 const createHotel = async (req, res) => {
   try {
     const hotel = await model.hotel.create(req.body);
