@@ -85,10 +85,8 @@ router.post('/rooms',protection,createRoom);
  *         description: Server Error
  */     
 router.get('/rooms/:roomId', getRoom);
-<<<<<<< HEAD
 
-=======
->>>>>>> 771fdbf... Implementation for room  CRUD operations
+
 
 /**
  * @swagger
@@ -141,13 +139,8 @@ router.get('/rooms/:roomId', getRoom);
  *            
  *
  */
-<<<<<<< HEAD
 router.put('/rooms/:idroom', updateRoom);
 
-=======
-
-router.put('/rooms/:idroom',updateRoom);
->>>>>>> ece470b... tests , swagger documentation and CRUD operations on rooms
 
 /**
  * @swagger
@@ -186,7 +179,6 @@ router.get('/rooms',getRooms);
  *       200:
  *         description: Successfully deleted
  */
-<<<<<<< HEAD
 router.delete('/rooms/:roomId',protection,deleteRoom);
 
 /**
@@ -212,9 +204,6 @@ router.delete('/rooms/:roomId',protection,deleteRoom);
  */ 
 router.get('/rooms/hotels/:hotelId/rooms', getHotelRooms);
 
-=======
-router.delete('/rooms/:roomId',deleteRoom);
->>>>>>> 771fdbf... Implementation for room  CRUD operations
 
 module.exports = router;
 
