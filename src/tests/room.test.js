@@ -64,27 +64,7 @@ describe("Get Specific Room", () => {
       });
   });
 });
-/*
-  describe("Room Endpoints", () => {
-      const idroom = 1;
-    it("should update a Room", (done) => {
-      chai
-        .request(app)
-        .put(`/rooms/${idroom}`)
-        .send({
-          hotelId: "001",
-          description: "Room for VIP",
-          roomType: "first class",
-          roomLabel: "label 001",
-          status: "double",
-        })
-        .end((err, res) => {
-          expect(res.status).to.equal(200);
-          done();
-        });
-    });
-  });
-  */
+
 
  describe("put/rooms/:id",()=>{
   const idroom = 1;
@@ -118,18 +98,3 @@ describe("Get Specific Room", () => {
       })
   }) 
 
- /* 
-describe(" Room endpoint --/rooms/id" ,() => {
-    //const idroom = 44;
- it("should delete selected room", (done) => {
-
-    chai
-      .request(app)
-      .delete(`/rooms/${idroom}`)
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
-        done();
-      });
-  });
-});
-*/
