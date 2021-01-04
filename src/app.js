@@ -100,6 +100,7 @@ app.use(cors())
 
 const userRoutes = require('./routes/user');
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 app.use(rooms);
 app.use(hotel);
@@ -152,6 +153,9 @@ const swaggerOptions = {
 =======
 */
 >>>>>>> e7fa6e2... Authentication and writes tests for protected endpoints
+=======
+
+>>>>>>> 4440503... Authentication and writes tests for protected endpoints
 
 
 <<<<<<< HEAD
