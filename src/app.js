@@ -10,6 +10,11 @@ dotenv.config();
 
 const app = express();
 
+const welcome = require('./routes/index');
+const rooms = require('./routes/rooms');
+
+//request routes
+
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
@@ -41,6 +46,7 @@ const swaggerOptions = {
   apis: ['./src/routes/*.js']
 };
 
+
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
@@ -51,12 +57,12 @@ app.use(bodyParser.json({ type: 'application/json' }));
 app.use(cors());
 
 const userRoutes = require('./routes/user');
-
 app.use(rooms);
 app.use(hotel);
 
 // app.use(json());
 // app.use(urlencoded( { extended:false} ))
+
 const swaggerOptions = {
     swaggerDefinition:{
          openapi: "3.0.0",
@@ -92,12 +98,12 @@ const swaggerOptions = {
  const swaggerDocs = swaggerJsDoc(swaggerOptions)
  
  app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocs))
+
 app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
 app.use(express.json());
 app.use('/api', welcome);
 app.use(rooms);
-
 const PORT = process.env.PORT || 3000;
 // eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));

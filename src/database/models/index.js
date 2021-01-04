@@ -1,8 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> e7fa6e2... Authentication and writes tests for protected endpoints
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
+<<<<<<< HEAD
 import Config from './../../config/config';
 =======
 const fs = require('fs');
@@ -10,6 +15,9 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const envConfigs =  require('../config/config');
 >>>>>>> 2127b20... created routes for rooms
+=======
+import envConfigs from './../../config/config';
+>>>>>>> e7fa6e2... Authentication and writes tests for protected endpoints
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
@@ -69,8 +77,8 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-
 /*
+
 import { readdirSync } from 'fs';
 import { basename as _basename, join } from 'path';
 import Sequelize, { DataTypes } from 'sequelize';
@@ -107,5 +115,4 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 export default db;
-
 */
