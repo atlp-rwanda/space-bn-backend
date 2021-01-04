@@ -57,7 +57,6 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 const userRoutes = require('./routes/user');
-
 app.use(rooms);
 app.use(hotel);
 app.use(express.json());
