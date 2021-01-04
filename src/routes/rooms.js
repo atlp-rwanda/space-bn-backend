@@ -4,6 +4,8 @@ const { Router } = require('express');
 const router = Router();
 const controller = require('../controllers/room');
 
+const protection = require('../middlewares/check-auth');
+
 const createRoom = controller.createRoom;
 const getRooms = controller.getAllRooms;
 const getRoom = controller.getRoomById;
@@ -56,7 +58,7 @@ const updateRoom = controller.updateRoom;
  */
 
 
-router.post('/rooms',createRoom);
+router.post('/rooms',protection,createRoom);
 
 /**
  * @swagger
@@ -131,7 +133,7 @@ router.get('/rooms/:roomId', getRoom);
  *
  */
 
-router.put('/rooms/:idroom',updateRoom);
+router.put('/rooms/:idroom',protection,updateRoom);
 
 /**
  * @swagger
@@ -168,7 +170,7 @@ router.get('/rooms',getRooms);
  *       200:
  *         description: Successfully deleted
  */
-router.delete('/rooms/:roomId',deleteRoom);
+router.delete('/rooms/:roomId',protection,deleteRoom);
 
 module.exports = router;
 
