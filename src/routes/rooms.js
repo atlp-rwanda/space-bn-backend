@@ -6,6 +6,8 @@ const router = Router();
 const protection = require('../middlewares/check-auth');
 const controller = require('../controllers/room');
 
+const protection = require('../middlewares/check-auth');
+
 const createRoom = controller.createRoom;
 const getRooms = controller.getAllRooms;
 const getRoom = controller.getRoomById;

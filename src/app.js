@@ -14,11 +14,15 @@ dotenv.config();
 const app = express();
 
 const welcome = require('./routes/index');
+
 app.use(cors());
 app.use(bodyParser.json());                                     
 app.use(bodyParser.urlencoded({extended: true}));               
 app.use(bodyParser.text());                                    
 app.use(bodyParser.json({ type: 'application/json'})); 
+
+
+//request routes
 
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -49,12 +53,11 @@ const swaggerOptions = {
   apis: ['./src/routes/*.js']
 };
 
-
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-
 const userRoutes = require('./routes/user');
+
 app.use(rooms);
 app.use(hotel);
 app.use(express.json());
@@ -66,7 +69,6 @@ app.get('/', (req, res) => {
 app.use('/user', userRoutes);
 
 export default app;
-
 
 
 
