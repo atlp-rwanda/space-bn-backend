@@ -1,8 +1,9 @@
+
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
-import Config from './../../config/config';
+import envConfigs from './../../config/config';
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
@@ -44,8 +45,8 @@ db.Sequelize = Sequelize;
 
 module.exports = db;
 
-
 /*
+
 import { readdirSync } from 'fs';
 import { basename as _basename, join } from 'path';
 import Sequelize, { DataTypes } from 'sequelize';
@@ -82,5 +83,4 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 export default db;
-
 */

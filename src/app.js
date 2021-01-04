@@ -12,35 +12,35 @@ const rooms = require('./routes/rooms');
 
 //request routes
 
-const swaggerJsDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
+ const swaggerJsDoc = require('swagger-jsdoc');
+ const swaggerUi = require('swagger-ui-express');
 
 
-const swaggerOptions = {
-	swaggerDefinition: {
-	  openapi: '3.0.0', 
-	  info: {
-		title: 'BareFoot Nomad Project',
-		version: '1.0.0',
-		description: 'Your API description'
-	  },
-	  basePath: '/',
-	  components: {
-		securitySchemes: {
-		  bearerAuth: {
-			type: 'http',
-			scheme: 'bearer',
-			in: 'header',
-			bearerFormat: 'JWT',
-		  }
-		}
-	  },
-	  security: [{
-		bearerAuth: []
-	  }]
-	},
-	apis: ['./src/routes/*.js']
-  };
+ const swaggerOptions = {
+ 	swaggerDefinition: {
+ 	  openapi: '3.0.0', 
+ 	  info: {
+ 		title: 'BareFoot Nomad Project',
+ 		version: '1.0.0',
+ 		description: 'Your API description'
+ 	  },
+ 	  basePath: '/',
+ 	  components: {
+ 		securitySchemes: {
+ 		  bearerAuth: {
+ 			type: 'http',
+ 			scheme: 'bearer',
+ 			in: 'header',
+ 			bearerFormat: 'JWT',
+ 		  }
+ 		}
+ 	  },
+ 	  security: [{
+ 		bearerAuth: []
+ 	  }]
+ 	},
+ 	apis: ['./src/routes/*.js']
+   };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
@@ -51,7 +51,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/json'})); 
 
 const userRoutes = require('./routes/user');
-
+/*
 const swaggerOptions = {
     swaggerDefinition:{
          openapi: "3.0.0",
@@ -87,7 +87,7 @@ const swaggerOptions = {
  const swaggerDocs = swaggerJsDoc(swaggerOptions)
  
  app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocs))
-
+*/
 
  app.use(express.json());
 
@@ -95,7 +95,6 @@ app.use('/user', userRoutes);
 
 app.use('/api', welcome);
 app.use(rooms);
-
 const PORT = process.env.PORT || 3000;
 // eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));

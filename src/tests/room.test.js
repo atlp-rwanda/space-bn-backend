@@ -3,29 +3,42 @@ process.env.NODE_ENV = 'test';
 import app from "../app";
 import chai from "chai";
 import chaiHttp from "chai-http";
-import room from "../controllers/room";
 const { expect } = chai;
 chai.use(chaiHttp);
 // create a blog
 
-describe("When the Admin try to create a Room --/rooms", () => {
-  it("should return the Array of created room ", (done) => {
-    chai
-      .request(app)
-      .post("/rooms")
-      .send({
-        hotelId: "005",
-        description: "Room for underGround",
-        roomType: "First class",
-        roomLabel: "label 001",
-        status: "double",
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
-        done();
-      });
+describe('post/rooms', () => {
+  it('it should  POST a room', (done) => {
+
+      let token = " ";
+
+      const valid_input = {
+          "email": "gilleskaba@gmail.com",
+          "password": "1234567$#8"
+      }
+        chai.request(app)
+        .post('/user/signin')
+        .send(valid_input)
+        .then((login_response)=>{
+            token = 'Bearer ' + login_response.body.token;
+            chai.request(app)
+            .post('/api/rooms')
+            .send({
+              hotelId: "005",
+              description: "Room for underGround",
+              roomType: "First class",
+              roomLabel: "label 001",
+              status: "double",
+            })
+            .set('authorization', token)
+            .end((err, res) => {
+              expect(res.status).to.equal(200);
+              done();
+            })
+        })
   });
 });
+
 describe("Get All Rooms", () => {
      it("should return an array of the all Rooms", (done) => {
       chai
@@ -38,6 +51,7 @@ describe("Get All Rooms", () => {
         });
     });
   });
+
 describe("Get Specific Room", () => {
   const idroom = 1;
   it("should return selected room", (done) => {
@@ -50,6 +64,7 @@ describe("Get Specific Room", () => {
       });
   });
 });
+/*
   describe("Room Endpoints", () => {
       const idroom = 1;
     it("should update a Room", (done) => {
@@ -69,6 +84,40 @@ describe("Get Specific Room", () => {
         });
     });
   });
+  */
+
+ describe("put/rooms/:id",()=>{
+  const idroom = 1;
+
+  it("should update an existing  room ",(done)=>{
+       
+     let token = " ";
+
+      const valid_input = {
+        "email": "gilleskaba@gmail.com",
+        "password": "1234567$#8"
+      }
+      chai.request(app)
+        .post('/user/signin')
+        .send(valid_input)
+        .then((login_response)=>{
+          token = 'Bearer ' + login_response.body.token; 
+          chai.request(app)
+          .put("/api/rooms/" + idroom)
+          .set('authorization', token)
+          .send({
+            description: "Room for VIP",
+            roomType: "first class",
+            roomLabel: "label 001"
+          })
+          .end((err, res) => {
+            expect(res.status).to.equal(200);
+            done();
+          });
+        })
+      })
+  }) 
+
  /* 
 describe(" Room endpoint --/rooms/id" ,() => {
     //const idroom = 44;
