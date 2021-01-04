@@ -51,43 +51,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/json'})); 
 
 const userRoutes = require('./routes/user');
-/*
-const swaggerOptions = {
-    swaggerDefinition:{
-         openapi: "3.0.0",
-         info:{
-             version: "1.0.0",
-             title:"Develloper operations on rooms ",
-             description:"This API is for CRUD on rooms of hotels",
-         },
-         basePath: '/',
-         components: {
-             securitySchemes: {
-               bearerAuth: {
-                 type: 'http',
-                 scheme: 'bearer',
-                 in: 'header',
-                 bearerFormat: 'JWT',
-               }
-             }
-           },
- 
-            security: [{
-              bearerAuth: []
-               }],
- 
-         contacts:{
-             name:"Furebo Didace",
-             email:"furebodidace582@gmail.com"
-         },
-     },
-     apis:["./src/routes/*.js"]
- }
- 
- const swaggerDocs = swaggerJsDoc(swaggerOptions)
- 
- app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerDocs))
-*/
+
 
  app.use(express.json());
 
