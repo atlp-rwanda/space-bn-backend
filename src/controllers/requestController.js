@@ -10,20 +10,14 @@ const createRequest = async (req, res) => {
       req.body.idUser=decodedToken.id;
 
   try {
-    // let inDate = req.body.dateStart.getTime();
-    // let outDate = req.body.dateEnd.getTime();
    
-    // if(outDate>=inDate){
       console.log(inDate);
       console.log(outDate);
       const request = await model.requests.create(req.body);
       return res.status(201).json({
         request,
       });
-    // }
-    // else{
-    //   return res.status(400).send("Date out must be greater than entry date");
-    // }
+ 
   } catch (error) {
     return res.status(500).json({error: error.message})
   }
