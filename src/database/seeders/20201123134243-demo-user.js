@@ -1,4 +1,3 @@
-
 export async function up(queryInterface, Sequelize) {
    
     await queryInterface.bulkInsert('exampleTable', [{
