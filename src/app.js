@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-const Requests = require('./routes/requestRoute');
+const RequestRoutes = require('./routes/requestRoute');
 const userRoutes = require('./routes/user');
 
 dotenv.config();
@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
  
 // request middleware
 app.use(express.json());
-app.use('/Request',Requests);
+app.use('/Request',RequestRoutes);
 app.use('/user', userRoutes);
 
 const PORT = process.env.PORT || 5000; 

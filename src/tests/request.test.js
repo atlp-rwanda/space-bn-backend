@@ -11,7 +11,7 @@ describe('Sample Test', () => {
   });
 });
 
-describe('BOOKING TESTS', () => {
+describe('REQUESTING AN ACCOMMODATION TESTS', () => {
   
   it('should fetch all requests', (done) => {
              request(app)
@@ -21,5 +21,5 @@ describe('BOOKING TESTS', () => {
              done();
            })
       });
-      
+
 });

@@ -1,13 +1,29 @@
 const model = require('../database/models');
+const jwt_decode= require('jwt-decode') ;
 
 // creating a request
 
 const createRequest = async (req, res) => {
+  const authHeader = req.headers.authorization.split(' ');
+      const [authString, token] = authHeader;
+      const decodedToken = jwt_decode(token);
+      req.body.idUser=decodedToken.id;
+
   try {
-    const request = await model.requests.create(req.body);
-    return res.status(201).json({
-      request,
-    });
+    // let inDate = req.body.dateStart.getTime();
+    // let outDate = req.body.dateEnd.getTime();
+   
+    // if(outDate>=inDate){
+      console.log(inDate);
+      console.log(outDate);
+      const request = await model.requests.create(req.body);
+      return res.status(201).json({
+        request,
+      });
+    // }
+    // else{
+    //   return res.status(400).send("Date out must be greater than entry date");
+    // }
   } catch (error) {
     return res.status(500).json({error: error.message})
   }
@@ -31,7 +47,7 @@ const updateRequest = async (req, res) => {
   }
 };
 
-//delettin a request
+//deleting a request
 const deleteRequest = async (req, res) => {
   try {
     const { idRequest } = req.params;
@@ -39,7 +55,7 @@ const deleteRequest = async (req, res) => {
       where: { id: idRequest}
     });
     if (deleted) {
-      return res.status(204).send("Request deleted");
+      return res.status(200).send("Request deleted");
     }
     throw new Error("Request id provided is not found");
   } catch (error) {
@@ -51,6 +67,12 @@ const deleteRequest = async (req, res) => {
 //getting all requests
 
 const getAllRequests = async (req, res) => {
+
+  const authHeader = req.headers.authorization.split(' ');
+  const [authString, token] = authHeader;
+  const decodedToken = jwt_decode(token);
+  req.body.idUser=decodedToken.id;
+
   try {
     const accommodation_requests = await model.requests.findAll({});
     return res.status(200).json({ accommodation_requests });
@@ -59,5 +81,4 @@ const getAllRequests = async (req, res) => {
   }
 }
 
-module.exports = {createRequest,updateRequest,deleteRequest,getAllRequests} 
- 
+module.exports = {createRequest,updateRequest,deleteRequest,getAllRequests};

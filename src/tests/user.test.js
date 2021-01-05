@@ -16,8 +16,8 @@ describe('User registration', () => {
 
         chai.request(app).post('/user/signup')
         .set('Content-Type', 'application/x-www-form-urlencoded')
-        .field('firstname', 'keza')
-        .field('lastname', 'janet')
+        .field('firstname', 'Ganza')
+        .field('lastname', 'jamima')
         .field('telephone', '0783977618')
         .field('email', 'keza@gmail.com')
         .field('password', '1234567avb$#8')

@@ -7,17 +7,11 @@ module.exports = (sequelize, DataTypes) => {
   
     static associate(models) {
       //association with user table
-      requests.belongsTo(models.users, {
-        as: "user",
-        foreignKey: "idUser",
-        onDelete: 'CASCADE'
-      });
-      //association with room table
-      requests.belongsTo(models.rooms, {
-        as: "room",
-        foreignKey: "idRoom",
-        onDelete: 'CASCADE'
-      });
+      // requests.belongsTo(models.user, {
+      //   as: "user",
+      //   foreignKey: "id",
+      //   onDelete: 'CASCADE'
+      // });
     }
   };
   requests.init({
