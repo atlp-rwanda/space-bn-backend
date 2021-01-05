@@ -11,8 +11,6 @@ const createRequest = async (req, res) => {
 
   try {
    
-      console.log(inDate);
-      console.log(outDate);
       const request = await model.requests.create(req.body);
       return res.status(201).json({
         request,

@@ -1,3 +1,4 @@
+
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
@@ -7,11 +8,9 @@ const userRoutes = require('./routes/user');
 dotenv.config();
 
 const app = express();
-
-
+ 
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-
 
 const swaggerOptions = {
 	swaggerDefinition: {

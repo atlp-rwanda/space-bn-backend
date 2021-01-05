@@ -21,5 +21,4 @@ describe('REQUESTING AN ACCOMMODATION TESTS', () => {
              done();
            })
       });
-
 });
