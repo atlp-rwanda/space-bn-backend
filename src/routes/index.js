@@ -1,5 +1,6 @@
 const express = require('express') ;
 const app = express();
+const protection = require('../middlewares/check-auth');
 
 const { Router } = require('express');
 
@@ -17,11 +18,11 @@ const deleteRoom = controller.deleteRoom;
 
 //Rooms routes
 
-router.post('/rooms', createRoom);
-router.get('/rooms',getRooms);
+router.post('/rooms', protection,createRoom);
+router.get('/rooms', getRooms);
 router.get('/rooms/:roomId',getRoom);
-router.put('/rooms/:idroom',updateRoom);
-router.delete('/rooms/:roomId',deleteRoom);
+router.put('/rooms/:idroom',protection, updateRoom);
+router.delete('/rooms/:roomId',protection, deleteRoom);
 
 
 

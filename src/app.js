@@ -11,9 +11,6 @@ const app = express();
 const welcome = require('./routes/index');
 const rooms = require('./routes/rooms');
 
-const app = express();
-
-
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
