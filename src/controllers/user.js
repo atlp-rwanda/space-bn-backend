@@ -74,12 +74,5 @@ const signin = (req, res) => {
   
 }
 
-const logout = (req, res) => {
-  token = undefined;
-  process.env.JWT_KEY = token;
-  console.log(token);
-  res.json({message: "You are logged out now!"});
 
-}
-
-module.exports = { signup, signin,logout};
+module.exports = { signup, signin};
