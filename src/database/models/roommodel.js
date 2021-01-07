@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
    onDelete: 'CASCADE'
  });
 
+<<<<<<< HEAD
    return RoomModel;
  };
 
@@ -35,3 +36,8 @@ module.exports = (sequelize, DataTypes) => {
     "identification_number": "19806567999800",
     "user_image":"http://www.cloudnary.com/images/myimage.png"
  */
+=======
+  
+   return RoomModel;
+ };
+>>>>>>> 9efba84... chenges the name of the model
