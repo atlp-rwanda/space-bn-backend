@@ -10,10 +10,26 @@ const app = express();
 const welcome = require('./routes/index');
 const rooms = require('./routes/rooms');
 
-//request routes
+app.use(bodyParser.json());                                     
+app.use(bodyParser.urlencoded({extended: true}));               
+app.use(bodyParser.text());                                    
+app.use(bodyParser.json({ type: 'application/json'})); 
 
- const swaggerJsDoc = require('swagger-jsdoc');
- const swaggerUi = require('swagger-ui-express');
+const userRoutes = require('./routes/user');
+
+
+ app.use(express.json());
+
+app.use('/user', userRoutes);
+
+app.use('/api', welcome);
+app.use('/',rooms);
+const PORT = process.env.PORT || 3000;
+// eslint-disable-next-line no-console
+app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
+
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
 
  const swaggerOptions = {
@@ -44,23 +60,5 @@ const rooms = require('./routes/rooms');
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
-app.use(bodyParser.json());                                     
-app.use(bodyParser.urlencoded({extended: true}));               
-app.use(bodyParser.text());                                    
-app.use(bodyParser.json({ type: 'application/json'})); 
-
-const userRoutes = require('./routes/user');
-
-
- app.use(express.json());
-
-app.use('/user', userRoutes);
-
-app.use('/api', welcome);
-app.use(rooms);
-const PORT = process.env.PORT || 3000;
-// eslint-disable-next-line no-console
-app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
 
 module.exports = app;

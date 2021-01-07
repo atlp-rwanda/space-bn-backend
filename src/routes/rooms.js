@@ -2,9 +2,9 @@
 const { Router } = require('express');
 
 const router = Router();
-const controller = require('../controllers/room');
 
 const protection = require('../middlewares/check-auth');
+const controller = require('../controllers/room');
 
 const createRoom = controller.createRoom;
 const getRooms = controller.getAllRooms;
@@ -85,6 +85,8 @@ router.post('/rooms',protection,createRoom);
  */     
 router.get('/rooms/:roomId', getRoom);
 
+
+
 /**
  * @swagger
  *
@@ -136,8 +138,8 @@ router.get('/rooms/:roomId', getRoom);
  *            
  *
  */
+router.put('/rooms/:idroom',protection, updateRoom);
 
-router.put('/rooms/:idroom',protection,updateRoom);
 
 /**
  * @swagger
@@ -153,6 +155,8 @@ router.put('/rooms/:idroom',protection,updateRoom);
  *      
 */
 router.get('/rooms',getRooms);
+
+
 
 /**
  * @swagger
@@ -175,6 +179,7 @@ router.get('/rooms',getRooms);
  *         description: Successfully deleted
  */
 router.delete('/rooms/:roomId',protection,deleteRoom);
+
 
 module.exports = router;
 
