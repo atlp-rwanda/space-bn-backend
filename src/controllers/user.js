@@ -129,6 +129,7 @@ export const updateUserById = async (req, res) => {
 
 }
 
+<<<<<<< HEAD
 export const deleteUserById = async (req, res) => {
   
     try {
@@ -145,3 +146,7 @@ export const deleteUserById = async (req, res) => {
       return res.status(500).json({ message: 'Error' });
     }
 }
+=======
+
+module.exports = { signup, signin};
+>>>>>>> d037367... removes logout
