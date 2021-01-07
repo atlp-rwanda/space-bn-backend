@@ -145,14 +145,13 @@ describe("Get All Rooms", () => {
   });
   
 describe("Get Specific Room", () => {
-  const idroom = 1;
-  it("should return selected room", (done) => {
+  const roomId = 1;
+  it("should return selected room", () => {
     chai
       .request(app)
-      .get(`/rooms/${idroom}`)
+      .get(`/rooms/${roomId}`)
       .end((err, res) => {
         expect(res.status).to.equal(200);
-        done();
       });
   });
 });
@@ -178,37 +177,6 @@ describe("Get Specific Room", () => {
   });
   */
 
- describe("put/rooms/:id",()=>{
-  const idroom = 1;
-
-  it("should update an existing  room ",(done)=>{
-       
-     let token = " ";
-
-      const valid_input = {
-        "email": "gilleskaba@gmail.com",
-        "password": "1234567$#8"
-      }
-      chai.request(app)
-        .post('/user/signin')
-        .send(valid_input)
-        .then((login_response)=>{
-          token = 'Bearer ' + login_response.body.token; 
-          chai.request(app)
-          .put("/api/rooms/" + idroom)
-          .set('authorization', token)
-          .send({
-            description: "Room for VIP",
-            roomType: "first class",
-            roomLabel: "label 001"
-          })
-          .end((err, res) => {
-            expect(res.status).to.equal(200);
-            done();
-          });
-        })
-      })
-  }) 
 
  /* 
 describe(" Room endpoint --/rooms/id" ,() => {

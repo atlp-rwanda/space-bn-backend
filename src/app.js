@@ -22,7 +22,10 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/json'})); 
 
 
-//request routes
+app.use(bodyParser.json());                                     
+app.use(bodyParser.urlencoded({extended: true}));               
+app.use(bodyParser.text());                                    
+app.use(bodyParser.json({ type: 'application/json'})); 
 
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -56,7 +59,11 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-const userRoutes = require('./routes/user');
+app.use(bodyParser.json());                                     
+app.use(bodyParser.urlencoded({extended: true}));               
+app.use(bodyParser.text());                                    
+app.use(bodyParser.json({ type: 'application/json'})); 
+app.use(cors())
 app.use(rooms);
 app.use(hotel);
 app.use(express.json());
@@ -68,8 +75,5 @@ app.get('/', (req, res) => {
 app.use('/user', userRoutes);
 
 export default app;
-
-
-
 
 
