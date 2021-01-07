@@ -1,13 +1,13 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import model from '../database/models';
-
+import { User } from '../database/models';
+import sendVerificationEmail from '../middlewares/sendEmail';
 dotenv.config();
 
 
-const signup = (req, res) => {
-    
-  model.User.findOne({
+export const signup = (req, res) => {
+  
+  User.findOne({
     where: {
       email: req.body.email
     }
@@ -18,7 +18,7 @@ const signup = (req, res) => {
           message: 'Email already registered',
         });
       }
-      model.User.create({
+      User.create({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         telephone: req.body.telephone || '',
@@ -42,12 +42,13 @@ const signup = (req, res) => {
             user_details: user,
             token: `JWT ${token}`
           });
-        });
+          sendVerificationEmail(user.firstname, user.email, token);
+        })
     })
     .catch((error) => res.status(400).json(error.message));
 };
 var token;
-  const signin = (req, res) => {
+export const signin = (req, res) => {
   model.User.findOne({
     where: {
       email: req.body.email
@@ -74,9 +75,9 @@ var token;
     .catch((error) => res.status(400).json(error));
 };
 
-   const getAllUsers = async (req, res) => {
+export const getAllUsers = async (req, res) => {
 
-    const user = await model.User.findAll();
+    const user = await User.findAll();
     if (user){
       return res.status(200).json({user});
     }else{
@@ -86,10 +87,10 @@ var token;
 }
 
 
-const getUserById = async (req, res) => {
+export const getUserById = async (req, res) => {
   try {
     const id = req.params.id;
-    const user = await model.User.findByPk(id);
+    const user = await User.findByPk(id);
 
     if (user) {
       return res.status(200).json({ user });
@@ -103,9 +104,9 @@ const getUserById = async (req, res) => {
  
 }
 
- const updateUserById = async (req, res) => {
+export const updateUserById = async (req, res) => {
   
-    const users = await model.User.findAll();
+    const users = await User.findAll();
     for(let i=0; i < users.length; i++){
       if (users[i].email === req.body.email){
           return res.status(409).json({
@@ -115,7 +116,7 @@ const getUserById = async (req, res) => {
     }
     try {
       const id = req.params.id;
-      const [user] = await model.User.update(req.body, {where: {id : id }});
+      const [user] = await User.update(req.body, {where: {id : id }});
       
       if(user){
         return res.status(200).json({ message: 'User updated successfully' });
@@ -128,10 +129,10 @@ const getUserById = async (req, res) => {
     }
 
 }
- const deleteUserById = async (req, res) => {
+export const deleteUserById = async (req, res) => {
   try {
       const id = req.params.id;
-      const user = await model.User.destroy({where: {id : id }});
+      const user = await User.destroy({where: {id : id }});
 
       if(user){
         return res.status(200).json({ message: 'User deleted successfully!' });
@@ -144,11 +145,22 @@ const getUserById = async (req, res) => {
     }
 }
 
-const logout = (req, res) => {
+export const logout = (req, res) => {
   token = undefined;
   process.env.JWT_KEY = token;
   res.status(200).json({message: "You are logged out now!"});
   return
 }
 
-module.exports = {signin,signup,getAllUsers,deleteUserById,updateUserById,getUserById,logout}
+export const verifyUser = async (req, res) => {
+
+    const user = jwt.decode(req.params.token);
+    const userEmail = await User.findOne({where : {email: user.email}});
+    
+    if(!userEmail){
+      res.json('user does not exist')
+    }
+    const verifiedUser = await User.update( {isVerified: true} , {where : {email: user.email}})
+
+    return res.status(200).json({message: 'User successful verified', verifiedUser});
+}

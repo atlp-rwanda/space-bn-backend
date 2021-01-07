@@ -4,7 +4,7 @@ import multer from 'multer';
 
 const router = express.Router();
 
-import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById,logout} from '../controllers/user';
+import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById, logout, verifyUser} from '../controllers/user';
 
 import SchemaValidator from '../middlewares/SchemaValidator';
 
@@ -219,6 +219,30 @@ router.put('/:id', checkAuthentication, updateUserById);
  *         description: Successfully deleted
  */
 router.delete('/:id', superAdminAuth, deleteUserById);
+
+/**
+ * @swagger
+ * /user/verification/{token}:
+ *   patch:
+ *     summary: Verify the user email using the token
+ *     tags: [Users]
+ *     description: Verify the user email
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: token
+ *         description: User's Token
+ *         in: path
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: User successfully verified
+ *       404:
+ *         description: User does not exist
+ */
+router.patch('/verification/:token', verify);
+
 
 router.post('/logout', logout);
 
