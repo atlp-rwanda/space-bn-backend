@@ -53,6 +53,8 @@ const updateRoom = controller.updateRoom;
  *              type: string
  *          price:
  *              type: string
+ *          roomImage:
+ *              type: string
  *                      
  *       
  */
@@ -128,6 +130,8 @@ router.get('/rooms/:roomId', getRoom);
  *          status:
  *            type: string
  *          price:
+ *            type: string
+ *          roomImage:
  *            type: string
  *            
  *
