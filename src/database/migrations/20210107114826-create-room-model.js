@@ -11,10 +11,7 @@ module.exports = {
       roomType: {
         type: Sequelize.STRING
       },
-      description: {
-        type: Sequelize.STRING
-      },
-      roomLabel: {
+      descriptroomLabel: {
         type: Sequelize.STRING
       },
       hotelId: {
@@ -27,7 +24,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       roomImage: {
-          type: Sequelize.STRING
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
