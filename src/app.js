@@ -22,8 +22,12 @@ const app = express();
 const welcome = require('./routes/index');
 const rooms = require('./routes/rooms');
 
-//request routes
+app.use(bodyParser.json());                                     
+app.use(bodyParser.urlencoded({extended: true}));               
+app.use(bodyParser.text());                                    
+app.use(bodyParser.json({ type: 'application/json'})); 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 2127b20... created routes for rooms
 
@@ -60,6 +64,23 @@ const swaggerOptions = {
 =======
  const swaggerJsDoc = require('swagger-jsdoc');
  const swaggerUi = require('swagger-ui-express');
+=======
+const userRoutes = require('./routes/user');
+
+
+ app.use(express.json());
+
+app.use('/user', userRoutes);
+
+app.use('/api', welcome);
+app.use('/',rooms);
+const PORT = process.env.PORT || 3000;
+// eslint-disable-next-line no-console
+app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
+
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+>>>>>>> 556a8a2... added authentication on endpoints
 
 
  const swaggerOptions = {
@@ -92,6 +113,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
+<<<<<<< HEAD
 app.use(bodyParser.json());                                     
 app.use(bodyParser.urlencoded({extended: true}));               
 app.use(bodyParser.text());                                    
@@ -176,4 +198,6 @@ const PORT = process.env.PORT || 3000;
 // eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
 
+=======
+>>>>>>> 556a8a2... added authentication on endpoints
 module.exports = app;
