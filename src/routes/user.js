@@ -129,4 +129,21 @@ router.post('/signup', upload.single('user_image'), validateRequest, userControl
  */
 router.post('/signin', validateRequest, userController.signin);
 
+
+/**
+ * @swagger
+ * /logout:
+ *  get:
+ *    tags:
+ *    - Logout user
+ *    summary: user will be logged out
+ *    description: User will be redirected to login page
+ *    responses:
+ *      '200':
+ *        description: user will logout succesffuly.
+ *      
+*/
+
+router.get('/logout', userController.logout);
+
 module.exports = router;
