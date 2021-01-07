@@ -5,7 +5,7 @@ const model = require('../database/models');
 
 const createRoom = async (req, res) => {
   try {
-    const room = await model.roommodel.create(req.body);
+    const room = await model.RoomModel.create(req.body);
     if (room) {
 
       return res.status(200).json({ room });
@@ -20,7 +20,7 @@ const createRoom = async (req, res) => {
 
 const getAllRooms = async (req, res) => {
   try {
-    const rooms = await model.roommodel.findAll();
+    const rooms = await model.RoomModel.findAll();
     return res.status(200).json({ rooms });
   } catch (error) {
     return res.status(500).send(error.message);
@@ -32,7 +32,7 @@ const getAllRooms = async (req, res) => {
 const getRoomById = async (req, res) => {
   try {
     const {roomId} = req.params;
-    const room = await model.roommodel.findOne({
+    const room = await model.RoomModel.findOne({
       where: { id: roomId }
       
     });
@@ -52,11 +52,11 @@ const getRoomById = async (req, res) => {
 const updateRoom = async (req, res) => {
   try {
     const { idroom } = req.params;
-    const [ updated ] = await model.roommodel.update(req.body, {
+    const [ updated ] = await model.RoomModel.update(req.body, {
       where: { id: idroom }
     });
     if (updated) {
-      const updatedRoom = await model.roommodel.findOne({ where: { id: idroom } });
+      const updatedRoom = await model.RoomModel.findOne({ where: { id: idroom } });
       return res.status(200).json({ room: updatedRoom });
     }
     throw new Error('Room not found');
@@ -70,7 +70,7 @@ const updateRoom = async (req, res) => {
 const deleteRoom = async (req, res) => {
   try {
     const { roomId } = req.params;
-    const deleted = await model.roommodel.destroy({
+    const deleted = await model.RoomModel.destroy({
       where: { id: roomId }
     });
     if (deleted) {
