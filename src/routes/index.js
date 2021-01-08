@@ -18,10 +18,10 @@ const deleteRoom = controller.deleteRoom;
 
 //Rooms routes
 
-router.post('/rooms', protection,createRoom);
+router.post('/rooms',protection, createRoom);
 router.get('/rooms', getRooms);
 router.get('/rooms/:roomId',getRoom);
-router.put('/rooms/:idroom',protection, updateRoom);
+router.put('/rooms/:idroom',protection,  updateRoom);
 router.delete('/rooms/:roomId',protection, deleteRoom);
 
 
