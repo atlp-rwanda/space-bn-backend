@@ -18,7 +18,7 @@ const updateRoom = controller.updateRoom;
  * /rooms:
  *    post:
  *      summary: add a room
- *      tags: [rooms]
+ *      tags: [Rooms]
  *      requestBody:
  *        required: true
  *        content:
@@ -68,7 +68,7 @@ router.post('/rooms',protection,createRoom);
  *   get:
  *     summary: For getting a single room 
  *     tags:
- *       - [Rooms]
+ *       - Rooms
  *     description: Returns a single room
  *     produces:
  *       - application/json
@@ -93,7 +93,7 @@ router.get('/rooms/:roomId', getRoom);
  * /rooms/{id}:
  *    put:
  *      summary: Room update based on ID
- *      tags: [Room]
+ *      tags: [Rooms]
  *      parameters:
  *        - name: id
  *          in: path
@@ -146,7 +146,7 @@ router.put('/rooms/:idroom', updateRoom);
  * /rooms:
  *  get:
  *    tags:
- *    - All rooms
+ *    - Rooms
  *    summary: All rooms from database
  *    description: Rooms are desplayed from DB
  *    responses:
