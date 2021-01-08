@@ -11,6 +11,7 @@ const getRooms = controller.getAllRooms;
 const getRoom = controller.getRoomById;
 const deleteRoom = controller.deleteRoom;
 const updateRoom = controller.updateRoom;
+const getHotelRooms = controller.roomByHotel;
 
 /**
  * @swagger
@@ -179,6 +180,29 @@ router.get('/rooms',getRooms);
  *         description: Successfully deleted
  */
 router.delete('/rooms/:roomId',protection,deleteRoom);
+
+/**
+ * @swagger
+ * /rooms/hotels/{hotelId}/rooms:
+ *   get:
+ *     summary: For getting all rooms for a particular hotel 
+ *     tags:
+ *       - Rooms
+ *     description: Returns all rooms
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: hotelId
+ *         description: Particular Hotel Object's ID (Automatically assigned by database)
+ *         in: path
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: All rooms returned
+ *       500:
+ *         description: Server Error
+ */ 
+router.get('/rooms/hotels/:hotelId/rooms', getHotelRooms);
 
 
 module.exports = router;
