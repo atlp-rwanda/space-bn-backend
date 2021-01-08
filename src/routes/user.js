@@ -144,4 +144,6 @@ router.post('/signin', validateRequest, userController.signin);
  *      
 */
 
+router.post('/logout',userController.logout);
+
 module.exports = router;
