@@ -99,7 +99,7 @@ const storage = multer.diskStorage({
 router.post('/signup', upload.single('user_image'), validateRequest, userController.signup);
 
 /**
- * @swagger
+ * @swaggerx
  * /user/signin:
  *    post:
  *      summary: User can signin
