@@ -2,6 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 
+import googleRouter from './routes/googleOuth.route';
+
+
 dotenv.config();
 
 const app = express();
@@ -52,6 +55,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/user', userRoutes);
+app.use(googleRouter);
 
 export default app;
 
