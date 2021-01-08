@@ -138,7 +138,7 @@ router.get('/rooms/:roomId', getRoom);
  *            
  *
  */
-router.put('/rooms/:idroom',protection, updateRoom);
+router.put('/rooms/:idroom', updateRoom);
 
 
 /**
