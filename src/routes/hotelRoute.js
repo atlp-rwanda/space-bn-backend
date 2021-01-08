@@ -71,11 +71,11 @@ router.get('/', (req, res) => res.send('Welcome to Barefoot Nomad'));
  *            type: string
  *            format: binary
  */
-router.post('/createHotel', authentication, createHotel);
-router.get('/allHotels', authentication, getAllHotels);
-router.delete('/deleteHotel/:id', authentication, deleteHotel);
-router.get('/hotel/:id', authentication, getHotel);
-router.get('/hotelRooms', authentication, getHotelRooms);
-router.patch('/updateHotel/:id', authentication, updateHotel);
+router.post('/createHotel', createHotel);
+router.get('/allHotels', getAllHotels);
+router.delete('/deleteHotel/:id', deleteHotel);
+router.get('/hotel/:id', getHotel);
+router.get('/hotelRooms', getHotelRooms);
+router.patch('/updateHotel/:id', updateHotel);
 
 export default router;
