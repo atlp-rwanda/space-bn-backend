@@ -55,7 +55,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/user', userRoutes);
-app.use(googleRouter);
+app.use('/user/auth', googleRouter);
 
 export default app;
 

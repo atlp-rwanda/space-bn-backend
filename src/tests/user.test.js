@@ -50,7 +50,7 @@ describe("User registration", () => {
       });
   });
   //test for invalid input
-  it("should return 422 for invalid email input", (done) => {
+  it("should return 422 for invalid email input", () => {
     chai
       .request(app)
       .post("/user/signup")
@@ -74,7 +74,7 @@ describe("User registration", () => {
       )
       .then((res) => {
         expect(res).to.have.status(422);
-        done();
+        
       })
       .catch((err) => {
         console.log(err);

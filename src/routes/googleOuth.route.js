@@ -8,6 +8,6 @@ const googleRouter = router;
 
 googleRouter.use(passport.initialize())
 .get('/google', passport.authenticate('google',{scope:['profile','email']})) 
-.get('/google/callback', passport.authenticate('google',{failureRedirect:'/login'}))
+.get('/google/callback', passport.authenticate('google',{failureRedirect:'/user/signin'}))
 
 export default googleRouter;
