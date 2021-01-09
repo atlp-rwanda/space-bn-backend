@@ -43,7 +43,12 @@ const signup = (req, res) => {
           });
         })
   })
-  .catch((error) => res.status(400).send(error.message));
+  .catch((error) => 
+  {
+    res.status(400).send(error.message)
+    console.log(error); 
+  });
+  
 }
 
 const signin = (req, res) => {
