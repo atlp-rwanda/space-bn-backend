@@ -1,4 +1,5 @@
 import { verify } from 'jsonwebtoken';
+require('dotenv').config();
 
 export function requiredLogin(req, res, next) {
   const token = req.headers.authorization.replace('Bearer ', '');
