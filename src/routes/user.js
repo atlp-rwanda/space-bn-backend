@@ -9,6 +9,7 @@ import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById
 import SchemaValidator from '../middlewares/SchemaValidator';
 
 const validateRequest = SchemaValidator(true);
+import { sendVerificationEmailLink } from '../middlewares/sendEmailMiddleware';
 
 import checkAuthentication from '../middlewares/check-auth';
 

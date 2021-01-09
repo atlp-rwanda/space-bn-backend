@@ -11,7 +11,7 @@ async function sendVerificationEmail (firstname, email, token) {
             apiKey: process.env.SENDGRID_API_KEY
         })
     );
-
+    
     let mailOptions = {
         from: `Barefoot Nomad<${process.env.PROJECTEMAIL}`,
         to: email, 
