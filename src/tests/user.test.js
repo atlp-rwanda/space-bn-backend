@@ -219,7 +219,7 @@ describe('/PUT/:id users', () => {
   });
 });
 describe('/DELETE/:id users', () => {
-  it('it should delete a user by the given id', () => {
+  it('it should delete a user by the given id.', () => {
     chai.request(app)
       .delete(`/user/${userId}`)
       .set('Authorization', token)
@@ -228,3 +228,4 @@ describe('/DELETE/:id users', () => {
       });
   });
 });
+
