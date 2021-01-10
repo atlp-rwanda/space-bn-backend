@@ -12,6 +12,7 @@ async function sendVerificationEmail (firstname, email, token) {
         })
     );
     
+    //email details
     let mailOptions = {
         from: `Barefoot Nomad<${process.env.PROJECTEMAIL}`,
         to: email, 
