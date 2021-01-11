@@ -3,7 +3,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-
+import rooms from './routes';
+import hotel from './routes';
 import hotelRoutes from './routes/hotelRoute';
 
 dotenv.config();
@@ -12,7 +13,7 @@ const app = express();
 
 const welcome = require('./routes/index');
 const rooms = require('./routes/rooms');
-
+app.use(cors());
 app.use(bodyParser.json());                                     
 app.use(bodyParser.urlencoded({extended: true}));               
 app.use(bodyParser.text());                                    
