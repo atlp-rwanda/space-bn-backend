@@ -4,10 +4,13 @@ import dotenv from 'dotenv';
 <<<<<<< HEAD
 import bodyParser from 'body-parser';
 import cors from 'cors';
+<<<<<<< HEAD
 =======
 import rooms from './routes';
 import hotel from './routes';
 >>>>>>> 87686e8... room routes created
+=======
+>>>>>>> 180f391... implementation of CRUD's room operations
 
 dotenv.config();
 
@@ -21,7 +24,7 @@ const app = express();
 
 const welcome = require('./routes/index');
 const rooms = require('./routes/rooms');
-
+app.use(cors());
 app.use(bodyParser.json());                                     
 app.use(bodyParser.urlencoded({extended: true}));               
 app.use(bodyParser.text());                                    
