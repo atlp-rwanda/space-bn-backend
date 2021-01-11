@@ -72,7 +72,6 @@ const signin = (req, res) => {
   .catch((error) => res.status(400).send(error));
   
 }
-
 const logout = (req, res) => {
   token = undefined;
   process.env.JWT_KEY = token;

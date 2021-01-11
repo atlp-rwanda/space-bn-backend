@@ -15,6 +15,7 @@ const getRooms = controller.getAllRooms;
 const getRoom = controller.getRoomById;
 const updateRoom = controller.updateRoom;
 const deleteRoom = controller.deleteRoom;
+const getHotelRooms = controller.roomByHotel;
 
 //Rooms routes
 
@@ -23,6 +24,7 @@ router.get('/rooms', getRooms);
 router.get('/rooms/:roomId',getRoom);
 router.put('/rooms/:idroom',protection,  updateRoom);
 router.delete('/rooms/:roomId',protection, deleteRoom);
+router.get('/rooms/hotels/:hotelId/rooms', getHotelRooms);
 
 
 
