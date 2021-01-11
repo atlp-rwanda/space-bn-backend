@@ -8,7 +8,6 @@ const SchemaValidator = require('../middlewares/SchemaValidator');
 const validateRequest = SchemaValidator(true);
 
 const storage = multer.diskStorage({
-<<<<<<< HEAD
   destination(req, file, cb) {
     cb(null, './src/uploads/');
   },
@@ -32,31 +31,6 @@ const upload = multer({
     fileSize: 1024 * 1024 * 5
   },
   fileFilter
-=======
-    destination: function(req, file, cb) {
-      cb(null, './src/uploads/');
-    },
-    filename: function(req, file, cb) {
-      cb(null, new Date().toISOString() + file.originalname);
-    }
-});
-  
-  const fileFilter = (req, file, cb) => {
-    // reject a file
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-      cb(null, true);
-    } else {
-      cb(null, false);
-    }
-  };
-  
-  const upload = multer({
-    storage: storage,
-    limits: {
-      fileSize: 1024 * 1024 * 5
-    },
-    fileFilter: fileFilter
->>>>>>> hotel-models-CRUD-operations
 });
 
 /**
@@ -85,11 +59,7 @@ const upload = multer({
  *          - telephone
  *          - email
  *          - password
-<<<<<<< HEAD
  *          - roleId
-=======
- *          - role
->>>>>>> hotel-models-CRUD-operations
  *          - gender
  *          - origin
  *          - profession
@@ -108,11 +78,7 @@ const upload = multer({
  *            type: string
  *          password:
  *            type: string
-<<<<<<< HEAD
  *          roleId:
-=======
- *          role:
->>>>>>> hotel-models-CRUD-operations
  *            type: string
  *          gender:
  *            type: string
