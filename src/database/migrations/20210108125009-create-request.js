@@ -5,33 +5,23 @@ module.exports = {
       id: {
         allowNull: false,
         autoIncrement: true,
-        type: Sequelize.INTEGER
-      },
-      idRequest: {
-        allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
       idUser: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      idRoom: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.INTEGER
       },
       dateStart: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.DATE
       },
       dateEnd: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.DATE
       },
       requestStatus: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING
+      },
+      idRoom: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -47,5 +37,3 @@ module.exports = {
     await queryInterface.dropTable('requests');
   }
 };
-
- 

@@ -11,9 +11,9 @@ const createRequest = async (req, res) => {
 
   try {
    
-      const request = await model.requests.create(req.body);
+      const requests = await model.request.create(req.body);
       return res.status(201).json({
-        request,
+        requests,
       });
  
   } catch (error) {
@@ -26,11 +26,11 @@ const createRequest = async (req, res) => {
 const updateRequest = async (req, res) => {
   try {
     const { idRequest } = req.params;
-    const [ updated ] = await model.requests.update(req.body, {
+    const [ updated ] = await model.request.update(req.body, {
       where: { id: idRequest }
     });
     if (updated) {
-      const updatedRequest = await model.requests.findOne({ where: { id: idRequest } });
+      const updatedRequest = await model.request.findOne({ where: { id: idRequest } });
       return res.status(200).json({ request: updatedRequest });
     }
     throw new Error('Request not found');
@@ -43,7 +43,7 @@ const updateRequest = async (req, res) => {
 const deleteRequest = async (req, res) => {
   try {
     const { idRequest } = req.params;
-    const deleted = await model.requests.destroy({
+    const deleted = await model.request.destroy({
       where: { id: idRequest}
     });
     if (deleted) {
@@ -66,7 +66,7 @@ const getAllRequests = async (req, res) => {
   req.body.idUser=decodedToken.id;
 
   try {
-    const accommodation_requests = await model.requests.findAll({});
+    const accommodation_requests = await model.request.findAll({});
     return res.status(200).json({ accommodation_requests });
   } catch (error) {
     return res.status(500).send(error.message);

@@ -62,47 +62,46 @@ router.get('/',protection,getR);
 
 /**
  * @swagger
- * /Request:
- *    delete:
- *      tags: [REQUESTING ACCOMMODATION]
- *      summary: Authenticated user can delete an accommodation request  
- *      requestBody:
- *        required: true
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/requests'
- *      responses:
- *        "200":
- *          description: A request schema
- *
- * components:
- *    schemas:
- *      requests:
- *        type: object
- *        required:
- *          - idRequest
- * 
- *        properties:
- *          idRequest:
- *             type: number
+ * /Request/{id}:
+ *   delete:
+ *     summary: Deletes a request based on ID
+ *     tags: [REQUESTING ACCOMMODATION] 
+ *     description: Deletes a single request
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         description: Request's id
+ *         in: path
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: Successfully deleted
  */
 router.delete('/:idRequest',protection,deleteR);
 
+
 /**
  * @swagger
- * /Request:
+ *
+ * /Request/{id}:
  *    put:
+ *      summary: Update a request based on ID
  *      tags: [REQUESTING ACCOMMODATION]
- *      summary: Authenticated user can update an accommodation request  
+ *      parameters:
+ *        - name: id
+ *          in: path
+ *          description: Request ID
+ *          required: true
  *      requestBody:
- *        required: true
+ *        required: false
  *        content:
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/requests'
  *      responses:
- *        "200":
+ *        "201":
  *          description: A request schema
  *
  * components:
@@ -110,20 +109,19 @@ router.delete('/:idRequest',protection,deleteR);
  *      requests:
  *        type: object
  *        required:
- *          - idRequest
+ *    
  *          - dateStart
  *          - dateEnd
  *          - idRoom
- * 
  *        properties:
- *          idRequest:
- *             type: number
+ *       
  *          dateStart:
  *            type: string
  *          dateEnd:
  *            type: string
  *          idRoom:
  *             type: number
+ *
  */
 router.put('/:idRequest',protection,updateR);
 
