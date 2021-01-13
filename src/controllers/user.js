@@ -74,4 +74,70 @@ const signin = (req, res) => {
   
 }
 
-module.exports = { signup, signin};
+
+const getAllUsers = async (req, res) => {
+
+  try {
+    const user = await User.findAll();
+      return res.status(200).json({ user });  
+  }catch(error){
+    res.status(500).send({ message: 'Error'})
+  }
+ 
+}
+
+
+const getUserById = async (req, res) => {
+
+    try {
+      const id = req.params.id;
+      const user = await User.findByPk(id);
+
+      if (user) {
+        return res.status(200).json({ user });
+      }else{
+        return res.status(404).json({message: 'No User with the specified'});
+      }
+
+    }catch(error){
+      res.status(500).send({ message: 'Error'})
+    }
+   
+}
+
+const updateUserById = async (req, res) => {
+
+    try {
+      const id = req.params.id;
+      const [user] = await User.update(req.body, {where: {id : id }});
+      
+      if(user){
+        return res.status(200).json({ message: 'User updated successful' });
+      }else{
+        return res.send({ message: `Cannot update User with id=${id}. User not found`});
+      }
+
+    }catch(error){
+      return res.status(500).send({ message:'Error'});
+    }
+}
+
+
+const deleteUserById = async (req, res) => {
+
+  try {
+    const id = req.params.id;
+    const user = await User.destroy({where: {id : id }});
+
+    if(user){
+      return res.status(200).json({ message: 'User deleted successfully!' });
+    }else{
+      return res.send({ message: `Cannot delete User with id=${id}. Maybe User was not found!`});
+    }
+
+  }catch(error){
+    return res.status(500).send({ message: 'Error' });
+  }
+}
+
+module.exports = { signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById};

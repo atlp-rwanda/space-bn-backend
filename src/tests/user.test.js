@@ -192,3 +192,20 @@ describe('User Signin', () => {
           })
     });
 })
+
+describe('User Signin', () => {
+
+  it('should Get all users', (done) => {
+  
+    //send request to the server
+    chai.request(app).get('/user')
+        .then((res) => {
+          expect(res).to.have.status(200);
+          done();
+        }).catch(err => {
+          console.log(err.message);
+        })
+  });
+
+  
+})

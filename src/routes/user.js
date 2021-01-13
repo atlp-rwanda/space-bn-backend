@@ -4,8 +4,11 @@ import multer from 'multer';
 const router = express.Router();
 const userController = require('../controllers/user');
 const SchemaValidator = require('../middlewares/SchemaValidator');
-
 const validateRequest = SchemaValidator(true);
+
+import checkAuthentication from '../middlewares/check-auth';
+
+
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -128,5 +131,15 @@ router.post('/signup', upload.single('user_image'), validateRequest, userControl
  *            type: string
  */
 router.post('/signin', validateRequest, userController.signin);
+
+router.get('/', checkAuthentication, userController.getAllUsers);
+
+router.get('/:id', checkAuthentication, userController.getUserById);
+
+router.put('/:id', checkAuthentication, userController.updateUserById);
+
+router.delete('/:id', checkAuthentication, userController.deleteUserById);
+
+
 
 module.exports = router;
