@@ -33,13 +33,13 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'user',
   });
 
-  User.beforeSave((user, options) => {
+  user.beforeSave((user, options) => {
     if (user.changed('password')) {
       user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
     }
   });
 
-  User.prototype.comparePassword = function (passw, cb) {
+  user.prototype.comparePassword = function (passw, cb) {
     bcrypt.compare(passw, this.password, function (err, isMatch) {
         if (err) {
             return cb(err);
