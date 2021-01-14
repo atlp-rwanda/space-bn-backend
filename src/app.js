@@ -54,6 +54,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/user', userRoutes);
-app.use(`${process.env.API_VERSION}/hotels`, hotelRoutes);
+app.use('/hotels', hotelRoutes);
 
 export default app;

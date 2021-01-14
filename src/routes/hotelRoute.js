@@ -11,7 +11,7 @@ router.get('/', (req, res) => res.send('Welcome to Barefoot Nomad'));
 /**
  * @swagger
  *
- * /api/v1/hotels/createHotel:
+ * /hotels:
  *    post:
  *      summary: add a hotel
  *      tags: [Hotels]
@@ -69,11 +69,11 @@ router.get('/', (req, res) => res.send('Welcome to Barefoot Nomad'));
  *
  */
 
-router.post('/createHotel', protection, createHotel);
+router.post('/', protection, createHotel);
 
 /**
  * @swagger
- * /api/v1/hotels/allHotels:
+ * /hotels:
  *  get:
  *    tags: [Hotels]
  *    summary: All hotels from database
@@ -84,11 +84,11 @@ router.post('/createHotel', protection, createHotel);
  *
 */
 
-router.get('/allHotels', getAllHotels);
+router.get('/', getAllHotels);
 
 /**
  * @swagger
- * /api/v1/hotels/deleteHotel/{id}:
+ * /hotels/{id}:
  *    delete:
  *      tags: [Hotels]
  *      summary: Authenticated user can delete a hotel
@@ -143,11 +143,11 @@ router.get('/allHotels', getAllHotels);
  *              type: string
  */
 
-router.delete('/deleteHotel/:id', protection, deleteHotel);
+router.delete('/:id', protection, deleteHotel);
 
 /**
  * @swagger
- * /api/v1/hotels/{id}:
+ * /hotels/{id}:
  *   get:
  *     summary: For getting a single hotel
  *     tags: [Hotels]
@@ -167,11 +167,11 @@ router.delete('/deleteHotel/:id', protection, deleteHotel);
  *         description: Server Error
  */
 
-router.get('/hotel/:id', protection, getHotel);
+router.get('/:id', protection, getHotel);
 
 /**
  * @swagger
- * /api/v1/hotels/updateHotel/{id}:
+ * /hotels/{id}:
  *    patch:
  *      tags: [Hotels]
  *      summary: Authenticated user can update a hotel
@@ -225,6 +225,6 @@ router.get('/hotel/:id', protection, getHotel);
  *          hotelemail:
  *              type: string
  */
-router.patch('/updateHotel/:id', protection, updateHotel);
+router.patch('/:id', protection, updateHotel);
 
 export default router;

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:src/database/migrations/20201123130736-create-user.js
+=======
+>>>>>>> Making tests run
 export async function up(queryInterface, Sequelize) {
   await queryInterface.createTable('exampleTable', {
     id: {
@@ -25,6 +28,10 @@ export async function up(queryInterface, Sequelize) {
 }
 export async function down(queryInterface, Sequelize) {
   await queryInterface.dropTable('Users');
+<<<<<<< HEAD
 }
 =======
 >>>>>>> no-edit:src/database/migrations/20201203144012-create-nomad.js
+=======
+}
+>>>>>>> Making tests run
