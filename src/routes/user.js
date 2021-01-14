@@ -59,7 +59,7 @@ const storage = multer.diskStorage({
  *          - telephone
  *          - email
  *          - password
- *          - role
+ *          - roleId
  *          - gender
  *          - origin
  *          - profession
@@ -78,7 +78,7 @@ const storage = multer.diskStorage({
  *            type: string
  *          password:
  *            type: string
- *          role:
+ *          roleId:
  *            type: string
  *          gender:
  *            type: string

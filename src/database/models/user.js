@@ -15,14 +15,15 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING
     },
-    role: DataTypes.STRING,
+    roleId: DataTypes.INTEGER,
     gender: DataTypes.STRING,
     origin: DataTypes.STRING,
     profession: DataTypes.STRING,
     age: DataTypes.INTEGER,
     identification_type: DataTypes.STRING,
     identification_number: DataTypes.STRING,
-    user_image: DataTypes.STRING
+    user_image: DataTypes.STRING,
+    isVerified: DataTypes.BOOLEAN ,
   }, {});
 
   User.beforeSave((user, options) => {

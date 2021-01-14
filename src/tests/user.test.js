@@ -21,7 +21,6 @@ describe('User registration', () => {
         .field('telephone', '0783977618')
         .field('email', 'keza@gmail.com')
         .field('password', '1234567avb$#8')
-        .field('role', 'Hotel Manager')
         .field('gender', 'Male')
         .field('origin', 'rwandan')
         .field('profession', 'banking')
@@ -40,7 +39,6 @@ describe('User registration', () => {
             expect(res.body.user_details.lastname).to.exist;
             expect(res.body.user_details.email).to.exist;
             expect(res.body.user_details.password).to.exist;
-            expect(res.body.user_details.role).to.exist;
             expect(res.body.user_details.gender).to.exist;
             expect(res.body.user_details.origin).to.exist;
             expect(res.body.user_details.profession).to.exist;
@@ -64,7 +62,6 @@ describe('User registration', () => {
         .field('telephone', '0783977618')
         .field('email', '')
         .field('password', '1234567avb$#8')
-        .field('role', 'Hotel Manager')
         .field('gender', 'Male')
         .field('origin', 'rwandan')
         .field('profession', 'banking')
@@ -93,7 +90,6 @@ describe('User registration', () => {
         .field('telephone', '0783977618')
         .field('email', 'keza@gmail.com')
         .field('password', '1234567avb$#8')
-        .field('role', 'Hotel Manager')
         .field('gender', 'Male')
         .field('origin', 'rwandan')
         .field('profession', 'banking')
