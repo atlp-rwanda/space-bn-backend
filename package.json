@@ -4,29 +4,11 @@
   "description": "[![Build Status](https://travis-ci.org/atlp-rwanda/space-bn-backend.svg?branch=develop)](https://travis-ci.org/atlp-rwanda/space-bn-backend)",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all",
     "migrate:reset": "sequelize db:migrate:undo:all && npm run migrate",
     "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit --timeout 20000",
     "pretest": "cross-env NODE_ENV=test npm run migrate:reset",
-=======
-    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit",
->>>>>>> 73cec4b... Implementation for rooms CRUD operations
-=======
-    "migrate": "npx sequelize-cli db:migrate",
-    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
-    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit",
-=======
-    "migrate": "npx sequelize-cli db:migrate",
-    "seed": "npx sequelize-cli db:seed:all",
-    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
-    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/*.test.js --recursive ./src/tests/*.test.js --exit --timeout 20000",
->>>>>>> e7fa6e2... Authentication and writes tests for protected endpoints
-    "pretest": "cross-env NODE_ENV=test npm run migrate:reset",
->>>>>>> 059540a... Implementation for rooms CRUD operations
     "lint": "eslint ./",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "coverage": "nyc reporter --reporter=text --lcov | coveralls",
@@ -59,14 +41,7 @@
     "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "coveralls": "^3.1.0",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "dotenv": "^8.2.0",
-=======
-    "cross-env": "^7.0.3",
->>>>>>> 61cd644... Implementation for rooms CRUD operations
-=======
->>>>>>> 059540a... Implementation for rooms CRUD operations
     "ejs": "^3.1.5",
     "eslint-plugin-react-hooks": "^4.2.0",
     "express": "^4.17.1",
@@ -88,10 +63,6 @@
     "chai-http": "^4.3.0",
     "coveralls": "^3.1.0",
     "cross-env": "^7.0.3",
-<<<<<<< HEAD
-=======
-    "dotenv": "^8.2.0",
->>>>>>> 059540a... Implementation for rooms CRUD operations
     "eslint": "^7.13.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
