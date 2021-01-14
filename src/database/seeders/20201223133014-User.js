@@ -9,7 +9,6 @@ module.exports = {
         telephone: '',
         email: 'gilleskaba@gmail.com',
         password: '1234567$#8',
-        role: 'Nomad',
         gender: 'Male',
         origin: '',
         profession: '',

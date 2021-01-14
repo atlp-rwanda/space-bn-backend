@@ -21,7 +21,6 @@ const signup = (req, res) => {
           telephone: req.body.telephone || '',
           email: req.body.email,
           password: req.body.password,
-          role: req.body.role || 'Nomad',
           gender: req.body.gender || '',
           origin: req.body.origin || '',
           profession: req.body.profession || '',
