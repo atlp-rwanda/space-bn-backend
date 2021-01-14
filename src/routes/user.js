@@ -133,7 +133,7 @@ router.post('/signin', validateRequest, userController.signin);
 /**
  * @swagger
  * /logout:
- *  get:
+ *  post:
  *    tags:
  *    - Logout user
  *    summary: user will be logged out
