@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../database/models').User;
+const User = require('../database/models').user;
 require('dotenv').config()
 
 const signup = (req, res) => {
@@ -69,7 +69,7 @@ const signin = (req, res) => {
       }
     })
   })
-  .catch((error) => res.status(400).send(error));
+  .catch((error) => res.status(400).send(error.message));
   
 }
 
