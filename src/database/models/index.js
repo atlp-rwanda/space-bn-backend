@@ -1,3 +1,4 @@
+
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
@@ -43,5 +44,4 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
-
 

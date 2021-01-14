@@ -5,7 +5,6 @@ import chai from "chai";
 import chaiHttp from "chai-http";
 const { expect } = chai;
 chai.use(chaiHttp);
-
 // create a room
 
 describe('post/rooms', () => {
