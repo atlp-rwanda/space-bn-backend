@@ -1,6 +1,6 @@
 import { use, request, expect } from 'chai';
 import chaiHttp from 'chai-http';
-import hotels from '../routes/hotelRoute';
+import app from '../app';
 
 use(chaiHttp);
 describe('Server!', () => {
@@ -17,9 +17,5 @@ describe('Server!', () => {
         expect(res.body.message).to.equals('Welcome to my server');
         done();
       });
-});
-  it('should list a SINGLE hotel on /api/v1/hotels/hotel/<id> GET');
-  it('should add a SINGLE hotel on /api/v1/hotels/createHotel POST');
-  it('should update a SINGLE hotel on /api/v1/hotels/updateHotel/<id> PATCH');
-  it('should delete a SINGLE hotel on /api/v1/hotels/deleteHotel/<id> DELETE');
+  });
 });
