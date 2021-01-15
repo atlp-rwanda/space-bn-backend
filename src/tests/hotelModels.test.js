@@ -55,11 +55,9 @@ describe('Testing hotel endpoints', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(201);
-          console.log('===========$$$$$$$', res.body.hotel.hotelId);
           hotelId = res.body.hotel.hotelId;
           done();
         });
-      console.log('@@@@@@@@******@@@@@@@@@*****@@@@@@', token);
     });
   });
 });
