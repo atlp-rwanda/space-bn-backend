@@ -8,7 +8,12 @@ export const createHotelValidation = (req, res, next) => {
     location: Joi.string().required(),
     rooms: Joi.array().required(),
     images: Joi.array().required(),
-    hotelemail: Joi.string().email().required()
+    hotelemail: Joi.string().email().required(),
+    ranking: Joi.string().allow(''),
+    parking: Joi.string().allow(''),
+    wifi: Joi.string().allow(''),
+    swimmingpool: Joi.string().allow(''),
+    breakfast: Joi.string().allow(''),
   });
 
   const { error } = schema.validate(req.body);
