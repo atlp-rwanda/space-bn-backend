@@ -1,9 +1,10 @@
 const jwt = require('jsonwebtoken');
 const User = require('../database/models').User;
-require('dotenv').config()
+require('dotenv').config();
+
 
 const signup = (req, res) => {
-    
+  console.log("Here")
   User.findOne({
     where: {
       email: req.body.email
@@ -73,5 +74,6 @@ const signin = (req, res) => {
   .catch((error) => res.status(400).send(error));
   
 }
+
 
 module.exports = { signup, signin};

@@ -4,6 +4,7 @@ import multer from 'multer';
 const router = express.Router();
 const userController = require('../controllers/user');
 const SchemaValidator = require('../middlewares/SchemaValidator');
+const profileRouters = require('./profile');
 
 const validateRequest = SchemaValidator(true);
 
@@ -96,7 +97,7 @@ const storage = multer.diskStorage({
  *            type: string
  *            format: binary
  */
-router.post('/signup', upload.single('user_image'), validateRequest, userController.signup);
+router.post('/signup',upload.single('user_image'), validateRequest, userController.signup);
 
 /**
  * @swagger
@@ -129,4 +130,7 @@ router.post('/signup', upload.single('user_image'), validateRequest, userControl
  */
 router.post('/signin', validateRequest, userController.signin);
 
+
+
+router.use('/profile', profileRouters)
 module.exports = router;

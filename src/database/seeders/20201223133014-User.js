@@ -16,6 +16,7 @@ module.exports = {
         age: 25,
         identification_type: '',
         identification_number: '',
+        savedData: ['firstname','lastname'],
         user_image: '',
         createdAt: new Date(),
         updatedAt: new Date()

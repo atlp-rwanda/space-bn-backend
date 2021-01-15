@@ -6,12 +6,14 @@ import Config from './../../config/config';
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
+// const env = 'production';
+
 const config = Config[env];
 const db = {};
 
 // eslint-disable-next-line import/no-mutable-exports
 let sequelize;
-
+console.log(config);
 if (config.url) {
   sequelize = new Sequelize(config.url, config);
 } else {

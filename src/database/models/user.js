@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     age: DataTypes.INTEGER,
     identification_type: DataTypes.STRING,
     identification_number: DataTypes.STRING,
-    user_image: DataTypes.STRING
+    user_image: DataTypes.STRING,
+    savedData: DataTypes.ARRAY(DataTypes.STRING)
   }, {});
 
   User.beforeSave((user, options) => {
@@ -41,8 +42,8 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.associate = function(models) {
-    // associations can be defined here
-  };
+    
+   };
 
   return User;
 
