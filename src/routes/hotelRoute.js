@@ -28,7 +28,7 @@ const router = Router();
  *      hotel:
  *        type: object
  *        required:
- *          - hotelName
+ *          - hotelname
  *          - pricerange
  *          - location
  *          - ranking
@@ -40,7 +40,7 @@ const router = Router();
  *          - images
  *          - hotelemail
  *        properties:
- *          hotelName:
+ *          hotelname:
  *            type: string
  *          pricerange:
  *              type: string
@@ -67,7 +67,7 @@ const router = Router();
  *
  */
 
-router.post('/', protection, createHotel);
+router.post('/', protection, createHotelValidation, createHotel);
 
 /**
  * @swagger
@@ -105,7 +105,7 @@ router.get('/', getAllHotels);
  *      hotel:
  *        type: object
  *        required:
- *          - hotelName
+ *          - hotelname
  *          - pricerange
  *          - location
  *          - ranking
@@ -188,7 +188,7 @@ router.get('/:id', protection, getHotel);
  *      hotel:
  *        type: object
  *        required:
- *          - hotelName
+ *          - hotelname
  *          - pricerange
  *          - location
  *          - ranking
@@ -200,7 +200,7 @@ router.get('/:id', protection, getHotel);
  *          - images
  *          - hotelemail
  *        properties:
- *          hotelName:
+ *          hotelname:
  *            type: string
  *          pricerange:
  *              type: string
