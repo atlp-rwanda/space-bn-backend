@@ -1,4 +1,4 @@
-import model from '../database/Models';
+import model from '../database/models';
 
 require('dotenv').config();
 
