@@ -3,7 +3,6 @@ import models from '../database/models';
 const { hotels } = models;
 
 class HotelServices {
-  
   static createHotel(newHotel) {
     return hotels.create(newHotel);
   }
@@ -17,9 +16,9 @@ class HotelServices {
   static findOneHote(prop) {
     return hotels.findOne({
       where: {
-        id:1,
+        id: 1,
       },
-      include:['hotelsCity']
+      include: ['hotelsCity']
     });
   }
 
