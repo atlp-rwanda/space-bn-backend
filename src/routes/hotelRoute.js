@@ -3,6 +3,7 @@ import {
   getAllHotels, createHotel, deleteHotel, getHotel, getHotelRooms, updateHotel
 } from '../controllers/hotelController';
 import protection from '../middlewares/check-auth';
+import { createHotelValidation, updateHotelValidation } from '../middlewares/hotelValidation';
 
 const router = Router();
 
@@ -223,6 +224,6 @@ router.get('/:id', protection, getHotel);
  *          hotelemail:
  *              type: string
  */
-router.patch('/:id', protection, updateHotel);
+router.patch('/:id', protection, updateHotelValidation, updateHotel);
 
 export default router;
