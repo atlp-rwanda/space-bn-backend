@@ -4,15 +4,14 @@ import http from 'chai-http';
 
 import app from '../app';
 
-const User = require('../database/models').User;
+import { User } from '../database/models';
 
-const fs = require('fs');
+import fs from 'fs';
 
 chai.use(http);
 
 const expect = chai.expect;
 
-let token = '';
 
 describe('User registration', () => {
   it('should return 201 and confirmation for valid input', (done) => {
@@ -205,8 +204,11 @@ describe('/GET users', () => {
       "email": "keza@gmail.com",
       "password": "1234567avb$#8"
     }
-    chai.request(app).post('/user/signin').send(user_credentials).then((login_response) => {
-          token = 'Bearer ' + login_response.body.token;
+    chai.request(app)
+        .post('/user/signin')
+        .send(user_credentials)
+        .then((login_response) => {
+          let token = 'Bearer ' + login_response.body.token;
           chai.request(app).get('/user/').set('Authorization', token)
               .end((err, res) => {
                 expect(res).to.have.status(200);
@@ -217,58 +219,86 @@ describe('/GET users', () => {
   });
 })
 
-describe('/GET/:id user', () => {
-  it('it should GET a user by the given id', () => {
-      let user = new User({firstname: "kalisa", lastname: "wilson", email: "wizo@gmail.com", password: "12345678#$"});
-      user.save((err, user) => {
-          chai.request(app)
-        .get('/user/' + user.id)
-        .send(user)
-        .set('Authorization', token)
-        .end((err, res) => {
-              res.should.have.status(200);
-              res.body.should.be.a('object');
-              res.body.should.have.property('firstname');
-              res.body.should.have.property('lastname');
-              res.body.should.have.property('email');
-              res.body.should.have.property('password');
-              res.body.should.have.property('_id').eql(book.id);
-        });
-      });
+describe('/GET/:id users', () => {
 
+	it('it should GET a user by the given id', () => {
+    
+    const user_credentials = {
+      "email": "keza@gmail.com",
+      "password": "1234567avb$#8"
+    }
+    let user = new User({firstname: "kalisa", lastname: "wilson", email: "wizo@gmail.com", password: "12345678#$"});
+
+    chai.request(app)
+        .post('/user/signin')
+        .send(user_credentials)
+        .then((login_response) => {
+          let token = 'Bearer ' + login_response.body.token;
+          user.save((err, user) => {
+            chai.request(app)
+                .get('/user/' + user.id)
+                .send(user)
+                .set('Authorization', token)
+                .end((err, res) => {
+                  expect(res).to.have.status(200);
+                })
+            })
+          });
   });
-});
 
-describe('/PUT/:id user', () => {
-	it('it should UPDATE a user given the id', () => {
-		let user = new User({firstname: "kalisa", lastname: "wilson", email: "wizo@gmail.com", password: "12345678#$"})
-		user.save((err, user) => {
-        chai.request(app)
-        .set('Authorization', token)
-			  .put('/user/' + user.id)
-			  .send({firstname: "Mussa", lastname: "wilson"})
-			  .end((err, res) => {
-					res.should.have.status(200);
-					res.body.should.be.a('object');
-					res.body.should.have.property('message').eql('User updated successfully');
-					res.body.article.should.have.property('firstname').eql("Mussa");
-			  });
-		});
-	});
-});
+})
 
-describe('/DELETE/:id user', () => {
-	it('it should DELETE a user given the id', () => {
-		let user = new User({firstname: "kalisa", lastname: "wilson", email: "wizo@gmail.com", password: "12345678#$"})
-		user.save((err, user) => {
-        chai.request(app)
-        .set('Authorization', token)
-			  .delete('/user/' + user.id)
-			  .end((err, res) => {
-					res.should.have.status(200);
-					res.body.should.be.a('object');
-					res.body.should.have.property('message').eql('User deleted successfully!');
-			  });
-		});
-	});
-});
+describe('/PUT/:id users', () => {
+
+	it('it should update a user by the given id', () => {
+    
+    const user_credentials = {
+      "email": "keza@gmail.com",
+      "password": "1234567avb$#8"
+    }
+    let user = new User({firstname: "kalisa", lastname: "wilson", email: "wizo@gmail.com", password: "12345678#$"});
+
+    chai.request(app)
+        .post('/user/signin')
+        .send(user_credentials)
+        .then((login_response) => {
+          let token = 'Bearer ' + login_response.body.token;
+          user.save((err, user) => {
+            chai.request(app)
+                .put('/user/' + user.id)
+                .send({firstname: "Mussa", lastname: "wilson"})
+                .set('Authorization', token)
+                .end((err, res) => {
+                  expect(res).to.have.status(200);
+                })
+            })
+          });
+  });
+})
+
+describe('/DELETE/:id users', () => {
+
+	it('it should delete a user by the given id', () => {
+    
+    const user_credentials = {
+      "email": "keza@gmail.com",
+      "password": "1234567avb$#8"
+    }
+    let user = new User({firstname: "Peter", lastname: "wilson", email: "wizo@gmail.com", password: "12345678#$"});
+
+    chai.request(app)
+        .post('/user/signin')
+        .send(user_credentials)
+        .then((login_response) => {
+          let token = 'Bearer ' + login_response.body.token;
+          user.delete((err, user) => {
+            chai.request(app)
+                .get('/user/' + user.id)
+                .set('Authorization', token)
+                .end((err, res) => {
+                  expect(res).to.have.status(200);
+                })
+            })
+          });
+  });
+})
