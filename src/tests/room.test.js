@@ -130,7 +130,7 @@ describe("put/rooms/:idroom",()=>{
           })
         })
     }) 
-
+    
 describe("Get All Rooms", () => {
      it("should return an array of the all Rooms", (done) => {
       chai

@@ -13,7 +13,7 @@ const expect = chai.expect;
 
 
 describe('User registration', () => {
-  it('should return 201 and confirmation for valid input', (done) => {
+  it('should return 201 and confirmation for valid input', () => {
 
         chai.request(app).post('/user/signup')
         .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -47,7 +47,7 @@ describe('User registration', () => {
             expect(res.body.user_details.identification_type).to.exist;
             expect(res.body.user_details.identification_number).to.exist;
             expect(res.body.user_details.user_image).to.exist;
-            done();
+            //done();
           }).catch(err => {
             console.log(err);
           });
