@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
 
 module.exports = (sequelize, DataTypes) => {
 
-  const User = sequelize.define('User', {
+  const user = sequelize.define('user', {
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
     telephone: DataTypes.STRING,
@@ -26,13 +26,13 @@ module.exports = (sequelize, DataTypes) => {
     isVerified: DataTypes.BOOLEAN ,
   }, {});
 
-  User.beforeSave((user, options) => {
+  user.beforeSave((user, options) => {
     if (user.changed('password')) {
       user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
     }
   });
 
-  User.prototype.comparePassword = function (passw, cb) {
+  user.prototype.comparePassword = function (passw, cb) {
     bcrypt.compare(passw, this.password, function (err, isMatch) {
         if (err) {
             return cb(err);
@@ -41,10 +41,10 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
-  User.associate = function(models) {
+  user.associate = function(models) {
     // associations can be defined here
   };
 
-  return User;
+  return user;
 
 };
