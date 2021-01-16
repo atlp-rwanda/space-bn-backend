@@ -1,8 +1,11 @@
-const jwt = require('jsonwebtoken');
-const User = require('../database/models').User;
-require('dotenv').config()
+import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
+import { User } from '../database/models';
 
-const signup = (req, res) => {
+dotenv.config();
+
+
+export const signup = (req, res) => {
     
   User.findOne({
     where: {
@@ -46,7 +49,7 @@ const signup = (req, res) => {
   .catch((error) => res.status(400).send(error.message));
 }
 
-const signin = (req, res) => {
+export const signin = (req, res) => {
   User.findOne({
     where: {
       email: req.body.email
@@ -74,7 +77,7 @@ const signin = (req, res) => {
   
 }
 
-const getAllUsers = async (req, res) => {
+export const getAllUsers = async (req, res) => {
 
     const user = await User.findAll();
     if (user){
@@ -86,8 +89,7 @@ const getAllUsers = async (req, res) => {
 }
 
 
-const getUserById = async (req, res) => {
-
+export const getUserById = async (req, res) => {
   try {
     const id = req.params.id;
     const user = await User.findByPk(id);
@@ -104,8 +106,7 @@ const getUserById = async (req, res) => {
  
 }
 
-const updateUserById = async (req, res) => {
-
+export const updateUserById = async (req, res) => {
   try {
     const id = req.params.id;
     const [user] = await User.update(req.body, {where: {id : id }});
@@ -122,21 +123,18 @@ const updateUserById = async (req, res) => {
 }
 
 
-const deleteUserById = async (req, res) => {
+export const deleteUserById = async (req, res) => {
+    try {
+      const id = req.params.id;
+      const user = await User.destroy({where: {id : id }});
 
-try {
-  const id = req.params.id;
-  const user = await User.destroy({where: {id : id }});
+      if(user){
+        return res.status(200).json({ message: 'User deleted successfully!' });
+      }else{
+        return res.send({ message: `Cannot delete User with id=${id}. Maybe User was not found!`});
+      }
 
-  if(user){
-    return res.status(200).json({ message: 'User deleted successfully!' });
-  }else{
-    return res.send({ message: `Cannot delete User with id=${id}. Maybe User was not found!`});
-  }
-
-}catch(error){
-  return res.status(500).send({ message: 'Error' });
+    }catch(error){
+      return res.status(500).send({ message: 'Error' });
+    }
 }
-}
-
-module.exports = { signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById};
