@@ -9,7 +9,6 @@ dotenv.config();
 const app = express();
 
 const welcome = require('./routes/index');
-const rooms = require('./routes/rooms');
 
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
