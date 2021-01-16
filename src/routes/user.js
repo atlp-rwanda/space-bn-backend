@@ -1,9 +1,13 @@
 import express from 'express';
+
 import multer from 'multer';
 
 const router = express.Router();
-const userController = require('../controllers/user');
-const SchemaValidator = require('../middlewares/SchemaValidator');
+
+import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById} from '../controllers/user';
+
+import SchemaValidator from '../middlewares/SchemaValidator';
+
 const validateRequest = SchemaValidator(true);
 
 import checkAuthentication from '../middlewares/check-auth';
@@ -99,7 +103,7 @@ const storage = multer.diskStorage({
  *            type: string
  *            format: binary
  */
-router.post('/signup', upload.single('user_image'), validateRequest, userController.signup);
+router.post('/signup', upload.single('user_image'), validateRequest, signup);
 
 /**
  * @swagger
@@ -130,15 +134,15 @@ router.post('/signup', upload.single('user_image'), validateRequest, userControl
  *          password:
  *            type: string
  */
-router.post('/signin', validateRequest, userController.signin);
+router.post('/signin', validateRequest, signin);
 
-router.get('/', checkAuthentication, userController.getAllUsers);
+router.get('/', checkAuthentication, getAllUsers);
 
-router.get('/:id', checkAuthentication, userController.getUserById);
+router.get('/:id', checkAuthentication, getUserById);
 
-router.put('/:id', checkAuthentication, userController.updateUserById);
+router.put('/:id', checkAuthentication, updateUserById);
 
-router.delete('/:id', checkAuthentication, userController.deleteUserById);
+router.delete('/:id', checkAuthentication, deleteUserById);
 
 
 
