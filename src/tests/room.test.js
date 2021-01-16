@@ -129,12 +129,7 @@ describe("put/rooms/:idroom",()=>{
             });
           })
         })
-    }) 
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> ea101fe9c8cb9ef91b71eb752584700a16de435f
+    })   
 describe("Get All Rooms", () => {
      it("should return an array of the all Rooms", (done) => {
       chai
