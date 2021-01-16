@@ -12,6 +12,9 @@ const validateRequest = SchemaValidator(true);
 
 import checkAuthentication from '../middlewares/check-auth';
 
+import superAdminCheck from '../middlewares/superAdmin.check';
+
+const { superAdminAuth } = superAdminCheck;
 
 
 const storage = multer.diskStorage({
@@ -43,7 +46,7 @@ const upload = multer({
 /**
  * @swagger
  * /user/signup:
- *    post:
+ *     post:
  *      summary: User can signup
  *      tags: [Users]
  *      requestBody:
@@ -215,8 +218,8 @@ router.put('/:id', checkAuthentication, updateUserById);
  *       200:
  *         description: Successfully deleted
  */
-router.delete('/:id', checkAuthentication, deleteUserById);
+router.delete('/:id', superAdminAuth, deleteUserById);
 
-router.post('/logout',logout);
+router.post('/logout', logout);
 
 module.exports = router;
