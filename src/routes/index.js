@@ -16,10 +16,6 @@ const getRoom = controller.getRoomById;
 const updateRoom = controller.updateRoom;
 const deleteRoom = controller.deleteRoom;
 const getHotelRooms = controller.roomByHotel;
-<<<<<<< HEAD
-=======
-
->>>>>>> dcc1ef5... Getting rooms for a particular hotel and swagger for its endpoint
 
 //Rooms routes
 

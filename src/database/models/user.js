@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     isVerified: DataTypes.BOOLEAN,
   }, {});
 
-  user.beforeSave((user, options) => {
+  User.beforeSave((user, options) => {
     if (user.changed('password')) {
       user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
     }

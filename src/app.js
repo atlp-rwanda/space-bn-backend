@@ -12,7 +12,6 @@ dotenv.config();
 const app = express();
 
 const welcome = require('./routes/index');
-const rooms = require('./routes/rooms');
 app.use(cors());
 app.use(bodyParser.json());                                     
 app.use(bodyParser.urlencoded({extended: true}));               
