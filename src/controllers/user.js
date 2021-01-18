@@ -14,7 +14,7 @@ export const signup = (req, res) => {
   })
     .then((user) => {
       if (user) {
-        return res.status(409).send({
+        return res.status(409).json({
           message: 'Email already registered',
         });
       }
@@ -44,7 +44,7 @@ export const signup = (req, res) => {
           });
         });
     })
-    .catch((error) => res.status(400).send(error.message));
+    .catch((error) => res.status(400).json(error.message));
 };
 
 export const signin = (req, res) => {
@@ -55,7 +55,7 @@ export const signin = (req, res) => {
   })
     .then((user) => {
       if (!user) {
-        return res.status(401).send({
+        return res.status(401).json({
           message: 'Authentication failed. User not found.',
         });
       }
@@ -67,11 +67,11 @@ export const signin = (req, res) => {
           });
           res.json({ success: true, token: `JWT ${token}` });
         } else {
-          res.status(401).send({ success: false, message: 'Authentication failed. Wrong password.' });
+          res.status(401).json({ success: false, message: 'Authentication failed. Wrong password.' });
         }
       });
     })
-    .catch((error) => res.status(400).send(error));
+    .catch((error) => res.status(400).json(error));
 };
 
 export const getAllUsers = async (req, res) => {
@@ -80,7 +80,7 @@ export const getAllUsers = async (req, res) => {
     if (user){
       return res.status(200).json({user});
     }else{
-      res.status(500).send({message: 'Error'});
+      res.status(500).json({message: 'Error'});
     }
         
 }
@@ -98,7 +98,7 @@ export const getUserById = async (req, res) => {
     }
 
   }catch(error){
-    res.status(500).send({ message: 'Error'})
+    res.status(500).json({ message: 'Error'})
   }
  
 }
@@ -108,7 +108,7 @@ export const updateUserById = async (req, res) => {
     const users = await User.findAll();
     for(let i=0; i < users.length; i++){
       if (users[i].email === req.body.email){
-          return res.status(409).send({
+          return res.status(409).json({
              message: 'User update failed, a user with the specified email exist',
           });
       }
@@ -124,7 +124,7 @@ export const updateUserById = async (req, res) => {
       }
   
     }catch(error){
-      return res.status(500).send({ message:'Error'});
+      return res.status(500).json({ message:'Error'});
     }
 
 }
@@ -143,6 +143,6 @@ export const deleteUserById = async (req, res) => {
       }
 
     }catch(error){
-      return res.status(500).send({ message: 'Error' });
+      return res.status(500).json({ message: 'Error' });
     }
 }
