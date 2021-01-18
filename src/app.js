@@ -4,12 +4,14 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import rooms from './routes';
+import hotel from './routes';
 
 dotenv.config();
+
 const app = express();
 
 const welcome = require('./routes/index');
-
+app.use(cors());
 app.use(bodyParser.json());                                     
 app.use(bodyParser.urlencoded({extended: true}));               
 app.use(bodyParser.text());                                    
@@ -17,21 +19,20 @@ app.use(bodyParser.json({ type: 'application/json'}));
 app.use(cors())
 
 const userRoutes = require('./routes/user');
+app.use(hotel);
 
-
- app.use(express.json());
-
+app.get('/', (req, res) => {
+  res.json({ status: 'success', message: 'Welcome to my server' });
+});
+app.use('/api',rooms)
 app.use('/user', userRoutes);
 
 app.use('/api', welcome);
 app.use('/',rooms);
 const PORT = process.env.PORT || 3000;
-// eslint-disable-next-line no-console
-app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
 
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-
 
  const swaggerOptions = {
  	swaggerDefinition: {
