@@ -16,6 +16,22 @@ module.exports = (sequelize, DataTypes) => {
    onDelete: 'CASCADE'
  });
 
-  
    return RoomModel;
  };
+
+ /*
+      "firstname": "alin",
+    "lastname": "mukuru",
+    "telephone":"0784450008" ,
+    "email": "mukuru@gmail.com" ,
+    "password": "mukuru@#" ,
+    "roleId": 1,
+    "gender": "Male",
+    "origin": "kugali",
+    "profession":"IT" ,
+    "age": 40,
+    "isVerified": false,
+    "identification_type": "ID",
+    "identification_number": "19806567999800",
+    "user_image":"http://www.cloudnary.com/images/myimage.png"
+ */
