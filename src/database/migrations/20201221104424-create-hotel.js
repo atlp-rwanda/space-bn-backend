@@ -1,54 +1,53 @@
 'use strict';
+
+// const { DataTypes } = require('sequelize/types');
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('hotels', {
       id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: false,
+        type: Sequelize.INTEGER
+      },
+      hotelId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstname: {
+      hotelname: {
         type: Sequelize.STRING
       },
-      lastname: {
+      pricerange: {
         type: Sequelize.STRING
       },
-      telephone: {
+      location: {
         type: Sequelize.STRING
       },
-      email: {
+      ranking: {
         type: Sequelize.STRING
       },
-      password: {
+      parking: {
         type: Sequelize.STRING
       },
-      roleId: {
-        type: Sequelize.INTEGER
-      },
-      gender: {
+      wifi: {
         type: Sequelize.STRING
       },
-      origin: {
+      swimmingpool: {
         type: Sequelize.STRING
       },
-      profession: {
+      breakfast: {
         type: Sequelize.STRING
       },
-      age: {
-        type: Sequelize.INTEGER
+      rooms: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
-      isVerified: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
+      images: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
-      identification_type: {
-        type: Sequelize.STRING
-      },
-      identification_number: {
-        type: Sequelize.STRING
-      },
-      user_image: {
+      hotelemail: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -62,6 +61,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('hotels');
   }
 };

@@ -15,29 +15,29 @@ import checkAuthentication from '../middlewares/check-auth';
 
 
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-      cb(null, './src/uploads/');
-    },
-    filename: function(req, file, cb) {
-      cb(null, new Date().toISOString() + file.originalname);
-    }
+  destination(req, file, cb) {
+    cb(null, './src/uploads/');
+  },
+  filename(req, file, cb) {
+    cb(null, new Date().toISOString() + file.originalname);
+  }
 });
-  
-  const fileFilter = (req, file, cb) => {
-    // reject a file
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-      cb(null, true);
-    } else {
-      cb(null, false);
-    }
-  };
-  
-  const upload = multer({
-    storage: storage,
-    limits: {
-      fileSize: 1024 * 1024 * 5
-    },
-    fileFilter: fileFilter
+
+const fileFilter = (req, file, cb) => {
+  // reject a file
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({
+  storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter
 });
 
 /**
@@ -63,17 +63,8 @@ const storage = multer.diskStorage({
  *        required:
  *          - firstname
  *          - lastname
- *          - telephone
  *          - email
  *          - password
- *          - role
- *          - gender
- *          - origin
- *          - profession
- *          - age
- *          - identification_type
- *          - identification_number
- *          - user_image
  *        properties:
  *          firstname:
  *            type: string
@@ -85,7 +76,7 @@ const storage = multer.diskStorage({
  *            type: string
  *          password:
  *            type: string
- *          role:
+ *          roleId:
  *            type: string
  *          gender:
  *            type: string
@@ -138,10 +129,92 @@ router.post('/signin', validateRequest, signin);
 
 router.get('/', checkAuthentication, getAllUsers);
 
+/**
+ * @swagger
+ * /user/{_id}:
+ *   get:
+ *     summary: Returns a user based on ID
+ *     tags: [Users]
+ *     description: Returns a single user
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: _id
+ *         description: Particular User Object's ID
+ *         in: path
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: A user
+ *       500:
+ *         description: Server Error
+ */
 router.get('/:id', checkAuthentication, getUserById);
 
+/**
+ * @swagger
+ *
+ * /user/{id}:
+ *    put:
+ *      summary: User update based on ID
+ *      tags: [Users]
+ *      parameters:
+ *        - name: id
+ *          in: path
+ *          description: User ID
+ *          required: true
+ *      requestBody:
+ *        required: false
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/user'
+ *      responses:
+ *        "201":
+ *          description: A user schema
+ *
+ * components:
+ *    schemas:
+ *      user:
+ *        type: object
+ *        required:
+ *          - firstname
+ *          - lastname
+ *          - email
+ *          - password
+ *        properties:
+ *          firstname:
+ *            type: string
+ *          lastname:
+ *            type: string
+ *          email:
+ *            type: string
+ *          password:
+ *            type: string
+
+ */
 router.put('/:id', checkAuthentication, updateUserById);
 
+/**
+ * @swagger
+ * /user/{id}:
+ *   delete:
+ *     summary: Deletes a user based on ID
+ *     tags: [Users]
+ *     description: Deletes a single user
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         description: User's id
+ *         in: path
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: Successfully deleted
+ */
 router.delete('/:id', checkAuthentication, deleteUserById);
 
 
