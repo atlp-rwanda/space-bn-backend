@@ -172,7 +172,6 @@ describe('User Signin', () => {
   });
 
   it('should return 400 when a bad a request is made', (done) => {
-<<<<<<< HEAD
       const bad_request = {
        
       }
@@ -294,19 +293,3 @@ describe('/DELETE/:id users', () => {
           });
   });
 })
-=======
-    const bad_request = {
-
-    };
-    chai.request(app).post('/user/signin')
-      .send(bad_request)
-      .then((res) => {
-        expect(res).to.have.status(400);
-        done();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
-});
->>>>>>> 0313a5090e0f7e71a981d5349271a11bba162bc5
