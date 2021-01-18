@@ -104,23 +104,34 @@ export const getUserById = async (req, res) => {
 }
 
 export const updateUserById = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const [user] = await User.update(req.body, {where: {id : id }});
-    
-    if(user){
-      return res.status(200).json({ message: 'User updated successfully' });
-    }else{
-      return res.send({ message: `Cannot update User with id=${id}. User not found`});
+  
+    const users = await User.findAll();
+    for(let i=0; i < users.length; i++){
+      if (users[i].email === req.body.email){
+          return res.status(409).send({
+             message: 'User update failed, a user with the specified email exist',
+          });
+      }
+    }
+    try {
+      const id = req.params.id;
+      const [user] = await User.update(req.body, {where: {id : id }});
+      
+      if(user){
+        return res.status(200).json({ message: 'User updated successfully' });
+      }else{
+        return res.send({ message: `Cannot update User with id=${id}. User not found`});
+      }
+  
+    }catch(error){
+      return res.status(500).send({ message:'Error'});
     }
 
-  }catch(error){
-    return res.status(500).send({ message:'Error'});
-  }
 }
 
 
 export const deleteUserById = async (req, res) => {
+  
     try {
       const id = req.params.id;
       const user = await User.destroy({where: {id : id }});
