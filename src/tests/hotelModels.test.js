@@ -104,7 +104,7 @@ describe(' Update selected hotel', () => {
 });
 
 describe(' Delete endpoint selected hotel', () => {
-  // const id = hotelId;
+ // const hotelId = 1;
   it('should delete selected hotel', (done) => {
     chai
       .request(app)

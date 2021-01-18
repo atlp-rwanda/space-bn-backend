@@ -1,64 +1,146 @@
-process.env.NODE_ENV = 'test'
-/*
-import {chai} from 'chai';
 
-import { use, request, expect } from 'chai';
-import chaiHttp from 'chai-http';
-import app from '../app';
+process.env.NODE_ENV = 'test'; 
 
-use(chaiHttp);
-describe('Server!', () => {
-  it('welcomes user to the api', (done) => {
-    request(app)
-      .get('/api')
-      .end((err, res) => {
-        if (err) done(err);
-        // eslint-disable-next-line no-undef
-        expect(res).to.have.status(200);
-        // eslint-disable-next-line no-undef
-        expect(res.body.status).to.equals('success');
-        // eslint-disable-next-line no-undef
-        expect(res.body.message).to.equals('Welcome to my server');
-        done();
-      });
-  });
-});
-*/
-import {chai} from 'chai';
-import { use, request, expect } from 'chai';
-import chaiHttp from 'chai-http';
-import app from '../app';
+import app from "../app";
+import chai from "chai";
+import chaiHttp from "chai-http";
+const { expect } = chai;
+chai.use(chaiHttp);
+// create a room
 
-describe('Sample Test', () => {
-  it('should test that true === true', () => {
-    expect(true).to.be.true;
-  });
-});
+describe('post/rooms', () => {
+  it('it should  POST a room', () => {
 
-use(chaiHttp);
+      const token = " ";
 
-describe('Sample Test', () => {
-  it('should test that true === true', () => {
-    expect(true).to.be.true;
+      const valid_input = {
+          "email": "furebo@gmail.com",
+          "password": "furebo@#"
+      }
+        chai.request(app)
+        .post('/user/signin')
+        .send(valid_input)
+        .then((login_response)=>{
+            token = 'Bearer ' + login_response.body.token;
+            chai.request(app)
+            .post('/rooms')
+            .set('Authorization', token)
+            .send({
+              hotelId: 1,
+              description: "Room for underGround",
+              roomType: "First class",
+              roomLabel: "label 001",
+              status: "double",
+            })
+            .end((err, res) => {
+              expect(res.status).to.equal(200);
+            })
+        })
   });
 });
 
-describe('get/getAllRooms', () => {
-  it('should fetch all rooms', (done) => {
-             request(app)
-            .get('/api/rooms')
-            .end((err,res) => {
-              expect(res).to.have.status(200);
-             done();
-           })
-      });
+describe('post/rooms', () => {
+  it('it should Not POST a room', () => {
+
+      const token = " ";
+
+      const valid_input = {
+          "email": "furebo@gmail.com",
+          "password": "furebo@#"
+      }
+        chai.request(app)
+        .post('/user/signin')
+        .send(valid_input)
+        .then((login_response)=>{
+            token = 'Bearer ' + login_response.body.token;
+            chai.request(app)
+            .post('/rooms')
+            .set('Authorization', token)
+            .send({
+              hotelId: "1",
+              description: "Room for underGround",
+              roomType: "First class",
+              roomLabel: "label 001",
+              status: "double",
+            })
+            .end((err, res) => {
+              expect(res.status).to.equal(500);
+            })
+        })
+  });
 });
 
+describe("put/rooms/:idroom",()=>{
+  
+  it("should update an existing  room ",()=>{
 
-//testing getting a room by id
+     const token = " ";
 
-it('should fetch a single room', async () => {
-  const id = 15;
-  const res = await request(app).get(`/api/rooms/${id}`);
-  expect(res).to.have.status(200);
-});
+      const valid_input = {
+        "email": "furebo@gmail.com",
+        "password": "furebo@#"
+      }
+      chai.request(app)
+        .post('/user/signin')
+        .send(valid_input)
+        .then((login_response)=>{
+
+          const idroom = 1;
+
+          token = 'Bearer ' + login_response.body.token; 
+          chai.request(app)
+          .put(`/rooms/${idroom}`)
+          .set('Authorization', token)
+          .send({
+            description: "Room for VIP"
+          })
+          .end((err, res) => {
+            expect(res.status).to.equal(200);
+          });
+        })
+      })
+  }) 
+
+  describe("put/rooms/:idroom",()=>{
+  
+    it("should Not update an existing  room ",()=>{
+  
+       const token = " ";
+  
+        const valid_input = {
+          "email": "furebo@gmail.com",
+          "password": "furebo@#"
+        }
+        chai.request(app)
+          .post('/user/signin')
+          .send(valid_input)
+          .then((login_response)=>{
+  
+            const idroom = "0";
+  
+            token = 'Bearer ' + login_response.body.token; 
+            chai.request(app)
+            .put(`/rooms/${idroom}`)
+            .set('Authorization', token)
+            .send({
+              description: "Room for VIP"
+            })
+            .end((err, res) => {
+              expect(res.status).to.equal(500);
+            });
+          })
+        })
+    }) 
+
+describe("Get All Rooms", () => {
+     it("should return an array of the all Rooms", (done) => {
+      chai
+        .request(app)
+        .get("/rooms")
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(200);    
+          done();
+        });
+    });
+  });

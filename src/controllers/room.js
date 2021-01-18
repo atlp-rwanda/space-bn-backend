@@ -8,6 +8,22 @@ const createRoom = async (req, res) => {
     const room = await model.RoomModel.create(req.body);
     if (room) {
 
+      const hotel = await model.hotel.findOne({
+        where : {
+          hotelId: room.hotelId
+        }
+      })
+      if(hotel){
+        hotel.rooms.push(room.roomType)
+        console.log(hotel.rooms)
+        //res.json({hotel.rooms})
+        await model.hotel.update(hotel.rooms, {
+          where: { 
+            id:room.hotelId
+           }
+        });
+      }
+
       return res.status(200).json({ room });
     }
 
