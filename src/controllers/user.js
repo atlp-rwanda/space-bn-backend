@@ -1,8 +1,12 @@
-const jwt = require('jsonwebtoken');
-const { User } = require('../database/models');
-require('dotenv').config();
+import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
+import { User } from '../database/models';
 
-const signup = (req, res) => {
+dotenv.config();
+
+
+export const signup = (req, res) => {
+    
   User.findOne({
     where: {
       email: req.body.email
@@ -10,7 +14,7 @@ const signup = (req, res) => {
   })
     .then((user) => {
       if (user) {
-        return res.status(409).send({
+        return res.status(409).json({
           message: 'Email already registered',
         });
       }
@@ -40,10 +44,10 @@ const signup = (req, res) => {
           });
         });
     })
-    .catch((error) => res.status(400).send(error.message));
+    .catch((error) => res.status(400).json(error.message));
 };
 
-const signin = (req, res) => {
+export const signin = (req, res) => {
   User.findOne({
     where: {
       email: req.body.email
@@ -51,7 +55,7 @@ const signin = (req, res) => {
   })
     .then((user) => {
       if (!user) {
-        return res.status(401).send({
+        return res.status(401).json({
           message: 'Authentication failed. User not found.',
         });
       }
@@ -63,11 +67,82 @@ const signin = (req, res) => {
           });
           res.json({ success: true, token: `JWT ${token}` });
         } else {
-          res.status(401).send({ success: false, message: 'Authentication failed. Wrong password.' });
+          res.status(401).json({ success: false, message: 'Authentication failed. Wrong password.' });
         }
       });
     })
-    .catch((error) => res.status(400).send(error));
+    .catch((error) => res.status(400).json(error));
 };
 
-module.exports = { signup, signin };
+export const getAllUsers = async (req, res) => {
+
+    const user = await User.findAll();
+    if (user){
+      return res.status(200).json({user});
+    }else{
+      res.status(500).json({message: 'Error'});
+    }
+        
+}
+
+
+export const getUserById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const user = await User.findByPk(id);
+
+    if (user) {
+      return res.status(200).json({ user });
+    }else{
+      return res.status(404).json({message: 'No User with the specified'});
+    }
+
+  }catch(error){
+    res.status(500).json({ message: 'Error'})
+  }
+ 
+}
+
+export const updateUserById = async (req, res) => {
+  
+    const users = await User.findAll();
+    for(let i=0; i < users.length; i++){
+      if (users[i].email === req.body.email){
+          return res.status(409).json({
+             message: 'User update failed, a user with the specified email exist',
+          });
+      }
+    }
+    try {
+      const id = req.params.id;
+      const [user] = await User.update(req.body, {where: {id : id }});
+      
+      if(user){
+        return res.status(200).json({ message: 'User updated successfully' });
+      }else{
+        return res.send({ message: `Cannot update User with id=${id}. User not found`});
+      }
+  
+    }catch(error){
+      return res.status(500).json({ message:'Error'});
+    }
+
+}
+
+
+export const deleteUserById = async (req, res) => {
+  
+    try {
+      const id = req.params.id;
+      const user = await User.destroy({where: {id : id }});
+
+      if(user){
+        return res.status(200).json({ message: 'User deleted successfully!' });
+      }else{
+        return res.send({ message: `Cannot delete User with id=${id}. Maybe User was not found!`});
+      }
+
+    }catch(error){
+      return res.status(500).json({ message: 'Error' });
+    }
+}
