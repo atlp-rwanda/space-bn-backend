@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 import hotelRoutes from './routes/hotelRoute';
+import commentRoutes from './routes/comment';
 
 dotenv.config();
 
@@ -55,5 +56,6 @@ app.get('/', (req, res) => {
 
 app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
+app.use(commentRoutes);
 
 export default app;
