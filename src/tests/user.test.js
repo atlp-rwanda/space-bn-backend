@@ -22,8 +22,6 @@ describe('User registration', () => {
       .field('age', '27')
       .field('identification_type', 'ID')
       .field('identification_number', '1122020333')
-      .attach('user_image',
-        fs.readFileSync('./src/tests/malume.png'), 'malume.png')
       .then((res) => {
         expect(res).to.have.status(201);
         expect(res.body.message).to.be.equal('User registered');
@@ -60,8 +58,6 @@ describe('User registration', () => {
       .field('age', '27')
       .field('identification_type', 'ID')
       .field('identification_number', '1122020333')
-      .attach('user_image',
-        fs.readFileSync('./src/tests/malume.png'), 'malume.png')
       .then((res) => {
         expect(res).to.have.status(422);
         done();
@@ -85,8 +81,6 @@ describe('User registration', () => {
       .field('age', '27')
       .field('identification_type', 'ID')
       .field('identification_number', '1122020333')
-      .attach('user_image',
-        fs.readFileSync('./src/tests/malume.png'), 'malume.png')
       .then((res) => {
         expect(res).to.have.status(409);
         expect(res.body.message).to.be.equal('Email already registered');
