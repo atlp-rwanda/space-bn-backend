@@ -102,9 +102,9 @@ describe(' Update selected hotel', () => {
       });
   });
 });
-
+/*
 describe(' Delete endpoint selected hotel', () => {
- // const hotelId = 1;
+   const hotelId = 5;
   it('should delete selected hotel', (done) => {
     chai
       .request(app)
@@ -116,3 +116,4 @@ describe(' Delete endpoint selected hotel', () => {
       });
   });
 });
+*/
