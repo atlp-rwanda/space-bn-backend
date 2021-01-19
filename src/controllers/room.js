@@ -5,27 +5,29 @@ const model = require('../database/models');
 
 const createRoom = async (req, res) => {
   try {
-    const room = await model.RoomModel.create(req.body);
-    if (room) {
 
-      const hotel = await model.hotel.findOne({
-        where : {
-          hotelId: room.hotelId
-        }
-      })
-      if(hotel){
-        hotel.rooms.push(room.roomType)
-        console.log(hotel.rooms)
-        //res.json({hotel.rooms})
-        await model.hotel.update(hotel.rooms, {
-          where: { 
-            id:room.hotelId
-           }
-        });
+    const hotel = await model.hotel.findOne({
+      where : {
+        id: req.body.hotelId
+      }
+    })
+    if(hotel){
+      const room = await model.RoomModel.create(req.body);
+
+      hotel.rooms.push(req.body.roomType + "," + " room id: " + room.id)
+      await model.hotel.update({"rooms":hotel.rooms}, {
+        where: { 
+          id:hotel.hotelId
+         }
+      });
+      if (room) {
+        return res.status(200).json({ room });
       }
 
-      return res.status(200).json({ room });
+    }else{
+      return res.json({message: "You attempt to assign a room to the hotel which does not exist ! Room not created."})
     }
+
 
   } catch (error) {
     return res.status(500).json({error: error.message})
@@ -86,6 +88,30 @@ const updateRoom = async (req, res) => {
 const deleteRoom = async (req, res) => {
   try {
     const { roomId } = req.params;
+    const Room = await model.RoomModel.findOne({
+      where: {
+        id: roomId
+      }
+    });
+     if(Room){
+       const hotelRoom = await model.hotel.findOne({
+         where: {
+           id: Room.hotelId
+         }
+       })
+       if(hotelRoom){
+         const index = hotelRoom.rooms.indexOf(Room.roomType + "," + " room id: " + roomId);
+         if(index > -1){
+          hotelRoom.rooms.splice(index, 1)
+          await model.hotel.update({"rooms":hotelRoom.rooms},{
+            where: {
+              id: hotelRoom.id
+            }
+          })
+         }
+        }
+      }
+
     const deleted = await model.RoomModel.destroy({
       where: { id: roomId }
     });
@@ -103,7 +129,6 @@ const roomByHotel = async (req, res) => {
     const {hotelId} = req.params;
     const rooms = await model.RoomModel.findAll({
       where: { hotelId: hotelId }
-      
     });
     if (rooms) {
       return res.status(200).json({ rooms });
