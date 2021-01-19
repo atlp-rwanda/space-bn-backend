@@ -1,4 +1,5 @@
 
+const { object } = require('joi');
 const model = require('../database/models');
 
 // creating a room
@@ -73,6 +74,16 @@ const updateRoom = async (req, res) => {
     const [ updated ] = await model.RoomModel.update(req.body, {
       where: { id: idroom }
     });
+    if(Object.keys(req.body).includes("roomType") === "true"){
+      const hotel = await model.hotel.findOne({
+        where: {
+          hotelId: idroom
+        }
+      });
+      if(hotel){
+        
+      }
+    }
     if (updated) {
       const updatedRoom = await model.RoomModel.findOne({ where: { id: idroom } });
       return res.status(200).json({ room: updatedRoom });

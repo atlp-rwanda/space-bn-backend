@@ -1,4 +1,3 @@
-
 process.env.NODE_ENV = 'test'; 
 
 import app from "../app";

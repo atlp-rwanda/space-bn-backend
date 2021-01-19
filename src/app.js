@@ -65,7 +65,8 @@ app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
 app.use(express.json());
 app.use('/api', welcome);
-app.use(rooms);
 
-export default app;
+app.use('/api', welcome);
+app.use('/',rooms);
 
+export default app
