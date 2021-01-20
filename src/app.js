@@ -19,17 +19,16 @@ app.use(bodyParser.json({ type: 'application/json'}));
 app.use(cors())
 
 const userRoutes = require('./routes/user');
-app.use(hotel);
+//app.use(hotel);
 
 app.get('/', (req, res) => {
   res.json({ status: 'success', message: 'Welcome to my server' });
 });
-app.use('/api',rooms)
 app.use('/user', userRoutes);
 
 app.use('/api', welcome);
 app.use('/',rooms);
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
