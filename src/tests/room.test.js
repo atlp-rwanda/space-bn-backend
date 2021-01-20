@@ -216,15 +216,5 @@ describe(' Returning selected room', () => {
 
     });
   });
-  describe('Deleting a particular room', () => {
-    it('it should delete a particular room by id', () => {
-      const roomId = 1
-      chai.request(app)
-        .delete(`/user/${roomId}`)
-        .set('Authorization', token)
-        .end((err, res) => {
-          expect(res).to.have.status(200);
-        });
-    });
-  });
+
 
