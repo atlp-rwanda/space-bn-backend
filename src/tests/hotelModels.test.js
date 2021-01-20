@@ -102,18 +102,4 @@ describe(' Update selected hotel', () => {
       });
   });
 });
-/*
-describe(' Delete endpoint selected hotel', () => {
-   const hotelId = 5;
-  it('should delete selected hotel', (done) => {
-    chai
-      .request(app)
-      .delete(`/hotels/${hotelId}`)
-      .set('authorization', token)
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
-        done();
-      });
-  });
-});
-*/
+
