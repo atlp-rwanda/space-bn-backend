@@ -58,7 +58,6 @@ const getRoomById = async (req, res) => {
     if (room) {
       return res.status(200).json({ room });
     }
-    
     return res.status(404).send('Room with the specified ID does not exists');
   } catch (error) {
 

@@ -13,8 +13,8 @@ describe('post/rooms', () => {
       const token = " ";
 
       const valid_input = {
-          "email": "furebo@gmail.com",
-          "password": "furebo@#"
+          "email": "mukuru@gmail.com",
+          "password": "mukuru@#"
       }
         chai.request(app)
         .post('/user/signin')
@@ -76,8 +76,8 @@ describe("put/rooms/:idroom",()=>{
      const token = " ";
 
       const valid_input = {
-        "email": "furebo@gmail.com",
-        "password": "furebo@#"
+        "email": "mukuru@gmail.com",
+        "password": "mukuru@#"
       }
       chai.request(app)
         .post('/user/signin')
@@ -107,8 +107,8 @@ describe("put/rooms/:idroom",()=>{
        const token = " ";
   
         const valid_input = {
-          "email": "furebo@gmail.com",
-          "password": "furebo@#"
+          "email": "mukuru@gmail.com",
+          "password": "mukuru@#"
         }
         chai.request(app)
           .post('/user/signin')
@@ -143,3 +143,4 @@ describe("Get All Rooms", () => {
         });
     });
   });
+
