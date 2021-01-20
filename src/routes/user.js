@@ -4,7 +4,7 @@ import multer from 'multer';
 
 const router = express.Router();
 
-import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById} from '../controllers/user';
+import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById,logout} from '../controllers/User';
 
 import SchemaValidator from '../middlewares/SchemaValidator';
 
@@ -217,6 +217,6 @@ router.put('/:id', checkAuthentication, updateUserById);
  */
 router.delete('/:id', checkAuthentication, deleteUserById);
 
-
+router.post('/logout',logout);
 
 module.exports = router;

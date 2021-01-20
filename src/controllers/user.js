@@ -46,7 +46,7 @@ const signup = (req, res) => {
     })
     .catch((error) => res.status(400).json(error.message));
 };
-
+var token;
   const signin = (req, res) => {
   model.User.findOne({
     where: {
@@ -61,7 +61,7 @@ const signup = (req, res) => {
       }
       user.comparePassword(req.body.password, (err, isMatch) => {
         if (isMatch && !err) {
-          const token = jwt.sign(JSON.parse(JSON.stringify(user)), process.env.JWT_KEY, { expiresIn: '1h' });
+           token = jwt.sign(JSON.parse(JSON.stringify(user)), process.env.JWT_KEY, { expiresIn: '1h' });
           jwt.verify(token, process.env.JWT_KEY, (err, data) => {
             console.log(err, data);
           });
@@ -143,4 +143,12 @@ const getUserById = async (req, res) => {
       return res.status(500).json({ message: 'Error' });
     }
 }
-module.exports = {signin,signup,getAllUsers,deleteUserById,updateUserById,getUserById}
+
+const logout = (req, res) => {
+  token = undefined;
+  process.env.JWT_KEY = token;
+  res.status(200).json({message: "You are logged out now!"});
+  return
+}
+
+module.exports = {signin,signup,getAllUsers,deleteUserById,updateUserById,getUserById,logout}
