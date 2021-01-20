@@ -174,19 +174,6 @@ describe("Get All Rooms", () => {
        });
    });
  });
- describe("Not Get All Rooms of a Particular hotel", () => {
-  it("should not return an array of the all Rooms of a hotel", (done) => {
-    const hotelId = "";
-   chai
-     .request(app)
-     .get(`/rooms/hotels/${hotelId}/rooms`)
-     .end((err, res) => {
-       if (err) done(err);
-       expect(res).to.have.status(404);   
-       done();
-     });
- });
-});
 describe(' Returning selected room', () => {
     it('should return selected room', async() => {
 
