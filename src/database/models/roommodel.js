@@ -1,5 +1,4 @@
 
-//const hotel = require('./hotel');
 module.exports = (sequelize, DataTypes) => {
   const RoomModel = sequelize.define('RoomModel',{
    roomType: DataTypes.STRING,
@@ -16,10 +15,6 @@ module.exports = (sequelize, DataTypes) => {
    onUpdate: 'CASCADE',
    onDelete: 'CASCADE'
  });
-
-//  RoomModel.associate = () => {
-//   RoomModel.belongsTo(hotel)
-// }
 
    return RoomModel;
  };
