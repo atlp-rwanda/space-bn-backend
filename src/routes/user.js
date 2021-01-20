@@ -4,7 +4,7 @@ import multer from 'multer';
 
 const router = express.Router();
 
-import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById,logout} from '../controllers/User';
+import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById,logout} from '../controllers/user';
 
 import SchemaValidator from '../middlewares/SchemaValidator';
 
