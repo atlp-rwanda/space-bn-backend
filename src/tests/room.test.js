@@ -143,32 +143,4 @@ describe("Get All Rooms", () => {
         });
     });
   });
-  
-describe("Get Specific Room", () => {
-  const roomId = 1;
-  it("should return selected room", () => {
-    chai
-      .request(app)
-      .get(`/rooms/${roomId}`)
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
-      });
-  });
-});
 
-
- /* 
-describe(" Room endpoint --/rooms/id" ,() => {
-    //const idroom = 44;
- it("should delete selected room", (done) => {
-
-    chai
-      .request(app)
-      .delete(`/rooms/${idroom}`)
-      .end((err, res) => {
-        expect(res.status).to.equal(200);
-        done();
-      });
-  });
-});
-*/

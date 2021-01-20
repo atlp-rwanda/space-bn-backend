@@ -5,6 +5,7 @@ import cors from 'cors';
 import rooms from './routes';
 import hotel from './routes';
 import hotelRoutes from './routes/hotelRoute';
+import userRoutes from './routes/user'
 
 
 dotenv.config();
@@ -13,12 +14,6 @@ const app = express();
 
 const welcome = require('./routes/index');
 app.use(cors());
-app.use(bodyParser.json());                                     
-app.use(bodyParser.urlencoded({extended: true}));               
-app.use(bodyParser.text());                                    
-app.use(bodyParser.json({ type: 'application/json'})); 
-
-
 app.use(bodyParser.json());                                     
 app.use(bodyParser.urlencoded({extended: true}));               
 app.use(bodyParser.text());                                    
@@ -64,18 +59,11 @@ app.use(cors())
 app.use(rooms);
 app.use(hotel);
 app.use(express.json());
-
-
-app.use('/user', userRoutes);
-
-export default app;
-
- app.use(express.json());
+app.use(express.json());
 
 app.use('/api', welcome);
-app.use(rooms);
+app.use('/user', userRoutes);
+app.use('/hotels',hotelRoutes)
 const PORT = process.env.PORT || 3000;
-// eslint-disable-next-line no-console
-app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
 
-module.exports = app;
+export default app;

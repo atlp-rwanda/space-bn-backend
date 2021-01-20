@@ -1,13 +1,13 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import { User } from '../database/models';
+import model from '../database/models';
 
 dotenv.config();
 
 
-export const signup = (req, res) => {
+const signup = (req, res) => {
     
-  User.findOne({
+  model.User.findOne({
     where: {
       email: req.body.email
     }
@@ -18,7 +18,7 @@ export const signup = (req, res) => {
           message: 'Email already registered',
         });
       }
-      User.create({
+      model.User.create({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         telephone: req.body.telephone || '',
@@ -47,8 +47,8 @@ export const signup = (req, res) => {
     .catch((error) => res.status(400).json(error.message));
 };
 
-export const signin = (req, res) => {
-  User.findOne({
+  const signin = (req, res) => {
+  model.User.findOne({
     where: {
       email: req.body.email
     }
@@ -74,9 +74,9 @@ export const signin = (req, res) => {
     .catch((error) => res.status(400).json(error));
 };
 
-export const getAllUsers = async (req, res) => {
+   const getAllUsers = async (req, res) => {
 
-    const user = await User.findAll();
+    const user = await model.User.findAll();
     if (user){
       return res.status(200).json({user});
     }else{
@@ -86,10 +86,10 @@ export const getAllUsers = async (req, res) => {
 }
 
 
-export const getUserById = async (req, res) => {
+const getUserById = async (req, res) => {
   try {
     const id = req.params.id;
-    const user = await User.findByPk(id);
+    const user = await model.User.findByPk(id);
 
     if (user) {
       return res.status(200).json({ user });
@@ -103,9 +103,9 @@ export const getUserById = async (req, res) => {
  
 }
 
-export const updateUserById = async (req, res) => {
+ const updateUserById = async (req, res) => {
   
-    const users = await User.findAll();
+    const users = await model.User.findAll();
     for(let i=0; i < users.length; i++){
       if (users[i].email === req.body.email){
           return res.status(409).json({
@@ -115,7 +115,7 @@ export const updateUserById = async (req, res) => {
     }
     try {
       const id = req.params.id;
-      const [user] = await User.update(req.body, {where: {id : id }});
+      const [user] = await model.User.update(req.body, {where: {id : id }});
       
       if(user){
         return res.status(200).json({ message: 'User updated successfully' });
@@ -128,13 +128,10 @@ export const updateUserById = async (req, res) => {
     }
 
 }
-
-<<<<<<< HEAD
-export const deleteUserById = async (req, res) => {
-  
-    try {
+ const deleteUserById = async (req, res) => {
+  try {
       const id = req.params.id;
-      const user = await User.destroy({where: {id : id }});
+      const user = await model.User.destroy({where: {id : id }});
 
       if(user){
         return res.status(200).json({ message: 'User deleted successfully!' });
@@ -146,7 +143,4 @@ export const deleteUserById = async (req, res) => {
       return res.status(500).json({ message: 'Error' });
     }
 }
-=======
-
-module.exports = { signup, signin};
->>>>>>> d037367... removes logout
+module.exports = {signin,signup,getAllUsers,deleteUserById,updateUserById,getUserById}

@@ -1,4 +1,5 @@
 
+//const hotel = require('./hotel');
 module.exports = (sequelize, DataTypes) => {
   const RoomModel = sequelize.define('RoomModel',{
    roomType: DataTypes.STRING,
@@ -16,28 +17,10 @@ module.exports = (sequelize, DataTypes) => {
    onDelete: 'CASCADE'
  });
 
-<<<<<<< HEAD
-   return RoomModel;
- };
+//  RoomModel.associate = () => {
+//   RoomModel.belongsTo(hotel)
+// }
 
- /*
-      "firstname": "alin",
-    "lastname": "mukuru",
-    "telephone":"0784450008" ,
-    "email": "mukuru@gmail.com" ,
-    "password": "mukuru@#" ,
-    "roleId": 1,
-    "gender": "Male",
-    "origin": "kugali",
-    "profession":"IT" ,
-    "age": 40,
-    "isVerified": false,
-    "identification_type": "ID",
-    "identification_number": "19806567999800",
-    "user_image":"http://www.cloudnary.com/images/myimage.png"
- */
-=======
-  
    return RoomModel;
  };
->>>>>>> 9efba84... chenges the name of the model
+ 

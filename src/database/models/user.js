@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
   });
 
-  user.beforeSave((user, options) => {
+  User.beforeSave((user, options) => {
     if (user.changed('password')) {
       user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
     }
