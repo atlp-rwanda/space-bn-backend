@@ -5,7 +5,6 @@ import model from '../database/models';
 
 const createRoom = async (req, res) => {
   try {
-
     const hotel = await model.hotel.findOne({
       where : {
         id: req.body.hotelId
@@ -23,11 +22,11 @@ const createRoom = async (req, res) => {
       if (room) {
         return res.status(200).json({ room });
       }
-
+      
     }else{
       return res.json({message: "You attempt to assign a room to the hotel which does not exist ! Room not created."})
     }
-
+    return res.status(200)
 
   } catch (error) {
     return res.status(500).json({error: error.message})
@@ -37,7 +36,6 @@ const createRoom = async (req, res) => {
 //Getting all rooms
 
 const getAllRooms = async (req, res) => {
-  console.log(model)
   try {
     const rooms = await model.RoomModel.findAll();
     return res.status(200).json({ rooms });
@@ -58,7 +56,7 @@ const getRoomById = async (req, res) => {
     if (room) {
       return res.status(200).json({ room });
     }
-    return res.status(404).send('Room with the specified ID does not exists');
+    return res.status(404).json({meassage:'Room with the specified ID does not exists'});
   } catch (error) {
 
     return res.status(500).send(error.message);
@@ -73,16 +71,6 @@ const updateRoom = async (req, res) => {
     const [ updated ] = await model.RoomModel.update(req.body, {
       where: { id: idroom }
     });
-    if(Object.keys(req.body).includes("roomType") === "true"){
-      const hotel = await model.hotel.findOne({
-        where: {
-          hotelId: idroom
-        }
-      });
-      if(hotel){
-        
-      }
-    }
     if (updated) {
       const updatedRoom = await model.RoomModel.findOne({ where: { id: idroom } });
       return res.status(200).json({ room: updatedRoom });
@@ -143,8 +131,7 @@ const roomByHotel = async (req, res) => {
     if (rooms) {
       return res.status(200).json({ rooms });
     }
-    
-    return res.status(404).send('Hotel Not found');
+    return res.status(404).send("Hotel Not found");
   } catch (error) {
 
     return res.status(500).send(error.message);

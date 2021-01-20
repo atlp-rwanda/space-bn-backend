@@ -1,5 +1,6 @@
-process.env.NODE_ENV = 'test'; 
+process.env.NODE_ENV = 'test';
 
+import model from '../database/models';
 import app from "../app";
 import chai from "chai";
 import chaiHttp from "chai-http";
@@ -8,7 +9,7 @@ chai.use(chaiHttp);
 // create a room
 
 describe('post/rooms', () => {
-  it('it should  POST a room', () => {
+  it('it should  POST a room', async () => {
 
       const token = " ";
 
@@ -19,21 +20,38 @@ describe('post/rooms', () => {
         chai.request(app)
         .post('/user/signin')
         .send(valid_input)
-        .then((login_response)=>{
+        .then(async (login_response) => {
             token = 'Bearer ' + login_response.body.token;
-            chai.request(app)
-            .post('/rooms')
-            .set('Authorization', token)
-            .send({
-              hotelId: 1,
-              description: "Room for underGround",
-              roomType: "First class",
-              roomLabel: "label 001",
-              status: "double",
-            })
-            .end((err, res) => {
-              expect(res.status).to.equal(200);
-            })
+            const hotel = await model.hotel.findOne({
+              where : {
+                id: req.body.hotelId
+              }
+            });
+            if(hotel){
+              const room = await model.RoomModel.create(req.body);
+              hotel.rooms.push(req.body.roomType + "," + " room id: " + room.id)
+              await model.hotel.update({"rooms":hotel.rooms}, {
+                where: { 
+                  id:hotel.hotelId
+                 }
+              });
+              if(room){
+                chai.request(app)
+                .post('/rooms')
+                .set('Authorization', token)
+                .send({
+                  hotelId: 1,
+                  description: "Room for underGround",
+                  roomType: "First class",
+                  roomLabel: "label 001",
+                  status: "double",
+                })
+                .end((err, res) => {
+                  expect(res.status).to.equal(200);
+                })
+              }
+            }
+
         })
   });
 });
@@ -140,6 +158,72 @@ describe("Get All Rooms", () => {
           if (err) done(err);
           expect(res).to.have.status(200);    
           done();
+        });
+    });
+  });
+  describe("Get All Rooms of a Particular hotel", () => {
+    it("should return an array of the all Rooms of a hotel", (done) => {
+      const hotelId = 6;
+     chai
+       .request(app)
+       .get(`/rooms/hotels/${hotelId}/rooms`)
+       .end((err, res) => {
+         if (err) done(err);
+         expect(res).to.have.status(200);    
+         done();
+       });
+   });
+ });
+ describe("Not Get All Rooms of a Particular hotel", () => {
+  it("should not return an array of the all Rooms of a hotel", (done) => {
+    const hotelId = "";
+   chai
+     .request(app)
+     .get(`/rooms/hotels/${hotelId}/rooms`)
+     .end((err, res) => {
+       if (err) done(err);
+       expect(res).to.have.status(404);   
+       done();
+     });
+ });
+});
+describe(' Returning selected room', () => {
+    it('should return selected room', async() => {
+
+      const roomId = 6
+      const room =  await model.RoomModel.findOne({
+        where: { id: roomId } 
+      });
+      if(room){
+        chai
+        .request(app)
+        .get(`/rooms/${roomId}`)
+        //.set('authorization', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          //done();
+        });
+      }else{
+        chai
+        .request(app)
+        .get(`/rooms/${roomId}`)
+        //.set('authorization', token)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          //done();
+        });
+      }
+
+    });
+  });
+  describe('Deleting a particular room', () => {
+    it('it should delete a particular room by id', () => {
+      const roomId = 1
+      chai.request(app)
+        .delete(`/user/${roomId}`)
+        .set('Authorization', token)
+        .end((err, res) => {
+          expect(res).to.have.status(200);
         });
     });
   });
