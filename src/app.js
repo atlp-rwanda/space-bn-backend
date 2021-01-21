@@ -4,10 +4,8 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import rooms from './routes';
-import hotel from './routes';
 import hotelRoutes from './routes/hotelRoute';
 import userRoutes from './routes/user'
-
 
 dotenv.config();
 
@@ -52,20 +50,16 @@ const swaggerOptions = {
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
 app.use(bodyParser.json());                                     
 app.use(bodyParser.urlencoded({extended: true}));               
 app.use(bodyParser.text());                                    
 app.use(bodyParser.json({ type: 'application/json'})); 
 app.use(cors())
 app.use(rooms);
-app.use(hotel);
-app.use(express.json());
 app.use(express.json());
 
 app.use('/api', welcome);
 app.use('/user', userRoutes);
 app.use('/hotels',hotelRoutes)
-const PORT = process.env.PORT || 3000;
 
 export default app;
