@@ -50,6 +50,10 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function (models) {
     // associations can be defined here
+    User.belongsTo(models.userRoles, {
+      as: 'role',
+      foreignKey: 'roleId'
+    })
   };
 
   return User;
