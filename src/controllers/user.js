@@ -153,9 +153,9 @@ export const verify = async (req, res, error) => {
     const userEmail = await User.findOne({where : {email: user.email}});
     
     if(!userEmail){
-      res.status(404).json({message: 'user does not exist'});
+      res.status(404).json({message: 'User does not exist'});
     }else if(userEmail.isVerified === true){
-      res.status(200).json({message: 'user Email already verified'});
+      res.status(200).json({message: 'User is already verified'});
     }else{
       const verifiedUser = await User.update( {isVerified: true} , {where : {email: user.email}})
       return res.status(200).json({message: 'User successfully verified', verifiedUser});
