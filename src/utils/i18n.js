@@ -8,9 +8,4 @@ i18n.configure({
   headers: 'Accept-Language'
 });
 
-function translate (p, l) {
-  return __({ phrase: p, locale: l})
-}
-
-translate(('User registered'), 'en');
 export default i18n;
