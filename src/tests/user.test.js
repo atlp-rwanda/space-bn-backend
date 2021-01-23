@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 import chai from 'chai';
 import http from 'chai-http';
-import { User } from '../database/models';
+import model from '../database/models';
 import jwt from 'jsonwebtoken';
 import app from '../app';
 import generateToken from '../utils/genToken';
-import { signup } from '../controllers/user';
+const { User } = model;
 chai.use(http);
 const { expect } = chai;
 const userId = 3;

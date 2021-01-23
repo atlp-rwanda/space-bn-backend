@@ -1,13 +1,13 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import { User } from '../database/models';
+import model from '../database/models';
 import sendVerificationEmail from '../middlewares/sendEmail';
 dotenv.config();
 
 
 export const signup = (req, res) => {
   
-  User.findOne({
+  model.User.findOne({
     where: {
       email: req.body.email
     }
@@ -18,7 +18,7 @@ export const signup = (req, res) => {
           message: 'Email already registered',
         });
       }
-      User.create({
+      model.User.create({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         telephone: req.body.telephone || '',
@@ -48,6 +48,7 @@ export const signup = (req, res) => {
     .catch((error) => res.status(400).json(error.message));
 };
 var token;
+
 export const signin = (req, res) => {
   model.User.findOne({
     where: {
@@ -72,12 +73,13 @@ export const signin = (req, res) => {
         }
       });
     })
-    .catch((error) => res.status(400).json(error));
+    .catch((error) => res.status(400).json(error.message));
 };
+
 
 export const getAllUsers = async (req, res) => {
 
-    const user = await User.findAll();
+    const user = await model.User.findAll();
     if (user){
       return res.status(200).json({user});
     }      
@@ -87,7 +89,7 @@ export const getAllUsers = async (req, res) => {
 export const getUserById = async (req, res) => {
   
     const id = req.params.id;
-    const user = await User.findByPk(id);
+    const user = await model.User.findByPk(id);
 
     if (user) {
       return res.status(200).json({ user });
@@ -99,7 +101,7 @@ export const getUserById = async (req, res) => {
 
 export const updateUserById = async (req, res) => {
   
-    const users = await User.findAll();
+    const users = await model.User.findAll();
     for(let i=0; i < users.length; i++){
       if (users[i].email === req.body.email){
           return res.status(409).json({
@@ -109,7 +111,7 @@ export const updateUserById = async (req, res) => {
     }
     try {
       const id = req.params.id;
-      const [user] = await User.update(req.body, {where: {id : id }});
+      const [user] = await model.User.update(req.body, {where: {id : id }});
       
       if(user){
         return res.status(200).json({ message: 'User updated successfully' });
@@ -125,7 +127,7 @@ export const updateUserById = async (req, res) => {
 export const deleteUserById = async (req, res) => {
   try {
       const id = req.params.id;
-      const user = await User.destroy({where: {id : id }});
+      const user = await model.User.destroy({where: {id : id }});
       if(user){
         return res.status(200).json({ message: 'User deleted successfully!' });
       }else{
@@ -150,14 +152,14 @@ export const verifyUser = async (req, res, error) => {
     jwt.verify(req.params.token, process.env.JWT_KEY);
 
     const user = jwt.decode(req.params.token);
-    const userEmail = await User.findOne({where : {email: user.email}});
+    const userEmail = await model.User.findOne({where : {email: user.email}});
     
     if(!userEmail){
       res.status(404).json({message: 'User does not exist'});
     }else if(userEmail.isVerified === true){
       res.status(200).json({message: 'User is already verified'});
     }else{
-      const verifiedUser = await User.update( {isVerified: true} , {where : {email: user.email}})
+      const verifiedUser = await model.User.update( {isVerified: true} , {where : {email: user.email}})
       return res.status(200).json({message: 'User successfully verified', verifiedUser});
     }
   }
