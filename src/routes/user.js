@@ -130,7 +130,21 @@ router.post('/signup', upload.single('user_image'), validateRequest, signup);
  *            type: string
  */
 router.post('/signin', validateRequest, signin);
-
+/**
+ * @swagger
+ * /user:
+ *   get:
+ *     summary: returns all users
+ *     tags: [Users]
+ *     description: Returns all users
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: An array of users
+ *       500:
+ *         description: SERVER ERROR
+ */
 router.get('/', checkAuthentication, getAllUsers);
 
 /**
@@ -242,7 +256,7 @@ router.delete('/:id', superAdminAuth, deleteUserById);
  *       404:
  *         description: User does not exist
  */
-router.patch('/verification/:token', verify);
+router.patch('/verification/:token', verifyUser);
 
 
 router.post('/logout', logout);

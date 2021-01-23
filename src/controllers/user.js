@@ -80,15 +80,12 @@ export const getAllUsers = async (req, res) => {
     const user = await User.findAll();
     if (user){
       return res.status(200).json({user});
-    }else{
-      res.status(500).json({message: 'Error'});
-    }
-        
+    }      
 }
 
 
 export const getUserById = async (req, res) => {
-  try {
+  
     const id = req.params.id;
     const user = await User.findByPk(id);
 
@@ -97,10 +94,6 @@ export const getUserById = async (req, res) => {
     }else{
       return res.status(404).json({message: 'No User with the specified'});
     }
-
-  }catch(error){
-    res.status(500).json({ message: 'Error'})
-  }
  
 }
 
@@ -133,7 +126,6 @@ export const deleteUserById = async (req, res) => {
   try {
       const id = req.params.id;
       const user = await User.destroy({where: {id : id }});
-
       if(user){
         return res.status(200).json({ message: 'User deleted successfully!' });
       }else{
@@ -152,15 +144,24 @@ export const logout = (req, res) => {
   return
 }
 
-export const verifyUser = async (req, res) => {
+export const verify = async (req, res, error) => {
+
+  try{
+    jwt.verify(req.params.token, process.env.JWT_KEY);
 
     const user = jwt.decode(req.params.token);
     const userEmail = await User.findOne({where : {email: user.email}});
     
     if(!userEmail){
-      res.json('user does not exist')
+      res.status(404).json({message: 'user does not exist'});
+    }else if(userEmail.isVerified === true){
+      res.status(200).json({message: 'user Email already verified'});
+    }else{
+      const verifiedUser = await User.update( {isVerified: true} , {where : {email: user.email}})
+      return res.status(200).json({message: 'User successfully verified', verifiedUser});
     }
-    const verifiedUser = await User.update( {isVerified: true} , {where : {email: user.email}})
-
-    return res.status(200).json({message: 'User successful verified', verifiedUser});
+  }
+  catch(error){
+    res.status(404).json({message: 'Expired or invalid token'});
+  }
 }
