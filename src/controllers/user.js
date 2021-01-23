@@ -144,7 +144,7 @@ export const logout = (req, res) => {
   return
 }
 
-export const verify = async (req, res, error) => {
+export const verifyUser = async (req, res, error) => {
 
   try{
     jwt.verify(req.params.token, process.env.JWT_KEY);
