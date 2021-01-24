@@ -4,5 +4,6 @@ coverage
 .env
 .nyc_output
 .DS_Store
+.dccache
 dist
 src/uploads
