@@ -12,6 +12,7 @@ import Requests from './routes/requestRoute';
 import facilityRoute from './routes/Facility';
 import reactionRoutes from './routes/reaction';
 import commentRoutes from './routes/comment';
+import googleRouter from "./routes/googleOuth.route";
 
 dotenv.config();
 
@@ -63,7 +64,8 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to Barefoot space nomad api!' });
+  res.json({ status: 'success', message: 'Welcome to my server' });
+
 });
 app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
@@ -74,5 +76,6 @@ app.use('/Request', Requests);
 app.use('/facility', facilityRoute);
 app.use('/facility', reactionRoutes);
 app.use(commentRoutes);
+app.use(googleRouter);
 
 export default app;

@@ -31,7 +31,6 @@
 	"Please login first!": "Please login first!",
 	"Unauthorized": "Unauthorized",
 	"Only super administrator can perform this action!": "Only super administrator can perform this action!",
-	
 	"Facility liked": "Facility liked",
 	"Reaction undone": "Reaction undone",
 	"Facility Liked": "Facility Liked",
@@ -42,14 +41,12 @@
 	"FacilityId is required": "FacilityId is required",
 	"Facility re-liked": "Facility re-liked",
 	"No facility found": "No facility found",
-	
-	"Access denied. You can only update your profile":"Access denied. You can only update your profile",
-	"User not found":"User not found",
-	"Profile not found":"Profile not found",
-	"Profile saved successfully":"Profil enregistré avec succès",
+	"Access denied. You can only update your profile": "Access denied. You can only update your profile",
+	"User not found": "User not found",
+	"Profile not found": "Profile not found",
+	"Profile saved successfully": "Profil enregistré avec succès",
 	"Manager Id is assigned successfully!": "Manager Id is assigned successfully!",
 	"Internal server error!": "Internal server error!",
-	
 	"Please login!": "Please login!",
 	"No role assigned!": "No role assigned!",
 	"Access denied!": "Access denied!",
@@ -60,5 +57,7 @@
 	"Request found successfully!": "Request found successfully!",
 	"Request added successfully!": "Request added successfully!",
 	"Request updated successfully!": "Request updated successfully!",
-	"SUPER_ADMIN role connot be updated!": "SUPER_ADMIN role connot be updated!"
+	"SUPER_ADMIN role connot be updated!": "SUPER_ADMIN role connot be updated!",
+	"Comment deleted successfully!": "Comment deleted successfully!",
+	"Request does not exist!": "Request does not exist!"
 }
