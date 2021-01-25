@@ -20,6 +20,7 @@ import ratingRoutes from './routes/rating';
 import searchRoutes from './routes/searchRoute';
 import notificationRoutes from './routes/notification';
 import initializeEvent from './helpers/events';
+import googleRouter from "./routes/googleOuth.route";
 
 dotenv.config();
 
@@ -82,7 +83,8 @@ initializeEvent();
 
 // routes
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to Barefoot space nomad api!' });
+  res.json({ status: 'success', message: 'Welcome to my server' });
+
 });
 app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
@@ -96,6 +98,7 @@ app.use(commentRoutes);
 app.use('/facility', ratingRoutes);
 app.use(searchRoutes);
 app.use('/notifications', notificationRoutes);
+app.use(googleRouter);
 
 export { io };
 export { app };
