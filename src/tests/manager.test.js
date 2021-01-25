@@ -8,10 +8,10 @@ use(chaiHttp);
 
 const { ADMIN_PASSWORD } = process.env;
 
-let tokenAdmin = '',
-  tokenManager = '',
-  tokenUser = '',
-  userId = '';
+let tokenAdmin = "",
+  tokenManager = "",
+  tokenUser = "",
+  userId = "";
 
 describe('MANAGER Endpoints', () => {
   describe('Signin Super Admin', () => {
@@ -41,8 +41,8 @@ describe('MANAGER Endpoints', () => {
       describe('Create a Requester Role', () => {
         before(async () => {
           const res = await request(app)
-            .post('/roles/create')
-            .set('authorization', tokenAdmin)
+            .post("/roles/create")
+            .set("authorization", tokenAdmin)
             .send({
               name: 'REQUESTER',
               description: 'This is requester role.'
@@ -51,12 +51,12 @@ describe('MANAGER Endpoints', () => {
           expect(res).has.status(201);
         });
 
-        describe('Get Roles', () => {
+        describe("Get Roles", () => {
           before(async () => {
             const res = await request(app)
-              .get('/roles')
-              .set('authorization', tokenAdmin);
-
+              .get("/roles")
+              .set("authorization", tokenAdmin);
+             
             expect(res).has.status(200);
           });
 
@@ -130,7 +130,7 @@ describe('MANAGER Endpoints', () => {
                         email: 'user1@bn.com',
                         password: 'Test123.'
                       });
-
+                      
                     tokenUser = res.body.token;
                   });
                   describe('User creates a hotel', () => {

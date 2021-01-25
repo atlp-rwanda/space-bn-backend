@@ -9,6 +9,7 @@ module.exports = {
       gender: 'Male',
       origin: '',
       age: 25,
+      roleId: 2,
       identification_type: '',
       identification_number: '',
       user_image: '',
