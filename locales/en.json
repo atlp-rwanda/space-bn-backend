@@ -30,5 +30,7 @@
 	"Role deleted successfully!": "Role deleted successfully!",
 	"Please login first!": "Please login first!",
 	"Unauthorized": "Unauthorized",
-	"Only super administrator can perform this action!": "Only super administrator can perform this action!"
+	"Only super administrator can perform this action!": "Only super administrator can perform this action!",
+	"SUPER_ADMIN role connot be updated!": "SUPER_ADMIN role connot be updated!",
+	"TRAVEL_ADMIN already exist": "TRAVEL_ADMIN already exist"
 }

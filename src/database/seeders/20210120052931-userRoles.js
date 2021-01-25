@@ -6,7 +6,15 @@ module.exports = {
       description: process.env.ADMIN_ROLE_DESCRIPTION,
       createdAt: new Date(),
       updatedAt: new Date()
-    }], {});
+    },
+    {
+      name: "TRAVEL_ADMIN",
+      description: "TRAVEL_ADMIN",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+  
+  ], {});
   },
 
   down: async (queryInterface, Sequelize) => {
