@@ -15,16 +15,23 @@
 	"Room with the specified ID does not exists": "Icyumba gifite indangamuntu cyihariye ntikibaho",
 	"Room deleted successfully.": "Icyumba cyasibwe neza.",
 	"Hotel deleted successfully.": "Hotel yasibwe neza.",
-	
 	"Please login!": "Nyamuneka injira!",
 	"No role assigned!": "Nta ruhare rwahawe!",
 	"Access denied!": "Kwinjira byanze!",
 	"Not found!": "Ntibabonetse!",
-	
 	"No request found.": "Nta cyifuzo cyabonetse.",
 	"All requests found successfully!": "Ibyifuzo byose byabonetse neza!",
 	"Request does not exist.": "Icyifuzo ntikibaho.",
 	"Request found successfully!": "Ibyifuzo byabonetse neza!",
 	"Request added successfully!": "Ibyifuzo byongeweho neza!",
-	"Request updated successfully!": "Ibyifuzo byavuguruwe neza!"
+	"Request updated successfully!": "Ibyifuzo byavuguruwe neza!",
+	"Facility liked": "Ikigo gikunzwe",
+	"Reaction undone": "reaction yakuweho",
+	"Facility Liked": "Ikigo gikunzwe",
+	"Facility unliked": "Ikigo ntikunzwe",
+	"Facility liked successfully": "Ikigo cyakunzwe neza",
+	"Facility re-liked": "Ikigo cyanze",
+	"Facility re-unliked": "Ikigo cyongeye kwangwa",
+	"FacilityId is required": "FacilityId irakenewe",
+	"No facility found": "Nta kigo cyabonetse"
 }

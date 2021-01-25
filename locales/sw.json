@@ -15,16 +15,23 @@
 	"Room with the specified ID does not exists": "Chumba kilicho na kitambulisho kilichotajwa hakipo",
 	"Room deleted successfully.": "Chumba kimefutwa.",
 	"Hotel deleted successfully.": "Hoteli imefutwa.",
-	
 	"Please login!": "Tafadhali ingia!",
 	"No role assigned!": "Hakuna jukumu lililopewa!",
 	"Access denied!": "Ufikiaji umekataliwa!",
 	"Not found!": "Haipatikani!",
-	
 	"No request found.": "Hakuna ombi lililopatikana.",
 	"All requests found successfully!": "Maombi yote yamefanikiwa!",
 	"Request does not exist.": "Ombi halipo.",
 	"Request found successfully!": "Ombi limepatikana kwa mafanikio!",
 	"Request added successfully!": "Ombi limeongezwa kwa mafanikio!",
-	"Request updated successfully!": "Ombi limesasishwa kwa mafanikio!"
+	"Request updated successfully!": "Ombi limesasishwa kwa mafanikio!",
+	"Facility liked": "Kituo kilipendwa",
+	"Reaction undone": "Majibu yamefutwa",
+	"Facility Liked": "Kituo Unapenda",
+	"Facility unliked": "Kituo hakipendwi",
+	"Facility liked successfully": "Kituo kimependeza kwa mafanikio",
+	"Facility reliked": "Kituo kimesimuliwa tena",
+	"Facility re-unliked": "Kituo hakipendwi",
+	"FacilityId is required": "KituoId kinahitajika",
+	"No facility found": "Hakuna kituo kilichopatikana"
 }

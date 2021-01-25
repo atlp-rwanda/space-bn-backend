@@ -41,5 +41,15 @@
 	"Request found successfully!": "Request found successfully!",
 	"Request added successfully!": "Request added successfully!",
 	"Request updated successfully!": "Request updated successfully!",
-	"SUPER_ADMIN role connot be updated!": "SUPER_ADMIN role connot be updated!"
+	"SUPER_ADMIN role connot be updated!": "SUPER_ADMIN role connot be updated!",
+	"Facility liked": "Facility liked",
+	"Reaction undone": "Reaction undone",
+	"Facility Liked": "Facility Liked",
+	"Facility unliked": "Facility unliked",
+	"Facility liked successfully": "Facility liked successfully",
+	"Facility reliked": "Facility reliked",
+	"Facility re-unliked": "Facility re-unliked",
+	"FacilityId is required": "FacilityId is required",
+	"Facility re-liked": "Facility re-liked",
+	"No facility found": "No facility found"
 }
