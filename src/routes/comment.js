@@ -7,7 +7,7 @@ const router  = Router();
 
 /**
  * @swagger
- * /{requestId}/comments:
+ * /request/{requestId}/comments:
  *    get:
  *      summary: read Comments
  *      tags: [Comments]
@@ -25,11 +25,11 @@ const router  = Router();
  *          description: Error  
  */
 
-router.get('/:requestId/comments', auth, GetComment);
+router.get('/request/:requestId/comments', auth, GetComment);
 
 /**
  * @swagger
- * /{requestId}/comment:
+ * /request/{requestId}/comment:
  *    post:
  *      summary: Write Comments
  *      tags: [Comments]
@@ -61,7 +61,11 @@ router.get('/:requestId/comments', auth, GetComment);
  *            type: string
  */
 
-router.post('/:requestId/comment', auth, CreateComment);
+router.post('/request/:requestId/comment', auth, CreateComment);
+
+
+
+
 
 export default router;
 

@@ -12,8 +12,15 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Comment.belongsTo(models.User, {
-        foreignKey: 'userId',
-        as: 'author'
+        foreignKey: {
+          allowNull: false,
+          name: 'userId'
+       } ,
+        as: 'author',
+      });
+      Comment.belongsTo(models.request, {
+        foreignKey: 'requestId',
+        as: 'request'
       });
     }
   };

@@ -7,7 +7,9 @@ import generateToken from '../utils/genToken';
 chai.use(http);
 const { expect } = chai;
 const userId = 1;
+
 describe('User registration', () => {
+
   it('should return 201 and confirmation for valid input', (done) => {
     chai.request(app).post('/user/signup')
       .set('Content-Type', 'application/x-www-form-urlencoded')
