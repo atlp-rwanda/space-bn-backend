@@ -1,7 +1,8 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
+import path from 'path';
 import model from '../database/models';
-import sendVerificationEmail from '../middlewares/sendEmail';
+import { sendVerificationEmail } from '../middlewares/sendEmail';
 dotenv.config();
 
 
@@ -146,7 +147,7 @@ export const logout = (req, res) => {
   return
 }
 
-export const verifyUser = async (req, res, error) => {
+export const verifyUser = async (req, res) => {
 
   try{
     jwt.verify(req.params.token, process.env.JWT_KEY);
@@ -157,13 +158,13 @@ export const verifyUser = async (req, res, error) => {
     if(!userEmail){
       res.status(404).json({message: 'User does not exist'});
     }else if(userEmail.isVerified === true){
-      res.status(200).json({message: 'User is already verified'});
+     res.sendFile(path.join(__dirname + '../../utils/emailAlreadyVerified.html'))
     }else{
       const verifiedUser = await model.User.update( {isVerified: true} , {where : {email: user.email}})
-      return res.status(200).json({message: 'User successfully verified', verifiedUser});
+      return res.redirect('https://space-barefootnomad.netlify.app/');
     }
   }
   catch(error){
-    res.status(404).json({message: 'Expired or invalid token'});
+    res.sendFile(path.join(__dirname + '../../utils/emailrefused.html'));
   }
 }

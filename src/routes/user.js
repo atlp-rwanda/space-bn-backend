@@ -238,7 +238,7 @@ router.delete('/:id', superAdminAuth, deleteUserById);
 /**
  * @swagger
  * /user/verification/{token}:
- *   patch:
+ *   get:
  *     summary: Verify the user email using the token
  *     tags: [Users]
  *     description: Verify the user email
@@ -256,7 +256,7 @@ router.delete('/:id', superAdminAuth, deleteUserById);
  *       404:
  *         description: User does not exist
  */
-router.patch('/verification/:token', verifyUser);
+router.get('/verification/:token', verifyUser);
 
 
 router.post('/logout', logout);

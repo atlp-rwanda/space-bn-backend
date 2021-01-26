@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 import nodemailerSendgrid from 'nodemailer-sendgrid';
 import {template} from '../utils/emailVerificationtemplate';
 
-async function sendVerificationEmail (firstname, email, token) {
+export const sendVerificationEmail = async (firstname, email, token) => {
 
     const transporter = nodemailer.createTransport(
         nodemailerSendgrid({
@@ -29,4 +29,3 @@ async function sendVerificationEmail (firstname, email, token) {
     })
 }
 
-module.exports = sendVerificationEmail; 
