@@ -31,16 +31,15 @@
 	"Please login first!": "Please login first!",
 	"Unauthorized": "Unauthorized",
 	"Only super administrator can perform this action!": "Only super administrator can perform this action!",
-	
 	"Please login!": "Please login!",
 	"No role assigned!": "No role assigned!",
 	"Access denied!": "Access denied!",
 	"Not found!": "Not found!",
-	
 	"No request found.": "No request found.",
 	"All requests found successfully!": "All requests found successfully!",
 	"Request does not exist.": "Request does not exist.",
 	"Request found successfully!": "Request found successfully!",
 	"Request added successfully!": "Request added successfully!",
-	"Request updated successfully!": "Request updated successfully!"
+	"Request updated successfully!": "Request updated successfully!",
+	"SUPER_ADMIN role connot be updated!": "SUPER_ADMIN role connot be updated!"
 }

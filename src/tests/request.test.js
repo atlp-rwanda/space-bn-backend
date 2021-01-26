@@ -5,9 +5,6 @@ import model from '../database/models'
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 
-
-
-
 use(chaiHttp);
 
 let tokenUser = '',
@@ -16,7 +13,7 @@ let tokenUser = '',
 const token = jwt.sign({ id: 1 }, process.env.JWT_KEY, { expiresIn: "2h" });
 
 describe('GET /Request', () => {
-  it('Should fetch all requestssss', async () => {
+  it('Should fetch all requests', async () => {
     const res = await request(app)
       .get('/request')
       .set('authorization', `Bearer ${token}`);
@@ -24,7 +21,6 @@ describe('GET /Request', () => {
   });
 
 });
-
 
 //POST REQUEST
 describe('POST /Request', () => {
@@ -52,8 +48,47 @@ describe('POST /Request', () => {
       });
     expect(res).to.have.status(201);
   });
-});
 
+  it('Should not create a request with empty dateStart', async () => {
+    const room = await model.RoomModel.create({
+      hotelId:1,
+      description:"Room for VIP",
+      roomType:"first class",
+      roomLabel:"label 001",
+      status:"double",
+      price:"200$-300$",
+      roomImage:"https://www.images.com/image.png",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    })
+    const res = await request(app)
+      .post('/Request')
+      .set('authorization', `Bearer ${token}`)
+      .send({
+      
+        idUser : 1,
+        idRoom: 1,
+        dateStart:"",
+        dateEnd: "2021-01-19" 
+      });
+    expect(res).to.have.status(500);
+  });
+
+  it('Should not create a request with unexisting idRoom', async () => {
+    const res = await request(app)
+      .post('/Request')
+      .set('authorization', `Bearer ${token}`)
+      .send({
+      
+        idUser : 1,
+        idRoom: 100,
+        dateStart:"",
+        dateEnd: "2021-01-19" 
+      });
+    expect(res).to.have.status(400);
+  });
+
+});
 
 //DELETE REQUEST
  idRequest = 1;
@@ -63,6 +98,13 @@ describe('DELETE /Request/:idRequest', () => {
       .delete(`/Request/${idRequest}`)
       .set('authorization', `Bearer ${token}`)
     expect(res).to.have.status(200);
+  });
+
+  it('Should not delete a request of unexisting ID', async () => {
+    const res = await request(app)
+      .delete(`/Request/${idRequest}`)
+      .set('authorization', `Bearer ${token}`)
+    expect(res).to.have.status(500);
   });
 });
 

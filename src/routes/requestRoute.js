@@ -3,11 +3,7 @@ const { Router } = require('express');
 import authRequest from "../middlewares/check-auth";
 
 const router = Router();
-
-const createR = controller.createRequest;
-const updateR = controller.updateRequest; 
-const deleteR = controller.deleteRequest;
-const getR = controller.getAllRequests;
+const { createRequest, updateRequest, deleteRequest, getAllRequests } = controller;
 
 /**
  * @swagger
@@ -42,7 +38,7 @@ const getR = controller.getAllRequests;
  *          idRoom:
  *             type: number
  */
-router.post('/', authRequest, createR);
+router.post('/', authRequest, createRequest);
 
 /**
  * @swagger
@@ -56,7 +52,7 @@ router.post('/', authRequest, createR);
  *        description: Requests are displayed succesffuly.
  *      
 */
-router.get('/', authRequest, getR);
+router.get('/', authRequest, getAllRequests);
 
 /**
  * @swagger
@@ -77,7 +73,7 @@ router.get('/', authRequest, getR);
  *       200:
  *         description: Successfully deleted
  */
-router.delete('/:idRequest', authRequest, deleteR);
+router.delete('/:idRequest', authRequest, deleteRequest);
 
 /**
  * @swagger
@@ -119,7 +115,7 @@ router.delete('/:idRequest', authRequest, deleteR);
  *             type: number
  *
  */
-router.put('/:idRequest', authRequest,updateR);
+router.put('/:idRequest', authRequest,updateRequest);
 
 module.exports = router;
 

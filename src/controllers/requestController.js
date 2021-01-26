@@ -1,7 +1,7 @@
 import model from '../database/models';
 import { findRooms } from '../services/roomService';
 
-// creating a request
+//creating a request
 const createRequest = async (req, res) => {
   try {
     const { idUser, idRoom, dateStart, dateEnd } = req.body,
@@ -9,9 +9,7 @@ const createRequest = async (req, res) => {
     const existingRoom = await findRooms(idRoom);
 
     if(!existingRoom) return res.status(400).json({ message: 'Room id does not exist' });
-    console.log(existingRoom);
-
-
+  
     const newRequest = {
       idUser: req.userData.id,
       idRoom,
@@ -20,11 +18,9 @@ const createRequest = async (req, res) => {
     };
     const request = await model.request.create(newRequest);
 
-    console.log(idUser);
-  
     return res.status(201).json({ message: 'Request created successfully!', request});
   } catch (error) {
-    return res.status(500).json({error: error.message})
+    return res.status(500).json({error: "Internal server error!"});
   }
 };
 
@@ -41,7 +37,7 @@ const updateRequest = async (req, res) => {
     }
     throw new Error('Request not found');
   } catch (error) {
-    return res.status(500).send(error.message);
+    return res.status(500).json({error: "Internal server error!"});
   }
 };
 
@@ -57,10 +53,9 @@ const deleteRequest = async (req, res) => {
     }
     throw new Error("Request id provided is not found");
   } catch (error) {
-    return res.status(500).json({message:error.message});
+    return res.status(500).json({error: "Internal server error!"});
   }
 };
-
 
 //getting all requests
 
