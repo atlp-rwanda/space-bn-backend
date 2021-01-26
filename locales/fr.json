@@ -15,21 +15,17 @@
 	"Room with the specified ID does not exists": "La salle avec l'ID spécifié n'existe pas",
 	"Room deleted successfully.": "Salle supprimée avec succès.",
 	"Hotel deleted successfully.": "Hôtel supprimé avec succès.",
-	"Role does not exist": "Le rôle n'existe pas",
-	"User not found!": "Utilisateur non trouvé!",
-	"Role assigned successfully": "Rôle attribué avec succès",
-	"Such role name already exist": "Un tel nom de rôle existe déjà",
-	"Role created successfully!": "Rôle créé avec succès!",
-	"Something went wrong!": "Quelque chose s'est mal passé!",
-	"There are no roles assigned yet": "Aucun rôle n'a encore été attribué",
-	"Roles found in system": "Rôles trouvés dans le système",
-	"No role found with such id": "Aucun rôle trouvé avec un tel identifiant",
-	"Role found in the system": "Rôle trouvé dans le système",
-	"SUPER_ADMIN role connot be updated!": "Le rôle SUPER_ADMIN ne doit pas être mis à jour!",
-	"Role updated successfully": "Rôle mis à jour avec succès",
-	"SUPER_ADMIN role cannot be deleted": "Le rôle SUPER_ADMIN ne peut pas être supprimé",
-	"Role deleted successfully!": "Le rôle a bien été supprimé!",
-	"Please login first!": "S'il vous plait Connectez-vous d'abord!",
-	"Unauthorized": "Non autorisé",
-	"Only super administrator can perform this action!": "Seul le super administrateur peut effectuer cette action!"
+	
+	
+	"Please login!": "Veuillez vous connecter!",
+	"No role assigned!": "Aucun rôle attribué!",
+	"Access denied!": "Accès refusé!",
+	"Not found!": "Not found!",
+	
+	"No request found.": "Aucune demande trouvée.",
+	"All requests found successfully!": "Toutes les demandes ont été trouvées avec succès!",
+	"Request does not exist.": "La demande n'existe pas.",
+	"Request found successfully!": "Demande trouvée avec succès!",
+	"Request added successfully!": "Demande ajoutée avec succès!",
+	"Request updated successfully!": "Demande mise à jour avec succès!"
 }
