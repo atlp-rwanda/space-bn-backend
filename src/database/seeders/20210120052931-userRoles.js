@@ -1,12 +1,36 @@
 /* eslint-disable no-unused-vars */
+import { config } from 'dotenv';
+
+config();
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('userRoles', [{
-      name: process.env.ADMIN_ROLE_NAME,
-      description: process.env.ADMIN_ROLE_DESCRIPTION,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }], {});
+    await queryInterface.bulkInsert('userRoles', [
+      {
+        name: 'MANAGER',
+        description: 'This is a manager of the requester',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'TRAVEL_ADMIN',
+        description: 'This is a travel administrator',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'TRAVEL_TEAM_MEMBER',
+        description: 'This is a collegue of the requester',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'REQUESTER',
+        description: 'This is a requester',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ], {});
   },
 
   down: async (queryInterface, Sequelize) => {
