@@ -17,7 +17,7 @@ export const signup = (req, res) => {
     .then((user) => {
       if (user) {
         return res.status(409).json({
-          message: 'Email already registered',
+          message: res.__('Email already registered'),
         });
       }
       model.User.create({
@@ -40,7 +40,7 @@ export const signup = (req, res) => {
             console.log(err, data);
           });
           res.status(201).json({
-            message: 'User registered',
+            message: res.__('User registered'),
             user_details: user,
             token: `JWT ${token}`
           });
@@ -60,7 +60,7 @@ export const signin = (req, res) => {
     .then((user) => {
       if (!user) {
         return res.status(401).json({
-          message: 'Authentication failed. User not found.',
+          message: res.__('Authentication failed. User not found.'),
         });
       }
       user.comparePassword(req.body.password, (err, isMatch) => {
@@ -71,7 +71,7 @@ export const signin = (req, res) => {
           });
           res.json({ success: true, token: `JWT ${token}` });
         } else {
-          res.status(401).json({ success: false, message: 'Authentication failed. Wrong password.' });
+          res.status(401).json({ success: false, message: res.__('Authentication failed. Wrong password.' )});
         }
       });
     })
@@ -96,9 +96,8 @@ export const getUserById = async (req, res) => {
     if (user) {
       return res.status(200).json({ user });
     }else{
-      return res.status(404).json({message: 'No User with the specified'});
-    }
- 
+      return res.status(404).json({message: res.__('No User with the specified')});
+    } 
 }
 
 export const updateUserById = async (req, res) => {
@@ -107,7 +106,7 @@ export const updateUserById = async (req, res) => {
     for(let i=0; i < users.length; i++){
       if (users[i].email === req.body.email){
           return res.status(409).json({
-             message: 'User update failed, a user with the specified email exist',
+             message: res._('User update failed, a user with the specified email exist'),
           });
       }
     }
@@ -116,13 +115,13 @@ export const updateUserById = async (req, res) => {
       const [user] = await model.User.update(req.body, {where: {id : id }});
       
       if(user){
-        return res.status(200).json({ message: 'User updated successfully' });
+        return res.status(200).json({ message: res._('User updated successfully' )});
       }else{
-        return res.send({ message: `Cannot update User with id=${id}. User not found`});
+        return res.send({ message: res._(`Cannot update User with id=${id}. User not found`)});
       }
   
     }catch(error){
-      return res.status(500).json({ message:'Error'});
+      return res.status(500).json({ message:res._('Error')});
     }
 
 }
@@ -131,20 +130,20 @@ export const deleteUserById = async (req, res) => {
       const id = req.params.id;
       const user = await model.User.destroy({where: {id : id }});
       if(user){
-        return res.status(200).json({ message: 'User deleted successfully!' });
+        return res.status(200).json({ message: res._('User deleted successfully!') });
       }else{
-        return res.send({ message: `Cannot delete User with id=${id}. Maybe User was not found!`});
+        return res.send({ message: res._(`Cannot delete User with id=${id}. Maybe User was not found!`)});
       }
 
     }catch(error){
-      return res.status(500).json({ message: 'Error' });
+      return res.status(500).json({ message: res._('Error') });
     }
 }
 
 export const logout = (req, res) => {
   token = undefined;
   process.env.JWT_KEY = token;
-  res.status(200).json({message: "You are logged out now!"});
+  res.status(200).json({message: res._("You are logged out now!")});
   return
 }
 

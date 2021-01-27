@@ -6,6 +6,9 @@ import rooms from './routes';
 import roleRoutes from './routes/roles';
 import hotelRoutes from './routes/hotelRoute';
 import userRoutes from './routes/user';
+import i18n from './utils/i18n';
+import managerRoutes from './routes/managerRoutes';
+import Requests from './routes/requestRoute';
 
 dotenv.config();
 
@@ -16,13 +19,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/json' }));
+app.use(i18n.init);
 
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
 const swaggerOptions = {
   swaggerDefinition: {
-    openapi: '3.0.0',
+    penapi: '3.0.0',
     info: {
       title: 'BareFoot Nomad Project',
       version: '1.0.0',
@@ -62,5 +66,7 @@ app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
 app.use('/roles', roleRoutes);
 app.use(rooms);
+app.use('/manager', managerRoutes);
+app.use('/Request', Requests);
 
 export default app;
