@@ -225,59 +225,85 @@ describe('/PUT/:id users', () => {
   });
 });
 
-
 describe('/GET/:token Test user email verification', () => {
   let tokens = '';
-  it('Validated a user and return 200', (done) => {
-    chai.request(app).post('/user/signup')
-      .set('Content-Type', 'application/x-www-form-urlencoded')
-      .field('firstname', 'gilles')
-      .field('lastname', 'kabano')
-      .field('email', 'gilleskaba@gmail.com')
-      .field('password', '1234567avb$#8')
-      .then((res) => {
-        tokens = res.body.token.split(" ")[1];
-        chai.request(app)
-            .get(`/user/verification/${tokens}`)
-            .then(async (res) => {
-              const user = jwt.decode(tokens);
-              await User.findOne({where : {email: user.email}});
-              await User.update( {isVerified: true} , {where : {email: user.email}});
-              done();
-            })
-            .then((res)=>{
-              expect(res).to.have.status(200);
-            })
-            .catch((error) => {
-               throw new Error(error);
-            })
-        
-      })
-      .catch((err) => {
-        console.log(err);
+  it('it should verify a user email and return 200.', () => {
+    tokens = token.split(" ")[1];
+    chai.request(app)
+      .get(`/user/verification/${tokens}`)
+      .end(async(err, res) => {
+        expect(res).to.have.status(200);
       });
   });
 
-  it('should return 404 for non existing user', () => {
-    
-    //console.log(tokens);
+  it('it should fail to verify a user email and return 400.', () => {
+    tokens = token.split(" ")[1];
     chai.request(app)
       .get(`/user/verification/${tokens}`)
-      .then(async ()=>{
+      .end(async(err, res) => {
+        expect(res).to.have.status(400);
+      });
+  });
 
-      const user = jwt.decode(tokens);
-      user.email = 'eric@gmail.com'
-      const userEmail = await User.findOne({where : {email: user.email}});
-      if(!userEmail){
-        expect(res).to.have.status(404);
-        expect(res.body.message).to.be.equal('user does not exist');
-      }
-    })
-    .catch((error) => {
-       throw new Error(error);
-    })
-  })        
-})
+});
+
+
+
+
+// describe('/GET/:token Test user email verification', () => {
+//   let tokens = '';
+//   it('Validated a user and return 200', (done) => {
+//     chai.request(app).post('/user/signup')
+//       .set('Content-Type', 'application/x-www-form-urlencoded')
+//       .field('firstname', 'gilles')
+//       .field('lastname', 'kabano')
+//       .field('email', 'gilleskaba@gmail.com')
+//       .field('password', '1234567avb$#8')
+//       .then((res) => {
+//         tokens = res.body.token.split(" ")[1];
+//         chai.request(app)
+//             .get(`/user/verification/${tokens}`)
+//             .then(async (res) => {
+//               const user = jwt.decode(tokens);
+//               await User.findOne({where : {email: user.email}});
+//               await User.update( {isVerified: true} , {where : {email: user.email}});
+//               done();
+//             })
+//             .then((res)=>{
+//               expect(res).to.have.status(200);
+//             })
+//             .catch((error) => {
+//                throw new Error(error);
+//             })
+        
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   });
+
+//   it('should return 404 for non existing user', () => {
+    
+//     //console.log(tokens);
+//     chai.request(app)
+//       .get(`/user/verification/${tokens}`)
+//       .then(async ()=>{
+
+//       const user = jwt.decode(tokens);
+//       user.email = 'eric@gmail.com'
+//       const userEmail = await User.findOne({where : {email: user.email}});
+//       if(!userEmail){
+//         expect(res).to.have.status(404);
+//         expect(res.body.message).to.be.equal('user does not exist');
+//       }
+//     })
+//     .catch((error) => {
+//        throw new Error(error);
+//     })
+//   })        
+// })
+
+
 
 describe('/DELETE/:id users', () => {
   it('it should delete a user by the given id.', () => {

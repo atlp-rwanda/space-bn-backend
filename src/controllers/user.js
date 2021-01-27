@@ -1,8 +1,9 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import path from 'path';
 import model from '../database/models';
 import { sendVerificationEmail } from '../middlewares/sendEmail';
+import { template } from '../utils/emailVerificationtemplate';
+
 dotenv.config();
 
 
@@ -155,16 +156,13 @@ export const verifyUser = async (req, res) => {
     const user = jwt.decode(req.params.token);
     const userEmail = await model.User.findOne({where : {email: user.email}});
     
-    if(!userEmail){
-      res.status(404).json({message: 'User does not exist'});
-    }else if(userEmail.isVerified === true){
-     res.sendFile(path.join(__dirname + '../../utils/emailAlreadyVerified.html'))
-    }else{
-      const verifiedUser = await model.User.update( {isVerified: true} , {where : {email: user.email}})
-      return res.redirect('https://space-barefootnomad.netlify.app/');
+    if (userEmail.isVerified === true){
+     res.status(400).send(template(user.firstname, null, 'This email is already verified, please click here to login', 'Go to Login'));
     }
+    await model.User.update( {isVerified: true} , {where : {email: user.email}})
+    res.status(200).redirect('https://space-barefootnomad.netlify.app'); 
   }
   catch(error){
-    res.sendFile(path.join(__dirname + '../../utils/emailrefused.html'));
+    res.status(400).send(template('User', null, 'Invalid Token, Please signup again', 'Go to Signup'));
   }
 }
