@@ -12,7 +12,7 @@ exports.validateProfile = (data,res) => {
             save: Joi.boolean().required()
          }).allow(null),
         telephone: Joi.object({ 
-            value: Joi.string().min(3).max(100).required(),
+            value: Joi.string().regex(/^-?(0|[0-9]\d*)?$/, 'a valid phone number.').min(10).max(12).required(),
             save: Joi.boolean().required()
          }).allow(null),
         gender: Joi.object({
