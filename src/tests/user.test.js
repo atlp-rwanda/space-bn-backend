@@ -22,7 +22,6 @@ describe('User registration', () => {
       .field('password', '1234567avb$#8')
       .field('gender', 'Male')
       .field('origin', 'rwandan')
-      .field('profession', 'banking')
       .field('age', 27)
       .field('identification_type', 'ID')
       .field('identification_number', '1122020333')
@@ -35,7 +34,6 @@ describe('User registration', () => {
         expect(res.body.user_details.email).to.exist;
         expect(res.body.user_details.password).to.exist;
         expect(res.body.user_details.origin).to.exist;
-        expect(res.body.user_details.profession).to.exist;
         expect(res.body.user_details.age).to.exist;
         expect(res.body.user_details.identification_type).to.exist;
         expect(res.body.user_details.identification_number).to.exist;

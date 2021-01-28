@@ -31,7 +31,25 @@
 	"Please login first!": "Please login first!",
 	"Unauthorized": "Unauthorized",
 	"Only super administrator can perform this action!": "Only super administrator can perform this action!",
-
+	
+	"Facility liked": "Facility liked",
+	"Reaction undone": "Reaction undone",
+	"Facility Liked": "Facility Liked",
+	"Facility unliked": "Facility unliked",
+	"Facility liked successfully": "Facility liked successfully",
+	"Facility reliked": "Facility reliked",
+	"Facility re-unliked": "Facility re-unliked",
+	"FacilityId is required": "FacilityId is required",
+	"Facility re-liked": "Facility re-liked",
+	"No facility found": "No facility found",
+	
+	"Access denied. You can only update your profile":"Access denied. You can only update your profile",
+	"User not found":"User not found",
+	"Profile not found":"Profile not found",
+	"Profile saved successfully":"Profil enregistré avec succès",
+	"Manager Id is assigned successfully!": "Manager Id is assigned successfully!",
+	"Internal server error!": "Internal server error!",
+	
 	"Please login!": "Please login!",
 	"No role assigned!": "No role assigned!",
 	"Access denied!": "Access denied!",
@@ -42,21 +60,5 @@
 	"Request found successfully!": "Request found successfully!",
 	"Request added successfully!": "Request added successfully!",
 	"Request updated successfully!": "Request updated successfully!",
-	"SUPER_ADMIN role connot be updated!": "SUPER_ADMIN role connot be updated!",
-
-	"Access denied. You can only update your profile":"Access denied. You can only update your profile",
-	"User not found":"User not found",
-	"Profile not found":"Profile not found",
-	"Profile saved successfully":"Profil enregistré avec succès",
-
-	"Facility liked": "Facility liked",
-	"Reaction undone": "Reaction undone",
-	"Facility Liked": "Facility Liked",
-	"Facility unliked": "Facility unliked",
-	"Facility liked successfully": "Facility liked successfully",
-	"Facility reliked": "Facility reliked",
-	"Facility re-unliked": "Facility re-unliked",
-	"FacilityId is required": "FacilityId is required",
-	"Facility re-liked": "Facility re-liked",
-	"No facility found": "No facility found"
+	"SUPER_ADMIN role connot be updated!": "SUPER_ADMIN role connot be updated!"
 }
