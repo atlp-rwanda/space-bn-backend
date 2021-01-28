@@ -1,28 +1,20 @@
+
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
-import Config from './../../config/config';
+import envConfigs from './../../config/config';
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-// const env = 'production';
-
-const config = Config[env];
+const config = envConfigs[env];
 const db = {};
 
-// eslint-disable-next-line import/no-mutable-exports
 let sequelize;
-console.log(config);
 if (config.url) {
   sequelize = new Sequelize(config.url, config);
 } else {
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config,
-  );
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 fs.readdirSync(__dirname)
   .filter(
@@ -33,7 +25,8 @@ fs.readdirSync(__dirname)
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });
-Object.keys(db).forEach((modelName) => {
+
+Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
@@ -50,5 +43,7 @@ sequelize
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-export { sequelize };
-module.exports = db;
+
+export default db;
+
+

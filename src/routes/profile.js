@@ -1,8 +1,6 @@
 const express = require('express');
+import {getUserProfile, udpateProfile}  from '../controllers/profile';
 const router = express.Router();
-const profileController = require('../controllers/profile');
-
-
 
 /**
  * @swagger
@@ -96,7 +94,7 @@ const profileController = require('../controllers/profile');
  *                save:
  *                    type: boolean
  */
-router.put('/:userId', profileController.udpateProfile);
+router.put('/:userId', udpateProfile);
 
 /**
  * @swagger
@@ -122,5 +120,5 @@ router.put('/:userId', profileController.udpateProfile);
  *      "200":
  *        description: Success
  */
-router.get('/:userId', profileController.getUserProfile);
+router.get('/:userId', getUserProfile);
 module.exports = router;

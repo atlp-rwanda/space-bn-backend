@@ -1,16 +1,23 @@
-const User = require('../database/models').User;
-const {decodeToken} = require('../utils/decodeToken');
+import model from '../database/models';
+import decodeToken from '../utils/decodeToken';
 require('dotenv').config();
-const {validateProfile} = require('../middlewares/profileValidator');
-const _ = require('lodash');
+import validateProfile from '../middlewares/profileValidator';
+import * as _ from 'lodash';
 
 const udpateProfile = async(req,res) => {
+const userId = req.params.userId;
 const  loggedInUser = await decodeToken(req);
-  const user = await User.findByPk(loggedInUser.id);
-  if(!user)
-   return res.status(404).send("User not found");
-
-  
+  let user;
+  try{
+    user = await model.User.findByPk(loggedInUser.id);
+    if(!user)
+      return res.status(404).json({success: false, message: res.__("User not found")});
+    if(user.dataValues.id != userId)
+     return res.status(401).json({success: false, message: res.__("Access denied. You can only update your profile")});
+  }
+  catch(e){
+    return res.status(404).json({success: false, message: res.__("User not found")});
+ }
   const currentUser = user.dataValues;
   const {error, errorMessage} = await validateProfile(req.body,res);
   if(error)
@@ -18,11 +25,8 @@ const  loggedInUser = await decodeToken(req);
     success: false,
     error: errorMessage
   });
-
-  const userId = req.params.userId;
   const payloads =  req.body;
   const capturedData = [];
-  
   for(let prop in currentUser){
     if(payloads.hasOwnProperty(prop)){
       currentUser[prop] = payloads[prop].value;
@@ -30,33 +34,37 @@ const  loggedInUser = await decodeToken(req);
        capturedData.push(prop);
     }
     }
-
-   //------------upate the save profile -----------
-   currentUser.savedData = capturedData;  
-     const isProfileUpdate = await updateProfile(userId, currentUser);
-     if(isProfileUpdate == true)
+ currentUser.savedData = capturedData;  
+     let isProfileUpdate;
+     try{
+      isProfileUpdate =  await updateProfile(userId, currentUser);
+     }
+     catch(e){
+       throw e;
+     }
      return res.status(200).json({
        success: true,
-       message: "Profile saved",
-       profile: _.pick(currentUser,['id','firstname','lastname','telephone','email','role','gender','origin','profession','identification_type',
+       message: res.__("Profile saved successfully"),
+       profile: _.pick(currentUser,['id','firstname','lastname','telephone','email','gender','origin','profession','identification_type',
        'identification_number','user_image'])
      }) 
- 
-}
+ }
 
 const getUserProfile = async(req,res) => {
   const userId = req.params.userId;
-  console.log("Getting data////////___________"+userId);
-
-  let profile = {
-   
-  };
-  const profilePayloads = await User.findByPk(userId);
-  if(!profilePayloads)
-   return res.status(404).send({success: false, message: "Profile not found"});
-   
-  
-  for(let prop in profilePayloads.dataValues){
+  let profile = {};
+  let profilePayloads; 
+  try{
+      profilePayloads = await model.User.findByPk(userId);
+      if(!profilePayloads.dataValues)
+       return res.status(404).json({success: false, message: res.__("Profile not found")});
+      if(profilePayloads.dataValues.id != userId)
+        return res.status(401).json({success: false, message: res.__("Access denied. You can only update your profile")});
+    }
+   catch(e){
+    return res.status(404).json({success: false, message: res.__("Profile not found")});
+   }
+   for(let prop in profilePayloads.dataValues){
     let subObj = {};
     subObj['value'] = profilePayloads.dataValues[prop];
     profile[prop] = subObj;
@@ -68,15 +76,14 @@ const getUserProfile = async(req,res) => {
       }
     }
   }
-
-  return res.status(200).json(
+ return res.status(200).json(
     _.pick(profile,['id','firstname','lastname','telephone','email','role','gender','origin','profession','identification_type',
   'identification_number','user_image']));
 }
 
 const updateProfile = async(userId, payloads) => {
      try{
-          await User.update(payloads, {
+          await model.User.update(payloads, {
             where: {id: userId}
           });
           return true;
@@ -85,6 +92,4 @@ const updateProfile = async(userId, payloads) => {
          return false;
         }
 }
-
-
 module.exports = { udpateProfile, getUserProfile};

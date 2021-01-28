@@ -1,7 +1,9 @@
 node_modules
 package-lock.json
-.env
 coverage
+.env
 .nyc_output
 .DS_Store
+.dccache
 dist
+src/uploads
