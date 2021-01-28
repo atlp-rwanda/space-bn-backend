@@ -4,7 +4,7 @@
   "description": "[![Build Status](https://travis-ci.org/atlp-rwanda/space-bn-backend.svg?branch=develop)](https://travis-ci.org/atlp-rwanda/space-bn-backend)",
   "main": "index.js",
   "scripts": {
-    "migrate": "sequelize db:migrate && npm run admin",
+    "migrate": "sequelize db:migrate && npm run admin && npm run managers",
     "seed": "sequelize db:seed:all",
     "migrate:reset": "sequelize db:migrate:undo:all && npm run migrate",
     "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha --require @babel/register ./src/tests/ --recursive  --exit --timeout 20000 ",
@@ -17,7 +17,10 @@
     "build": "babel src --out-dir dist",
     "role:create": "babel-node src/database/adminRole.create.js",
     "admin:create": "babel-node src/database/createAdmin.js",
-    "admin": "npm run role:create && npm run admin:create"
+    "admin": "npm run role:create && npm run admin:create",
+    "managers-role:create": "babel-node src/database/managerRole.js",
+    "managers:create": "babel-node src/database/createManagers.js",
+    "managers": "npm run managers-role:create && npm run managers:create"
   },
   "repository": {
     "type": "git",

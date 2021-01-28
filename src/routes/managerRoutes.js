@@ -8,7 +8,8 @@ const router = new Router(),
     getAllRequests,
     getOneRequest,
     addRequest,
-    updateRequest
+    updateRequest,
+    assignManagerId
   } = managerController;
 
 /**
@@ -66,13 +67,10 @@ router.get('/requests/:id', authManager, getOneRequest);
  *      addRequest:
  *        type: object
  *        required:
- *          - idUser
  *          - idRoom
  *          - dateStart
  *          - dateEnd
  *        properties:
- *          idUser:
- *             type: number
  *          idRoom:
  *             type: number
  *          dateStart:
@@ -81,6 +79,7 @@ router.get('/requests/:id', authManager, getOneRequest);
  *            type: string
  */
 router.post('/requests', authManager, addRequest);
+
 /**
  * @swagger
  * /manager/requests/{id}:
@@ -116,5 +115,36 @@ router.post('/requests', authManager, addRequest);
  *            type: string
 */
 router.put('/requests/:id', authManager, updateRequestValidation, updateRequest);
+
+/**
+ * @swagger
+ * /manager/assign:
+ *    post:
+ *      tags: [Manager]
+ *      summary: Manager can assign managerId.
+ *      description: Manager can assign managerId to the users in database.
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/assign'
+ *      responses:
+ *        "200":
+ *          description: Request added successfully!
+ * components:
+ *    schemas:
+ *      assign:
+ *        type: object
+ *        required:
+ *          - _userId
+ *          - _managerId
+ *        properties:
+ *          _userId:
+ *             type: number
+ *          _managerId:
+ *            type: number
+ */
+router.post('/assign', authManager, assignManagerId);
 
 export default router;
