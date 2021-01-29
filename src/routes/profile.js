@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 import {getUserProfile, udpateProfile}  from '../controllers/profile';
 const router = express.Router();
 
