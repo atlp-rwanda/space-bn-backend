@@ -94,6 +94,7 @@ const router = express.Router();
  *                save:
  *                    type: boolean
  */
+
 router.put('/:userId', udpateProfile);
 
 /**
