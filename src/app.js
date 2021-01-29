@@ -26,7 +26,7 @@ const swaggerUi = require('swagger-ui-express');
 
 const swaggerOptions = {
   swaggerDefinition: {
-    penapi: '3.0.0',
+    openapi: '3.0.0',
     info: {
       title: 'BareFoot Nomad Project',
       version: '1.0.0',
