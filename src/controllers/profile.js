@@ -34,7 +34,7 @@ const  loggedInUser = await decodeToken(req);
        capturedData.push(prop);
     }
     }
- currentUser.savedData = capturedData;  
+    currentUser.savedData = capturedData;  
      let isProfileUpdate;
      try{
       isProfileUpdate =  await updateProfile(userId, currentUser);
