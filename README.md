@@ -2,7 +2,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/atlp-rwanda/space-bn-backend/badge.svg?branch=develop)](https://coveralls.io/github/atlp-rwanda/space-bn-backend?branch=develop)
 
-[![Coverage Status](https://coveralls.io/repos/github/atlp-rwanda/space-bn-backend/badge.svg?branch=develop)](https://coveralls.io/github/atlp-rwanda/space-bn-backend?branch=develop)
+[![CircleCI](https://circleci.com/gh/atlp-rwanda/space-bn-backend.svg?style=svg)](https://circleci.com/gh/atlp-rwanda/space-bn-backend)
+
 
 
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
