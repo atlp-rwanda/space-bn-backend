@@ -9,6 +9,8 @@ import userRoutes from './routes/user';
 import i18n from './utils/i18n';
 import managerRoutes from './routes/managerRoutes';
 import Requests from './routes/requestRoute';
+import facilityRoute from './routes/Facility';
+import reactionRoutes from './routes/reaction';
 
 dotenv.config();
 
@@ -68,5 +70,7 @@ app.use('/roles', roleRoutes);
 app.use(rooms);
 app.use('/manager', managerRoutes);
 app.use('/Request', Requests);
+app.use('/facility', facilityRoute);
+app.use('/facility', reactionRoutes);
 
 export default app;

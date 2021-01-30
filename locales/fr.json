@@ -14,12 +14,11 @@
 	"You attempt to assign a room to the hotel which does not exist ! Room not created.": "Vous essayez d'attribuer une chambre à l'hôtel qui n'existe pas! Salle non créée.",
 	"Room with the specified ID does not exists": "La salle avec l'ID spécifié n'existe pas",
 	"Room deleted successfully.": "Salle supprimée avec succès.",
-	"Hotel deleted successfully.": "Hôtel supprimé",
+	"Hotel deleted successfully.": "Hôtel supprimé avec succès.",
 	"Please login!": "Veuillez vous connecter!",
 	"No role assigned!": "Aucun rôle attribué!",
 	"Access denied!": "Accès refusé!",
 	"Not found!": "Not found!",
-	
 	"No request found.": "Aucune demande trouvée.",
 	"All requests found successfully!": "Toutes les demandes ont été trouvées avec succès!",
 	"Request does not exist.": "La demande n'existe pas.",
@@ -30,6 +29,15 @@
 	"Access denied. You can only update your profile":"Accès refusé. Vous pouvez uniquement mettre à jour votre profil",
 	"User not found":"Utilisateur non trouvé",
 	"Profile not found":"Profil non trouvé",
-	"Profile saved successfully":"Profil enregistré avec succès"
+	"Profile saved successfully":"Profil enregistré avec succès",
 
+	"Facility liked": "Établissement aimée",
+	"Reaction undone": "Réaction annulée",
+	"Facility Liked": "Établissement a aimé",
+	"Facility unliked": "Établissement peu aimée",
+	"Facility liked successfully": "Établissement aimée avec succès",
+	"Facility re-liked": "Établissement ré-aimée",
+	"Facility re-unliked": "Établissement repensée",
+	"FacilityId is required": "FacilityId est obligatoire",
+	"No facility found": "Aucune établissement trouvée"
 }

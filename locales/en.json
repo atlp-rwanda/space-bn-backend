@@ -44,10 +44,19 @@
 	"Request updated successfully!": "Request updated successfully!",
 	"SUPER_ADMIN role connot be updated!": "SUPER_ADMIN role connot be updated!",
 
-	
 	"Access denied. You can only update your profile":"Access denied. You can only update your profile",
 	"User not found":"User not found",
 	"Profile not found":"Profile not found",
-	"Profile saved successfully":"Profil enregistré avec succès"
+	"Profile saved successfully":"Profil enregistré avec succès",
 
-}	
+	"Facility liked": "Facility liked",
+	"Reaction undone": "Reaction undone",
+	"Facility Liked": "Facility Liked",
+	"Facility unliked": "Facility unliked",
+	"Facility liked successfully": "Facility liked successfully",
+	"Facility reliked": "Facility reliked",
+	"Facility re-unliked": "Facility re-unliked",
+	"FacilityId is required": "FacilityId is required",
+	"Facility re-liked": "Facility re-liked",
+	"No facility found": "No facility found"
+}

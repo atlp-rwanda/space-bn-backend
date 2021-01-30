@@ -20,7 +20,6 @@
 	"No role assigned!": "Nta ruhare rwahawe!",
 	"Access denied!": "Kwinjira byanze!",
 	"Not found!": "Ntibabonetse!",
-	
 	"No request found.": "Nta cyifuzo cyabonetse.",
 	"All requests found successfully!": "Ibyifuzo byose byabonetse neza!",
 	"Request does not exist.": "Icyifuzo ntikibaho.",
@@ -28,8 +27,14 @@
 	"Request added successfully!": "Ibyifuzo byongeweho neza!",
 	"Request updated successfully!": "Ibyifuzo byavuguruwe neza!",
 
-	"Access denied. You can only update your profile":"Kwinjira byanze. Urashobora kuvugurura gusa umwirondoro wawe",
-	"User not found":"Umukoresha ntabwo yabonetse",
-	"Profile not found":"Umwirondoro ntiwabonetse",
-	"Profile saved successfully":"Umwirondoro wabitswe neza"
+	"Facility liked": "Ikigo gikunzwe",
+	"Reaction undone": "reaction yakuweho",
+	"Facility Liked": "Ikigo gikunzwe",
+	"Facility unliked": "Ikigo ntikunzwe",
+
+	"Facility liked successfully": "Ikigo cyakunzwe neza",
+	"Facility re-liked": "Ikigo cyanze",
+	"Facility re-unliked": "Ikigo cyongeye kwangwa",
+	"FacilityId is required": "FacilityId irakenewe",
+	"No facility found": "Nta kigo cyabonetse"
 }
