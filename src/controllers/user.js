@@ -1,12 +1,14 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import model from '../database/models';
+import { sendVerificationEmail } from '../middlewares/sendEmail';
+import { template } from '../utils/emailVerificationtemplate';
 
 dotenv.config();
 
 
-const signup = (req, res) => {
-    
+export const signup = (req, res) => {
+  
   model.User.findOne({
     where: {
       email: req.body.email
@@ -42,12 +44,14 @@ const signup = (req, res) => {
             user_details: user,
             token: `JWT ${token}`
           });
-        });
+          sendVerificationEmail(user.firstname, user.email, token);
+        })
     })
     .catch((error) => res.status(400).json(error.message));
 };
 var token;
-  const signin = (req, res) => {
+
+export const signin = (req, res) => {
   model.User.findOne({
     where: {
       email: req.body.email
@@ -71,23 +75,21 @@ var token;
         }
       });
     })
-    .catch((error) => res.status(400).json(error));
+    .catch((error) => res.status(400).json(error.message));
 };
 
-   const getAllUsers = async (req, res) => {
+
+export const getAllUsers = async (req, res) => {
 
     const user = await model.User.findAll();
     if (user){
       return res.status(200).json({user});
-    }else{
-      res.status(500).json({message: res.__('Error')});
-    }
-        
+    }      
 }
 
 
-const getUserById = async (req, res) => {
-  try {
+export const getUserById = async (req, res) => {
+  
     const id = req.params.id;
     const user = await model.User.findByPk(id);
 
@@ -95,15 +97,10 @@ const getUserById = async (req, res) => {
       return res.status(200).json({ user });
     }else{
       return res.status(404).json({message: res.__('No User with the specified')});
-    }
-
-  }catch(error){
-    res.status(500).json({ message: res.__('Error')})
-  }
- 
+    } 
 }
 
- const updateUserById = async (req, res) => {
+export const updateUserById = async (req, res) => {
   
     const users = await model.User.findAll();
     for(let i=0; i < users.length; i++){
@@ -128,11 +125,10 @@ const getUserById = async (req, res) => {
     }
 
 }
- const deleteUserById = async (req, res) => {
+export const deleteUserById = async (req, res) => {
   try {
       const id = req.params.id;
       const user = await model.User.destroy({where: {id : id }});
-
       if(user){
         return res.status(200).json({ message: res._('User deleted successfully!') });
       }else{
@@ -144,11 +140,28 @@ const getUserById = async (req, res) => {
     }
 }
 
-const logout = (req, res) => {
+export const logout = (req, res) => {
   token = undefined;
   process.env.JWT_KEY = token;
   res.status(200).json({message: res._("You are logged out now!")});
   return
 }
 
-module.exports = {signin,signup,getAllUsers,deleteUserById,updateUserById,getUserById,logout}
+export const verifyUser = async (req, res) => {
+
+  try{
+    jwt.verify(req.params.token, process.env.JWT_KEY);
+
+    const user = jwt.decode(req.params.token);
+    const userEmail = await model.User.findOne({where : {email: user.email}});
+    
+    if (userEmail.isVerified === true){
+     res.status(400).send(template(user.firstname, null, 'This email is already verified, please click here to login', 'Go to Login'));
+    }
+    await model.User.update( {isVerified: true} , {where : {email: user.email}})
+    res.status(200).redirect('https://space-barefootnomad.netlify.app'); 
+  }
+  catch(error){
+    res.status(400).send(template('User', null, 'Invalid Token, Please signup again', 'Go to Signup'));
+  }
+}
