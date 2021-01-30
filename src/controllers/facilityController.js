@@ -25,6 +25,10 @@ const getFacilities=async(req, res)=>{
     return res.status(500).json({ error: error.message });
   }
  }
+
+ /**
+ * PATCH facility
+ * */
  const updateFacility = async(req, res)=> { 
     try {    
       const _facility=await model.Facility.findOne({ where: { id:req.params.id } });
@@ -50,6 +54,9 @@ const getFacilities=async(req, res)=>{
     }
   }
 
+  /**
+ * Delete facility
+ * */
   const deleteFacility=async(req, res) =>{
     try {
       const _facility = await model.Facility.findOne({where:{ id: req.params.id }});
