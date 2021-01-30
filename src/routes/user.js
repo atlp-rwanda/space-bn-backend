@@ -3,11 +3,12 @@ import multer from 'multer';
 import profileRouters from './profile';
 const router = express.Router();
 
-import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById,logout} from '../controllers/user';
+import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById, logout, verifyUser} from '../controllers/user';
 
 import SchemaValidator from '../middlewares/SchemaValidator';
 
 const validateRequest = SchemaValidator(true);
+
 
 import checkAuthentication from '../middlewares/check-auth';
 
@@ -128,7 +129,21 @@ router.post('/signup', upload.single('user_image'), validateRequest, signup);
  *            type: string
  */
 router.post('/signin', validateRequest, signin);
-
+/**
+ * @swagger
+ * /user:
+ *   get:
+ *     summary: returns all users
+ *     tags: [Users]
+ *     description: Returns all users
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: An array of users
+ *       500:
+ *         description: SERVER ERROR
+ */
 router.get('/', checkAuthentication, getAllUsers);
 
 /**
@@ -218,6 +233,30 @@ router.put('/:id', checkAuthentication, updateUserById);
  *         description: Successfully deleted
  */
 router.delete('/:id', superAdminAuth, deleteUserById);
+
+/**
+ * @swagger
+ * /user/verification/{token}:
+ *   get:
+ *     summary: Verify the user email using the token
+ *     tags: [Users]
+ *     description: Verify the user email
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: token
+ *         description: User's Token
+ *         in: path
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: User successfully verified
+ *       404:
+ *         description: User does not exist
+ */
+router.get('/verification/:token', verifyUser);
+
 
 router.post('/logout', logout);
 

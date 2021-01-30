@@ -1,9 +1,13 @@
 /* eslint-disable no-console */
 import chai from 'chai';
 import http from 'chai-http';
-import fs from 'fs';
+import model from '../database/models';
+import jwt from 'jsonwebtoken';
 import app from '../app';
 import generateToken from '../utils/genToken';
+import path from 'path';
+
+const { User } = model;
 chai.use(http);
 const { expect } = chai;
 const userId = 3;
@@ -39,7 +43,7 @@ describe('User registration', () => {
         done();
       })
       .catch((err) => {
-        throws(err);
+        throw(err);
       });
   });
   // test for invalid input
@@ -62,7 +66,7 @@ describe('User registration', () => {
         done();
       })
       .catch((err) => {
-        throws(err);
+        throw(err);
       });
   });
   // test an existing e-mail
@@ -86,10 +90,11 @@ describe('User registration', () => {
         done();
       })
       .catch((err) => {
-        throws(err);
+        throw(err);
       });
   });
 });
+
 describe('User Signin', () => {
   it('should return error 401 for invalid email', (done) => {
     // mock invalid user input
@@ -106,7 +111,7 @@ describe('User Signin', () => {
         done();
       })
       .catch((err) => {
-        throws(err.message);
+        throw(err.message);
       });
   });
   it('should return error 401 for invalid credentials', (done) => {
@@ -126,7 +131,7 @@ describe('User Signin', () => {
         done();
       })
       .catch((err) => {
-        throws(err.message);
+        throw(err.message);
       });
   });
   it('should return 200 and token for valid credentials', (done) => {
@@ -145,7 +150,7 @@ describe('User Signin', () => {
         done();
       })
       .catch((err) => {
-        throws(err)
+        throw(err)
       });
   });
   it('should return 400 when a bad a request is made', (done) => {
@@ -158,11 +163,12 @@ describe('User Signin', () => {
         done();
       })
       .catch((err) => {
-        throws(err);
+        throw(err);
       });
   });
 });
 let token = '';
+let verifiedUser = '';
 /** Start of crud operations on user */
 describe('USERS', () => {
   before(async () => {
@@ -216,13 +222,38 @@ describe('/PUT/:id users', () => {
       });
   });
 });
+
+describe('/GET/:token Test user email verification', () => {
+  let tokens = '';
+  it('it should verify a user email and return 200.', () => {
+    tokens = token.split(" ")[1];
+    chai.request(app)
+      .get(`/user/verification/${tokens}`)
+      .end(async(err, res) => {
+        expect(res).to.have.status(200);
+      });
+  });
+
+  it('it should fail to verify a user email and return 400.', () => {
+    tokens = token.split(" ")[1];
+    chai.request(app)
+      .get(`/user/verification/${tokens}`)
+      .end(async(err, res) => {
+        expect(res).to.have.status(400);
+      });
+  });
+
+});
+
 describe('/DELETE/:id users', () => {
-  it('it should delete a user by the given id', () => {
+  it('it should delete a user by the given id.', () => {
     chai.request(app)
       .delete(`/user/${userId}`)
       .set('Authorization', token)
-      .end((err, res) => {
+      .end(async(err, res) => {
         expect(res).to.have.status(200);
       });
   });
 });
+
+
