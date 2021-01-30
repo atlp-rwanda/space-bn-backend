@@ -1,5 +1,6 @@
 import express from 'express';
 import {getUserProfile, udpateProfile}  from '../controllers/profile';
+import checkAuthentication from '../middlewares/check-auth';
 const router = express.Router();
 
 /**
@@ -95,7 +96,7 @@ const router = express.Router();
  *                    type: boolean
  */
 
-router.put('/:userId', udpateProfile);
+router.put('/:userId',checkAuthentication,udpateProfile);
 
 /**
  * @swagger
