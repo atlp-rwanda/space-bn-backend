@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Facility.hasMany(models.Reaction, {
+        foreignKey: 'facilityId'
+      })
     }
   };
   Facility.init({

@@ -31,5 +31,35 @@
 	"Role deleted successfully!": "Le rôle a bien été supprimé!",
 	"Please login first!": "S'il vous plait Connectez-vous d'abord!",
 	"Unauthorized": "Non autorisé",
-	"Only super administrator can perform this action!": "Seul le super administrateur peut effectuer cette action!"
+	"Only super administrator can perform this action!": "Seul le super administrateur peut effectuer cette action!",
+	
+	"Facility liked": "Établissement aimée",
+	"Reaction undone": "Réaction annulée",
+	"Facility Liked": "Établissement a aimé",
+	"Facility unliked": "Établissement peu aimée",
+	"Facility liked successfully": "Établissement aimée avec succès",
+	"Facility re-liked": "Établissement ré-aimée",
+	"Facility re-unliked": "Établissement repensée",
+	"FacilityId is required": "FacilityId est obligatoire",
+	"No facility found": "Aucune établissement trouvée",
+	
+	"Access denied. You can only update your profile":"Accès refusé. Vous pouvez uniquement mettre à jour votre profil",
+	"User not found":"Utilisateur non trouvé",
+	"Profile not found":"Profil non trouvé",
+	"Profile saved successfully":"Profil enregistré avec succès",
+	
+	"Please login!": "Veuillez vous connecter!",
+	"No role assigned!": "Aucun rôle attribué!",
+	"Access denied!": "Accès refusé!",
+	"Not found!": "Not found!",
+	"No request found.": "Aucune demande trouvée.",
+	"All requests found successfully!": "Toutes les demandes ont été trouvées avec succès!",
+	"Request does not exist.": "La demande n'existe pas.",
+	"Request found successfully!": "Demande trouvée avec succès!",
+	"Request added successfully!": "Demande ajoutée avec succès!",
+	"Request updated successfully!": "Demande mise à jour avec succès!",
+	"Internal server error!": "Erreur Interne du Serveur!",
+	"No request found!": "No request found!",
+	"Request does not exist!": "Request does not exist!",
+	"User does not exist.": "User does not exist."
 }

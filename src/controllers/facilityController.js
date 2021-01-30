@@ -57,11 +57,10 @@ const getFacilities=async(req, res)=>{
         await model.Facility.destroy({where:{ id: req.params.id }});
         res.status(204).send({message: "facility deleted successfuly"});
       } else {
-        res.status(404);
-        res.send({ error: "facility not found!" });
+        res.status(404).send({ error: "facility not found!" });
       }
     } catch (error) {
-      res.status(404).send({ error: "facility not found!" });
+      res.status(404).send({ errors: "facility not found!" });
     }
   }
 

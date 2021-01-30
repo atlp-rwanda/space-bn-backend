@@ -14,7 +14,7 @@ module.exports = {
         roomNumber:12,
         roomDetails:'{anasa:sdsds, sdsds:sdsdsds}',
         createdAt: new Date(),
-       updatedAt: new Date()
+        updatedAt: new Date()
       }], {});
   },
 

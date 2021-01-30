@@ -216,7 +216,7 @@ describe("facility endpoint", () => {
                 });
           })
 
-          it("should delete facility", (done) => {
+          it("should not delete facility", (done) => {
             const data={
               location:"test updated name ",
               address:"test address ev updated 32'st",
@@ -234,13 +234,32 @@ describe("facility endpoint", () => {
               });
         })
 
-          it("should get all the facilities", () => {
+        it("should not delete facility", (done) => {
+          const data={
+            location:"test updated name ",
+            address:"test address ev updated 32'st",
+            images:"testImg.jpg",
+            roomNumber:"43",
+            roomDetails:"{sdlksldks:sdsds,sdsdsds:sdksjdskdj}"
+          }
+          chai
+            .request(app)
+            .delete(`/facilities/10-2`)
+            .set('authorization', travelAdminToken)
+            .end((err, response) => {
+              expect(response).to.have.status(404);
+              done();
+            });
+      })
+
+          it("should get all the facilities", (done) => {
             chai
               .request(app)
               .get("/facilities")
               .end((err, response) => {
                 expect(response).to.have.status(200);
                 expect(response.body).to.be.an("object");
+                done()
                 
               });
           });

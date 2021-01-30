@@ -8,7 +8,6 @@ module.exports = {
       password: '1234567$#8',
       gender: 'Male',
       origin: '',
-      profession: '',
       age: 25,
       identification_type: '',
       identification_number: '',
