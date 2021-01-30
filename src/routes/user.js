@@ -1,7 +1,6 @@
 import express from 'express';
-
 import multer from 'multer';
-
+import profileRouters from './profile';
 const router = express.Router();
 
 import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById, logout, verifyUser} from '../controllers/user';
@@ -261,4 +260,7 @@ router.get('/verification/:token', verifyUser);
 
 router.post('/logout', logout);
 
+
+
+router.use('/profile', profileRouters)
 module.exports = router;

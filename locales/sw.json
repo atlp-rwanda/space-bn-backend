@@ -25,6 +25,12 @@
 	"Request found successfully!": "Ombi limepatikana kwa mafanikio!",
 	"Request added successfully!": "Ombi limeongezwa kwa mafanikio!",
 	"Request updated successfully!": "Ombi limesasishwa kwa mafanikio!",
+
+	"Access denied. You can only update your profile":"Ufikiaji umekataliwa. Unaweza tu kusasisha wasifu wako",
+	"User not found":"Mtumiaji hajapatikana",
+	"Profile not found":"Profaili haipatikani",
+	"Profile saved successfully":"Wasifu umehifadhiwa kwa mafanikio",
+	
 	"Facility liked": "Kituo kilipendwa",
 	"Reaction undone": "Majibu yamefutwa",
 	"Facility Liked": "Kituo Unapenda",

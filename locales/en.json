@@ -31,6 +31,7 @@
 	"Please login first!": "Please login first!",
 	"Unauthorized": "Unauthorized",
 	"Only super administrator can perform this action!": "Only super administrator can perform this action!",
+
 	"Please login!": "Please login!",
 	"No role assigned!": "No role assigned!",
 	"Access denied!": "Access denied!",
@@ -42,6 +43,12 @@
 	"Request added successfully!": "Request added successfully!",
 	"Request updated successfully!": "Request updated successfully!",
 	"SUPER_ADMIN role connot be updated!": "SUPER_ADMIN role connot be updated!",
+
+	"Access denied. You can only update your profile":"Access denied. You can only update your profile",
+	"User not found":"User not found",
+	"Profile not found":"Profile not found",
+	"Profile saved successfully":"Profil enregistré avec succès",
+
 	"Facility liked": "Facility liked",
 	"Reaction undone": "Reaction undone",
 	"Facility Liked": "Facility Liked",

@@ -31,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
     isVerified: DataTypes.BOOLEAN,
     identification_type: DataTypes.STRING,
     identification_number: DataTypes.STRING,
-    user_image: DataTypes.STRING
+    user_image: DataTypes.STRING,
+    savedData: DataTypes.ARRAY(DataTypes.STRING)
   }, {
     sequelize,
     modelName: 'User',

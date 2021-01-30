@@ -34,7 +34,6 @@ describe('User registration', () => {
         expect(res.body.user_details.lastname).to.exist;
         expect(res.body.user_details.email).to.exist;
         expect(res.body.user_details.password).to.exist;
-        //expect(res.body.user_details.gender).to.exist;
         expect(res.body.user_details.origin).to.exist;
         expect(res.body.user_details.profession).to.exist;
         expect(res.body.user_details.age).to.exist;
@@ -44,7 +43,7 @@ describe('User registration', () => {
         done();
       })
       .catch((err) => {
-        console.log(err);
+        throw(err);
       });
   });
   // test for invalid input
@@ -67,7 +66,7 @@ describe('User registration', () => {
         done();
       })
       .catch((err) => {
-        console.log(err);
+        throw(err);
       });
   });
   // test an existing e-mail
@@ -91,7 +90,7 @@ describe('User registration', () => {
         done();
       })
       .catch((err) => {
-        console.log(err);
+        throw(err);
       });
   });
 });
@@ -112,7 +111,7 @@ describe('User Signin', () => {
         done();
       })
       .catch((err) => {
-        console.log(err.message);
+        throw(err.message);
       });
   });
   it('should return error 401 for invalid credentials', (done) => {
@@ -125,15 +124,14 @@ describe('User Signin', () => {
     chai.request(app).post('/user/signin')
       .send(wrong_input)
       .then((res) => {
-        // console.log(res.body);
-        // assertions
+       
         expect(res).to.have.status(401);
         expect(res.body.success).to.be.equal(false);
         expect(res.body.message).to.be.equal('Authentication failed. Wrong password.');
         done();
       })
       .catch((err) => {
-        console.log(err.message);
+        throw(err.message);
       });
   });
   it('should return 200 and token for valid credentials', (done) => {
@@ -152,7 +150,7 @@ describe('User Signin', () => {
         done();
       })
       .catch((err) => {
-        console.log(err);
+        throw(err)
       });
   });
   it('should return 400 when a bad a request is made', (done) => {
@@ -165,7 +163,7 @@ describe('User Signin', () => {
         done();
       })
       .catch((err) => {
-        console.log(err);
+        throw(err);
       });
   });
 });

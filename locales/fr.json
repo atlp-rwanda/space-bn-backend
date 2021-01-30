@@ -25,6 +25,12 @@
 	"Request found successfully!": "Demande trouvée avec succès!",
 	"Request added successfully!": "Demande ajoutée avec succès!",
 	"Request updated successfully!": "Demande mise à jour avec succès!",
+
+	"Access denied. You can only update your profile":"Accès refusé. Vous pouvez uniquement mettre à jour votre profil",
+	"User not found":"Utilisateur non trouvé",
+	"Profile not found":"Profil non trouvé",
+	"Profile saved successfully":"Profil enregistré avec succès",
+
 	"Facility liked": "Établissement aimée",
 	"Reaction undone": "Réaction annulée",
 	"Facility Liked": "Établissement a aimé",

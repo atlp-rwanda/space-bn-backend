@@ -51,6 +51,9 @@ module.exports = {
       user_image: {
         type: Sequelize.STRING
       },
+      savedData: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

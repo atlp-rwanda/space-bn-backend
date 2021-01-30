@@ -37,7 +37,6 @@ export const signup = (req, res) => {
         .then((user) => {
           const token = jwt.sign(JSON.parse(JSON.stringify(user)), process.env.JWT_KEY, { expiresIn: '1h' });
           jwt.verify(token, process.env.JWT_KEY, (err, data) => {
-            console.log(err, data);
           });
           res.status(201).json({
             message: res.__('User registered'),
@@ -67,7 +66,7 @@ export const signin = (req, res) => {
         if (isMatch && !err) {
            token = jwt.sign(JSON.parse(JSON.stringify(user)), process.env.JWT_KEY, { expiresIn: '1h' });
           jwt.verify(token, process.env.JWT_KEY, (err, data) => {
-            console.log(err, data);
+           
           });
           res.json({ success: true, token: `JWT ${token}` });
         } else {
