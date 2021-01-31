@@ -6,6 +6,7 @@ config();
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('userRoles', [
+     
       {
         name: 'TRAVEL_ADMIN',
         description: 'This is a travel administrator',
@@ -23,8 +24,9 @@ module.exports = {
         description: 'This is a requester',
         createdAt: new Date(),
         updatedAt: new Date()
-      }
-    ], {});
+      
+    }
+  ], {});
   },
 
   down: async (queryInterface, Sequelize) => {
