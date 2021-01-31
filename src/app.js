@@ -68,7 +68,7 @@ app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
 app.use('/roles', roleRoutes);
 app.use(rooms);
-app.use('/facilities',facilityRoute)
+app.use('/facility',facilityRoute)
 app.use('/manager', managerRoutes);
 app.use('/Request', Requests);
 app.use('/facility', reactionRoutes);

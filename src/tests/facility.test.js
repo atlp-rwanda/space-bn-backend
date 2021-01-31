@@ -110,7 +110,7 @@ describe("facility endpoint", () => {
         });
         describe("add new facility",async()=>{
           
-            it("should add new facilities", (done) => {
+            it("should add new facility", (done) => {
               const data={
                 location:"test name ",
                 address:"test address ev 32'st",
@@ -120,7 +120,7 @@ describe("facility endpoint", () => {
               }
               chai
                 .request(app)
-                .post("/facilities")
+                .post("/facility")
                 .set('authorization', travelAdminToken)
                 .send(data)
                 .end((err, response) => {
@@ -142,7 +142,7 @@ describe("facility endpoint", () => {
             }
             chai
               .request(app)
-              .post(`/facilities`)
+              .post(`/facility`)
               .send(data)
               .end((err, response) => {
                 expect(response).to.have.status(403);
@@ -162,7 +162,7 @@ describe("facility endpoint", () => {
               }
               chai
                 .request(app)
-                .put(`/facilities/${id}`)
+                .put(`/facility/${id}`)
                 .set('authorization', travelAdminToken)
                 .send(data)
                 .end((err, response) => {
@@ -185,7 +185,7 @@ describe("facility endpoint", () => {
             }
             chai
               .request(app)
-              .put(`/facilities/120`)
+              .put(`/facility/120`)
               .set('authorization', travelAdminToken)
               .send(data)
               .end((err, response) => {
@@ -208,7 +208,7 @@ describe("facility endpoint", () => {
               }
               chai
                 .request(app)
-                .delete(`/facilities/${id}`)
+                .delete(`/facility/${id}`)
                 .set('authorization', travelAdminToken)
                 .end((err, response) => {
                   expect(response).to.have.status(204);
@@ -226,7 +226,7 @@ describe("facility endpoint", () => {
             }
             chai
               .request(app)
-              .delete(`/facilities/100`)
+              .delete(`/facility/100`)
               .set('authorization', travelAdminToken)
               .end((err, response) => {
                 expect(response).to.have.status(404);
@@ -244,7 +244,7 @@ describe("facility endpoint", () => {
           }
           chai
             .request(app)
-            .delete(`/facilities/10-2`)
+            .delete(`/facility/10-2`)
             .set('authorization', travelAdminToken)
             .end((err, response) => {
               expect(response).to.have.status(404);
@@ -252,10 +252,10 @@ describe("facility endpoint", () => {
             });
       })
 
-          it("should get all the facilities", (done) => {
+          it("should get all the facility", (done) => {
             chai
               .request(app)
-              .get("/facilities")
+              .get("/facility")
               .end((err, response) => {
                 expect(response).to.have.status(200);
                 expect(response.body).to.be.an("object");
@@ -281,45 +281,5 @@ describe("facility endpoint", () => {
         
     
 
-  });
-
-  // /*
-  //  * GET one post using its (ID)
-  //  */
-  // describe("post facility", () => {
-    
-  //   it("should post facility by id", () => {
-  //     const _travelAdmin={
-  //       "email": "spacenomad@gmail.com",
-  //         "password": _travelAdminPwd
-  //     }
-     
-  //     chai
-  //       .request(app)
-  //       .get("/facility/" + id)
-  //       .end((err, response) => {
-  //         response.should.have.status(200);
-  //         response.body.expect.be.a("object");
-  //         response.body.expect.have.property("content");
-  //         response.body.should.have.property("id").eq(id);
-          
-  //       });
-  //   });
-
-  //   /*
-  //    * providing wrong id
-  //    */
-  //   // it("shouldn't get any post", () => {
-  //   //   const id2 = "5f4663e66450ec01f0adeed";
-  //   //   chai
-  //   //     .request(app)
-  //   //     .get("/facility/" + id2)
-  //   //     .end((err, response) => {
-  //   //       response.expect.have.status(404);
-  //   //       response.body.expect.be.a("object");
-  //   //       response.body.expect.have.property("error").eq("Post doesn't exist!");
-          
-  //   //     });
-  //   // });
-  // });  
+  });  
 });

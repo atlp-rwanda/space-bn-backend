@@ -8,7 +8,7 @@ const router=Router();
 router.get('/',getFacilities);
 /**
  * @swagger
- * /facilities:
+ * /facility:
  *   get:
  *     summary: get all facilities
  *     tags: [facility]
@@ -26,7 +26,7 @@ router.get('/',getFacilities);
 router.post('/',_validateFacility,addFacility);
 /**
  * @swagger
- * /facilities:
+ * /facility:
  *   post:
  *     summary: add new facility 
  *     tags: [facility]
@@ -55,7 +55,7 @@ router.post('/',_validateFacility,addFacility);
 router.put('/:id',_validateFacility,updateFacility);
 /**
  * @swagger
- * /facilities:
+ * /facility:
  *   put:
  *     summary: update facility 
  *     tags: [facility]
