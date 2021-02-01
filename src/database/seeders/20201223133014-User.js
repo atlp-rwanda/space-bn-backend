@@ -10,6 +10,7 @@ module.exports = {
       origin: '',
       profession: '',
       age: 25,
+      roleId: 2,
       identification_type: '',
       identification_number: '',
       user_image: '',
