@@ -8,10 +8,10 @@ use(chaiHttp);
 
 const { ADMIN_PASSWORD } = process.env;
 
-let tokenAdmin = "",
-  tokenManager = "",
-  tokenUser = "",
-  userId = "";
+let tokenAdmin = '',
+  tokenManager = '',
+  tokenUser = '',
+  userId = '';
 
 describe('MANAGER Endpoints', () => {
   describe('Signin Super Admin', () => {
@@ -41,8 +41,8 @@ describe('MANAGER Endpoints', () => {
       describe('Create a Requester Role', () => {
         before(async () => {
           const res = await request(app)
-            .post("/roles/create")
-            .set("authorization", tokenAdmin)
+            .post('/roles/create')
+            .set('authorization', tokenAdmin)
             .send({
               name: 'REQUESTER',
               description: 'This is requester role.'
@@ -51,12 +51,12 @@ describe('MANAGER Endpoints', () => {
           expect(res).has.status(201);
         });
 
-        describe("Get Roles", () => {
+        describe('Get Roles', () => {
           before(async () => {
             const res = await request(app)
-              .get("/roles")
-              .set("authorization", tokenAdmin);
-             
+              .get('/roles')
+              .set('authorization', tokenAdmin);
+
             expect(res).has.status(200);
           });
 
@@ -130,7 +130,7 @@ describe('MANAGER Endpoints', () => {
                         email: 'user1@bn.com',
                         password: 'Test123.'
                       });
-                      
+
                     tokenUser = res.body.token;
                   });
                   describe('User creates a hotel', () => {
@@ -175,17 +175,36 @@ describe('MANAGER Endpoints', () => {
                         expect(res).to.have.status(200);
                       });
 
+                      it('User creates second room', async () => {
+                        const res = await request(app)
+                          .post('/rooms')
+                          .set('authorization', tokenUser)
+                          .send({
+                            hotelId: 2,
+                            description: 'Room for VIP',
+                            roomType: 'first class',
+                            roomLabel: 'label 001',
+                            status: 'double',
+                            price: '200$-300$',
+                            roomImage: 'https://www.images.com/image.png',
+                            createdAt: new Date(),
+                            updatedAt: new Date(),
+                          });
+
+                        expect(res).to.have.status(200);
+                      });
+
                       describe('User creates a request', () => {
                         before(async () => {
                           const res = await request(app)
-                            .post('/Request')
+                            .post('/requests')
                             .set('authorization', tokenUser)
                             .send({
-                              idRoom: 1,
+                              idRoom: 2,
                               dateStart: '2021-01-29',
                               dateEnd: '2021-01-30'
                             });
-
+                          // console.log(res.body);
                           expect(res).to.have.status(201);
                         });
 
@@ -197,15 +216,6 @@ describe('MANAGER Endpoints', () => {
 
                             expect(res).to.have.status(200);
                           });
-
-                          // it('Manager should get "No request found!" message', async () => {
-                          //   const res = await request(app)
-                          //     .get('/manager/requests')
-                          //     .set('authorization', tokenManager);
-
-                          //   expect(res).to.have.status(400);
-                          //   expect(res.body.message).to.match(/No request found!/i);
-                          // });
 
                           it('Manager should get "Access denied!" message', async () => {
                             const res = await request(app)
@@ -269,15 +279,15 @@ describe('MANAGER Endpoints', () => {
                         });
 
                         describe('GET/:id /manager/requests/:id', () => {
-                        //   it('Manager should get one request', async () => {
-                        //     const res = await request(app)
-                        //       .get('/manager/requests/1')
-                        //       .set('authorization', tokenManager);
+                          it('Manager should get one request', async () => {
+                            const res = await request(app)
+                              .get('/manager/requests/10')
+                              .set('authorization', tokenManager);
 
-                          //     expect(res).to.have.status(200);
-                          //     expect(res.body).to.have.property('message');
-                          //     expect(res.body.message).to.match(/Request found successfully!/i);
-                          //   });
+                            expect(res).to.have.status(200);
+                            expect(res.body).to.have.property('message');
+                            expect(res.body.message).to.match(/Request found successfully!/i);
+                          });
 
                           it('Manager should get "Request does not exist" message', async () => {
                             const res = await request(app)

@@ -53,5 +53,6 @@
 	"Request found successfully!": "Ibyifuzo byabonetse neza!",
 	"Request added successfully!": "Ibyifuzo byongeweho neza!",
 	"Request updated successfully!": "Ibyifuzo byavuguruwe neza!",
-	"Internal server error!": "Ikosa rya seriveri imbere!"
+	"Internal server error!": "Ikosa rya seriveri imbere!",
+	"Only PENDING request can be edited!": "Icyifuzo cya PENDING cyonyine gishobora guhindurwa!"
 }
