@@ -57,7 +57,6 @@
 	"Request updated successfully!": "Ombi limesasishwa kwa mafanikio!",
 	"Internal server error!": "Hitilafu ya seva ya ndani!",
 	"Only PENDING request can be edited!": "Ombi linalosubiri tu linaweza kuhaririwa!",
-
 	"Facility not found": "Kituo hakipatikani",
 	"Feedback sent successfully":"Maoni yametumwa kwa mafanikio",
 	"Feedback not found":"Maoni hayapatikani",
@@ -65,7 +64,6 @@
 	"Feedback deleted":"Maoni yamefutwa",
 	"Feedback marked as seen":"Maoni yametiwa alama kama inavyoonekana",
 	"Feedback marked as not seen":"Maoni yametiwa alama kuwa hayaonekani",
-
 	"Bad request":"Ombi baya",
 	"Please login first":"Tafadhali ingia kwanza",
 	"Facility Not found!":"Kituo Haikupatikana!",
@@ -81,5 +79,9 @@
 	"Question added successfully!": "Swali limeongezwa kwa mafanikio!",
 	"Please enter all fields!": "Tafadhali ingiza sehemu zote!",
 	"Question deleted successfully!": "Swali limefutwa kwa mafanikio!",
-	"Invalid time!": "Wakati batili!"
+	"Invalid time!": "Wakati batili!",
+	"There is no user with that email":"Hakuna mtumiaji aliye na barua pepe hiyo",
+	"Password cannot be empty":"Nenosiri haliwezi kuwa tupu",
+	"Password was reset successfully":"Nenosiri liliwekwa upya kwa mafanikio"
+}
 }

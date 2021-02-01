@@ -6,7 +6,7 @@ import socketio from 'socket.io';
 import path from 'path';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import passport from "passport";
+import passport from 'passport';
 import rooms from './routes';
 import roleRoutes from './routes/roles';
 import hotelRoutes from './routes/hotelRoute';
@@ -87,6 +87,7 @@ initializeEvent();
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to Barefoot space nomad api!' });
 });
+
 app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
 app.use('/roles', roleRoutes);
@@ -100,7 +101,7 @@ app.use('/facility', ratingRoutes);
 app.use(searchRoutes);
 app.use('/notifications', notificationRoutes);
 app.use('/questions', questionRoutes);
-app.use("/", facebookOauthRoute);
+app.use('/', facebookOauthRoute);
 export { io, app };
 
 export default server;

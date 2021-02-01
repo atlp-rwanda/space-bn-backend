@@ -107,12 +107,12 @@ export const template = (firstname, token, message = msg, action = act) => {
           </a>
           <p class="footer_text">
               If you encounter any problem, please don't hesitate to CONTACT US at
-              <span style="color:#424242"><a href="barefootnomard@gmail.com">barefootnomard@gmail.com</a></span>
+              <span style="color:#424242"><a href="barefootnomad@gmail.com">barefootnomard@gmail.com</a></span>
           </p>
           <footer>
               <p>
                   <span>Kigali, Rwanda</span><br />
-                  <span><b> (+250) 780 114 841</b></span><br />
+                  <span><b> (+250) 780 XXX 841</b></span><br />
               </p>
               &copy; Barefoot Nomard - All Rights Reserved.
           </footer>

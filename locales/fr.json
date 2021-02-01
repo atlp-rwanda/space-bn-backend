@@ -90,5 +90,8 @@
 	"Question added successfully!": "Question ajoutée avec succès!",
 	"Please enter all fields!": "Veuillez saisir tous les champs!",
 	"Question deleted successfully!": "Question deleted successfully!",
-	"Invalid time!": "Heure invalide!"
+	"Invalid time!": "Heure invalide!",
+	"There is no user with that email":"Il n'y a aucun utilisateur avec cet e-mail",
+	"Password cannot be empty":"Le mot de passe ne peut pas être vide",
+	"Password was reset successfully":"Le mot de passe a été réinitialisé avec succès"
 }

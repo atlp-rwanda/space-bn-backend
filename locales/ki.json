@@ -53,7 +53,6 @@
 	"Request updated successfully!": "Ibyifuzo byavuguruwe neza!",
 	"Internal server error!": "Ikosa rya seriveri imbere!",
 	"Only PENDING request can be edited!": "Icyifuzo cya PENDING cyonyine gishobora guhindurwa!",
-
 	"Facility not found": "Ikigo nticyabonetse",
 	"Feedback sent successfully":"Ibitekerezo byoherejwe neza",
 	"Feedback not found":"Ibisubizo ntibyabonetse",
@@ -61,7 +60,6 @@
 	"Feedback deleted":"Ibisubizo byasibwe",
 	"Feedback marked as seen":"Ibisubizo byemejwe ko byarebywe",
 	"Feedback marked as not seen":"Ibisubizo byemejwe ko bitarebywe",
-	
 	"Please login first":"Mubanze mwinjire muri konte yanyu",
 	"Bad request":"Ubusabe bubi",
 	"Facility Not found!":"Ikigo Nticyabonetse!",
@@ -77,5 +75,9 @@
 	"Question added successfully!": "Ikibazo cyongeweho neza!",
 	"Please enter all fields!": "Nyamuneka andika imirima yose!",
 	"Question deleted successfully!": "Ikibazo cyasibwe neza!",
-	"Invalid time!": "Igihe kitemewe!"
+	"Invalid time!": "Igihe kitemewe!",
+	"There is no user with that email":"Nta mukoresha ufite iyo imeri",
+	"Password cannot be empty":"Ijambobanga ntirishobora kuba ubusa",
+	"Password was reset successfully":"Ijambobanga ryasubiwemo neza"
+}
 }
