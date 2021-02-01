@@ -58,5 +58,8 @@
 	"Request added successfully!": "Request added successfully!",
 	"Request updated successfully!": "Request updated successfully!",
 	"SUPER_ADMIN role connot be updated!": "SUPER_ADMIN role connot be updated!",
-	"TRAVEL_ADMIN already exist": "TRAVEL_ADMIN already exist"
+	"TRAVEL_ADMIN already exist": "TRAVEL_ADMIN already exist",
+	"facility updated succeddfuly": "facility updated succeddfuly",
+	"facility not found!": "facility not found!",
+	"facility deleted successfuly": "facility deleted successfuly"
 }

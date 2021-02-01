@@ -151,6 +151,18 @@ describe("facility endpoint", () => {
               });
           });
           
+          it("should get single facility", (done) => {
+            chai
+              .request(app)
+              .get(`/facility/${id}`)
+              .end((err, response) => {
+                expect(response).to.have.status(200);
+                expect(response.body).to.be.an("object");
+                done()
+                
+              });
+          });
+          
 
             it("should update facility", (done) => {
               const data={
@@ -193,9 +205,9 @@ describe("facility endpoint", () => {
                 done();
               
               });
-          
-         
-        })
+            });
+
+            
           
 
             it("should delete facility", (done) => {
@@ -211,7 +223,7 @@ describe("facility endpoint", () => {
                 .delete(`/facility/${id}`)
                 .set('authorization', travelAdminToken)
                 .end((err, response) => {
-                  expect(response).to.have.status(204);
+                  expect(response).to.have.status(200);
                   done();
                 });
           })
@@ -259,6 +271,19 @@ describe("facility endpoint", () => {
               .end((err, response) => {
                 expect(response).to.have.status(200);
                 expect(response.body).to.be.an("object");
+                done()
+                
+              });
+          });
+
+          
+
+          it("should not get single facility", (done) => {
+            chai
+              .request(app)
+              .get(`/facility/120`)
+              .end((err, response) => {
+                expect(response).to.have.status(404);
                 done()
                 
               });

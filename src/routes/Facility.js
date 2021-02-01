@@ -1,11 +1,12 @@
 import {Router} from 'express'
-import {getFacilities,addFacility,updateFacility,deleteFacility} from '../controllers/facilityController';
+import {getFacilities,addFacility,updateFacility,deleteFacility,getSingleFacility} from '../controllers/facilityController';
 import {_validateFacility} from '../middlewares/FaclityValidation';
 
 
 const router=Router();
 
 router.get('/',getFacilities);
+
 /**
  * @swagger
  * /facility:
@@ -26,69 +27,193 @@ router.get('/',getFacilities);
 router.post('/',_validateFacility,addFacility);
 /**
  * @swagger
- * /facility:
+ *  /facility:
  *   post:
- *     summary: add new facility 
- *     tags: [facility]
- *     description: add new facility
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: location
- *         required: true
+ *    summary: travel admin can create new role
+ *    tags: [facility]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/facility'
+ *        multipart/form-data:
+ *           schema:
+ *            $ref: '#/components/schemas/facility'
+ *    security:
+ *      - AdminToken: []
+ *    responses:
+ *      "403":
+ *        $ref: '#/components/responses/unauthorized'
+ *      "201":
+ *        $ref: '#/components/responses/createSuccess'
+ * components:
+ *    schemas:
+ *     facility:
+ *      type: object
+ *      required:
+ *       - address
+ *       - location
+ *      properties:
+ *        location:
  *         type: string
- *       - name: address
- *         required: true
+ *        address:
  *         type: string
- *       - name: number of rooms
- *       - name: room detail
- *       - name: images
- *         required: true
+ *        roomNumber:
+ *         type: number
+ *        roomDetails:
  *         type: string
- *     responses:
- *       200:
- *         description: facility addedd Successfully 
- *       500:
- *         description: Server Err
+ *        images:
+ *         type: string
+ *    securitySchemes:
+ *      AdminToken:
+ *        type: apiKey
+ *        in: header
+ *        name: Authorization
+ *    responses:
+ *      unauthorized:
+ *        description: Not logged in
+ *        headers:
+ *         authorization:
+ *           schema:
+ *             type: string
+ *      createSuccess:
+ *       description: facility created successfully
+ *       schema:
+ *         type: string
+ *     
  */
 
 router.put('/:id',_validateFacility,updateFacility);
 /**
  * @swagger
- * /facility:
+ *  /facility/{id}:
  *   put:
- *     summary: update facility 
- *     tags: [facility]
- *     description: update facility
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: location
- *         required: true
+ *    summary: travel admin can create new role
+ *    tags: [facility]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        schema:
+ *          type: integer
+ *          minimum: 1
+ *        description:  facility id
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/facility'
+ *        multipart/form-data:
+ *           schema:
+ *            $ref: '#/components/schemas/facility'
+ *    security:
+ *      - AdminToken: []
+ *    responses:
+ *      "403":
+ *        $ref: '#/components/responses/unauthorized'
+ *      "201":
+ *        $ref: '#/components/responses/createSuccess'
+ * components:
+ *    schemas:
+ *     facility:
+ *      type: object
+ *      required:
+ *       - address
+ *       - location
+ *      properties:
+ *        location:
  *         type: string
- *       - name: address
- *         required: true
+ *        address:
  *         type: string
- *       - name: number of rooms
- *       - name: room detail
- *       - name: images
- *         required: true
+ *        roomNumber:
+ *         type: number
+ *        roomDetails:
  *         type: string
- *     responses:
- *       200:
- *         description: facility addedd Successfully 
- *       500:
- *         description: Server Err
+ *        images:
+ *         type: string
+ *    securitySchemes:
+ *      AdminToken:
+ *        type: apiKey
+ *        in: header
+ *        name: Authorization
+ *    responses:
+ *      unauthorized:
+ *        description: Not logged in
+ *        headers:
+ *         authorization:
+ *           schema:
+ *             type: string
+ *      createSuccess:
+ *       description: facility created successfully
+ *       schema:
+ *         type: string
+ *     
  */
 
 router.delete('/:id',_validateFacility, deleteFacility);
 /**
  * @swagger
- * /facility/delete:
+ *  /facility/{id}:
  *   delete:
- *     summary: delete single facilities
+ *    summary: travel admin can create new role
+ *    tags: [facility]
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        schema:
+ *          type: integer
+ *          minimum: 1
+ *        description:  facility id
+ *    security:
+ *      - AdminToken: []
+ *    responses:
+ *      "403":
+ *        $ref: '#/components/responses/unauthorizedaccess'
+ *      "201":
+ *        $ref: '#/components/responses/facilitCreationSuccess'
+ * components:
+ *    schemas:
+ *    securitySchemes:
+ *      AdminToken:
+ *        type: apiKey
+ *        in: header
+ *        name: Authorization
+ *    responses:
+ *      unauthorizedaccess:
+ *        description: Not logged in
+ *        headers:
+ *         authorization:
+ *           schema:
+ *             type: string
+ *      facilitCreationSuccess:
+ *       description: facility deleted successfully
+ *       schema:
+ *         type: string
+ *     
+ */
+
+
+
+router.get('/:id', getSingleFacility);
+/**
+ * @swagger
+ * /facility/{id}:
+ *   get:
+ *     summary: get single facilities
  *     tags: [facility]
- *     description: delete a facility
+ *     description: get a facility
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *          type: integer
+ *          minimum: 1
+ *         description:  facility id
+ * 
  *     produces:
  *       - application/json
  * 
