@@ -17,24 +17,6 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     },
-    {
-      firstname: 'Travel admin Test',
-      lastname: 'admin',
-      telephone: '',
-      email: 'spacenomadtravel@gmail.com',
-      password: process.env.ADMIN_PASSWORD,
-      gender: 'Male',
-      origin: '',
-      profession: '',
-      age: 25,
-      roleId:2,
-      identification_type: '',
-      identification_number: '',
-      user_image: '',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }
-  
   ], {});
   },
 

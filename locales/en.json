@@ -61,5 +61,10 @@
 	"TRAVEL_ADMIN already exist": "TRAVEL_ADMIN already exist",
 	"facility updated succeddfuly": "facility updated succeddfuly",
 	"facility not found!": "facility not found!",
-	"facility deleted successfuly": "facility deleted successfuly"
+	"facility deleted successfuly": "facility deleted successfuly",
+	"Comment deleted successfully!": "Comment deleted successfully!",
+	"Provide you credentials": "Provide you credentials",
+	"Request does not exist!": "Request does not exist!",
+	"You must be a travel admin": "You must be a travel admin",
+	"You are not authorised!": "You are not authorised!"
 }

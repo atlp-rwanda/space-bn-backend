@@ -1,11 +1,13 @@
-import {Router} from 'express'
-import {getFacilities,addFacility,updateFacility,deleteFacility,getSingleFacility} from '../controllers/facilityController';
-import {_validateFacility} from '../middlewares/FaclityValidation';
+/* eslint-disable import/named */
+import { Router } from 'express';
+import {
+  getFacilities, addFacility, updateFacility, deleteFacility, getSingleFacility
+} from '../controllers/facilityController';
+import { _validateFacility, _authorizeUser } from '../middlewares/FaclityValidation';
 
+const router = Router();
 
-const router=Router();
-
-router.get('/',getFacilities);
+router.get('/', getFacilities);
 
 /**
  * @swagger
@@ -16,7 +18,7 @@ router.get('/',getFacilities);
  *     description: array of facility
  *     produces:
  *       - application/json
- * 
+ *
  *     responses:
  *       200:
  *         description: ok
@@ -24,7 +26,7 @@ router.get('/',getFacilities);
  *         description: Server Error
  */
 
-router.post('/',_validateFacility,addFacility);
+router.post('/', _validateFacility, _authorizeUser, addFacility);
 /**
  * @swagger
  *  /facility:
@@ -81,10 +83,10 @@ router.post('/',_validateFacility,addFacility);
  *       description: facility created successfully
  *       schema:
  *         type: string
- *     
+ *
  */
 
-router.put('/:id',_validateFacility,updateFacility);
+router.put('/:id', _validateFacility, _authorizeUser, updateFacility);
 /**
  * @swagger
  *  /facility/{id}:
@@ -149,10 +151,10 @@ router.put('/:id',_validateFacility,updateFacility);
  *       description: facility created successfully
  *       schema:
  *         type: string
- *     
+ *
  */
 
-router.delete('/:id',_validateFacility, deleteFacility);
+router.delete('/:id', _validateFacility, _authorizeUser, deleteFacility);
 /**
  * @swagger
  *  /facility/{id}:
@@ -192,10 +194,8 @@ router.delete('/:id',_validateFacility, deleteFacility);
  *       description: facility deleted successfully
  *       schema:
  *         type: string
- *     
+ *
  */
-
-
 
 router.get('/:id', getSingleFacility);
 /**
@@ -213,10 +213,10 @@ router.get('/:id', getSingleFacility);
  *          type: integer
  *          minimum: 1
  *         description:  facility id
- * 
+ *
  *     produces:
  *       - application/json
- * 
+ *
  *     responses:
  *       200:
  *         description: ok
