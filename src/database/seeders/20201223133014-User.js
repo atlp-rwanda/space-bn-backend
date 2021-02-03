@@ -8,6 +8,7 @@ module.exports = {
       password: '1234567$#8',
       gender: 'Male',
       origin: '',
+      profession: '',
       age: 25,
       roleId: 2,
       identification_type: '',
@@ -15,7 +16,8 @@ module.exports = {
       user_image: '',
       createdAt: new Date(),
       updatedAt: new Date()
-    }], {});
+    },
+  ], {});
   },
 
   down: async (queryInterface, Sequelize) => {

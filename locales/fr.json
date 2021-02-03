@@ -59,6 +59,12 @@
 	"No request found!": "No request found!",
 	"Request does not exist!": "Request does not exist!",
 	"User does not exist.": "User does not exist.",
+	"facility not found!": "institution introuvable!",
+	"facility deleted successfuly":"Institution supprimée avec succès",
+	"facility updated succeddfuly":"Institution mise à jour avec succès",
+	"Provide you credentials":"Fournissez vos identifiants",
+	"You are not authorised!":"Vous n'êtes pas autorisé!",
+	"You must be a travel admin":"Vous devez être un administrateur de voyages",
 	"Manager Id is assigned successfully!": "Manager Id is assigned successfully!",
 	"Only PENDING request can be edited!": "Seule la demande PENDING peut être éditée!"
 }

@@ -15,9 +15,6 @@ jobs:
       NODE_ENV: test
       POSTGRES_USER: circleci
       POSTGRES_DB: circleci
-      ADMIN_PASSWORD: Test123.
-      ADMIN_ROLE_NAME: SUPER_ADMIN
-      ADMIN_ROLE_DESCRIPTION: Super_Admin_Role_Description
       JWT_SECRET: secret
       CC_TEST_REPORTER_ID: ae5c3cc35a355984de80fff51bb4250fad9a2a468491ce69c28331e3a53a50f1
 
