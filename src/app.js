@@ -7,9 +7,9 @@ import roleRoutes from './routes/roles';
 import hotelRoutes from './routes/hotelRoute';
 import userRoutes from './routes/user';
 import i18n from './utils/i18n';
-import facilityRoute from './routes/Facility'
 import managerRoutes from './routes/managerRoutes';
-import Requests from './routes/requestRoute';
+import requestRoutes from './routes/requestRoute';
+import facilityRoute from './routes/Facility';
 import reactionRoutes from './routes/reaction';
 import commentRoutes from './routes/comment';
 
@@ -69,9 +69,9 @@ app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
 app.use('/roles', roleRoutes);
 app.use(rooms);
-app.use('/facility',facilityRoute)
 app.use('/manager', managerRoutes);
-app.use('/Request', Requests);
+app.use('/requests', requestRoutes);
+app.use('/facility', facilityRoute);
 app.use('/facility', reactionRoutes);
 app.use(commentRoutes);
 

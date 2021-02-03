@@ -66,5 +66,16 @@
 	"Provide you credentials": "Provide you credentials",
 	"Request does not exist!": "Request does not exist!",
 	"You must be a travel admin": "You must be a travel admin",
-	"You are not authorised!": "You are not authorised!"
+	"You are not authorised!": "You are not authorised!",
+	"Requests found successfully!": "Requests found successfully!",
+	"Request found successfully": "Request found successfully",
+	"Request Id does not exist!": "Request Id does not exist!",
+	"Request created successfully!": "Request created successfully!",
+	"Room id is already occupied!": "Room id is already occupied!",
+	"Authentication failed!": "Authentication failed!",
+	"Room id does not exist": "Room id does not exist",
+	"Requested updated successfully": "Requested updated successfully",
+	"Request is already APPROVED!": "Request is already APPROVED!",
+	"Request deleted successfully!": "Request deleted successfully!",
+	"Only PENDING request can be edited!": "Only PENDING request can be edited!"
 }
