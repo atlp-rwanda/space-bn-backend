@@ -58,5 +58,6 @@
 	"Request found successfully!": "Ombi limepatikana kwa mafanikio!",
 	"Request added successfully!": "Ombi limeongezwa kwa mafanikio!",
 	"Request updated successfully!": "Ombi limesasishwa kwa mafanikio!",
-	"Internal server error!": "Hitilafu ya seva ya ndani!"
+	"Internal server error!": "Hitilafu ya seva ya ndani!",
+	"Only PENDING request can be edited!": "Ombi linalosubiri tu linaweza kuhaririwa!"
 }
