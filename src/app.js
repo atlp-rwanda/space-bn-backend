@@ -97,6 +97,5 @@ app.use('/facility', ratingRoutes);
 app.use(searchRoutes);
 app.use('/notifications', notificationRoutes);
 
-export { io };
-export { app };
+export { io, app };
 export default server;
