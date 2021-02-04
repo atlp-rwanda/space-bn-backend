@@ -1,17 +1,13 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable max-len */
 import { Router } from 'express';
 import authRequest from '../middlewares/check-auth';
+import { createRequestValidation, updateRequestValidation } from '../middlewares/requestValidation';
 import requestController from '../controllers/requestController';
 
 const router = Router();
 
-const {
-  getAllRequests,
-  getOneRequest,
-  createRequest,
-  updateRequest,
-  deleteRequest
-} = requestController;
+const { getAllRequests, getOneRequest, createRequest, updateRequest, deleteRequest } = requestController;
 
 /**
  * @swagger
@@ -78,7 +74,7 @@ router.get('/:id', authRequest, getOneRequest);
  *          idRoom:
  *             type: number
  */
-router.post('/', authRequest, createRequest);
+router.post('/', authRequest, createRequestValidation, createRequest);
 
 /**
  * @swagger
@@ -117,7 +113,7 @@ router.post('/', authRequest, createRequest);
  *          idRoom:
  *             type: number
  */
-router.put('/:id', authRequest, updateRequest);
+router.put('/:id', authRequest, updateRequestValidation, updateRequest);
 
 /**
  * @swagger

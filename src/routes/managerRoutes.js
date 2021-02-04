@@ -1,16 +1,13 @@
+/* eslint-disable object-curly-newline */
 import { Router } from 'express';
 import { authManager } from '../middlewares/authManager';
-import { updateRequestValidation } from '../middlewares/requestValidation';
+import { approveRequestValidation } from '../middlewares/requestValidation';
+import requestController from '../controllers/requestController';
 import managerController from '../controllers/managerController';
 
 const router = new Router(),
-  {
-    getAllRequests,
-    getOneRequest,
-    addRequest,
-    updateRequest,
-    assignManagerId
-  } = managerController;
+  { createRequest } = requestController,
+  { getAllRequests, getOneRequest, updateRequest, assignManagerId } = managerController;
 
 /**
  * @swagger
@@ -58,13 +55,13 @@ router.get('/requests/:id', authManager, getOneRequest);
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/addRequest'
+ *              $ref: '#/components/schemas/createRequest'
  *      responses:
  *        "200":
  *          description: Request added successfully!
  * components:
  *    schemas:
- *      addRequest:
+ *      createRequest:
  *        type: object
  *        required:
  *          - idRoom
@@ -78,7 +75,7 @@ router.get('/requests/:id', authManager, getOneRequest);
  *          dateEnd:
  *            type: string
  */
-router.post('/requests', authManager, addRequest);
+router.post('/requests', authManager, createRequest);
 
 /**
  * @swagger
@@ -114,7 +111,7 @@ router.post('/requests', authManager, addRequest);
  *          requestStatus:
  *            type: string
 */
-router.put('/requests/:id', authManager, updateRequestValidation, updateRequest);
+router.put('/requests/:id', authManager, approveRequestValidation, updateRequest);
 
 /**
  * @swagger
