@@ -15,7 +15,6 @@ describe('Profile APIs', () => {
         password: 'test@123',
         gender: 'Male',
         origin: 'Rwanda',
-        profession: 'Software Engineer',
         age: 25,
         identification_type: 'ID',
         identification_number: '123344aabcef3e'
@@ -57,10 +56,6 @@ describe('Updating the user profile', ()=> {
               "value": "Rwanda",
               "save": false
             },
-            "profession": {
-              "value": "Software designer",
-              "save": false
-            },
             "age": {
               "value": 20,
               "save": false
@@ -86,7 +81,6 @@ describe('Updating the user profile', ()=> {
                 expect(res.body.profile).to.haveOwnProperty('firstname');
                 expect(res.body.profile).to.haveOwnProperty('lastname');
                 expect(res.body.profile).to.haveOwnProperty('origin');
-                expect(res.body.profile).to.haveOwnProperty('profession');
                 expect(res.body.profile).to.haveOwnProperty('identification_type');
                 expect(res.body.profile).to.haveOwnProperty('identification_number');
                 done();
@@ -109,7 +103,6 @@ describe('/GET profile', () => {
               expect(res).to.not.be.null;
               expect(res.body.lastname).to.haveOwnProperty('value');
               expect(res.body.origin).to.haveOwnProperty('value');
-              expect(res.body.profession).to.haveOwnProperty('value');
               expect(res.body.identification_type).to.haveOwnProperty('value');
               expect(res.body.identification_number).to.haveOwnProperty('value');
               expect(res.body.firstname.save).to.be.true;

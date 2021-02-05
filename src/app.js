@@ -8,14 +8,14 @@ import hotelRoutes from './routes/hotelRoute';
 import userRoutes from './routes/user';
 import i18n from './utils/i18n';
 import managerRoutes from './routes/managerRoutes';
-import Requests from './routes/requestRoute';
+import requestRoutes from './routes/requestRoute';
 import facilityRoute from './routes/Facility';
 import reactionRoutes from './routes/reaction';
-
+import commentRoutes from './routes/comment';
+import facilityFeedback from './routes/facilitiesFeedbackRoute';
 dotenv.config();
 
 const app = express();
-
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -54,11 +54,6 @@ const swaggerOptions = {
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.text());
-app.use(bodyParser.json({ type: 'application/json' }));
-app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -69,8 +64,9 @@ app.use('/hotels', hotelRoutes);
 app.use('/roles', roleRoutes);
 app.use(rooms);
 app.use('/manager', managerRoutes);
-app.use('/Request', Requests);
+app.use('/requests', requestRoutes);
 app.use('/facility', facilityRoute);
 app.use('/facility', reactionRoutes);
+app.use(commentRoutes);
 
 export default app;

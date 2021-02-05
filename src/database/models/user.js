@@ -1,41 +1,34 @@
-'use strict';
-const bcrypt = require('bcrypt');
-const {
-  Model
-} = require('sequelize');
+/* eslint-disable no-sequences */
+/* eslint-disable no-unused-expressions */
+import bcrypt from 'bcrypt';
+
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      User.hasMany(models.Reaction, {
-        foreignKey: 'userId',
-        onDelete: 'CASCADE'
-      })
-    }
-  };
-  User.init({
+  const User = sequelize.define('User', {
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
     telephone: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    roleId: DataTypes.INTEGER,
+    email: {
+      type: DataTypes.STRING
+    },
+    password: {
+      type: DataTypes.STRING
+    },
+    roleId: {
+      type: DataTypes.INTEGER,
+      defaultValue: 5
+    },
+    managerId: DataTypes.INTEGER,
+    gender: DataTypes.STRING,
     origin: DataTypes.STRING,
-    profession: DataTypes.STRING,
     age: DataTypes.INTEGER,
-    isVerified: DataTypes.BOOLEAN,
     identification_type: DataTypes.STRING,
     identification_number: DataTypes.STRING,
     user_image: DataTypes.STRING,
+    isVerified: DataTypes.BOOLEAN,
     savedData: DataTypes.ARRAY(DataTypes.STRING)
   }, {
     sequelize,
-    modelName: 'User',
+    modelName: 'User'
   });
 
   User.beforeSave((user, options) => {
@@ -58,9 +51,12 @@ module.exports = (sequelize, DataTypes) => {
     User.belongsTo(models.userRoles, {
       as: 'role',
       foreignKey: 'roleId'
-    })
+    }),
+    User.hasMany(models.Reaction, {
+      foreignKey: 'userId',
+      onDelete: 'CASCADE'
+    });
   };
 
   return User;
-
 };
