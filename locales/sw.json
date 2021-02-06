@@ -32,7 +32,6 @@
 	"Please login first!": "Tafadhali ingia kwanza!",
 	"Unauthorized": "Isiyoidhinishwa",
 	"Only super administrator can perform this action!": "Msimamizi mkuu tu ndiye anayeweza kufanya kitendo hiki!",
-	
 	"Facility liked": "Kituo kilipendwa",
 	"Reaction undone": "Majibu yamefutwa",
 	"Facility Liked": "Kituo Unapenda",
@@ -42,12 +41,10 @@
 	"Facility re-unliked": "Kituo hakipendwi",
 	"FacilityId is required": "KituoId kinahitajika",
 	"No facility found": "Hakuna kituo kilichopatikana",
-	
 	"Access denied. You can only update your profile":"Ufikiaji umekataliwa. Unaweza tu kusasisha wasifu wako",
 	"User not found":"Mtumiaji hajapatikana",
 	"Profile not found":"Profaili haipatikani",
 	"Profile saved successfully":"Wasifu umehifadhiwa kwa mafanikio",
-	
 	"Please login!": "Tafadhali ingia!",
 	"No role assigned!": "Hakuna jukumu lililopewa!",
 	"Access denied!": "Ufikiaji umekataliwa!",
@@ -64,5 +61,7 @@
 	"Please login first":"Tafadhali ingia kwanza",
 	"Facility Not found!":"Kituo Haikupatikana!",
 	"Internal error":"Hitilafu ya ndani",
-	"Hotel does not exist!": "Hoteli haipo!"
+	"Hotel does not exist!": "Hoteli haipo!",
+	"All received notifications": "Arifa zote zilizopokelewa",
+	"No notifications yet": "Hakuna arifa bado"
 }

@@ -60,6 +60,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'userId',
       onDelete: 'CASCADE'
     });
+    User.hasMany(models.Notification, {
+      foreignKey: 'userId',
+      as: 'notifications'
+    });
   };
 
   return User;
