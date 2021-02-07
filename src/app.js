@@ -13,7 +13,7 @@ import facilityRoute from './routes/Facility';
 import reactionRoutes from './routes/reaction';
 import commentRoutes from './routes/comment';
 import ratingRoutes from './routes/rating';
-
+import searchRoutes from "./routes/searchRoute";
 
 dotenv.config();
 
@@ -77,5 +77,6 @@ app.use('/facility', facilityRoute);
 app.use('/facility', reactionRoutes);
 app.use(commentRoutes);
 app.use('/facility', ratingRoutes);
+app.use(searchRoutes);
 
 export default app;
