@@ -12,6 +12,8 @@ import requestRoutes from './routes/requestRoute';
 import facilityRoute from './routes/Facility';
 import reactionRoutes from './routes/reaction';
 import commentRoutes from './routes/comment';
+import ratingRoutes from './routes/rating';
+
 
 dotenv.config();
 
@@ -74,5 +76,6 @@ app.use('/requests', requestRoutes);
 app.use('/facility', facilityRoute);
 app.use('/facility', reactionRoutes);
 app.use(commentRoutes);
+app.use('/facility', ratingRoutes);
 
 export default app;

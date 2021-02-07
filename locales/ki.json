@@ -54,5 +54,10 @@
 	"Request added successfully!": "Ibyifuzo byongeweho neza!",
 	"Request updated successfully!": "Ibyifuzo byavuguruwe neza!",
 	"Internal server error!": "Ikosa rya seriveri imbere!",
-	"Only PENDING request can be edited!": "Icyifuzo cya PENDING cyonyine gishobora guhindurwa!"
+	"Only PENDING request can be edited!": "Icyifuzo cya PENDING cyonyine gishobora guhindurwa!",
+	"Please login first":"Mubanze mwinjire muri konte yanyu",
+	"Bad request":"Ubusabe bubi",
+	"Facility Not found!":"Ikigo Nticyabonetse!",
+	"Internal error":"Ikosa ryimbere"
+	
 }
