@@ -60,5 +60,9 @@
 	"Request updated successfully!": "Ombi limesasishwa kwa mafanikio!",
 	"Internal server error!": "Hitilafu ya seva ya ndani!",
 	"Only PENDING request can be edited!": "Ombi linalosubiri tu linaweza kuhaririwa!",
+	"Bad request":"Ombi baya",
+	"Please login first":"Tafadhali ingia kwanza",
+	"Facility Not found!":"Kituo Haikupatikana!",
+	"Internal error":"Hitilafu ya ndani",
 	"Hotel does not exist!": "Hoteli haipo!"
 }
