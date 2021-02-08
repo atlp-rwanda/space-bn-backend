@@ -64,7 +64,7 @@ export const signin = (req, res) => {
       }
       user.comparePassword(req.body.password, (err, isMatch) => {
         if (isMatch && !err) {
-           token = jwt.sign(JSON.parse(JSON.stringify(user)), process.env.JWT_KEY, { expiresIn: '1h' });
+           token = jwt.sign(JSON.parse(JSON.stringify(user)), process.env.JWT_KEY, { expiresIn: '24h' });
           jwt.verify(token, process.env.JWT_KEY, (err, data) => {
            
           });
