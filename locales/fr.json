@@ -70,5 +70,6 @@
 	"Please login first":"S'il vous plait Connectez-vous d'abord",
 	"Bad request":"Mauvaise demande",
 	"Facility Not found!":"Installation introuvable!",
-	"Internal error":"Erreur interne"
+	"Internal error":"Erreur interne",
+	"Hotel does not exist!": "L'hôtel n'existe pas!"
 }

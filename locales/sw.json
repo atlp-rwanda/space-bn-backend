@@ -63,5 +63,6 @@
 	"Bad request":"Ombi baya",
 	"Please login first":"Tafadhali ingia kwanza",
 	"Facility Not found!":"Kituo Haikupatikana!",
-	"Internal error":"Hitilafu ya ndani"
+	"Internal error":"Hitilafu ya ndani",
+	"Hotel does not exist!": "Hoteli haipo!"
 }

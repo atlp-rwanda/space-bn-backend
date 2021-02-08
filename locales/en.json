@@ -84,5 +84,13 @@
 	"Please login first": "Please login first",
 	"Bad request!": "Bad request!",
 	"TRAVEL_TEAM_MEMBER already exist": "TRAVEL_TEAM_MEMBER already exist",
-	"Internal error": "Internal error"
+	"Internal error": "Internal error",
+	"Hotel does not exist!": "Hotel does not exist!",
+	"Cannot read property 'status' of undefined": "Cannot read property 'status' of undefined",
+	"WHERE parameter \"hotelname\" has invalid \"undefined\" value": "WHERE parameter \"hotelname\" has invalid \"undefined\" value",
+	"Room id does not exist!": "Room id does not exist!",
+	"Room Id is already occupied!": "Room Id is already occupied!",
+	"No request found!": "No request found!",
+	"Manager Id does not exist.": "Manager Id does not exist.",
+	"User does not exist.": "User does not exist."
 }
