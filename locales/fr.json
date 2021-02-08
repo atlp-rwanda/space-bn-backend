@@ -66,5 +66,6 @@
 	"You are not authorised!":"Vous n'êtes pas autorisé!",
 	"You must be a travel admin":"Vous devez être un administrateur de voyages",
 	"Manager Id is assigned successfully!": "Manager Id is assigned successfully!",
-	"Only PENDING request can be edited!": "Seule la demande PENDING peut être éditée!"
+	"Only PENDING request can be edited!": "Seule la demande PENDING peut être éditée!",
+	"Hotel does not exist!": "L'hôtel n'existe pas!"
 }
