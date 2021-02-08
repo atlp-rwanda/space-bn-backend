@@ -15,7 +15,8 @@ module.exports = {
       user_image: '',
       createdAt: new Date(),
       updatedAt: new Date()
-    }], {});
+    },
+  ], {});
   },
 
   down: async (queryInterface, Sequelize) => {

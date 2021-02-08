@@ -32,7 +32,6 @@
 	"Please login first!": "S'il vous plait Connectez-vous d'abord!",
 	"Unauthorized": "Non autorisé",
 	"Only super administrator can perform this action!": "Seul le super administrateur peut effectuer cette action!",
-	
 	"Facility liked": "Établissement aimée",
 	"Reaction undone": "Réaction annulée",
 	"Facility Liked": "Établissement a aimé",
@@ -42,12 +41,10 @@
 	"Facility re-unliked": "Établissement repensée",
 	"FacilityId is required": "FacilityId est obligatoire",
 	"No facility found": "Aucune établissement trouvée",
-	
-	"Access denied. You can only update your profile":"Accès refusé. Vous pouvez uniquement mettre à jour votre profil",
-	"User not found":"Utilisateur non trouvé",
-	"Profile not found":"Profil non trouvé",
-	"Profile saved successfully":"Profil enregistré avec succès",
-	
+	"Access denied. You can only update your profile": "Accès refusé. Vous pouvez uniquement mettre à jour votre profil",
+	"User not found": "Utilisateur non trouvé",
+	"Profile not found": "Profil non trouvé",
+	"Profile saved successfully": "Profil enregistré avec succès",
 	"Please login!": "Veuillez vous connecter!",
 	"No role assigned!": "Aucun rôle attribué!",
 	"Access denied!": "Accès refusé!",
@@ -61,5 +58,14 @@
 	"Internal server error!": "Erreur Interne du Serveur!",
 	"No request found!": "No request found!",
 	"Request does not exist!": "Request does not exist!",
-	"User does not exist.": "User does not exist."
+	"User does not exist.": "User does not exist.",
+	"facility not found!": "institution introuvable!",
+	"facility deleted successfuly":"Institution supprimée avec succès",
+	"facility updated succeddfuly":"Institution mise à jour avec succès",
+	"Provide you credentials":"Fournissez vos identifiants",
+	"You are not authorised!":"Vous n'êtes pas autorisé!",
+	"You must be a travel admin":"Vous devez être un administrateur de voyages",
+	"Manager Id is assigned successfully!": "Manager Id is assigned successfully!",
+	"Only PENDING request can be edited!": "Seule la demande PENDING peut être éditée!",
+	"Hotel does not exist!": "L'hôtel n'existe pas!"
 }
