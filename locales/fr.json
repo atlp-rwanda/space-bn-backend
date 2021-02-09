@@ -74,5 +74,10 @@
 	"Feedback deleted":"Commentaires supprimés",
 	"Feedback marked as seen":"Commentaires marqués comme vus",
 	"Feedback marked as not seen":"Commentaires marqués comme non visibles",
-	"\"feedback_title\" is required": "\"feedback_title\" is required"
+	"\"feedback_title\" is required": "\"feedback_title\" is required",
+	"Please login first":"S'il vous plait Connectez-vous d'abord",
+	"Bad request":"Mauvaise demande",
+	"Facility Not found!":"Installation introuvable!",
+	"Internal error":"Erreur interne",
+	"Hotel does not exist!": "L'hôtel n'existe pas!"
 }

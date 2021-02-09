@@ -67,6 +67,11 @@
 	"Feedback sender not found":"Mtumaji maoni hajapatikana",
 	"Feedback deleted":"Maoni yamefutwa",
 	"Feedback marked as seen":"Maoni yametiwa alama kama inavyoonekana",
-	"Feedback marked as not seen":"Maoni yametiwa alama kuwa hayaonekani"
+	"Feedback marked as not seen":"Maoni yametiwa alama kuwa hayaonekani",
 
+	"Bad request":"Ombi baya",
+	"Please login first":"Tafadhali ingia kwanza",
+	"Facility Not found!":"Kituo Haikupatikana!",
+	"Internal error":"Hitilafu ya ndani",
+	"Hotel does not exist!": "Hoteli haipo!"
 }

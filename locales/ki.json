@@ -62,5 +62,11 @@
 	"Feedback sender not found":"Kohereza ibitekerezo ntabwo byabonetse",
 	"Feedback deleted":"Ibisubizo byasibwe",
 	"Feedback marked as seen":"Ibisubizo byemejwe ko byarebywe",
-	"Feedback marked as not seen":"Ibisubizo byemejwe ko bitarebywe"
+	"Feedback marked as not seen":"Ibisubizo byemejwe ko bitarebywe",
+	
+	"Please login first":"Mubanze mwinjire muri konte yanyu",
+	"Bad request":"Ubusabe bubi",
+	"Facility Not found!":"Ikigo Nticyabonetse!",
+	"Internal error":"Ikosa ryimbere",
+	"Hotel does not exist!": "Hotel ntabwo ibaho!"
 }

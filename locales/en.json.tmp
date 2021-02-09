@@ -49,5 +49,6 @@
 	"Request Id does not exist!": "Request Id does not exist!",
 	"Authentication failed. User not found.": "Authentication failed. User not found.",
 	"Room with the specified ID does not exists": "Room with the specified ID does not exists",
-	"Email already registered": "Email already registered"
+	"Email already registered": "Email already registered",
+	"Authentication failed. Wrong password.": "Authentication failed. Wrong password."
 }

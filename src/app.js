@@ -12,7 +12,9 @@ import requestRoutes from './routes/requestRoute';
 import facilityRoute from './routes/Facility';
 import reactionRoutes from './routes/reaction';
 import commentRoutes from './routes/comment';
-import facilityFeedback from './routes/facilitiesFeedbackRoute';
+import ratingRoutes from './routes/rating';
+import searchRoutes from "./routes/searchRoute";
+
 dotenv.config();
 
 const app = express();
@@ -68,5 +70,7 @@ app.use('/requests', requestRoutes);
 app.use('/facility', facilityRoute);
 app.use('/facility', reactionRoutes);
 app.use(commentRoutes);
+app.use('/facility', ratingRoutes);
+app.use(searchRoutes);
 
 export default app;
