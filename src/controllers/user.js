@@ -99,9 +99,8 @@ export const getUserById = async (req, res) => {
       return res.status(404).json({message: res.__('No User with the specified')});
     } 
 }
-
 export const updateUserById = async (req, res) => {
-  
+
     try {
       const id = req.params.id;
       const [user] = await model.User.update(req.body, {where: {id : id }});
