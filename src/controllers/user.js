@@ -68,7 +68,8 @@ export const signin = (req, res) => {
           jwt.verify(token, process.env.JWT_KEY, (err, data) => {
            
           });
-          res.json({ success: true, token: `JWT ${token}` });
+          user.password = undefined;
+          res.json({ success: true, token: `JWT ${token}`, user });
         } else {
           res.status(401).json({ success: false, message: res.__('Authentication failed. Wrong password.' )});
         }
@@ -101,14 +102,6 @@ export const getUserById = async (req, res) => {
 
 export const updateUserById = async (req, res) => {
   
-    const users = await model.User.findAll();
-    for(let i=0; i < users.length; i++){
-      if (users[i].email === req.body.email){
-          return res.status(409).json({
-             message: res._('User update failed, a user with the specified email exist'),
-          });
-      }
-    }
     try {
       const id = req.params.id;
       const [user] = await model.User.update(req.body, {where: {id : id }});
