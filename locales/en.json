@@ -92,5 +92,8 @@
 	"Room Id is already occupied!": "Room Id is already occupied!",
 	"No request found!": "No request found!",
 	"Manager Id does not exist.": "Manager Id does not exist.",
-	"User does not exist.": "User does not exist."
+	"User does not exist.": "User does not exist.",
+	"All received notifications": "All received notifications",
+	"No notifications yet": "No notifications yet",
+	"All received notification": "All received notification"
 }

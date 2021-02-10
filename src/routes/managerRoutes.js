@@ -1,4 +1,4 @@
-/* eslint-disable object-curly-newline */
+/* eslint-disable import/no-cycle */
 import { Router } from 'express';
 import { authManager } from '../middlewares/authManager';
 import { approveRequestValidation } from '../middlewares/requestValidation';
@@ -7,7 +7,9 @@ import managerController from '../controllers/managerController';
 
 const router = new Router(),
   { createRequest } = requestController,
-  { getAllRequests, getOneRequest, updateRequest, assignManagerId } = managerController;
+  {
+    getAllRequests, getOneRequest, updateRequest, assignManagerId
+  } = managerController;
 
 /**
  * @swagger

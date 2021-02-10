@@ -10,6 +10,14 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
       });
+      request.belongsTo(models.User, {
+        as:'Requester',
+        foreignKey:'idUser'
+      });
+      request.hasMany(models.Notification, {
+        foreignKey: 'requestId',
+        as: 'notifications'
+      });
     }
   }
   request.init({
