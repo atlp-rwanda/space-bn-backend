@@ -33,8 +33,6 @@
 	"Request found successfully!": "Request found successfully!",
 	"Request does not exist.": "Request does not exist.",
 	"Request updated successfully!": "Request updated successfully!",
-	"Manager Id does not exist.": "Manager Id does not exist.",
-	"User does not exist.": "User does not exist.",
 	"Profile saved successfully": "Profile saved successfully",
 	"Facility Not found!": "Facility Not found!",
 	"Internal error": "Internal error",
@@ -49,5 +47,12 @@
 	"Request Id does not exist!": "Request Id does not exist!",
 	"Authentication failed. User not found.": "Authentication failed. User not found.",
 	"Room with the specified ID does not exists": "Room with the specified ID does not exists",
-	"Email already registered": "Email already registered"
+	"Email already registered": "Email already registered",
+	"No request found!": "No request found!",
+	"Manager Id does not exist.": "Manager Id does not exist.",
+	"User does not exist.": "User does not exist.",
+	"All received notifications": "All received notifications",
+	"No notifications yet": "No notifications yet",
+	"All received notification": "All received notification",
+	"Authentication failed. Wrong password.": "Authentication failed. Wrong password."
 }

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable object-curly-newline */
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
@@ -7,6 +8,7 @@ import hotelService from '../services/hotelService';
 import roomService from '../services/roomService';
 import requestService from '../services/requestService';
 import requestHelper from '../utils/requestHelper';
+import checkRequestAndNotify from '../helpers/checkType';
 
 const { request } = model,
   { findHotelByName } = hotelService,
@@ -79,6 +81,11 @@ export default class requestController {
         dateStart,
         dateEnd
       });
+      const userId = id;
+      const status = savedRequest.dataValues.requestStatus;
+      const reqId = savedRequest.dataValues.id;
+
+      checkRequestAndNotify(status, 'PENDING', userId, reqId, 'Request created', 'Your request has been created');
 
       res.status(201).json({ message: res.__('Request created successfully!'), savedRequest });
     } catch (error) {
