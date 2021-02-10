@@ -1,7 +1,7 @@
 import { use, request, expect } from 'chai';
 import http from 'chai-http';
 import models from '../../database/models';
-import app from '../../app';
+import { app } from '../../app';
 
 const { Notification } = models;
 

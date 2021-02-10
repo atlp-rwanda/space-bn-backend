@@ -1,6 +1,7 @@
 import { use, request, expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
+import model from '../database/models';
 
 use(chaiHttp);
 
@@ -8,7 +9,6 @@ const { ADMIN_PASSWORD } = process.env;
 
 let tokenManager = '',
   tokenUser = '',
-  roomId = '',
   userId = '';
 
 describe('REQUEST Endpoints', () => {
@@ -76,7 +76,6 @@ describe('REQUEST Endpoints', () => {
                   pricerange: '$280',
                   location: 'Kigali',
                   ranking: '3 star',
-                  rooms: ['Double rooms', 'Single rooms', 'complex rooms'],
                   images: ['www.unsplash.com/umubavu', 'www.gettyimages/umubavuhotel'],
                   hotelemail: 'five@yahoo.com'
                 });
@@ -84,12 +83,17 @@ describe('REQUEST Endpoints', () => {
             });
 
             describe('Create a room', () => {
+              let hotelId;
+              let hotelName;
               before(async () => {
+                const hotel = await model.hotel.findAll();
+                hotelId = hotel[0].dataValues.id;
+                hotelName = hotel[0].dataValues.hotelname;
                 const res = await request(app)
-                  .post('/rooms')
+                  .post('/hotels/rooms')
                   .set('authorization', tokenUser)
                   .send({
-                    hotelId: 2,
+                    hotelId,
                     description: 'Room for VIP',
                     roomType: 'Single Room',
                     roomLabel: 'label 003',
@@ -99,7 +103,6 @@ describe('REQUEST Endpoints', () => {
                     createdAt: new Date(),
                     updatedAt: new Date()
                   });
-                roomId = res.body.room.id;
                 expect(res).to.have.status(200);
               });
 
@@ -109,7 +112,7 @@ describe('REQUEST Endpoints', () => {
                     .post('/requests')
                     .set('authorization', tokenUser)
                     .send({
-                      hotelName: 'UBUMWE',
+                      hotelName,
                       idRoom: 1,
                       dateStart: '2021-01-08',
                       dateEnd: '2021-01-19'
@@ -134,37 +137,13 @@ describe('REQUEST Endpoints', () => {
                     .post('/requests')
                     .set('authorization', tokenUser)
                     .send({
-                      hotelName: 'UBUMWE',
-                      idRoom: 1,
-                      dateStart: '2021-01-08',
-                      dateEnd: '2021-01-19'
+                      hotelName,
+                      idRoom: 100,
+                      dateStart: '2021-01-19',
+                      dateEnd: '2021-02-19'
                     });
-                  expect(res).to.have.status(400);
-                });
-
-                it('Update a room', async () => {
-                  const res = await request(app)
-                    .put(`/rooms/${roomId}`)
-                    .set('authorization', tokenManager)
-                    .send({
-                      status: 'OCCUPIED'
-                    });
-                  expect(res).to.have.status(200);
-                });
-
-                it('Should get "Room Id is already occupied" message', async () => {
-                  const res = await request(app)
-                    .post('/requests')
-                    .set('authorization', tokenUser)
-                    .send({
-                      hotelName: 'UBUMWE',
-                      idRoom: 1,
-                      dateStart: '2021-01-08',
-                      dateEnd: '2021-01-19'
-                    });
-                  expect(res).to.have.status(400);
+                  expect(res).to.have.status(403);
                   expect(res.body).to.have.property('message');
-                  expect(res.body.message).to.match(/Room Id is already occupied!/i);
                 });
               });
 
