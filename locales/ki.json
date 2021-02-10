@@ -59,5 +59,7 @@
 	"Bad request":"Ubusabe bubi",
 	"Facility Not found!":"Ikigo Nticyabonetse!",
 	"Internal error":"Ikosa ryimbere",
-	"Hotel does not exist!": "Hotel ntabwo ibaho!"
+	"Hotel does not exist!": "Hotel ntabwo ibaho!",
+	"All received notifications": "Imenyesha zose zakiriwe",
+	"No notifications yet": "Nta menyesha"
 }

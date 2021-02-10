@@ -1,7 +1,7 @@
 process.env.NODE_ENV = 'test';
 
 import model from '../database/models';
-import app from "../app";
+import { app } from "../app";
 import chai from "chai";
 import chaiHttp from "chai-http";
 const { expect } = chai;

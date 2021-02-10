@@ -1,8 +1,6 @@
 import chai from 'chai';
-
 import http from 'chai-http';
 import jwt from 'jsonwebtoken';
-
 import app from '../app';
 
 const { expect } = chai;
@@ -21,9 +19,6 @@ describe('Testing hotel endpoints', () => {
       password: 'furebo@#'
     };
     token = `JWT ${jwt.sign(JSON.parse(JSON.stringify(user)), process.env.JWT_KEY, { expiresIn: '1h' })}`;
-    jwt.verify(token, process.env.JWT_KEY, (err, data) => {
-      console.log(err, data);
-    });
   });
   describe('Getting hotels', () => {
     it('should return all hotels', (done) => {
@@ -63,7 +58,6 @@ describe('Testing hotel endpoints', () => {
 });
 
 describe(' Returning selected hotel', () => {
-  // const id = hotelId;
   it('should return selected hotel', (done) => {
     chai
       .request(app)
@@ -77,7 +71,6 @@ describe(' Returning selected hotel', () => {
 });
 
 describe(' Update selected hotel', () => {
-  // const id = hotelId;
   it('should update a hotel', (done) => {
     chai
       .request(app)
@@ -102,4 +95,38 @@ describe(' Update selected hotel', () => {
       });
   });
 });
-
+describe(' Delete selected hotel', () => {
+  after((done) => {
+    chai.request(app)
+      .post('/hotels')
+      .set('authorization', token)
+      .send({
+        hotelname: 'Serena Hotel',
+        pricerange: '$80',
+        location: 'Gisenyi',
+        ranking: '3 star',
+        parking: 'Yes',
+        wifi: 'Yes',
+        swimmingpool: 'no',
+        breakfast: 'Yes',
+        rooms: ['Double rooms', 'Single rooms', 'complex rooms'],
+        images: ['www.unsplash.com/umubavu', 'www.gettyimages/umubavuhotel'],
+        hotelemail: 'five@yahoo.com'
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(201);
+        hotelId = res.body.hotel.hotelId;
+        done();
+      });
+  });
+  it('should return 500 if hotel deleted but rooms not deleted', (done) => {
+    chai
+      .request(app)
+      .delete('/hotels/1')
+      .set('authorization', token)
+      .end((err, res) => {
+        expect(res.status).to.equal(500);
+        done();
+      });
+  });
+});

@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         as:'Requester',
         foreignKey:'idUser'
       });
+      request.hasMany(models.Notification, {
+        foreignKey: 'requestId',
+        as: 'notifications'
+      });
     }
   }
   request.init({

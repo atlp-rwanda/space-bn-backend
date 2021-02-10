@@ -1,8 +1,11 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable no-return-assign */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable require-jsdoc */
 import model from '../database/models';
 import requestService from '../services/requestService';
 import userService from '../services/userService';
+import checkRequestAndNotify from '../helpers/checkType';
 
 const { request, User } = model,
   { findRequestById, findRequestByManagerId } = requestService,
@@ -72,13 +75,19 @@ export default class managerController {
       const { id } = req.params;
       const existingRequest = await findRequestById(id);
 
-      if (!existingRequest) res.status(404).json({ message: res.__('Request does not exist.') });
-
+      if (!existingRequest) return res.status(404).json({ message: res.__('Request does not exist.') });
       await request.update(req.body, { where: { id } });
+      const updatedRequest = await request.findOne({ where: { id } });
+      const status = updatedRequest.dataValues.requestStatus;
+      const userId = updatedRequest.dataValues.idUser;
 
-      const updatedRequest = await findRequestById(id);
+      // approved request
+      checkRequestAndNotify(status, 'APPROVED', userId, id, 'Approved request', 'Your request has been approved');
 
-      res.status(200).json({ message: res.__('Request updated successfully!'), updatedRequest });
+      // rejected request
+      checkRequestAndNotify(status, 'REJECTED', userId, id, 'Rejected request', 'Your request has been rejected');
+
+      return res.status(200).json({ message: res.__('Request updated successfully!'), updatedRequest });
     } catch (error) {
       return res.status(500).send({ error: error.message });
     }

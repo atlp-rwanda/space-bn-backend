@@ -1,5 +1,3 @@
-/* eslint-disable prefer-const */
-/* eslint-disable object-curly-newline */
 import { use, request, expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
@@ -11,7 +9,6 @@ const { ADMIN_PASSWORD } = process.env;
 let tokenAdmin = '',
   tokenManager = '',
   tokenUser = '',
-  token = '',
   userId = '';
 
 describe('MANAGER Endpoints', () => {
@@ -307,7 +304,7 @@ describe('MANAGER Endpoints', () => {
                         });
 
                         describe('PUT/:id /manager/requests/:id', () => {
-                          it('Manager should update a request', async () => {
+                          it('Manager should reject a  request', async () => {
                             const res = await request(app)
                               .put('/manager/requests/1')
                               .set('authorization', tokenManager)
@@ -353,7 +350,7 @@ describe('MANAGER Endpoints', () => {
                               .set('authorization', tokenManager)
                               .send({
                                 _userId: userId,
-                                _managerId: 12
+                                _managerId: 1
                               });
                             expect(res).to.have.status(403);
                           });
@@ -389,6 +386,17 @@ describe('MANAGER Endpoints', () => {
                                 _managerId: 2
                               });
                             expect(res).to.have.status(404);
+                          });
+                          it('Manager should approve a request', async () => {
+                            const res = await request(app)
+                              .put('/manager/requests/1')
+                              .set('authorization', tokenManager)
+                              .send({
+                                requestStatus: 'APPROVED'
+                              });
+                            expect(res).to.have.status(200);
+                            expect(res.body).to.have.property('message');
+                            expect(res.body.message).to.match(/Request updated successfully!/i);
                           });
                         });
                       });

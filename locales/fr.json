@@ -71,5 +71,7 @@
 	"Bad request":"Mauvaise demande",
 	"Facility Not found!":"Installation introuvable!",
 	"Internal error":"Erreur interne",
-	"Hotel does not exist!": "L'hôtel n'existe pas!"
+	"Hotel does not exist!": "L'hôtel n'existe pas!",
+	"All received notifications": "Toutes les notifications reçues",
+	"No notifications yet": "Pas encore de notifications"
 }

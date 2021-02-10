@@ -1,5 +1,9 @@
+/* eslint-disable import/no-cycle */
 import express from 'express';
 import dotenv from 'dotenv';
+import http from 'http';
+import socketio from 'socket.io';
+import path from 'path';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import rooms from './routes';
@@ -13,18 +17,22 @@ import facilityRoute from './routes/Facility';
 import reactionRoutes from './routes/reaction';
 import commentRoutes from './routes/comment';
 import ratingRoutes from './routes/rating';
-import searchRoutes from "./routes/searchRoute";
+import searchRoutes from './routes/searchRoute';
+import notificationRoutes from './routes/notification';
+import initializeEvent from './helpers/events';
 
 dotenv.config();
 
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(i18n.init);
+app.use(express.static(path.join(__dirname, '../public')));
 
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -57,13 +65,22 @@ const swaggerOptions = {
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.text());
-app.use(bodyParser.json({ type: 'application/json' }));
-app.use(cors());
-app.use(express.json());
 
+// connect socket
+const server = http.createServer(app);
+const io = socketio(server);
+
+io.on('connection', (socket) => {
+  socket.emit('welcome', 'welcome to space barefoot nomad');
+  socket.on('join notification', (user) => {
+    socket.join(user.id);
+  });
+  socket.on('disconnect', () => {});
+});
+
+initializeEvent();
+
+// routes
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to Barefoot space nomad api!' });
 });
@@ -78,5 +95,8 @@ app.use('/facility', reactionRoutes);
 app.use(commentRoutes);
 app.use('/facility', ratingRoutes);
 app.use(searchRoutes);
+app.use('/notifications', notificationRoutes);
 
-export default app;
+export { io };
+export { app };
+export default server;
