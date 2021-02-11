@@ -99,5 +99,11 @@
 	"Hotel with the specified ID does not exists": "Hotel with the specified ID does not exists",
 	"Room not found": "Room not found",
 	"Room of the specified hotel was not found": "Room of the specified hotel was not found",
-	"Room updated successfuly": "Room updated successfuly"
+	"Room updated successfuly": "Room updated successfuly",
+	"All questions found successfully!": "All questions found successfully!",
+	"Question found successfully!": "Question found successfully!",
+	"Question added successfully!": "Question added successfully!",
+	"Please enter all fields!": "Please enter all fields!",
+	"Question deleted successfully!": "Question deleted successfully!",
+	"Question Id does not exist!": "Question Id does not exist!"
 }

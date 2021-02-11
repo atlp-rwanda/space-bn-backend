@@ -62,5 +62,10 @@
 	"No notifications yet": "Nta menyesha",
 	"Room not found": "Icyumba nticyabonetse",
 	"Room of the specified hotel was not found": "Icyumba cya hoteri yagenwe nticyabonetse",
-	"Room updated successfuly": "Icyumba cyavuguruwe neza"
+	"Room updated successfuly": "Icyumba cyavuguruwe neza",
+	"All questions found successfully!": "Ibibazo byose byabonetse neza!",
+	"Question found successfully!": "Ikibazo cyabonetse neza!",
+	"Question added successfully!": "Ikibazo cyongeweho neza!",
+	"Please enter all fields!": "Nyamuneka andika imirima yose!",
+	"Question deleted successfully!": "Ikibazo cyasibwe neza!"
 }
