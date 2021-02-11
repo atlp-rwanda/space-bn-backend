@@ -81,5 +81,8 @@
 	"Internal error":"Erreur interne",
 	"Hotel does not exist!": "L'hôtel n'existe pas!",
 	"All received notifications": "Toutes les notifications reçues",
-	"No notifications yet": "Pas encore de notifications"
+	"No notifications yet": "Pas encore de notifications",
+	"Room not found": "Chambre introuvable",
+	"Room of the specified hotel was not found": "La chambre de l'hôtel spécifié n'a pas été trouvée",
+	"Room updated successfuly": "Chambre mise à jour réussie"
 }

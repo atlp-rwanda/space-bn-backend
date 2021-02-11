@@ -72,5 +72,8 @@
 	"Internal error":"Hitilafu ya ndani",
 	"Hotel does not exist!": "Hoteli haipo!",
 	"All received notifications": "Arifa zote zilizopokelewa",
-	"No notifications yet": "Hakuna arifa bado"
+	"No notifications yet": "Hakuna arifa bado",
+	"Room not found": "Chumba hakijapatikana",
+	"Room of the specified hotel was not found": "Chumba cha hoteli iliyoainishwa hakikupatikana",
+	"Room updated successfuly": "Chumba kimesasishwa mafanikio"
 }

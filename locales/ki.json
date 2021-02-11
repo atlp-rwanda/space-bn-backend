@@ -32,7 +32,6 @@
 	"Please login first!": "Nyamuneka banza winjire!",
 	"Unauthorized": "Nta ruhushya",
 	"Only super administrator can perform this action!": "Super administrator niwe ushobora gukora iki gikorwa gusa!",
-	
 	"Facility liked": "Ikigo gikunzwe",
 	"Reaction undone": "reaction yakuweho",
 	"Facility Liked": "Ikigo gikunzwe",
@@ -42,7 +41,6 @@
 	"Facility re-unliked": "Ikigo cyongeye kwangwa",
 	"FacilityId is required": "FacilityId irakenewe",
 	"No facility found": "Nta kigo cyabonetse",
-	
 	"Please login!": "Nyamuneka injira!",
 	"No role assigned!": "Nta ruhare rwahawe!",
 	"Access denied!": "Kwinjira byanze!",
@@ -70,5 +68,8 @@
 	"Internal error":"Ikosa ryimbere",
 	"Hotel does not exist!": "Hotel ntabwo ibaho!",
 	"All received notifications": "Imenyesha zose zakiriwe",
-	"No notifications yet": "Nta menyesha"
+	"No notifications yet": "Nta menyesha",
+	"Room not found": "Icyumba nticyabonetse",
+	"Room of the specified hotel was not found": "Icyumba cya hoteri yagenwe nticyabonetse",
+	"Room updated successfuly": "Icyumba cyavuguruwe neza"
 }
