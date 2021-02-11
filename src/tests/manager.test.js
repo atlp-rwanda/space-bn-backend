@@ -1,6 +1,7 @@
 import { use, request, expect } from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../app';
+import { app } from '../app';
+import model from '../database/models';
 
 use(chaiHttp);
 
@@ -129,6 +130,8 @@ describe('MANAGER Endpoints', () => {
                   });
 
                   describe('User creates a hotel', () => {
+                    let hotelId;
+                    let hotelName;
                     before(async () => {
                       const res = await request(app)
                         .post('/hotels')
@@ -142,20 +145,22 @@ describe('MANAGER Endpoints', () => {
                           wifi: 'Yes',
                           swimmingpool: 'Yes',
                           breakfast: 'Yes',
-                          rooms: ['Double rooms', 'Single rooms', 'complex rooms'],
                           images: ['www.unsplash.com/umubavu', 'www.gettyimages/umubavuhotel'],
                           hotelemail: 'infos@marriott.com'
                         });
                       expect(res).to.have.status(201);
+                      const hotel = await model.hotel.findAll();
+                      hotelId = hotel[0].dataValues.id;
+                      hotelName = hotel[0].dataValues.hotelname;
                     });
 
                     describe('User creates a room', () => {
-                      before(async () => {
+                      it('Users create a room', async () => {
                         const res = await request(app)
-                          .post('/rooms')
+                          .post('/hotels/rooms')
                           .set('authorization', tokenUser)
                           .send({
-                            hotelId: 2,
+                            hotelId,
                             description: 'Room for VIP',
                             roomType: 'first class',
                             roomLabel: 'label 001',
@@ -170,10 +175,10 @@ describe('MANAGER Endpoints', () => {
 
                       it('User creates second room', async () => {
                         const res = await request(app)
-                          .post('/rooms')
+                          .post('/hotels/rooms')
                           .set('authorization', tokenUser)
                           .send({
-                            hotelId: 2,
+                            hotelId,
                             description: 'Room for VVIP',
                             roomType: 'Double Room',
                             roomLabel: 'label 002',
@@ -193,7 +198,7 @@ describe('MANAGER Endpoints', () => {
                             .post('/requests')
                             .set('authorization', tokenUser)
                             .send({
-                              hotelName: 'Marriott',
+                              hotelName,
                               idRoom: 2,
                               dateStart: '2021-01-29',
                               dateEnd: '2021-01-30'
@@ -245,7 +250,7 @@ describe('MANAGER Endpoints', () => {
                               .post('/manager/requests')
                               .set('authorization', tokenManager)
                               .send({
-                                hotelName: 'Marriott',
+                                hotelName,
                                 idRoom: 2,
                                 dateStart: '2021-01-25',
                                 dateEnd: '2021-01-30'
@@ -260,7 +265,7 @@ describe('MANAGER Endpoints', () => {
                               .post('/manager/requests')
                               .set('authorization', tokenManager)
                               .send({
-                                hotelName: 'Marriott',
+                                hotelName,
                                 idRoom: 500,
                                 dateStart: '2021-01-25',
                                 dateEnd: '2021-01-30'
@@ -311,7 +316,6 @@ describe('MANAGER Endpoints', () => {
                               .send({
                                 requestStatus: 'REJECTED'
                               });
-
                             expect(res).to.have.status(200);
                             expect(res.body).to.have.property('message');
                             expect(res.body.message).to.match(/Request updated successfully!/i);
@@ -324,7 +328,6 @@ describe('MANAGER Endpoints', () => {
                               .send({
                                 requestStatus: 'REJECTED'
                               });
-
                             expect(res).to.have.status(404);
                             expect(res.body).to.have.property('message');
                             expect(res.body.message).to.match(/Request does not exist./i);

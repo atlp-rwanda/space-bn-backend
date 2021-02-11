@@ -1,27 +1,24 @@
-'use strict';
+/* eslint-disable no-unused-vars */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Replies', {
+    await queryInterface.createTable('Questions', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
-        type: Sequelize.INTEGER
-      },
-      commentId: {
-        type: Sequelize.INTEGER
-      },
-      requesterName: {
+      name: {
         type: Sequelize.STRING
       },
-      replierName: {
+      email: {
         type: Sequelize.STRING
       },
-      replyContent: {
+      subject: {
         type: Sequelize.STRING
+      },
+      message: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
@@ -34,6 +31,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Replies');
+    await queryInterface.dropTable('Questions');
   }
 };
