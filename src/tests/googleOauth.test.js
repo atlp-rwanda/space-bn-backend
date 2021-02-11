@@ -4,6 +4,7 @@ import app from "../app";
 import generateToken from "../utils/genToken";
 import { mock } from "sinon";
 import { googleFunction } from "../controllers/googleOauth";
+import { userToken } from "../routes/googleOuth.route";
 
 var strategy = require("..");
 const { expect } = chai;
@@ -12,9 +13,9 @@ const userId = 1;
 
 const mockUser = {
   id: 1,
-  firstName: "test@gmail.com",
+  firstName: "test1",
   lastName: "test2",
-  roleId: 5,
+  email: "test@gmail.com",
 };
 describe("passport-oauth", function () {
   it("should alias Strategy to OAuthStrategy", function () {
@@ -52,6 +53,17 @@ describe("Google Endpoints", () => {
     };
 
     await googleFunction(null, null, mockUser, doneMock);
+  });
+
+  it("Aouth Login", async () => {
+    const req = { user: mockUser };
+    const res = {
+      status: () => ({
+        json: () => undefined,
+      }),
+    };
+    const nextMock = mock();
+    await userToken(req, res, nextMock);
   });
 });
     
