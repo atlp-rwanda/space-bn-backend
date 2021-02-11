@@ -95,5 +95,15 @@
 	"User does not exist.": "User does not exist.",
 	"All received notifications": "All received notifications",
 	"No notifications yet": "No notifications yet",
-	"All received notification": "All received notification"
+	"All received notification": "All received notification",
+	"Hotel with the specified ID does not exists": "Hotel with the specified ID does not exists",
+	"Room not found": "Room not found",
+	"Room of the specified hotel was not found": "Room of the specified hotel was not found",
+	"Room updated successfuly": "Room updated successfuly",
+	"All questions found successfully!": "All questions found successfully!",
+	"Question found successfully!": "Question found successfully!",
+	"Question added successfully!": "Question added successfully!",
+	"Please enter all fields!": "Please enter all fields!",
+	"Question deleted successfully!": "Question deleted successfully!",
+	"Question Id does not exist!": "Question Id does not exist!"
 }

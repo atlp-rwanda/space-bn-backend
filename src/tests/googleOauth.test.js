@@ -9,6 +9,7 @@ var strategy = require("..");
 const { expect } = chai;
 chai.use(chaiHttp);
 const userId = 1;
+
 const mockUser = {
   id: 1,
   firstName: "test@gmail.com",
@@ -21,6 +22,7 @@ describe("passport-oauth", function () {
      });
    });
 describe("Google Endpoints", () => {
+
   it("should login using google acount", (done) => {
     chai
       .request(app)
@@ -52,5 +54,4 @@ describe("Google Endpoints", () => {
     await googleFunction(null, null, mockUser, doneMock);
   });
 });
-
-
+    
