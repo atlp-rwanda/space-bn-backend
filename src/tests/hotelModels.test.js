@@ -2,6 +2,7 @@ import chai from 'chai';
 import http from 'chai-http';
 import jwt from 'jsonwebtoken';
 import app from '../app';
+import model from '../database/models';
 
 const { expect } = chai;
 
@@ -44,7 +45,6 @@ describe('Testing hotel endpoints', () => {
           wifi: 'Yes',
           swimmingpool: 'no',
           breakfast: 'Yes',
-          rooms: ['Double rooms', 'Single rooms', 'complex rooms'],
           images: ['www.unsplash.com/umubavu', 'www.gettyimages/umubavuhotel'],
           hotelemail: 'five@yahoo.com'
         })
@@ -85,7 +85,6 @@ describe(' Update selected hotel', () => {
         wifi: 'Yes',
         swimmingpool: 'no',
         breakfast: 'depends',
-        rooms: ['Double rooms', 'Single rooms', 'complex rooms'],
         images: ['www.unsplash.com/umubavu', 'www.gettyimages/umubavuhotel'],
         hotelemail: 'five@yahoo.com'
       })
@@ -96,7 +95,7 @@ describe(' Update selected hotel', () => {
   });
 });
 describe(' Delete selected hotel', () => {
-  after((done) => {
+  before((done) => {
     chai.request(app)
       .post('/hotels')
       .set('authorization', token)
@@ -109,7 +108,6 @@ describe(' Delete selected hotel', () => {
         wifi: 'Yes',
         swimmingpool: 'no',
         breakfast: 'Yes',
-        rooms: ['Double rooms', 'Single rooms', 'complex rooms'],
         images: ['www.unsplash.com/umubavu', 'www.gettyimages/umubavuhotel'],
         hotelemail: 'five@yahoo.com'
       })
@@ -119,14 +117,15 @@ describe(' Delete selected hotel', () => {
         done();
       });
   });
-  it('should return 500 if hotel deleted but rooms not deleted', (done) => {
+  it('should return 200 if hotel deleted', async () => {
+    const allHotels = await model.hotel.findAll();
+    const hotelToDelete = allHotels[1].dataValues.id;
     chai
       .request(app)
-      .delete('/hotels/1')
+      .delete(`/hotels/${hotelToDelete}`)
       .set('authorization', token)
       .end((err, res) => {
-        expect(res.status).to.equal(500);
-        done();
+        expect(res.status).to.equal(200);
       });
   });
 });

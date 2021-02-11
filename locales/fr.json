@@ -73,5 +73,13 @@
 	"Internal error":"Erreur interne",
 	"Hotel does not exist!": "L'hôtel n'existe pas!",
 	"All received notifications": "Toutes les notifications reçues",
-	"No notifications yet": "Pas encore de notifications"
+	"No notifications yet": "Pas encore de notifications",
+	"Room not found": "Chambre introuvable",
+	"Room of the specified hotel was not found": "La chambre de l'hôtel spécifié n'a pas été trouvée",
+	"Room updated successfuly": "Chambre mise à jour réussie",
+	"All questions found successfully!": "Toutes les questions ont été trouvées avec succès!",
+	"Question found successfully!": "Question trouvée avec succès!",
+	"Question added successfully!": "Question ajoutée avec succès!",
+	"Please enter all fields!": "Veuillez saisir tous les champs!",
+	"Question deleted successfully!": "Question deleted successfully!"
 }

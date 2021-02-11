@@ -21,6 +21,7 @@ import searchRoutes from './routes/searchRoute';
 import notificationRoutes from './routes/notification';
 import initializeEvent from './helpers/events';
 import googleRouter from "./routes/googleOuth.route";
+import questionRoutes from './routes/questionRoutes';
 
 dotenv.config();
 
@@ -99,7 +100,7 @@ app.use('/facility', ratingRoutes);
 app.use(searchRoutes);
 app.use('/notifications', notificationRoutes);
 app.use(googleRouter);
+app.use('/questions', questionRoutes);
 
-export { io };
-export { app };
+export { io, app };
 export default server;
