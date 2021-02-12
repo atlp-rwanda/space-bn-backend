@@ -1,26 +1,29 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Replies', {
+    await queryInterface.createTable('Messages', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      sender: {
         type: Sequelize.INTEGER
       },
-      commentId: {
+      receiver: {
         type: Sequelize.INTEGER
       },
-      requesterName: {
+      text: {
+        type: Sequelize.TEXT
+      },
+      attachementURL: {
         type: Sequelize.STRING
       },
-      replierName: {
-        type: Sequelize.STRING
+      seedBy: {
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
       },
-      replyContent: {
+      type: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -34,6 +37,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Replies');
+    await queryInterface.dropTable('Messages');
   }
 };

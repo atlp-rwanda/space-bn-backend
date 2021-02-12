@@ -20,6 +20,9 @@ import ratingRoutes from './routes/rating';
 import searchRoutes from './routes/searchRoute';
 import notificationRoutes from './routes/notification';
 import initializeEvent from './helpers/events';
+import questionRoutes from './routes/questionRoutes';
+import chat from './helpers/chat.helper';
+import messagesRoutes from './routes/message';
 
 dotenv.config();
 
@@ -71,10 +74,15 @@ const io = socketio(server);
 
 io.on('connection', (socket) => {
   socket.emit('welcome', 'welcome to space barefoot nomad');
+
   socket.on('join notification', (user) => {
     socket.join(user.id);
   });
+  
   socket.on('disconnect', () => {});
+
+  //chat socket
+  chat(socket);
 });
 
 initializeEvent();
@@ -95,6 +103,8 @@ app.use(commentRoutes);
 app.use('/facility', ratingRoutes);
 app.use(searchRoutes);
 app.use('/notifications', notificationRoutes);
+app.use('/questions', questionRoutes);
+app.use('/messages', messagesRoutes);
 
 export { io, app };
 export default server;
