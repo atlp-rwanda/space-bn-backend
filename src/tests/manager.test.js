@@ -316,7 +316,6 @@ describe('MANAGER Endpoints', () => {
                               .send({
                                 requestStatus: 'REJECTED'
                               });
-
                             expect(res).to.have.status(200);
                             expect(res.body).to.have.property('message');
                             expect(res.body.message).to.match(/Request updated successfully!/i);
@@ -329,7 +328,6 @@ describe('MANAGER Endpoints', () => {
                               .send({
                                 requestStatus: 'REJECTED'
                               });
-
                             expect(res).to.have.status(404);
                             expect(res.body).to.have.property('message');
                             expect(res.body.message).to.match(/Request does not exist./i);

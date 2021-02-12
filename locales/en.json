@@ -58,7 +58,13 @@
 	"Room of the specified hotel was not found": "Room of the specified hotel was not found",
 	"Room updated successfuly": "Room updated successfuly",
 	"Hotel deleted successfully.": "Hotel deleted successfully.",
-	"You attempt to assign a room to the hotel which does not exist ! Room not created.": "You attempt to assign a room to the hotel which does not exist ! Room not created.",
+	"You attempt to assign a room to the hotel whicih does not exist ! Room not created.": "You attempt to assign a room to the hotel which does not exist ! Room not created.",
 	"Room deleted successfully.": "Room deleted successfully.",
-	"Authentication failed. Wrong password.": "Authentication failed. Wrong password."
+	"Authentication failed. Wrong password.": "Authentication failed. Wrong password.",
+	"All questions found successfully!": "All questions found successfully!",
+	"Question found successfully!": "Question found successfully!",
+	"Question added successfully!": "Question added successfully!",
+	"Please enter all fields!": "Please enter all fields!",
+	"Question deleted successfully!": "Question deleted successfully!",
+	"Question Id does not exist!": "Question Id does not exist!"
 }

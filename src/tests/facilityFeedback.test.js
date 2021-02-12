@@ -129,7 +129,7 @@ describe('signin super admin ', () => {
             };
             chai
               .request(app)
-              .post(`/facility/feedback/facility/${facilityId}`)
+              .post(`/facility/${facilityId}/feedback`)
               .set('authorization', travelAdminToken)
               .send(data)
               .end((err, response) => {
@@ -145,7 +145,7 @@ describe('signin super admin ', () => {
             };
             chai
               .request(app)
-              .post(`/facility/feedback/facility/${facilityId}`)
+              .post(`/facility/${facilityId}/feedback`)
               .set('authorization', travelAdminToken)
               .send(data)
               .end((err, response) => {
@@ -159,7 +159,7 @@ describe('signin super admin ', () => {
             it('It should get feedback by Id', (done) => {
               chai
                 .request(app)
-                .get(`/facility/feedback/${feedbackId}`)
+                .get(`/facility/${facilityId}/feedback/${feedbackId}`)
                 .end((err, response) => {
                   expect(response).to.have.status(200);
                   expect(response.body).to.be.an('object');
@@ -171,7 +171,7 @@ describe('signin super admin ', () => {
               it('It should get feedback by feedback Id', (done) => {
                 chai
                   .request(app)
-                  .get(`/facility/feedback/facility/${facilityId}`)
+                  .get(`/facility/${facilityId}/feedback`)
                   .end((err, response) => {
                     expect(response).to.have.status(200);
                     expect(response.body).to.be.an('object');
@@ -183,7 +183,7 @@ describe('signin super admin ', () => {
                 it('It should update the feedback status as seen', (done) => {
                   chai
                     .request(app)
-                    .put(`/facility/feedback/${feedbackId}`)
+                    .put(`/facility/${facilityId}/feedback/${feedbackId}`)
                     .set('authorization', travelAdminToken)
                     .end((err, response) => {
                       expect(response).to.have.status(200);
@@ -197,7 +197,7 @@ describe('signin super admin ', () => {
                   it('It should update the feedback status as not seen', (done) => {
                     chai
                       .request(app)
-                      .put(`/facility/feedback/${feedbackId}`)
+                      .put(`/facility/${facilityId}/feedback/${feedbackId}`)
                       .set('authorization', travelAdminToken)
                       .end((err, response) => {
                         expect(response).to.have.status(200);
@@ -211,7 +211,7 @@ describe('signin super admin ', () => {
                 it('It should delete the feedback', (done) => {
                   chai
                     .request(app)
-                    .delete(`/facility/feedback/${feedbackId}`)
+                    .delete(`/facility/${facilityId}/feedback/${feedbackId}`)
                     .set('authorization', travelAdminToken)
                     .end((err, response) => {
                       expect(response).to.have.status(200);

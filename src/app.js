@@ -20,6 +20,7 @@ import ratingRoutes from './routes/rating';
 import searchRoutes from './routes/searchRoute';
 import notificationRoutes from './routes/notification';
 import initializeEvent from './helpers/events';
+import questionRoutes from './routes/questionRoutes';
 
 dotenv.config();
 
@@ -95,6 +96,7 @@ app.use(commentRoutes);
 app.use('/facility', ratingRoutes);
 app.use(searchRoutes);
 app.use('/notifications', notificationRoutes);
+app.use('/questions', questionRoutes);
 
 export { io, app };
 export default server;
