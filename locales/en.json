@@ -78,5 +78,7 @@
 	"comment with the specified ID does not exists": "comment with the specified ID does not exists",
 	"Request with the specified ID does not exists": "Request with the specified ID does not exists",
 	"Request with the specified ID does not exists ": "Request with the specified ID does not exists ",
-	"comment with the specified ID does not exists ": "comment with the specified ID does not exists "
+	"comment with the specified ID does not exists ": "comment with the specified ID does not exists ",
+	"Most travelled destinations found successfully!": "Most travelled destinations found successfully!",
+	"No destination found!": "No destination found!"
 }
