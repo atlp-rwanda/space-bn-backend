@@ -1,13 +1,16 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable object-curly-newline */
 /* eslint-disable max-len */
 import { Router } from 'express';
 import authRequest from '../middlewares/check-auth';
-import { createRequestValidation, updateRequestValidation } from '../middlewares/requestValidation';
+import { createRequestValidation, updateRequestValidation, reqStatisticsValidation } from '../middlewares/requestValidation';
 import requestController from '../controllers/requestController';
+import reqStatisticsController from '../controllers/reqStatisticsController';
 
 const router = Router();
 
-const { getAllRequests, getOneRequest, createRequest, updateRequest, deleteRequest } = requestController;
+const { getAllRequests, getOneRequest, createRequest, updateRequest, deleteRequest } = requestController,
+  { userGetReqStats } = reqStatisticsController;
 
 /**
  * @swagger
@@ -21,6 +24,25 @@ const { getAllRequests, getOneRequest, createRequest, updateRequest, deleteReque
  *        description: Requests are displayed successfuly.
 */
 router.get('/', authRequest, getAllRequests);
+
+/**
+ * @swagger
+ * /requests/stats:
+ *  get:
+ *    tags: [Request Accommodation]
+ *    summary: Authenticated user can get request statistics in X time.
+ *    description: Authenticated user can get request statistics in X time from database.
+ *    parameters:
+ *      - in: query
+ *        name: time
+ *        schema:
+ *          type: integer
+ *        description: days from today
+ *    responses:
+ *      '200':
+ *        description: Requests found successfully.
+*/
+router.get('/stats', authRequest, reqStatisticsValidation, userGetReqStats);
 
 /**
  * @swagger

@@ -89,5 +89,6 @@
 	"Question found successfully!": "Question trouvée avec succès!",
 	"Question added successfully!": "Question ajoutée avec succès!",
 	"Please enter all fields!": "Veuillez saisir tous les champs!",
-	"Question deleted successfully!": "Question deleted successfully!"
+	"Question deleted successfully!": "Question deleted successfully!",
+	"Invalid time!": "Heure invalide!"
 }

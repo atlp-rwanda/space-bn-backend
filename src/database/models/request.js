@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc */
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
@@ -11,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: 'CASCADE'
       });
       request.belongsTo(models.User, {
-        as:'Requester',
-        foreignKey:'idUser'
+        as: 'Requester',
+        foreignKey: 'idUser'
       });
       request.hasMany(models.Notification, {
         foreignKey: 'requestId',
