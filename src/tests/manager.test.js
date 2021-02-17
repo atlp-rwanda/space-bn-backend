@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import { use, request, expect } from 'chai';
 import chaiHttp from 'chai-http';
 import { app } from '../app';
@@ -10,7 +11,8 @@ const { ADMIN_PASSWORD } = process.env;
 let tokenAdmin = '',
   tokenManager = '',
   tokenUser = '',
-  userId = '';
+  userId = '',
+  time;
 
 describe('MANAGER Endpoints', () => {
   describe('Signin Super Admin', () => {
@@ -241,6 +243,26 @@ describe('MANAGER Endpoints', () => {
                             expect(res).to.have.status(400);
                             expect(res.body).to.have.property('error');
                             expect(res.body.message).to.match(/undefined/i);
+                          });
+                        });
+
+                        describe('GET /manager/requests/stats', () => {
+                          it('Manager should get requests statistics', async () => {
+                            time = 30;
+                            const res = await request(app)
+                              .get(`/manager/requests/stats?time=${time}`)
+                              .set('authorization', tokenManager);
+
+                            expect(res).to.have.status(200);
+                          });
+
+                          it('Manager should not get requests statistics', async () => {
+                            time = -30;
+                            const res = await request(app)
+                              .get(`/manager/requests/stats?time=${time}`)
+                              .set('authorization', tokenManager);
+
+                            expect(res).to.have.status(403);
                           });
                         });
 

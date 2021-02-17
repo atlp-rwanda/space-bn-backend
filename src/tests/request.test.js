@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import { use, request, expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
@@ -9,7 +10,8 @@ const { ADMIN_PASSWORD } = process.env;
 
 let tokenManager = '',
   tokenUser = '',
-  userId = '';
+  userId = '',
+  time;
 
 describe('REQUEST Endpoints', () => {
   describe('Signin Manager', () => {
@@ -153,6 +155,32 @@ describe('REQUEST Endpoints', () => {
                     .get('/requests')
                     .set('authorization', tokenUser);
                   expect(res).to.have.status(200);
+                });
+
+                describe('GET /requests/stats', () => {
+                  it('Should get request statistics', async () => {
+                    time = 30;
+                    const res = await request(app)
+                      .get(`/requests/stats?time=${time}`)
+                      .set('authorization', tokenUser);
+                    expect(res).to.have.status(200);
+                  });
+
+                  it('Should not get request statistics', async () => {
+                    time = -1;
+                    const res = await request(app)
+                      .get(`/requests/stats?time=${time}`)
+                      .set('authorization', tokenUser);
+                    expect(res).to.have.status(403);
+                  });
+
+                  it('Should not get request statistics', async () => {
+                    time = '-10';
+                    const res = await request(app)
+                      .get(`/requests/stats?time=${time}`)
+                      .set('authorization', tokenUser);
+                    expect(res).to.have.status(403);
+                  });
                 });
 
                 describe('GET/:id /requests/:id', () => {
