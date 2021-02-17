@@ -53,6 +53,15 @@
 	"Request updated successfully!": "Ibyifuzo byavuguruwe neza!",
 	"Internal server error!": "Ikosa rya seriveri imbere!",
 	"Only PENDING request can be edited!": "Icyifuzo cya PENDING cyonyine gishobora guhindurwa!",
+
+	"Facility not found": "Ikigo nticyabonetse",
+	"Feedback sent successfully":"Ibitekerezo byoherejwe neza",
+	"Feedback not found":"Ibisubizo ntibyabonetse",
+	"Feedback sender not found":"Kohereza ibitekerezo ntabwo byabonetse",
+	"Feedback deleted":"Ibisubizo byasibwe",
+	"Feedback marked as seen":"Ibisubizo byemejwe ko byarebywe",
+	"Feedback marked as not seen":"Ibisubizo byemejwe ko bitarebywe",
+	
 	"Please login first":"Mubanze mwinjire muri konte yanyu",
 	"Bad request":"Ubusabe bubi",
 	"Facility Not found!":"Ikigo Nticyabonetse!",

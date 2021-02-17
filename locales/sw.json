@@ -57,6 +57,15 @@
 	"Request updated successfully!": "Ombi limesasishwa kwa mafanikio!",
 	"Internal server error!": "Hitilafu ya seva ya ndani!",
 	"Only PENDING request can be edited!": "Ombi linalosubiri tu linaweza kuhaririwa!",
+
+	"Facility not found": "Kituo hakipatikani",
+	"Feedback sent successfully":"Maoni yametumwa kwa mafanikio",
+	"Feedback not found":"Maoni hayapatikani",
+	"Feedback sender not found":"Mtumaji maoni hajapatikana",
+	"Feedback deleted":"Maoni yamefutwa",
+	"Feedback marked as seen":"Maoni yametiwa alama kama inavyoonekana",
+	"Feedback marked as not seen":"Maoni yametiwa alama kuwa hayaonekani",
+
 	"Bad request":"Ombi baya",
 	"Please login first":"Tafadhali ingia kwanza",
 	"Facility Not found!":"Kituo Haikupatikana!",
