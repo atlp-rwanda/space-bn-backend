@@ -17,5 +17,22 @@ export default {
     } catch (error) {
       return res.status(500).json({ message: res.__('Internal server error!') });
     }
+  },
+
+  unReadNotifications: async (req, res) => {
+    try {
+      const { id } = req.userData;
+      const unreadNot = await Notification.findAll({
+        Where: { status: 'unread', userId: id }
+      });
+      if (!unreadNot) {
+        return res.status(404).send({ message: res.__('No unread notifications') });
+      }
+      await unreadNot.update({ status: 'read' });
+
+      return res.status(200).json({ message: res.__('All Notifications marked as read'), unreadNot });
+    } catch (error) {
+      return res.status(500).json({ message: res.__('Internal server error!') });
+    }
   }
 };

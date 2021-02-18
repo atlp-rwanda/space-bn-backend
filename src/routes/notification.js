@@ -20,5 +20,6 @@ const notificationRoutes = new Router();
  *        description: Internal server error.
 */
 notificationRoutes.get('/', checkAuth, notifications.getNotifications);
+notificationRoutes.put('/', checkAuth, notifications.unReadNotifications);
 
 export default notificationRoutes;

@@ -67,5 +67,6 @@
 	"Please enter all fields!": "Please enter all fields!",
 	"Question deleted successfully!": "Question deleted successfully!",
 	"Question Id does not exist!": "Question Id does not exist!",
-	"Invalid time!": "Invalid time!"
+	"Invalid time!": "Invalid time!",
+	"Hotel does not exist!": "Hotel does not exist!"
 }
