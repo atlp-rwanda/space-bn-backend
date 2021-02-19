@@ -36,7 +36,7 @@ export default {
     if (newRole) {
       return res.status(201).json({ message: res.__('Role created successfully!'), newRole });
     }
-    return res.status(500).json({ message: 'something went wrong!' });
+    return res.status(500).json({ message: res.__('something went wrong!') });
   },
   getRoles: async (req, res) => {
     const roles = await userRoles.findAll({ attribute: ['id', 'name', 'description'] });

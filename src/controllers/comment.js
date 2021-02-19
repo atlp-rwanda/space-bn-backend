@@ -29,7 +29,7 @@ export const CreateComment = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: error.message,
+      message: res.__('comment cannot be null'),
     });
   }
 };
@@ -91,7 +91,7 @@ export const ReplyComment = async (req, res) => {
     if (!request) {
       return res
         .status(404)
-        .json({ message: res.__('Request with the specified ID does not exists ') });
+        .json({ message: res.__('Request with the specified ID does not exists')});
     }
     const comment = await model.Comment.findOne({
       where: { id: req.params.id },
@@ -99,7 +99,7 @@ export const ReplyComment = async (req, res) => {
     if (!comment) {
       return res
         .status(404)
-        .json({ message: res.__('comment with the specified ID does not exists ') });
+        .json({ message: res.__('comment with the specified ID does not exists') });
     }
 
     const userid = req.userData.id;

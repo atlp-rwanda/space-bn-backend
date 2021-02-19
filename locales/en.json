@@ -79,7 +79,6 @@
 	"You cannot change the email": "You cannot change the email",
 	"Cannot update User with id=50. User not found": "Cannot update User with id=50. User not found",
 	"Cannot update User with id=70. User not found": "Cannot update User with id=70. User not found",
-	"Hotel does not exist!": "Hotel does not exist!",
 	"comment not found such Id": "comment not found such Id",
 	"comment with the specified ID does not exists": "comment with the specified ID does not exists",
 	"Request with the specified ID does not exists": "Request with the specified ID does not exists",
@@ -94,5 +93,8 @@
 	"Confirmation email resent to ": "Confirmation email resent to niyo@gmail.com",
 	"Email already verified": "Email already verified",
 	"Confirmation email resent to keza@gmail.com": "Confirmation email resent to keza@gmail.com",
-	"Unauthorized2": "Unauthorized2"
+	"Unauthorized2": "Unauthorized2",
+	"Access denied! to this user!": "Access denied! to this user!",
+	"Internal Server Error!": "Internal Server Error!",
+	"Hotel does not exist!": "Hotel does not exist!"
 }
