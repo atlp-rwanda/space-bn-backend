@@ -10,7 +10,7 @@ import path from 'path';
 const { User } = model;
 chai.use(http);
 const { expect } = chai;
-const userId = 3;
+const userId = 1;
 describe('User registration', () => {
   it('should return 201 and confirmation for valid input', (done) => {
     chai.request(app).post('/user/signup')

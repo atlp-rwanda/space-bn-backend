@@ -16,6 +16,9 @@ import superAdminCheck from '../middlewares/superAdmin.check';
 
 const { superAdminAuth } = superAdminCheck;
 
+import {resetPassword, createNewPassword} from '../controllers/userResetPassword';
+
+
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
@@ -260,7 +263,10 @@ router.get('/verification/:token', verifyUser);
 
 router.post('/logout', logout);
 
+router.post('/resetpassword', resetPassword);
 
+router.patch('/resetpassword', createNewPassword); 
 
 router.use('/profile', profileRouters)
+
 module.exports = router;
