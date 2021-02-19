@@ -23,6 +23,7 @@ import notificationRoutes from './routes/notification';
 import initializeEvent from './helpers/events';
 import questionRoutes from './routes/questionRoutes';
 import facebookOauthRoute from './routes/social.Oauth.routes';
+import travelRequest from './routes/travelRequest.route';
 
 dotenv.config();
 
@@ -101,6 +102,7 @@ app.use(searchRoutes);
 app.use('/notifications', notificationRoutes);
 app.use('/questions', questionRoutes);
 app.use("/", facebookOauthRoute);
+app.use(travelRequest);
 export { io, app };
 
 export default server;

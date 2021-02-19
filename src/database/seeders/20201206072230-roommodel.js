@@ -11,7 +11,29 @@ module.exports = {
         roomImage: 'https://www.images.com/image.png',
         createdAt: new Date(),
         updatedAt: new Date(),
-      }
+      },
+      {
+        hotelId: 1,
+        description: 'Room for VIP',
+        roomType: 'Single Room',
+        roomLabel: 'label 001',
+        status: 'Available',
+        price: '200$-300$',
+        roomImage: 'https://www.images.com/image.png',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        hotelId: 1,
+        description: 'Room for VIP',
+        roomType: 'Single Room',
+        roomLabel: 'label 001',
+        status: 'Available',
+        price: '200$-300$',
+        roomImage: 'https://www.images.com/image.png',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ], {});
   },
 

@@ -1,7 +1,9 @@
-"use strict";
-const { Model } = require("sequelize");
+const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
+  // eslint-disable-next-line require-jsdoc
   class Comment extends Model {
+    // eslint-disable-next-line valid-jsdoc
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -10,12 +12,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Comment.belongsTo(models.request, {
-        foreignKey: "requestId",
-        as: "request",
+        foreignKey: 'requestId',
+        as: 'request',
       });
       Comment.hasMany(models.Reply, {
-        foreignKey: "commentId",
-        as: "Reply",
+        foreignKey: 'commentId',
+        as: 'Reply',
       });
     }
   }
@@ -31,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Comment",
+      modelName: 'Comment',
     }
   );
   return Comment;
