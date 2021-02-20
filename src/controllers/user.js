@@ -33,16 +33,15 @@ export const signup = (req, res) => {
         identification_number: req.body.identification_number || '',
         user_image: req.file ? req.file.filename : ''
       })
-        .then((user) => {
-          const token = jwt.sign(JSON.parse(JSON.stringify(user)), process.env.JWT_KEY, { expiresIn: '1h' });
-          jwt.verify(token, process.env.JWT_KEY, (err, data) => {
-          });
+        .then((user1) => {
+          const token = jwt.sign(JSON.parse(JSON.stringify(user1)), process.env.JWT_KEY, { expiresIn: '1h' });
+          jwt.verify(token, process.env.JWT_KEY, () => {});
           res.status(201).json({
             message: res.__('User registered'),
-            user_details: user,
+            user_details: user1,
             token: `JWT ${token}`
           });
-          sendVerificationEmail(user.firstname, user.email, token);
+          sendVerificationEmail(user1.firstname, user1.email, token);
         });
     })
     .catch((error) => res.status(400).json(error.message));
@@ -64,9 +63,7 @@ export const signin = (req, res) => {
       user.comparePassword(req.body.password, (err, isMatch) => {
         if (isMatch && !err) {
           token = jwt.sign(JSON.parse(JSON.stringify(user)), process.env.JWT_KEY, { expiresIn: '24h' });
-          jwt.verify(token, process.env.JWT_KEY, (err, data) => {
-
-          });
+          jwt.verify(token, process.env.JWT_KEY, () => { });
           user.password = undefined;
           res.json({ success: true, token: `JWT ${token}`, user });
         } else {
@@ -93,25 +90,26 @@ export const getUserById = async (req, res) => {
   }
   return res.status(404).json({ message: res.__('No User with the specified') });
 };
+
 export const updateUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    const [user] = await model.User.update(
-      {
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10), null)
-      }, 
-      { where: { id } });
-
-    if (user) {
-      return res.status(200).json({ message: res.__('User updated successfully') });
+    const update = req.body;
+    const { password } = update;
+    if (password) update.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+    const target = await model.User.findByPk(id);
+    if (!target) return res.status(400).json({ message: res.__(`Cannot update User with id=${id}. User not found`) });
+    const [updated] = await model.User.update(update, { where: { id } });
+    if (updated) {
+      res.status(200).json({ message: res.__('User updated successfully') });
+    } else {
+      res.status(403).json({ message: res.__('You cannot change the email') });
     }
-    return res.send({ message: res.__(`Cannot update User with id=${id}. User not found`) });
   } catch (error) {
     return res.status(500).json({ message: res.__('Error') });
   }
 };
+
 export const deleteUserById = async (req, res) => {
   try {
     const { id } = req.params;

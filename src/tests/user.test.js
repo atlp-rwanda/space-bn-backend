@@ -164,7 +164,6 @@ describe('User Signin', () => {
   });
 });
 let token = '';
-let verifiedUser = '';
 /** Start of crud operations on user */
 describe('USERS', () => {
   before(async () => {
@@ -208,14 +207,34 @@ describe('/GET/:id users', () => {
   });
 });
 describe('/PUT/:id users', () => {
-  it('it should update a user by the given id', () => {
-    chai.request(app)
+  it('it should update a user by the given id', async () => {
+    const res = await chai.request(app)
       .put(`/user/${userId}`)
       .send({ firstname: 'Mussa', lastname: 'wilson', password: '12345678#$'})
-      .set('Authorization', token)
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-      });
+      .set('Authorization', token);
+      // .end((err, res) => {
+        expect(res.status).to.be(200);
+      // });
+  });
+  it('it should not update the email', async () => {
+    const res = await chai.request(app)
+      .put(`/user/${userId}`)
+      .send({ email: 'user@gmail.com'})
+      .set('Authorization', token);
+      // .end((err, res) => {
+        expect(res.status).to.be(403);
+        expect(res.body.message).to.equal('You cannot change the email');
+      // });
+  });
+  it('it should not update a non-existing user', async () => {
+    const res = await chai.request(app)
+      .put('/user/1000000000')
+      .send({ firstname: 'Mussa', lastname: 'wilson', password: '12345678#$'})
+      .set('Authorization', token);
+      // .end((err, res) => {
+        expect(res.status).to.be(400);
+        expect(res.body.message).to.equal('Cannot update User with id=1000000000. User not found');
+      // });
   });
 });
 

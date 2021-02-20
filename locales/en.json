@@ -74,5 +74,10 @@
 	"Check your email for the reset link": "Check your email for the reset link",
 	"You attempt to assign a room to the hotel which does not exist ! Room not created.": "You attempt to assign a room to the hotel which does not exist ! Room not created.",
 	"User updated successfully": "User updated successfully",
-	"Error": "Error"
+	"Error": "Error",
+	"Cannot update User with id=14. User not found": "Cannot update User with id=14. User not found",
+	"You cannot change the email": "You cannot change the email",
+	"Cannot update User with id=50. User not found": "Cannot update User with id=50. User not found",
+	"Cannot update User with id=70. User not found": "Cannot update User with id=70. User not found",
+	"Cannot update User with id=1000000000. User not found": "Cannot update User with id=1000000000. User not found"
 }
