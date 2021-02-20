@@ -72,5 +72,7 @@
 	"Password cannot be empty": "Password cannot be empty",
 	"Password was reset successfully": "Password was reset successfully",
 	"Check your email for the reset link": "Check your email for the reset link",
-	"You attempt to assign a room to the hotel which does not exist ! Room not created.": "You attempt to assign a room to the hotel which does not exist ! Room not created."
+	"You attempt to assign a room to the hotel which does not exist ! Room not created.": "You attempt to assign a room to the hotel which does not exist ! Room not created.",
+	"User updated successfully": "User updated successfully",
+	"Error": "Error"
 }

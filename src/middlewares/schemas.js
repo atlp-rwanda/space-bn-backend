@@ -20,8 +20,15 @@ const personDataSchema = Joi.object().keys({
 
 });
 
+const userUpdate = Joi.object().keys({
+    firstname: Joi.string(),
+    lastname: Joi.string(),
+    password: Joi.string().regex(/[^a-zA-Z\d\s:]/, 'Your password must be non-alphanumeric characters.').min(8)
+});
+
 
 // export the schemas
 module.exports = {
-    '/signup': personDataSchema
+    '/signup': personDataSchema,
+    '/:id': userUpdate
 };

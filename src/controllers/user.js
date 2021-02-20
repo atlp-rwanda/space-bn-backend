@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import model from '../database/models';
 import { sendVerificationEmail } from '../middlewares/sendEmail';
 import { template } from '../utils/emailVerificationtemplate';
@@ -95,14 +96,20 @@ export const getUserById = async (req, res) => {
 export const updateUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    const [user] = await model.User.update(req.body, { where: { id } });
+    const [user] = await model.User.update(
+      {
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10), null)
+      }, 
+      { where: { id } });
 
     if (user) {
-      return res.status(200).json({ message: res._('User updated successfully') });
+      return res.status(200).json({ message: res.__('User updated successfully') });
     }
-    return res.send({ message: res._(`Cannot update User with id=${id}. User not found`) });
+    return res.send({ message: res.__(`Cannot update User with id=${id}. User not found`) });
   } catch (error) {
-    return res.status(500).json({ message: res._('Error') });
+    return res.status(500).json({ message: res.__('Error') });
   }
 };
 export const deleteUserById = async (req, res) => {

@@ -211,7 +211,7 @@ describe('/PUT/:id users', () => {
   it('it should update a user by the given id', () => {
     chai.request(app)
       .put(`/user/${userId}`)
-      .send({ firstname: 'Mussa', lastname: 'wilson' })
+      .send({ firstname: 'Mussa', lastname: 'wilson', password: '12345678#$'})
       .set('Authorization', token)
       .end((err, res) => {
         expect(res).to.have.status(200);
