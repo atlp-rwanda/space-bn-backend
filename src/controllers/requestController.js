@@ -1,14 +1,10 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable object-curly-newline */
-/* eslint-disable max-len */
-/* eslint-disable require-jsdoc */
-/* eslint-disable no-underscore-dangle */
 import model from '../database/models';
 import hotelService from '../services/hotelService';
 import roomService from '../services/roomService';
 import requestService from '../services/requestService';
 import requestHelper from '../utils/requestHelper';
 import checkRequestAndNotify from '../helpers/checkType';
+import { find } from 'lodash';
 
 const { request } = model,
   { findHotelByName } = hotelService,
@@ -135,7 +131,12 @@ export default class requestController {
 
       if (!matchingRequestId) _response = res.status(404).json({ message: res.__('Request does not exist!') });
       await request.destroy({ where: { id: matchingRequestId } });
-
+      await model.Comment.destroy({
+        where: { requestId: matchingRequestId }
+      });
+      await model.Reply.destroy({
+        where: { requestId: matchingRequestId }
+      });
       _response = res.status(200).json({ message: res.__('Request deleted successfully!') });
 
       return _response;

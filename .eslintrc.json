@@ -17,11 +17,15 @@
   "import/no-unresolved": [2, { "commonjs": true }],
   "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
   "no-underscore-dangle":0,
+  "import/no-cycle": 0,
+  "object-curly-newline":0,
+  "max-len": 0,
   "valid-jsdoc": ["error", {
     "requireReturn": true,
     "requireReturnType": true,
     "requireParamDescription": false,
-    "requireReturnDescription": true
+    "requireReturnDescription": true,
+    "next-line": true
   }],
   "require-jsdoc": ["error", {
       "require": {

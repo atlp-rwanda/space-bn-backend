@@ -78,6 +78,9 @@
 	"Invalid time!": "Igihe kitemewe!",
 	"There is no user with that email":"Nta mukoresha ufite iyo imeri",
 	"Password cannot be empty":"Ijambobanga ntirishobora kuba ubusa",
-	"Password was reset successfully":"Ijambobanga ryasubiwemo neza"
-}
+	"Password was reset successfully":"Ijambobanga ryasubiwemo neza",
+	"comment not found such Id": "igitekerezo nticyabonetse Id",
+	"Comment deleted successfully!": "Igitekerezo cyasibwe neza!",
+	"comment with the specified ID does not exists": "igitekerezo hamwe nindangamuntu isobanutse ntikibaho",
+	"Request with the specified ID does not exists": "Gusaba hamwe nindangamuntu isobanutse ntabwo ibaho"
 }

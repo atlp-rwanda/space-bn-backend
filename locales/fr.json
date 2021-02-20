@@ -93,5 +93,9 @@
 	"Invalid time!": "Heure invalide!",
 	"There is no user with that email":"Il n'y a aucun utilisateur avec cet e-mail",
 	"Password cannot be empty":"Le mot de passe ne peut pas être vide",
-	"Password was reset successfully":"Le mot de passe a été réinitialisé avec succès"
+	"Password was reset successfully":"Le mot de passe a été réinitialisé avec succès",
+	"comment not found such Id:": "commentaire introuvable pour cet identifiant",
+	"Comment deleted successfully!": "Commentaire supprimé avec succès!",
+	"comment with the specified ID does not exists": "le commentaire avec l'ID spécifié n'existe pas",
+	"Request with the specified ID does not exists": "La demande avec l'ID spécifié n'existe pas"
 }

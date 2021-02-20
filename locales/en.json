@@ -72,5 +72,11 @@
 	"Password cannot be empty": "Password cannot be empty",
 	"Password was reset successfully": "Password was reset successfully",
 	"Check your email for the reset link": "Check your email for the reset link",
-	"You attempt to assign a room to the hotel which does not exist ! Room not created.": "You attempt to assign a room to the hotel which does not exist ! Room not created."
+	"You attempt to assign a room to the hotel which does not exist ! Room not created.": "You attempt to assign a room to the hotel which does not exist ! Room not created.",
+	"Hotel does not exist!": "Hotel does not exist!",
+	"comment not found such Id": "comment not found such Id",
+	"comment with the specified ID does not exists": "comment with the specified ID does not exists",
+	"Request with the specified ID does not exists": "Request with the specified ID does not exists",
+	"Request with the specified ID does not exists ": "Request with the specified ID does not exists ",
+	"comment with the specified ID does not exists ": "comment with the specified ID does not exists "
 }

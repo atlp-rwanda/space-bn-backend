@@ -2,6 +2,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import http from 'http';
+import morgan from 'morgan';
 import socketio from 'socket.io';
 import path from 'path';
 import bodyParser from 'body-parser';
@@ -28,6 +29,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(passport.initialize());
 app.use(bodyParser.json());
