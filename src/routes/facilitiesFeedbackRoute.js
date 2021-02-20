@@ -8,10 +8,12 @@ import {
     updateFeedbackStatus
   }  from'../controllers/facilitiesFeedbackController';
 import checkAuthentication from '../middlewares/check-auth';
+import { _isFacilityValid } from '../middlewares/FaclityValidation';
+
 /**
  * @swagger
  *
- * /facility/feedback/facility/{facilityId}:
+ * /facility/{facilityId}/feedback:
  *    post:
  *      parameters:
  *      - in: path
@@ -54,11 +56,11 @@ import checkAuthentication from '../middlewares/check-auth';
  *              type: string
  */
 
-router.post('/facility/:facilityId',checkAuthentication, sendFacilityFeedback);
+router.post('/:facilityId/feedback', checkAuthentication, _isFacilityValid, sendFacilityFeedback);
 
 /**
  * @swagger
- *  /facility/feedback/{feedbackId}:
+ *  /facility/{facilityId}/feedback/{feedbackId}:
  *   get:
  *    parameters:
  *      - in: path
@@ -68,6 +70,13 @@ router.post('/facility/:facilityId',checkAuthentication, sendFacilityFeedback);
  *          type: integer
  *          minimum: 1
  *        description: Feedback id
+ *      - in: path
+ *        name: facilityId
+ *        required: true
+ *        schema:
+ *          type: integer
+ *          minimum: 1
+ *        description:  facility id
  *    summary: Getting feedback by feedback Id
  *    tags: [feedback]
  *    security:
@@ -78,11 +87,11 @@ router.post('/facility/:facilityId',checkAuthentication, sendFacilityFeedback);
  *      "200":
  *        description: Success
  */
-router.get('/:feedbackId', getByFeedbackId);
+router.get('/:facilityId/feedback/:feedbackId', _isFacilityValid, getByFeedbackId);
 
 /**
  * @swagger
- *  /facility/feedback/facility/{facilityId}:
+ *  /facility/{facilityId}/feedback:
  *   get:
  *    parameters:
  *      - in: path
@@ -104,11 +113,11 @@ router.get('/:feedbackId', getByFeedbackId);
  *      "200":
  *        description: Success
  */
-router.get('/facility/:facilityId', getFeedBacksByFacilityId);
+router.get('/:facilityId/feedback', _isFacilityValid, getFeedBacksByFacilityId);
 
 /**
  * @swagger
- *  /facility/feedback/{feedbackId}:
+ *  /facility/{facilityId}/feedback/{feedbackId}:
  *   delete:
  *    parameters:
  *      - in: path
@@ -118,6 +127,13 @@ router.get('/facility/:facilityId', getFeedBacksByFacilityId);
  *          type: integer
  *          minimum: 1
  *        description: Feedback id
+ *      - in: path
+ *        name: facilityId
+ *        required: true
+ *        schema:
+ *          type: integer
+ *          minimum: 1
+ *        description: facility id
  *    summary: Delete feedback
  *    tags: [feedback]
  *    security:
@@ -130,12 +146,12 @@ router.get('/facility/:facilityId', getFeedBacksByFacilityId);
  *      "200":
  *        description: Success
  */
-router.delete('/:feedbackId',checkAuthentication, deleteFeedback);
+router.delete('/:facilityId/feedback/:feedbackId', checkAuthentication, _isFacilityValid, deleteFeedback);
 
 /**
  * @swagger
  *
- * /facility/feedback/{feedbackId}:
+ * /facility/{facilityId}/feedback/{feedbackId}:
  *    put:
  *      parameters:
  *      - in: path
@@ -144,7 +160,14 @@ router.delete('/:feedbackId',checkAuthentication, deleteFeedback);
  *        schema:
  *          type: integer
  *          minimum: 1
- *        description: feedbackId id
+ *        description: feedback id
+*      - in: path
+ *        name: facilityId
+ *        required: true
+ *        schema:
+ *          type: integer
+ *          minimum: 1
+ *        description: facility id
  *      summary: Update a feedback status
  *      tags: [feedback]
  *      requestBody:
@@ -163,6 +186,6 @@ router.delete('/:feedbackId',checkAuthentication, deleteFeedback);
  *        "500":
  *          description: Server error
  */
-router.put('/:feedbackId',checkAuthentication, updateFeedbackStatus)
+router.put('/:facilityId/feedback/:feedbackId',checkAuthentication, _isFacilityValid, updateFeedbackStatus)
 
 module.exports = router;

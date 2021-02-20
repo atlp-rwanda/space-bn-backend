@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable import/prefer-default-export */
 import Joi from 'joi';
 
@@ -36,6 +37,17 @@ export const approveRequestValidation = (req, res, next) => {
 
   const { error } = schema.validate(req.body);
   if (error) return res.status(400).json({ message: error.details[0].message });
+
+  return next();
+};
+
+export const reqStatisticsValidation = (req, res, next) => {
+  const schema = Joi.number().min(0),
+    { time } = req.query;
+
+  const { error } = req.method === 'GET' ? schema.validate(time) : null;
+
+  if (error) return res.status(403).json({ message: res.__('Invalid time!') });
 
   return next();
 };

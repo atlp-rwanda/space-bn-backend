@@ -23,7 +23,8 @@ socket.emit('JOIN_CHAT',payloads);
       senderId,
       receiverId,
       text: $("#message").val(),
-      firstname
+      firstname,
+      authorization:'JWT tokenxkskdhidjheui758763jjdbnbndhjghu3eeee323957d&&dea'
     }
     socket.emit("DIRECT_MESSAGE", payloads);
 
@@ -72,19 +73,19 @@ let typing = document.getElementById("typing");
 
 //isTyping event
 messageInput.addEventListener("keypress", () => {
-  socket.emit("typing", { user: "Someone", message: "is typing..." });
+  socket.emit("direct_typing", { user: "Someone", message: "is typing..." });
 });
 
-socket.on("notifyTyping", data => {
+socket.on("direct_notifyTyping", data => {
   typing.innerText = data.user + " " + data.message;
   console.log(data.user + data.message);
 });
 
 //stop typing
 messageInput.addEventListener("keyup", () => {
-  socket.emit("stopTyping", "");
+  socket.emit("direct_stopTyping", "");
 });
 
-socket.on("notifyStopTyping", () => {
+socket.on("direct_notifyStopTyping", () => {
   typing.innerText = "";
 });

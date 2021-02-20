@@ -1,15 +1,16 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable import/no-cycle */
 import { Router } from 'express';
 import { authManager } from '../middlewares/authManager';
-import { approveRequestValidation } from '../middlewares/requestValidation';
+import { approveRequestValidation, reqStatisticsValidation } from '../middlewares/requestValidation';
 import requestController from '../controllers/requestController';
 import managerController from '../controllers/managerController';
+import reqStatisticsController from '../controllers/reqStatisticsController';
 
 const router = new Router(),
   { createRequest } = requestController,
-  {
-    getAllRequests, getOneRequest, updateRequest, assignManagerId
-  } = managerController;
+  { getAllRequests, getOneRequest, updateRequest, assignManagerId } = managerController,
+  { managerGerGetReqStats } = reqStatisticsController;
 
 /**
  * @swagger
@@ -23,6 +24,25 @@ const router = new Router(),
  *        description: Requests are displayed successfuly.
 */
 router.get('/requests', authManager, getAllRequests);
+
+/**
+ * @swagger
+ * /manager/requests/stats:
+ *  get:
+ *    tags: [Manager]
+ *    summary: Manager can get request statistics in X time.
+ *    description: Manager can get request statistics in X time from database.
+ *    parameters:
+ *      - in: query
+ *        name: time
+ *        schema:
+ *          type: integer
+ *        description: days from today
+ *    responses:
+ *      '200':
+ *        description: Requests found successfully.
+*/
+router.get('/requests/stats', authManager, reqStatisticsValidation, managerGerGetReqStats);
 
 /**
  * @swagger

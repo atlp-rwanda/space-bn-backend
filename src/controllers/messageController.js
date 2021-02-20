@@ -26,6 +26,7 @@ exports.sendDirectMessage = async(req,res) => {
     message = await model.Message.create(newMessage);
     }
     catch(e){
+        console.log("Error: "+e)
         res.status(500).json({message: res.__("Error occured")})
     }
     return res.status(201).json({
@@ -49,6 +50,7 @@ exports.sendGeneralMessage = async(req,res) => {
     message = await model.Message.create(newMessage);
     }
     catch(e){
+        console.log("Error: "+e)
         return res.status(500).json({message: res.__("Error occured")})
     }
     return res.status(201).json({

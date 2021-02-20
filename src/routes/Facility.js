@@ -225,6 +225,6 @@ router.get('/:id', getSingleFacility);
  *         description: Server Error
  */
 
-router.use('/feedback', facilityFeedbackRoutes);
+router.use(facilityFeedbackRoutes);
 
 export default router;

@@ -67,10 +67,10 @@
 	"Please enter all fields!": "Please enter all fields!",
 	"Question deleted successfully!": "Question deleted successfully!",
 	"Question Id does not exist!": "Question Id does not exist!",
+	"Invalid time!": "Invalid time!",
 	"Error occured": "Error occured",
-	"receiver not found": "receiver not found",
-	"access denied!": "access denied!",
 	"Message deleted successfully": "Message deleted successfully",
 	"message not found": "message not found",
-	"You attempt to assign a room to the hotel which does not exist ! Room not created.": "You attempt to assign a room to the hotel which does not exist ! Room not created."
+	"You attempt to assign a room to the hotel which does not exist ! Room not created.": "You attempt to assign a room to the hotel which does not exist ! Room not created.",
+	"receiver not found": "receiver not found"
 }

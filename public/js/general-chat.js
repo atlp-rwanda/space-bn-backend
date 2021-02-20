@@ -51,19 +51,21 @@ let typing = document.getElementById("typing");
 
 //isTyping event
 messageInput.addEventListener("keypress", () => {
-  socket.emit("typing", { user: "Someone", message: "is typing..." });
+  socket.emit("general_typing", { user: "Someone", message: "is typing..." });
 });
 
-socket.on("notifyTyping", data => {
-  typing.innerText = data.user + " " + data.message;
+socket.on("general_notifyTyping", data => {
+  general_typing.innerText = data.user + " " + data.message;
   console.log(data.user + data.message);
 });
 
 //stop typing
 messageInput.addEventListener("keyup", () => {
-  socket.emit("stopTyping", "");
+  socket.emit("general_stopTyping", "");
 });
 
-socket.on("notifyStopTyping", () => {
-  typing.innerText = "";
+socket.on("general_notifyStopTyping", () => {
+  setTimeout(() => {
+    typing.innerText = "";
+  },5000)
 });
