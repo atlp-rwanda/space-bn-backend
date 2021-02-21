@@ -4,7 +4,7 @@ import roomService from '../services/roomService';
 import requestService from '../services/requestService';
 import requestHelper from '../utils/requestHelper';
 import checkRequestAndNotify from '../helpers/checkType';
-import { find } from 'lodash';
+import countOccurance, { sortByHighest } from '../helpers/countOccurance';
 
 const { request } = model,
   { findHotelByName } = hotelService,
@@ -142,6 +142,34 @@ export default class requestController {
       return _response;
     } catch (error) {
       return res.status(500).json({ error: res.__('Internal server error!') });
+    }
+  }
+
+  static async mostTravelledDestination(req, res) {
+    try {
+      const allRequests = await request.findAndCountAll({
+        where: { requestStatus: 'APPROVED' },
+        attributes: [
+          'location'
+        ],
+        order: [['location', 'ASC']]
+      });
+      const locationArray = allRequests.rows.map((row) => row.location);
+      const destinationOccurance = countOccurance(locationArray);
+
+      const formattedArr = sortByHighest(destinationOccurance).map((arr) => ({
+        location: arr[0],
+        visit_count: arr[1]
+      }));
+
+      if (!allRequests || allRequests.count === 0) res.status(404).json({ message: res.__('No destination found!') });
+      return res.status(200).json({
+        message: res.__('Most travelled destinations found successfully!'),
+        count: allRequests.count,
+        destinations: formattedArr
+      });
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
     }
   }
 }
