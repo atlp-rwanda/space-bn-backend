@@ -82,6 +82,9 @@
 	"Invalid time!": "Wakati batili!",
 	"There is no user with that email":"Hakuna mtumiaji aliye na barua pepe hiyo",
 	"Password cannot be empty":"Nenosiri haliwezi kuwa tupu",
-	"Password was reset successfully":"Nenosiri liliwekwa upya kwa mafanikio"
-}
+	"Password was reset successfully":"Nenosiri liliwekwa upya kwa mafanikio",
+	"comment not found such Id": "maoni hayakupatikana kama Id",
+	"Comment deleted successfully!": "Maoni yamefutwa !",
+	"comment with the specified ID does not exists": "maoni na kitambulisho kilichoainishwa hayapo",
+	"Request with the specified ID does not exists": "Ombi na kitambulisho kilichoainishwa haipo"
 }

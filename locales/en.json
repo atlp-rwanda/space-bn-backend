@@ -79,5 +79,10 @@
 	"You cannot change the email": "You cannot change the email",
 	"Cannot update User with id=50. User not found": "Cannot update User with id=50. User not found",
 	"Cannot update User with id=70. User not found": "Cannot update User with id=70. User not found",
-	"Cannot update User with id=1000000000. User not found": "Cannot update User with id=1000000000. User not found"
+	"Hotel does not exist!": "Hotel does not exist!",
+	"comment not found such Id": "comment not found such Id",
+	"comment with the specified ID does not exists": "comment with the specified ID does not exists",
+	"Request with the specified ID does not exists": "Request with the specified ID does not exists",
+	"Request with the specified ID does not exists ": "Request with the specified ID does not exists ",
+	"comment with the specified ID does not exists ": "comment with the specified ID does not exists "
 }
