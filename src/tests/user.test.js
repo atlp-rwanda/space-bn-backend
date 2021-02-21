@@ -1,13 +1,9 @@
 /* eslint-disable no-console */
 import chai from 'chai';
 import http from 'chai-http';
-import model from '../database/models';
-import jwt from 'jsonwebtoken';
 import app from '../app';
 import generateToken from '../utils/genToken';
-import path from 'path';
 
-const { User } = model;
 chai.use(http);
 const { expect } = chai;
 const userId = 1;
@@ -41,7 +37,7 @@ describe('User registration', () => {
         done();
       })
       .catch((err) => {
-        throw(err);
+        throw (err);
       });
   });
   // test for invalid input
@@ -63,7 +59,7 @@ describe('User registration', () => {
         done();
       })
       .catch((err) => {
-        throw(err);
+        throw (err);
       });
   });
   // test an existing e-mail
@@ -86,7 +82,7 @@ describe('User registration', () => {
         done();
       })
       .catch((err) => {
-        throw(err);
+        throw (err);
       });
   });
 });
@@ -94,51 +90,50 @@ describe('User registration', () => {
 describe('User Signin', () => {
   it('should return error 401 for invalid email', (done) => {
     // mock invalid user input
-    const wrong_input = {
+    const wrongInput = {
       email: 'kez@gmail.com',
       password: '1234567avb$#8'
     };
     // send request to the server
     chai.request(app).post('/user/signin')
-      .send(wrong_input)
+      .send(wrongInput)
       .then((res) => {
         expect(res).to.have.status(401);
         expect(res.body.message).to.be.equal('Authentication failed. User not found.');
         done();
       })
       .catch((err) => {
-        throw(err.message);
+        throw (err.message);
       });
   });
   it('should return error 401 for invalid credentials', (done) => {
     // mock invalid user input
-    const wrong_input = {
+    const wrongInput = {
       email: 'keza@gmail.com',
       password: 'invalidPassword'
     };
     // send request to the server
     chai.request(app).post('/user/signin')
-      .send(wrong_input)
+      .send(wrongInput)
       .then((res) => {
-       
         expect(res).to.have.status(401);
         expect(res.body.success).to.be.equal(false);
         expect(res.body.message).to.be.equal('Authentication failed. Wrong password.');
         done();
       })
       .catch((err) => {
-        throw(err.message);
+        throw (err.message);
       });
   });
   it('should return 200 and token for valid credentials', (done) => {
     // mock invalid user input
-    const valid_input = {
+    const validInput = {
       email: 'keza@gmail.com',
       password: '1234567avb$#8'
     };
     // send request to the server
     chai.request(app).post('/user/signin')
-      .send(valid_input)
+      .send(validInput)
       .then((res) => {
         expect(res).to.have.status(200);
         expect(res.body.token).to.exist;
@@ -146,25 +141,24 @@ describe('User Signin', () => {
         done();
       })
       .catch((err) => {
-        throw(err)
+        throw (err);
       });
   });
   it('should return 400 when a bad a request is made', (done) => {
-    const bad_request = {
+    const badRequest = {
     };
     chai.request(app).post('/user/signin')
-      .send(bad_request)
+      .send(badRequest)
       .then((res) => {
         expect(res).to.have.status(400);
         done();
       })
       .catch((err) => {
-        throw(err);
+        throw (err);
       });
   });
 });
 let token = '';
-let verifiedUser = '';
 /** Start of crud operations on user */
 describe('USERS', () => {
   before(async () => {
@@ -211,10 +205,20 @@ describe('/PUT/:id users', () => {
   it('it should update a user by the given id', () => {
     chai.request(app)
       .put(`/user/${userId}`)
-      .send({ firstname: 'Mussa', lastname: 'wilson' })
+      .send({ firstname: 'Mussa', lastname: 'wilson', password: '12345678#$' })
       .set('Authorization', token)
       .end((err, res) => {
         expect(res).to.have.status(200);
+      });
+  });
+  it('it should not update the email', () => {
+    chai.request(app)
+      .put(`/user/${userId}`)
+      .send({ email: 'user@gmail.com' })
+      .set('Authorization', token)
+      .end((err, res) => {
+        expect(res).to.have.status(403);
+        expect(res.body.message).to.equal('You cannot change the email');
       });
   });
 });
@@ -222,23 +226,22 @@ describe('/PUT/:id users', () => {
 describe('/GET/:token Test user email verification', () => {
   let tokens = '';
   it('it should verify a user email and return 200.', () => {
-    tokens = token.split(" ")[1];
+    tokens = token.split(' ')[1];
     chai.request(app)
       .get(`/user/verification/${tokens}`)
-      .end(async(err, res) => {
+      .end(async (err, res) => {
         expect(res).to.have.status(200);
       });
   });
 
   it('it should fail to verify a user email and return 400.', () => {
-    tokens = token.split(" ")[1];
+    tokens = token.split(' ')[1];
     chai.request(app)
       .get(`/user/verification/${tokens}`)
-      .end(async(err, res) => {
+      .end(async (err, res) => {
         expect(res).to.have.status(400);
       });
   });
-
 });
 
 describe('/DELETE/:id users', () => {
@@ -246,10 +249,8 @@ describe('/DELETE/:id users', () => {
     chai.request(app)
       .delete(`/user/${userId}`)
       .set('Authorization', token)
-      .end(async(err, res) => {
+      .end(async (err, res) => {
         expect(res).to.have.status(200);
       });
   });
 });
-
-

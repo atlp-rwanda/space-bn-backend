@@ -214,7 +214,7 @@ router.get('/:id', checkAuthentication, getUserById);
  *            type: string
 
  */
-router.put('/:id', checkAuthentication, updateUserById);
+router.put('/:id', checkAuthentication, validateRequest, updateUserById);
 
 /**
  * @swagger
