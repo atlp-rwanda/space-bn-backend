@@ -32,7 +32,7 @@ describe("search component", () =>{
      
           const res = await chai
             .request(app)
-            .get(`/request/search?idRoom=100&requestStatus=d`)
+            .get(`/request/search?requestStatus=d`)
             .set("authorization", `Bearer ${token}`);
           expect(res).to.have.status(200);
           after (async () => {

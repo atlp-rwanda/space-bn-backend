@@ -23,7 +23,6 @@ describe('MANAGER Endpoints', () => {
           email: 'spacenomad@gmail.com',
           password: ADMIN_PASSWORD
         });
-
       tokenAdmin = res.body.token;
     });
 
@@ -36,7 +35,6 @@ describe('MANAGER Endpoints', () => {
             name: 'TRAVEL_TEAM_MEMBER',
             description: 'This is manager role.'
           });
-
         expect(res).has.status(201);
       });
       describe('Create a Requester Role', () => {
@@ -131,29 +129,30 @@ describe('MANAGER Endpoints', () => {
                     tokenUser = res.body.token;
                   });
 
-                  describe('User creates a hotel', () => {
+                  describe('Supper Admin creates a hotel', () => {
                     let hotelId;
                     let hotelName;
                     before(async () => {
                       const res = await request(app)
                         .post('/hotels')
-                        .set('authorization', tokenUser)
+                        .set('authorization', tokenAdmin)
                         .send({
                           hotelname: 'Marriott',
-                          pricerange: '$320',
                           location: 'Kigali',
-                          ranking: '5 star',
+                          coordinates: [2.3845, 29.4644],
+                          pricerange: '$320',
+                          ranking: 5,
                           parking: 'Yes',
                           wifi: 'Yes',
                           swimmingpool: 'Yes',
                           breakfast: 'Yes',
-                          images: ['www.unsplash.com/umubavu', 'www.gettyimages/umubavuhotel'],
                           hotelemail: 'infos@marriott.com'
                         });
+                      console.log(res.body.newHotel);
                       expect(res).to.have.status(201);
-                      const hotel = await model.hotel.findAll();
-                      hotelId = hotel[0].dataValues.id;
-                      hotelName = hotel[0].dataValues.hotelname;
+                      // const hotel = await model.hotel.findAll();
+                      hotelId = res.body.newHotel.id;
+                      hotelName = res.body.newHotel.hotelname;
                     });
 
                     describe('User creates a room', () => {
@@ -437,3 +436,4 @@ describe('MANAGER Endpoints', () => {
     });
   });
 });
+
