@@ -60,4 +60,24 @@ describe('Notifications', () => {
         expect(res.body.message).to.match(/All received notifications/i);
       });
   });
+  it('should mark all notifications as read', async () => {
+    await Notification.create({
+      eventType: 'PENDING',
+      userId,
+      requestId: 4,
+      title: 'Created request',
+      message: 'Your request was created',
+      link: '/requests/1',
+      status: 'unread'
+    });
+    request(app)
+      .put('/notifications')
+      .set('authorization', token)
+      .end((err, res) => {
+        if (err) return err;
+        expect(res).have.status(200);
+        expect(res.body).has.property('message');
+        expect(res.body.message).to.match(/All notifications marked as read/i);
+      });
+  });
 });
