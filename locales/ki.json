@@ -82,5 +82,7 @@
 	"comment not found such Id": "igitekerezo nticyabonetse Id",
 	"Comment deleted successfully!": "Igitekerezo cyasibwe neza!",
 	"comment with the specified ID does not exists": "igitekerezo hamwe nindangamuntu isobanutse ntikibaho",
-	"Request with the specified ID does not exists": "Gusaba hamwe nindangamuntu isobanutse ntabwo ibaho"
+	"Request with the specified ID does not exists": "Gusaba hamwe nindangamuntu isobanutse ntabwo ibaho",
+	"Most travelled destinations found successfully!": "Ingendo nyinshi zagiye ziboneka neza!",
+	"No destination found!": "Icyerekezo ntikiboneka"
 }

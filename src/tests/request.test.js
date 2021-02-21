@@ -1,7 +1,7 @@
 /* eslint-disable import/no-named-as-default */
 import { use, request, expect } from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../app';
+import { app } from '../app';
 import model from '../database/models';
 
 use(chaiHttp);
@@ -155,6 +155,15 @@ describe('REQUEST Endpoints', () => {
                     .get('/requests')
                     .set('authorization', tokenUser);
                   expect(res).to.have.status(200);
+                });
+                describe('GET /requests/destinations', () => {
+                  it('Should most travelled destinations', async () => {
+                    const res = await request(app)
+                      .get('/requests/destinations')
+                      .set('authorization', tokenUser);
+                    expect(res).to.have.status(200);
+                    expect(res.body.message).to.match(/Most travelled destinations found successfully!/i);
+                  });
                 });
 
                 describe('GET /requests/stats', () => {
