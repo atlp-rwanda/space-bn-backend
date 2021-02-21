@@ -30,10 +30,10 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(morgan('dev'));
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
 app.use(passport.initialize());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(i18n.init);
@@ -104,6 +104,7 @@ app.use(searchRoutes);
 app.use('/notifications', notificationRoutes);
 app.use('/questions', questionRoutes);
 app.use('/', facebookOauthRoute);
+
 export { io, app };
 
 export default server;

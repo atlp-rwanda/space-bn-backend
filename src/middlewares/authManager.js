@@ -28,3 +28,18 @@ export const authManager = async (req, res, next) => {
     return res.status(400).json({ error: 'Authentication failed!' });
   }
 };
+
+export const authUser = async (req, res, next) => {
+  try {
+    const header = req.headers.authorization;
+    if (!header) return res.status(403).json({ message: 'Please login!' });
+    const token = header.split(' ')[1],
+      userData = verify(token, process.env.JWT_KEY);
+
+    req.userData = userData;
+
+    next();
+  } catch (error) {
+    return res.status(400).json({ error: 'Authentication failed!' });
+  }
+};

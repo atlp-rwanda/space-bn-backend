@@ -1,10 +1,9 @@
 /* eslint-disable import/named */
 import { Router } from 'express';
-import {
-  getAllHotels, createHotel, deleteHotel, getHotel, updateHotel
-} from '../controllers/hotelController';
+import { getAllHotels, createHotel, deleteHotel, getHotel, updateHotel } from '../controllers/hotelController';
 import protection from '../middlewares/check-auth';
 import { createHotelValidation, updateHotelValidation } from '../middlewares/hotelValidation';
+import { authUser } from '../middlewares/authManager';
 
 const router = Router();
 
@@ -69,8 +68,7 @@ const router = Router();
  *
  */
 
-router.post('/', protection, createHotelValidation, createHotel);
-
+router.post('/', authUser, createHotel);
 /**
  * @swagger
  * /hotels:

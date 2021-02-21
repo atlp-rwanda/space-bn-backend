@@ -3,17 +3,18 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('hotels', [{
       hotelname: 'Gorillas Hotel',
-      pricerange: '$120',
-      location: 'Nyamagabe',
-      ranking: '3 star',
-      parking: 'Yes',
-      wifi: 'Yes',
-      swimmingpool: 'no',
-      breakfast: 'Yes',
-      images: ['www.unsplash.com/umubavu', 'www.gettyimages/umubavuhotel'],
-      hotelemail: 'five@yahoo.com',
-      updatedAt: '2020-12-21T13:53:26.104Z',
-      createdAt: '2020-12-21T13:53:26.104Z'
+      location: 'Kigali',
+      coordinates: [2.3845, 29.4644],
+      pricerange: '$120 - $180',
+      ranking: 3,
+      swimmingpool: 'Pool',
+      wifi: 'Free Wifi',
+      parking: 'Free parking',
+      breakfast: 'Free breakfast',
+      hotelemail: 'infos@gorillas.com',
+      image: 'https://res.cloudinary.com/samuelnayo/image/upload/v1613907526/uk7dcu7f0ka0bdcx6u0z.jpg',
+      updatedAt: new Date(),
+      createdAt: new Date()
     }], {});
   },
 

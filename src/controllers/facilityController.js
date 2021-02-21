@@ -3,6 +3,9 @@
 /* eslint-disable no-underscore-dangle */
 import model from '../database/models';
 import fService from '../services/facilityService';
+import cloudinaryUploader from '../helpers/cloudinaryUploader';
+
+const { imageUploader } = cloudinaryUploader;
 
 /**
  * GET facility
@@ -13,7 +16,7 @@ const getFacilities = async (req, res) => {
     const _facility = await model.Facility.findAll();
     return res.status(200).json({ success: true, _facility });
   } catch (error) {
-    return res.status(500).send(error.message);
+    res.status(500).json(error.message);
   }
 };
 
@@ -23,8 +26,26 @@ const getFacilities = async (req, res) => {
 
 const addFacility = async (req, res) => {
   try {
-    const _facility = await model.Facility.create(req.body);
-    return res.status(201).json({ success: true, _facility });
+    let imageUrl;
+      const { location, address, roomNumber, roomDetails, image } = req.body; 
+      
+      if (image === undefined) {
+        imageUrl = 'https://res.cloudinary.com/samuelnayo/image/upload/v1614189789/mxerxfs7qzeykxvmayb6.jpg';
+      } else {
+        const uploadedImage = await imageUploader(image);
+        imageUrl = uploadedImage.secure_url;
+      };
+      
+      const newFacility = await model.Facility.create({
+        location,
+        address,
+        roomNumber,
+        roomDetails,
+        images: imageUrl
+      });
+      
+    return res.status(201).json({ success: true, message: res.__('Facility added successfully!'), newFacility });
+    
   } catch (error) {
     return res.status(500).json({ success: false, error: error.message });
   }
@@ -86,7 +107,7 @@ const getSingleFacility = async (req, res) => {
     }
     res.status(404).send({ success: false, error: res.__('facility not found!') });
   } catch (error) {
-    return res.status(500).send(error.message);
+    return res.status(500).json(error.message);
   }
 };
 

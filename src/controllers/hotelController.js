@@ -1,14 +1,39 @@
 /* eslint-disable no-underscore-dangle */
 import model from '../database/models';
+import cloudinary from '../config/cloudinary';
+import cloudinaryUploader from '../helpers/cloudinaryUploader';
+
+const { imageUploader } = cloudinaryUploader;
 
 const createHotel = async (req, res) => {
   try {
-    const hotel = await model.hotel.create(req.body);
-
-    return res.status(201).json({
-      hotel,
-    });
+    let imageUrl;
+    const { hotelname, location, latitude, longitude, pricerange, ranking, swimmingpool, wifi, parking, breakfast, hotelemail, image } = req.body; 
+      
+    if (image === undefined) {
+      imageUrl = 'https://res.cloudinary.com/samuelnayo/image/upload/v1614197390/nw2fkpfamtvj7hrskdn7.png';
+    } else {
+      const uploadedImage = await imageUploader(image);
+      imageUrl = uploadedImage.secure_url;
+    };
+    
+      const newHotel = await model.hotel.create({
+        hotelname,
+        location,
+        coordinates: [latitude, longitude],
+        pricerange,
+        ranking,
+        swimmingpool,
+        wifi,
+        parking,
+        breakfast,
+        hotelemail,
+        image: imageUrl
+      });
+  
+      return res.status(201).json({ message: res.__('Hotel added successfully!'), newHotel });
   } catch (error) {
+    console.log(error.message);
     return res.status(500).json({ message: res.__('Internal server error!') });
   }
 };

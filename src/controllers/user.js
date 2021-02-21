@@ -4,8 +4,32 @@ import bcrypt from 'bcrypt';
 import model from '../database/models';
 import { sendVerificationEmail } from '../middlewares/sendEmail';
 import { template } from '../utils/emailVerificationtemplate';
+import cloudinaryUploader from '../helpers/cloudinaryUploader';
 
 dotenv.config();
+
+const { imageUploader } = cloudinaryUploader;
+
+export const addImage = async (req, res) => {
+  try {
+    let imageUrl;
+    const { image } = req.body; 
+    const { id } = req.userData; 
+      
+    if (image === undefined) {
+      imageUrl = 'https://res.cloudinary.com/samuelnayo/image/upload/v1614197390/nw2fkpfamtvj7hrskdn7.png';
+    } else {
+      const uploadedImage = await imageUploader(image);
+      imageUrl = uploadedImage.secure_url;
+    };
+    
+    await model.User.update({ user_image: imageUrl }, { where: { id } });
+
+  return res.status(200).json({ message: res.__('User Image updated successfully!') });
+  } catch (error) {
+    return res.status(500).json({ message: res.__('Internal server error!') });
+  }
+};
 
 export const signup = (req, res) => {
   model.User.findOne({

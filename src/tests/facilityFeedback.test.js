@@ -17,7 +17,6 @@ describe('Facility Feedback EndPoints', () => {
       lastname: 'doe',
       email: 'johndoe1@gmail.com',
       password: 'test@123',
-      roleId: 2
     };
     chai
       .request(app)
@@ -104,7 +103,6 @@ describe('signin super admin ', () => {
               const data = {
                 location: 'Test location',
                 address: "Test address",
-                images: 'testImg.jpg',
                 roomNumber: '43',
                 roomDetails: '{Location test details}'
               };
@@ -114,7 +112,8 @@ describe('signin super admin ', () => {
                 .set('authorization', travelAdminToken)
                 .send(data)
                 .end((err, response) => {
-                  facilityId = response.body._facility.id;
+                  console.log(response.body)
+                  facilityId = response.body._facility;
                   expect(response).to.have.status(201);
                   expect(response.body).to.be.an('object');
                   done();
@@ -129,7 +128,7 @@ describe('signin super admin ', () => {
             };
             chai
               .request(app)
-              .post(`/facility/${facilityId}/feedback`)
+              .post(`/facility/1/feedback`)
               .set('authorization', travelAdminToken)
               .send(data)
               .end((err, response) => {
@@ -145,7 +144,7 @@ describe('signin super admin ', () => {
             };
             chai
               .request(app)
-              .post(`/facility/${facilityId}/feedback`)
+              .post(`/facility/1/feedback`)
               .set('authorization', travelAdminToken)
               .send(data)
               .end((err, response) => {
@@ -159,7 +158,7 @@ describe('signin super admin ', () => {
             it('It should get feedback by Id', (done) => {
               chai
                 .request(app)
-                .get(`/facility/${facilityId}/feedback/${feedbackId}`)
+                .get(`/facility/1/feedback/${feedbackId}`)
                 .end((err, response) => {
                   expect(response).to.have.status(200);
                   expect(response.body).to.be.an('object');
@@ -171,7 +170,7 @@ describe('signin super admin ', () => {
               it('It should get feedback by feedback Id', (done) => {
                 chai
                   .request(app)
-                  .get(`/facility/${facilityId}/feedback`)
+                  .get(`/facility/1/feedback`)
                   .end((err, response) => {
                     expect(response).to.have.status(200);
                     expect(response.body).to.be.an('object');
@@ -183,7 +182,7 @@ describe('signin super admin ', () => {
                 it('It should update the feedback status as seen', (done) => {
                   chai
                     .request(app)
-                    .put(`/facility/${facilityId}/feedback/${feedbackId}`)
+                    .put(`/facility/1/feedback/1`)
                     .set('authorization', travelAdminToken)
                     .end((err, response) => {
                       expect(response).to.have.status(200);
@@ -197,7 +196,7 @@ describe('signin super admin ', () => {
                   it('It should update the feedback status as not seen', (done) => {
                     chai
                       .request(app)
-                      .put(`/facility/${facilityId}/feedback/${feedbackId}`)
+                      .put(`/facility/1/feedback/1`)
                       .set('authorization', travelAdminToken)
                       .end((err, response) => {
                         expect(response).to.have.status(200);
@@ -207,23 +206,20 @@ describe('signin super admin ', () => {
                       });
                   });
                   })
-               describe('DELETE feedback', () => {
+              describe('DELETE feedback', () => {
                 it('It should delete the feedback', (done) => {
                   chai
                     .request(app)
-                    .delete(`/facility/${facilityId}/feedback/${feedbackId}`)
+                    .delete(`/facility/1/feedback/1`)
                     .set('authorization', travelAdminToken)
                     .end((err, response) => {
                       expect(response).to.have.status(200);
                       done();
                     });
                 });
-             })
+            })
         });
       });
     });
   });
 });
-
-
-
