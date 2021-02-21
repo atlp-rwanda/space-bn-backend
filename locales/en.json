@@ -94,5 +94,18 @@
 	"Confirmation email resent to ": "Confirmation email resent to niyo@gmail.com",
 	"Email already verified": "Email already verified",
 	"Confirmation email resent to keza@gmail.com": "Confirmation email resent to keza@gmail.com",
-	"Unauthorized2": "Unauthorized2"
+	"Unauthorized2": "Unauthorized2",
+	"User Image updated successfully!": "User Image updated successfully!",
+	"Hotel added successfully!": "Hotel added successfully!",
+	"Facility added successfully!": "Facility added successfully!",
+	"Hotel Not found": "Hotel Not found",
+	"Cannot read property 'path' of undefined": "Cannot read property 'path' of undefined",
+	"Empty file": "Empty file",
+	"Missing required parameter - file": "Missing required parameter - file",
+	"readyImage is not defined": "readyImage is not defined",
+	"Invalid image file": "Invalid image file",
+	"newHotel is not defined": "newHotel is not defined",
+	"Cannot read property 'hotelname' of undefined": "Cannot read property 'hotelname' of undefined",
+	"coordinates is not defined": "coordinates is not defined",
+	"id is not defined": "id is not defined"
 }

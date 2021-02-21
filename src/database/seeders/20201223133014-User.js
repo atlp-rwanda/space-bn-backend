@@ -12,7 +12,7 @@ module.exports = {
       roleId: 2,
       identification_type: '',
       identification_number: '',
-      user_image: '',
+      user_image: 'https://res.cloudinary.com/samuelnayo/image/upload/v1613915506/k0bl3tldlrh6ryhql1mb.png',
       createdAt: new Date(),
       updatedAt: new Date()
     },

@@ -40,3 +40,4 @@ export const updateHotelValidation = (req, res, next) => {
 
   return next();
 };
+
