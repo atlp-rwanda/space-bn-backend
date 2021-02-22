@@ -20,5 +20,21 @@ const notificationRoutes = new Router();
  *        description: Internal server error.
 */
 notificationRoutes.get('/', checkAuth, notifications.getNotifications);
+/**
+ * @swagger
+ * /notifications:
+ *  put:
+ *    tags: [Notifications]
+ *    summary: Mark notifications as read
+ *    description: Authenticated user can mark all unread notifications as read
+ *    responses:
+ *      '200':
+ *        description: All Notifications marked as read.
+ *      '404':
+ *        description: No unread notifications.
+ *      '500':
+ *        description: Internal server error.
+*/
+notificationRoutes.put('/', checkAuth, notifications.markAsRead);
 
 export default notificationRoutes;
