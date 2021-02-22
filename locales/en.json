@@ -88,5 +88,10 @@
 	"Most travelled destinations found successfully!": "Most travelled destinations found successfully!",
 	"No destination found!": "No destination found!",
 	"All notifications marked as read": "All notifications marked as read",
-	"No unread notifications": "No unread notifications"
+	"No unread notifications": "No unread notifications",
+	"Unauthorized": "Unauthorized",
+	"Confirmation email resent to ": "Confirmation email resent to niyo@gmail.com",
+	"Email already verified": "Email already verified",
+	"Confirmation email resent to keza@gmail.com": "Confirmation email resent to keza@gmail.com",
+	"Unauthorized2": "Unauthorized2"
 }
