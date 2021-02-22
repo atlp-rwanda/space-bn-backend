@@ -234,6 +234,33 @@ describe('/GET/:token Test user email verification', () => {
       });
   });
 
+  it('it should resend a verification email', () => {
+    chai.request(app)
+      .post(`/user/resendVerificationEmail`)
+      .send({email: 'keza@gmail.com'})
+      .end(async (err, res) => {
+        expect(res).to.have.status(200);
+      });
+  });
+
+  it('Resend verification should fail if the email is not registerede', () => {
+    chai.request(app)
+      .post(`/user/resendVerificationEmail`)
+      .send({email: 'unregistered@gmail.com'})
+      .end(async (err, res) => {
+        expect(res).to.have.status(401);
+      });
+  });
+
+  it('Resend verification should fail if non email data is given', () => {
+    chai.request(app)
+      .post(`/user/resendVerificationEmail`)
+      .send({email: 1})
+      .end(async (err, res) => {
+        expect(res).to.have.status(401);
+      });
+  });
+
   it('it should fail to verify a user email and return 400.', () => {
     tokens = token.split(' ')[1];
     chai.request(app)

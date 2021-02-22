@@ -88,5 +88,7 @@
 	"Check your email for the reset link": "Check your email for the reset link",
 	"Requests found successfully!": "Requests found successfully!",
 	"All notifications marked as read": "Amatangazo yose yanditseho ko yasomwe",
-	"No unread notifications": "Nta matangazo adasomwe"
+	"No unread notifications": "Nta matangazo adasomwe",
+	"Email already verified":"Imeri yamaze kugenzurwa",
+	"Confirmation email resent to ":"Imeri yemeza inzika kuri"
 }
