@@ -88,5 +88,7 @@
 	"comment with the specified ID does not exists": "maoni na kitambulisho kilichoainishwa hayapo",
 	"Request with the specified ID does not exists": "Ombi na kitambulisho kilichoainishwa haipo",
 	"Most travelled destinations found successfully!": "Sehemu nyingi za kusafiri zimepatikana kwa mafanikio!",
-	"No destination found!": "Hakuna marudio yaliyopatikana!"
+	"No destination found!": "Hakuna marudio yaliyopatikana!",
+	"All notifications marked as read": "Arifa zote zimetiwa alama kuwa zimesomwa",
+	"No unread notifications": "Hakuna arifa ambazo hazijasomwa"
 }

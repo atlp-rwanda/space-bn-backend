@@ -99,5 +99,7 @@
 	"comment with the specified ID does not exists": "le commentaire avec l'ID spécifié n'existe pas",
 	"Request with the specified ID does not exists": "La demande avec l'ID spécifié n'existe pas",
 	"Most travelled destinations found successfully!": "Les destinations les plus visitées ont été trouvées avec succès!",
-	"No destination found!": "Aucune destination trouvée!"
+	"No destination found!": "Aucune destination trouvée!",
+	"All notifications marked as read": "Toutes les notifications marquées comme lues",
+	"No unread notifications": "Aucune notification non lue"
 }
