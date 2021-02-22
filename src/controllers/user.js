@@ -140,7 +140,7 @@ export const verifyUser = async (req, res) => {
       res.status(400).send(template(user.firstname, null, 'This email is already verified, please click here to login', 'Go to Login'));
     }
     await model.User.update({ isVerified: true }, { where: { email: user.email } });
-    res.status(200).redirect('localhost:3000');
+    res.status(200).redirect('https://space-barefootnomad.netlify.app');
   } catch (error) {
     res.status(400).send(template('User', null, 'Invalid Token, Please signup again', 'Go to Signup'));
   }
@@ -153,8 +153,7 @@ export const resendVerificationEmail = async(req,res) => {
     isSignedup = await model.User.findOne({where: {email}});
     if(!isSignedup.dataValues)
       return res.status(401).json({message: res__("Unauthorized")})
-
-  }
+}
   catch(e){
     return res.status(401).json({message: res.__("Unauthorized")})
   }

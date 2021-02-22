@@ -267,8 +267,8 @@ router.post('/resetpassword', resetPassword);
 
 router.patch('/resetpassword', createNewPassword); 
 
-router.post('/resendVerificationEmail', resendVerificationEmail);
-
 router.use('/profile', profileRouters)
+
+router.post('/resendVerificationEmail', resendVerificationEmail);
 
 module.exports = router;
