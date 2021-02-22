@@ -1,14 +1,10 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable object-curly-newline */
-/* eslint-disable max-len */
-/* eslint-disable require-jsdoc */
-/* eslint-disable no-underscore-dangle */
 import model from '../database/models';
 import hotelService from '../services/hotelService';
 import roomService from '../services/roomService';
 import requestService from '../services/requestService';
 import requestHelper from '../utils/requestHelper';
 import checkRequestAndNotify from '../helpers/checkType';
+import countOccurance, { sortByHighest } from '../helpers/countOccurance';
 
 const { request } = model,
   { findHotelByName } = hotelService,
@@ -135,12 +131,45 @@ export default class requestController {
 
       if (!matchingRequestId) _response = res.status(404).json({ message: res.__('Request does not exist!') });
       await request.destroy({ where: { id: matchingRequestId } });
-
+      await model.Comment.destroy({
+        where: { requestId: matchingRequestId }
+      });
+      await model.Reply.destroy({
+        where: { requestId: matchingRequestId }
+      });
       _response = res.status(200).json({ message: res.__('Request deleted successfully!') });
 
       return _response;
     } catch (error) {
       return res.status(500).json({ error: res.__('Internal server error!') });
+    }
+  }
+
+  static async mostTravelledDestination(req, res) {
+    try {
+      const allRequests = await request.findAndCountAll({
+        where: { requestStatus: 'APPROVED' },
+        attributes: [
+          'location'
+        ],
+        order: [['location', 'ASC']]
+      });
+      const locationArray = allRequests.rows.map((row) => row.location);
+      const destinationOccurance = countOccurance(locationArray);
+
+      const formattedArr = sortByHighest(destinationOccurance).map((arr) => ({
+        location: arr[0],
+        visit_count: arr[1]
+      }));
+
+      if (!allRequests || allRequests.count === 0) res.status(404).json({ message: res.__('No destination found!') });
+      return res.status(200).json({
+        message: res.__('Most travelled destinations found successfully!'),
+        count: allRequests.count,
+        destinations: formattedArr
+      });
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
     }
   }
 }

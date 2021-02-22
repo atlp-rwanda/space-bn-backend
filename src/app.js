@@ -2,11 +2,12 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import http from 'http';
+import morgan from 'morgan';
 import socketio from 'socket.io';
 import path from 'path';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import passport from "passport";
+import passport from 'passport';
 import rooms from './routes';
 import roleRoutes from './routes/roles';
 import hotelRoutes from './routes/hotelRoute';
@@ -30,6 +31,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(passport.initialize());
 app.use(bodyParser.json());
@@ -94,6 +96,7 @@ initializeEvent();
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to Barefoot space nomad api!' });
 });
+
 app.use('/user', userRoutes);
 app.use('/hotels', hotelRoutes);
 app.use('/roles', roleRoutes);

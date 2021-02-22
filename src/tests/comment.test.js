@@ -95,7 +95,7 @@ describe('Comments', () => {
 
   it('should post comment', async () => {
     const request = await model.request.create({
-      idUser: 5,
+      idUser: 1,
       requesterName: 'User1 Nomad',
       idRoom: 1,
       roomType: 'Double',
@@ -124,7 +124,7 @@ describe('Comments', () => {
 
   it('should not post comment', async () => {
     const request = await model.request.create({
-      idUser: 5,
+      idUser: 1,
       requesterName: 'User1 Nomad',
       idRoom: 1,
       roomType: 'Double',
@@ -363,9 +363,26 @@ describe('Comments', () => {
       await model.User.destroy({ where: { id: user.id } });
     });
   });
-  it('should delete comment', async () => {
+  it('should delete comment', async() => {
+    const user = await model.User.create({
+        firstname: 'Maliza',
+        lastname: 'Constantine',
+        telephone: '',
+        email: 'malizacoco4@gmail.com',
+        password: '1234567$#8',
+        gender: 'Female',
+        origin: '',
+        profession: '',
+        age: 23,
+        identification_type: '',
+        identification_number: '',
+        user_image: '',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+      const token = jwt.sign({ id: user.id}, process.env.JWT_KEY, { expiresIn: '1h' });
     const request = await model.request.create({
-      idUser: 5,
+      idUser: user.id,
       requesterName: 'User1 Nomad',
       idRoom: 1,
       roomType: 'Double',
@@ -378,23 +395,26 @@ describe('Comments', () => {
       updatedAt: new Date(),
     });
     const comment = await model.Comment.create({
-      userId: 1,
+      userId: user.id,
       fullname: 'Maliza Constantine',
-      requestId: 2,
+      requestId: request.id,
       comment:
         'test seeds.....',
       createdAt: new Date(),
       updatedAt: new Date()
     });
     const res = await chai
-      .request(app)
-      .delete(`/request/${request.id}/comment/${comment.id}`)
-      .set('authorization', `Bearer ${token}`);
-    expect(res.status).to.equal(200);
+    .request(app)
+    .delete(`/request/${request.id}/comment/${comment.id}`)
+    .set('authorization', `Bearer ${token}`);
+      expect(res.status).to.equal(200);
+    after(async () => {
+        await model.User.destroy({ where: { id: user.id } });
+      });
   });
   it('should  failed delete comment if comment id is invalid', async () => {
     const request = await model.request.create({
-      idUser: 5,
+      idUser: 1,
       requesterName: 'User1 Nomad',
       idRoom: 1,
       roomType: 'Double',

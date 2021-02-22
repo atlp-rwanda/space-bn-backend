@@ -3,7 +3,7 @@ import multer from 'multer';
 import profileRouters from './profile';
 const router = express.Router();
 
-import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById, logout, verifyUser} from '../controllers/user';
+import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById, logout, verifyUser, resendVerificationEmail} from '../controllers/user';
 
 import SchemaValidator from '../middlewares/SchemaValidator';
 
@@ -15,6 +15,9 @@ import checkAuthentication from '../middlewares/check-auth';
 import superAdminCheck from '../middlewares/superAdmin.check';
 
 const { superAdminAuth } = superAdminCheck;
+
+import {resetPassword, createNewPassword} from '../controllers/userResetPassword';
+
 
 
 const storage = multer.diskStorage({
@@ -211,7 +214,7 @@ router.get('/:id', checkAuthentication, getUserById);
  *            type: string
 
  */
-router.put('/:id', checkAuthentication, updateUserById);
+router.put('/:id', checkAuthentication, validateRequest, updateUserById);
 
 /**
  * @swagger
@@ -260,7 +263,12 @@ router.get('/verification/:token', verifyUser);
 
 router.post('/logout', logout);
 
+router.post('/resetpassword', resetPassword);
 
+router.patch('/resetpassword', createNewPassword); 
+
+router.post('/resendVerificationEmail', resendVerificationEmail);
 
 router.use('/profile', profileRouters)
+
 module.exports = router;

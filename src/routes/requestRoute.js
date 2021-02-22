@@ -9,9 +9,8 @@ import reqStatisticsController from '../controllers/reqStatisticsController';
 
 const router = Router();
 
-const { getAllRequests, getOneRequest, createRequest, updateRequest, deleteRequest } = requestController,
+const { getAllRequests, getOneRequest, createRequest, updateRequest, deleteRequest, mostTravelledDestination } = requestController,
   { userGetReqStats } = reqStatisticsController;
-
 /**
  * @swagger
  * /requests:
@@ -24,7 +23,22 @@ const { getAllRequests, getOneRequest, createRequest, updateRequest, deleteReque
  *        description: Requests are displayed successfuly.
 */
 router.get('/', authRequest, getAllRequests);
-
+/**
+ * @swagger
+ * /requests/destinations:
+ *  get:
+ *    tags: [Request Accommodation]
+ *    summary: Get most travelled destinations.
+ *    description: Authenticated users can get most travelled destinations.
+ *    responses:
+ *      '200':
+ *        description: Most travelled destinations found successfully!
+ *      '404':
+ *        description: No destination found!
+ *      '500':
+ *        description: Internal server error!
+*/
+router.get('/destinations', authRequest, mostTravelledDestination);
 /**
  * @swagger
  * /requests/stats:

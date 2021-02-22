@@ -1,10 +1,10 @@
-import model from "../database/models";
+import model from '../database/models';
 
 export const CreateComment = async (req, res) => {
   try {
     const request = await model.request.findOne({
       where: {
-        id: req.params.requestId,
+        id: req.params.requestId, idUser: req.userData.id
       },
     });
     if (request) {
@@ -14,7 +14,6 @@ export const CreateComment = async (req, res) => {
           id: userid,
         },
       });
-
       const comment = await model.Comment.create({
         userId: userData.id,
         requesterName: `${userData.firstname} ${userData.lastname}`,
@@ -26,63 +25,59 @@ export const CreateComment = async (req, res) => {
       });
     }
     return res.status(404).json({
-      message: "request not found",
+      message: 'request not found',
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
-      message: "comment cannot be null",
+      message: error.message,
     });
   }
 };
 
 export const GetComment = async (req, res) => {
-  
-    const request = await model.request.findOne({
-      where: {
-        id: req.params.requestId,
-      },
-    });
+  const request = await model.request.findOne({
+    where: {
+      id: req.params.requestId,
+    },
+  });
 
-    if (!request) {
-      return res
-        .status(404)
-        .json({ message: `Request with the specified ID does not exists ` });
-    }
-    const comments = await model.Comment.findAll({
-      where: { requestId: req.params.requestId, userId: req.userData.id },
-      include: [
-        {
-          model: model.request,
-          as: "request",
-          attributes: [
-            "id",
-            "idUser",
-            "idRoom",
-            "dateStart",
-            "dateEnd",
-            "requestStatus",
-            "idRoom",
-          ],
-        },
-        {
-          model: model.Reply,
-          as:"Reply"
-        }
-        
-      ],
-    });
-    res.status(200).json({
-      comments,
-    });
+  if (!request) {
+    return res
+      .status(404)
+      .json({ message: res.__('Request with the specified ID does not exists ') });
+  }
+  const comments = await model.Comment.findAll({
+    where: { requestId: req.params.requestId, userId: req.userData.id },
+    include: [
+      {
+        model: model.request,
+        as: 'request',
+        attributes: [
+          'id',
+          'idUser',
+          'idRoom',
+          'dateStart',
+          'dateEnd',
+          'requestStatus',
+          'idRoom',
+        ],
+      },
+      {
+        model: model.Reply,
+        as: 'Reply'
+      }
+
+    ],
+  });
+  res.status(200).json({
+    comments,
+  });
 };
 export const GetAllComment = async (req, res) => {
-  
-    const comments = await model.Comment.findAll();
-    res.status(200).json({
-      comments,
-    });
- 
+  const comments = await model.Comment.findAll();
+  res.status(200).json({
+    comments,
+  });
 };
 
 export const ReplyComment = async (req, res) => {
@@ -96,53 +91,57 @@ export const ReplyComment = async (req, res) => {
     if (!request) {
       return res
         .status(404)
-        .json({ message: `Request with the specified ID does not exists ` });
+        .json({ message: res.__('Request with the specified ID does not exists ') });
     }
-    const comment= await model.Comment.findOne({
+    const comment = await model.Comment.findOne({
       where: { id: req.params.id },
     });
     if (!comment) {
-      
       return res
         .status(404)
-        .json({ message: `comment with the specified ID does not exists ` });
+        .json({ message: res.__('comment with the specified ID does not exists ') });
     }
 
-    const userid = req.userData.id;  
-      const userData = await model.User.findOne({
-        where: {
-          id: userid,
-          
-        },
-      });
+    const userid = req.userData.id;
+    const userData = await model.User.findOne({
+      where: {
+        id: userid,
 
+      },
+    });
 
-    const reply =  await model.Reply.create(
+    const reply = await model.Reply.create(
       {
-        userId:comment.userId,
-        commentId:comment.id, 
-        requesterName:comment.requesterName,
+        userId: comment.userId,
+        commentId: comment.id,
+        requestId: comment.requestId,
+        requesterName: comment.requesterName,
         replierName: `${userData.firstname} ${userData.lastname}`,
         replyContent: req.body.replyContent,
-      }); 
+      }
+    );
 
     res.status(200).json({
       reply,
     });
   } catch (error) {
-    res.status(404).json({message:error.message})
+    res.status(404).json({ message: error.message });
   }
 };
 
-export const DeleteComment = async(req, res) => {
-
-  const comment = await model.Comment.destroy({
-    where:{id: req.params.commentId}
-  })
-
-  if(!comment){
-    return res.status(404).json({message:"comment not found such Id"})
-  }
-    return res.status(200).json({ message: res.__('Comment deleted successfully!') })
+export const DeleteComment = async (req, res) => {
   
-}
+    const comment = await model.Comment.destroy({
+      where: { id: req.params.commentId, userId: req.userData.id }
+    });
+    
+    await model.Reply.destroy({
+      where: { commentId: req.params.commentId }
+    });
+    
+    if (!comment) {
+      return res.status(404).json({ message: res.__('comment not found such Id') });
+    }
+    return res.status(200).json({ message: res.__('Comment deleted successfully!') });
+
+};

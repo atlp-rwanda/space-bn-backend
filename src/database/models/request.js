@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'requestId',
         as: 'notifications'
       });
+      request.hasMany(models.Comment, {
+        foreignKey: 'requestId',
+        onDelete: 'CASCADE',
+      });
     }
   }
   request.init({
