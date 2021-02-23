@@ -281,3 +281,13 @@ describe('/DELETE/:id users', () => {
       });
   });
 });
+
+describe('Logout user', () => {
+  it('it should logout the user', () => {
+    chai.request(app)
+      .post(`/user/logout`)
+      .end(async (err, res) => {
+        expect(res).to.have.status(200);
+      });
+  });
+});
