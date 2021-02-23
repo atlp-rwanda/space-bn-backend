@@ -25,10 +25,12 @@ describe('Rooms', () => {
         identification_number: 'PC 321211'
       });
     token = res.body.token;
+    
   });
   describe('post/rooms', () => {
     it('it should  POST a room', async () => {
-      const hotelId = 1;
+      
+      const hotelId = 1
       const hotel = await model.hotel.findOne({
         where: {
           id: hotelId
@@ -44,6 +46,9 @@ describe('Rooms', () => {
             roomType: 'First class',
             roomLabel: 'label 001',
             status: 'double',
+            price: '700',
+            roomImage: ['www.unsplash.com/umubavu', 'www.gettyimages/umubavuhotel'],
+
           })
           .end((err, res) => {
             expect(res.status).to.equal(200);

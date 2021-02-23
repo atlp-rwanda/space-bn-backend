@@ -26,7 +26,7 @@ export async function up(queryInterface, Sequelize) {
       type: Sequelize.STRING
     },
     roomImage: {
-      type: Sequelize.STRING
+      type: Sequelize.ARRAY(Sequelize.STRING)
     },
     createdAt: {
       allowNull: false,

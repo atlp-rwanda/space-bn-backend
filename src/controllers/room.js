@@ -19,6 +19,7 @@ const createRoom = async (req, res) => {
     }
     return res.status(200);
   } catch (error) {
+  
     return res.status(500).json({ message: res.__('Internal server error!') });
   }
 };
@@ -81,7 +82,18 @@ const roomByHotel = async (req, res) => {
   try {
     const { hotelId } = req.params;
     const rooms = await model.RoomModel.findAll({
-      where: { hotelId }
+      where: { hotelId },
+
+      include: [
+        {
+          model: model.hotel,
+          as: 'Hotel'
+        },
+        {
+          model: model.request,
+          as: 'Request'
+        },
+      ]
     });
     if (rooms) {
       return res.status(200).json({ rooms });
