@@ -145,7 +145,6 @@ export const verifyUser = async (req, res) => {
     res.status(400).send(template('User', null, 'Invalid Token, Please signup again', 'Go to Signup'));
   }
 };
-
 export const resendVerificationEmail = async(req,res) => {
   const {email} = req.body;
   let isSignedup;

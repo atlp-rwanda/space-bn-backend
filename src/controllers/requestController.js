@@ -44,6 +44,7 @@ export default class requestController {
 
       return _response;
     } catch (error) {
+      
       return res.status(500).json({ error: error.message });
     }
   }
@@ -112,6 +113,7 @@ export default class requestController {
 
       res.status(200).json({ message: res.__('Requested updated successfully'), updatedRequest });
     } catch (error) {
+      
       return res.status(500).json({ error: res.__('Internal server error!') });
     }
   }
