@@ -5,7 +5,7 @@ const { RoomModel } = models;
 
 export default class roomService {
   static async findRooms(id) {
-    const existingRoom = await RoomModel.findOne({ where: id });
+    const existingRoom = await RoomModel.findOne({ where: { id } });
 
     if (existingRoom) return existingRoom;
   }

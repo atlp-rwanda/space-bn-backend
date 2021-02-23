@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'requestId',
         onDelete: 'CASCADE',
       });
+     
     }
   }
   request.init({

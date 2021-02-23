@@ -168,10 +168,11 @@ describe('MANAGER Endpoints', () => {
                             roomLabel: 'label 001',
                             status: 'double',
                             price: '200$-300$',
-                            roomImage: 'https://www.images.com/image.png',
+                            roomImage: ['www.unsplash.com/umubavu', 'www.gettyimages/umubavuhotel'],
                             createdAt: new Date(),
                             updatedAt: new Date(),
                           });
+                        
                         expect(res).to.have.status(200);
                       });
 
@@ -186,7 +187,7 @@ describe('MANAGER Endpoints', () => {
                             roomLabel: 'label 002',
                             status: 'double',
                             price: '200$-300$',
-                            roomImage: 'https://www.images.com/image.png',
+                            roomImage: ['https://www.images.com/image.png'],
                             createdAt: new Date(),
                             updatedAt: new Date(),
                           });

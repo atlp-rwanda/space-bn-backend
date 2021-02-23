@@ -101,7 +101,7 @@ describe('REQUEST Endpoints', () => {
                     roomLabel: 'label 003',
                     status: 'Triple',
                     price: '100$-140$',
-                    roomImage: 'https://www.images.com/image.png',
+                    roomImage: ['https://www.images.com/image.png'],
                     createdAt: new Date(),
                     updatedAt: new Date()
                   });
