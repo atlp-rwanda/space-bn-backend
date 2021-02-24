@@ -90,5 +90,7 @@
 	"Most travelled destinations found successfully!": "Sehemu nyingi za kusafiri zimepatikana kwa mafanikio!",
 	"No destination found!": "Hakuna marudio yaliyopatikana!",
 	"All notifications marked as read": "Arifa zote zimetiwa alama kuwa zimesomwa",
-	"No unread notifications": "Hakuna arifa ambazo hazijasomwa"
+	"No unread notifications": "Hakuna arifa ambazo hazijasomwa",
+	"Email already verified":"Barua pepe tayari imethibitishwa",
+	"Confirmation email resent to ":"Barua pepe ya uthibitisho imechukiwa tena"
 }

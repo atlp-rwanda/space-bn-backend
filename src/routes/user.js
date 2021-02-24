@@ -3,7 +3,7 @@ import multer from 'multer';
 import profileRouters from './profile';
 const router = express.Router();
 
-import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById, logout, verifyUser} from '../controllers/user';
+import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById, logout, verifyUser, resendVerificationEmail} from '../controllers/user';
 
 import SchemaValidator from '../middlewares/SchemaValidator';
 
@@ -267,6 +267,36 @@ router.post('/resetpassword', resetPassword);
 
 router.patch('/resetpassword', createNewPassword); 
 
-router.use('/profile', profileRouters)
+router.use('/profile', profileRouters);
+
+/**
+ * @swagger
+ * /user/resendVerificationEmail:
+ *    post:
+ *      summary: Resend verfication email
+ *      tags: [Users]
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/resendVerfication'
+ *      responses:
+ *        "200":
+ *          description: Verification emal sent successfully
+ *        "401":
+ *          description: Unauthorized
+ *
+ * components:
+ *    schemas:
+ *      resendVerfication:
+ *        type: object
+ *        required:
+ *          - email
+ *        properties:
+ *          email:
+ *            type: string
+ */
+router.use('/resendVerificationEmail', resendVerificationEmail)
 
 module.exports = router;

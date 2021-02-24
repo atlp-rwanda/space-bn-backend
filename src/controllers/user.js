@@ -145,3 +145,22 @@ export const verifyUser = async (req, res) => {
     res.status(400).send(template('User', null, 'Invalid Token, Please signup again', 'Go to Signup'));
   }
 };
+export const resendVerificationEmail = async(req,res) => {
+  const {email} = req.body;
+  let isSignedup;
+  try{
+    isSignedup = await model.User.findOne({where: {email}});
+    if(!isSignedup.dataValues)
+      return res.status(401).json({message: res__("Unauthorized")})
+}
+  catch(e){
+    return res.status(401).json({message: res.__("Unauthorized")})
+  }
+   if(isSignedup.dataValues.isVerified == true){
+     return res.status(400).json({message: res.__("Email already verified")});
+   }
+   const token = jwt.sign(JSON.parse(JSON.stringify(isSignedup.dataValues)), process.env.JWT_KEY, { expiresIn: '1h' });
+          jwt.verify(token, process.env.JWT_KEY, () => {});
+  await sendVerificationEmail(isSignedup.dataValues.firstname,email,token);
+  return res.status(200).json({message: res.__("Confirmation email resent to "+email)})
+}
