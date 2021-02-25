@@ -106,7 +106,6 @@ describe('REQUEST Endpoints', () => {
                     wifi: 'Yes',
                     swimmingpool: 'Yes',
                     breakfast: 'Yes',
-                    image: 'https://res.cloudinary.com/samuelnayo/image/upload/v1613907526/uk7dcu7f0ka0bdcx6u0z.jpg',
                     hotelemail: 'infos@marriott.com'
                   });
                 console.log(res);  

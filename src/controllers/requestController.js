@@ -86,6 +86,7 @@ export default class requestController {
 
       res.status(201).json({ message: res.__('Request created successfully!'), savedRequest });
     } catch (error) {
+      console.log("Creating Hotel error: "+error);
       return res.status(500).json({ error: res.__('Internal server error!') });
     }
   }
