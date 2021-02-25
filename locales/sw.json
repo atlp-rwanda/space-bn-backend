@@ -1,7 +1,7 @@
 {
 	"Welcome to barefoot nomad": "Karibu kwa barefoot nomad",
 	"Email already registered": "Barua pepe tayari imesajiliwa",
-	"User registered": "Mtumiaji amesajiliwa",
+	"You are registered, Please check your email to verify your account": "Umesajiliwa, Tafadhali angalia barua pepe yako ili kuthibitisha akaunti yakount",
 	"Authentication failed. User not found.": "",
 	"Authentication failed. Wrong password.": "Uthibitishaji umeshindwa. Mtumiaji hajapatikana.",
 	"Error": "Kosa",

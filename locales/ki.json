@@ -1,7 +1,7 @@
 {
 	"Welcome to barefoot nomad": "Murakaza neza kuri barefoot nomad",
 	"Email already registered": "Imeri yamaze kwiyandikisha",
-	"User registered": "Umukoresha yiyandikishije",
+	"You are registered, Please check your email to verify your account": "Wiyandikishije, Nyamuneka reba imeri yawe kugirango urebe konti yawe",
 	"Authentication failed. User not found.": "Kwemeza byarananiranye. Umukoresha ntabwo yabonetse.",
 	"Authentication failed. Wrong password.": "Kwemeza byarananiranye. Ijambobanga ritari ryo.",
 	"Error": "Ikosa",
