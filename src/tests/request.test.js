@@ -108,7 +108,6 @@ describe('REQUEST Endpoints', () => {
                     breakfast: 'Yes',
                     hotelemail: 'infos@marriott.com'
                   });
-                console.log(res);  
                 expect(res.status).to.equal(201);
               });
   
@@ -157,6 +156,7 @@ describe('REQUEST Endpoints', () => {
                       .set('authorization', tokenUser)
                       .send({
                         idRoom: 1,
+                        hotelName: 'Marriott',
                         dateStart: '',
                         dateEnd: '2021-01-19'
                       });
