@@ -79,12 +79,11 @@ export default class requestController {
         dateEnd
       });
       const userId = id;
-      const status = savedRequest.dataValues.requestStatus;
+      const status = await savedRequest.dataValues.requestStatus;
       const reqId = savedRequest.dataValues.id;
-
       checkRequestAndNotify(status, 'PENDING', userId, reqId, 'Request created', 'Your request has been created');
 
-      res.status(201).json({ message: res.__('Request created successfully!'), savedRequest });
+      return res.status(201).json({ message: res.__('Request created successfully!'), savedRequest });
     } catch (error) {
       return res.status(500).json({ error: res.__('Internal server error!') });
     }

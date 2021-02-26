@@ -106,179 +106,178 @@ describe('REQUEST Endpoints', () => {
                     wifi: 'Yes',
                     swimmingpool: 'Yes',
                     breakfast: 'Yes',
-                    image: 'https://res.cloudinary.com/samuelnayo/image/upload/v1613907526/uk7dcu7f0ka0bdcx6u0z.jpg',
                     hotelemail: 'infos@marriott.com'
                   });
                 expect(res.status).to.equal(201);
               });
   
-              // describe('Create a room', () => {
-              //   let hotelId;
-              //   let hotelName;
-              //   before(async () => {
-              //     const hotel = await model.hotel.findAll();
-              //     hotelId = hotel[0].dataValues.id;
-              //     hotelName = hotel[0].dataValues.hotelname;
-              //     const res = await request(app)
-              //       .post('/hotels/rooms')
-              //       .set('authorization', tokenUser)
-              //       .send({
-              //         hotelId,
-              //         description: 'Room for VIP',
-              //         roomType: 'Single Room',
-              //         roomLabel: 'label 003',
-              //         status: 'Triple',
-              //         price: '100$-140$',
-              //         roomImage: ['https://www.images.com/image.png'],
-              //         createdAt: new Date(),
-              //         updatedAt: new Date()
-              //       });
-              //     expect(res).to.have.status(200);
-              //   });
+              describe('Create a room', () => {
+                let hotelId;
+                let hotelName;
+                before(async () => {
+                  const hotel = await model.hotel.findAll();
+                  hotelId = hotel[0].dataValues.id;
+                  hotelName = hotel[0].dataValues.hotelname;
+                  const res = await request(app)
+                    .post('/hotels/rooms')
+                    .set('authorization', tokenUser)
+                    .send({
+                      hotelId,
+                      description: 'Room for VIP',
+                      roomType: 'Single Room',
+                      roomLabel: 'label 003',
+                      status: 'Triple',
+                      price: '100$-140$',
+                      roomImage: ['https://www.images.com/image.png'],
+                      createdAt: new Date(),
+                      updatedAt: new Date()
+                    });
+                  expect(res).to.have.status(200);
+                });
+              });
+                describe('POST /requests', () => {
+                  it('Should create a request', async () => {
+                    const res = await request(app)
+                      .post('/requests')
+                      .set('authorization', tokenUser)
+                      .send({
+                        hotelName: 'Marriott',
+                        idRoom: 1,
+                        dateStart: '2021-01-08',
+                        dateEnd: '2021-01-19'
+                      });
+                    expect(res).to.have.status(201);
+                  });
+                })
   
-              //   describe('POST /requests', () => {
-              //     it('Should create a request', async () => {
-              //       const res = await request(app)
-              //         .post('/requests')
-              //         .set('authorization', tokenUser)
-              //         .send({
-              //           hotelName,
-              //           idRoom: 1,
-              //           dateStart: '2021-01-08',
-              //           dateEnd: '2021-01-19'
-              //         });
-              //       expect(res).to.have.status(201);
-              //     });
+                  it('Should not create a request with empty dateStart', async () => {
+                    const res = await request(app)
+                      .post('/requests')
+                      .set('authorization', tokenUser)
+                      .send({
+                        idRoom: 1,
+                        hotelName: 'Marriott',
+                        dateStart: '',
+                        dateEnd: '2021-01-19'
+                      });
+                    expect(res).to.have.status(400);
+                  });
   
-              //     it('Should not create a request with empty dateStart', async () => {
-              //       const res = await request(app)
-              //         .post('/requests')
-              //         .set('authorization', tokenUser)
-              //         .send({
-              //           idRoom: 1,
-              //           dateStart: '',
-              //           dateEnd: '2021-01-19'
-              //         });
-              //       expect(res).to.have.status(400);
-              //     });
+                  it('Should not create a request with unexisting idRoom', async () => {
+                    const res = await request(app)
+                      .post('/requests')
+                      .set('authorization', tokenUser)
+                      .send({
+                        hotelName:'Marriott',
+                        idRoom: 100,
+                        dateStart: '2021-01-19',
+                        dateEnd: '2021-02-19'
+                      });
+                    expect(res).to.have.status(403);
+                    expect(res.body).to.have.property('message');
+                  });
   
-              //     it('Should not create a request with unexisting idRoom', async () => {
-              //       const res = await request(app)
-              //         .post('/requests')
-              //         .set('authorization', tokenUser)
-              //         .send({
-              //           hotelName,
-              //           idRoom: 100,
-              //           dateStart: '2021-01-19',
-              //           dateEnd: '2021-02-19'
-              //         });
-              //       expect(res).to.have.status(403);
-              //       expect(res.body).to.have.property('message');
-              //     });
-              //   });
+                describe('GET /requests', () => {
+                  it('Should get all requests', async () => {
+                    const res = await request(app)
+                      .get('/requests')
+                      .set('authorization', tokenUser);
+                    expect(res).to.have.status(200);
+                  });
+                  describe('GET /requests/destinations', () => {
+                    it('Should most travelled destinations', async () => {
+                      const res = await request(app)
+                        .get('/requests/destinations')
+                        .set('authorization', tokenUser);
+                      expect(res).to.have.status(200);
+                      expect(res.body.message).to.match(/Most travelled destinations found successfully!/i);
+                    });
+                  });
+                })
   
-              //   describe('GET /requests', () => {
-              //     it('Should get all requests', async () => {
-              //       const res = await request(app)
-              //         .get('/requests')
-              //         .set('authorization', tokenUser);
-              //       expect(res).to.have.status(200);
-              //     });
-              //     describe('GET /requests/destinations', () => {
-              //       it('Should most travelled destinations', async () => {
-              //         const res = await request(app)
-              //           .get('/requests/destinations')
-              //           .set('authorization', tokenUser);
-              //         expect(res).to.have.status(200);
-              //         expect(res.body.message).to.match(/Most travelled destinations found successfully!/i);
-              //       });
-              //     });
+                  describe('GET /requests/stats', () => {
+                    it('Should get request statistics', async () => {
+                      time = 30;
+                      const res = await request(app)
+                        .get(`/requests/stats?time=${time}`)
+                        .set('authorization', tokenUser);
+                      expect(res).to.have.status(200);
+                    });
+                  })
   
-              //     describe('GET /requests/stats', () => {
-              //       it('Should get request statistics', async () => {
-              //         time = 30;
-              //         const res = await request(app)
-              //           .get(`/requests/stats?time=${time}`)
-              //           .set('authorization', tokenUser);
-              //         expect(res).to.have.status(200);
-              //       });
+                    it('Should not get request statistics', async () => {
+                      time = -1;
+                      const res = await request(app)
+                        .get(`/requests/stats?time=${time}`)
+                        .set('authorization', tokenUser);
+                      expect(res).to.have.status(403);
+                    });
   
-              //       it('Should not get request statistics', async () => {
-              //         time = -1;
-              //         const res = await request(app)
-              //           .get(`/requests/stats?time=${time}`)
-              //           .set('authorization', tokenUser);
-              //         expect(res).to.have.status(403);
-              //       });
+                    it('Should not get request statistics', async () => {
+                      time = '-10';
+                      const res = await request(app)
+                        .get(`/requests/stats?time=${time}`)
+                        .set('authorization', tokenUser);
+                      expect(res).to.have.status(403);
+                    });
   
-              //       it('Should not get request statistics', async () => {
-              //         time = '-10';
-              //         const res = await request(app)
-              //           .get(`/requests/stats?time=${time}`)
-              //           .set('authorization', tokenUser);
-              //         expect(res).to.have.status(403);
-              //       });
-              //     });
+                  describe('GET/:id /requests/:id', () => {
+                    it('Should get one request', async () => {
+                      const res = await request(app)
+                        .get('/requests/12')
+                        .set('authorization', tokenUser);
+                      expect(res).to.have.status(200);
+                    });
+                  })
   
-              //     describe('GET/:id /requests/:id', () => {
-              //       it('Should get one request', async () => {
-              //         const res = await request(app)
-              //           .get('/requests/12')
-              //           .set('authorization', tokenUser);
-              //         expect(res).to.have.status(200);
-              //       });
+                    it('Should not get one request', async () => {
+                      const res = await request(app)
+                        .get('/requests/2')
+                        .set('authorization', tokenUser);
+                      expect(res).to.have.status(404);
+                    });
   
-              //       it('Should not get one request', async () => {
-              //         const res = await request(app)
-              //           .get('/requests/2')
-              //           .set('authorization', tokenUser);
-              //         expect(res).to.have.status(404);
-              //       });
-              //     });
+                  describe('UPDATE/:id /requests/:id', () => {
+                    it('Should update a request', async () => {
+                      const res = await request(app)
+                        .put('/requests/12')
+                        .set('authorization', tokenUser)
+                        .send({
+                          idRoom: 3,
+                          dateStart: '2022-01-08',
+                          dateEnd: '2022-01-19'
+                        });
+                      expect(res).to.have.status(200);
+                    });
+                  })
   
-              //     describe('UPDATE/:id /requests/:id', () => {
-              //       it('Should update a request', async () => {
-              //         const res = await request(app)
-              //           .put('/requests/12')
-              //           .set('authorization', tokenUser)
-              //           .send({
-              //             idRoom: 3,
-              //             dateStart: '2022-01-08',
-              //             dateEnd: '2022-01-19'
-              //           });
-              //         expect(res).to.have.status(200);
-              //       });
+                    it('Should not update a request', async () => {
+                      const res = await request(app)
+                        .put('/requests/1')
+                        .set('authorization', tokenUser)
+                        .send({
+                          idRoom: 3,
+                          dateStart: '2022-01-08',
+                          dateEnd: '2022-01-19'
+                        });
+                      expect(res).to.have.status(404);
+                    });
   
-              //       it('Should not update a request', async () => {
-              //         const res = await request(app)
-              //           .put('/requests/1')
-              //           .set('authorization', tokenUser)
-              //           .send({
-              //             idRoom: 3,
-              //             dateStart: '2022-01-08',
-              //             dateEnd: '2022-01-19'
-              //           });
-              //         expect(res).to.have.status(404);
-              //       });
-              //     });
-  
-              //     describe('DELETE/:id /requests/:id', () => {
-              //       it('Should delete a request', async () => {
-              //         const res = await request(app)
-              //           .delete('/requests/12')
-              //           .set('authorization', tokenUser);
-              //         expect(res).to.have.status(200);
-              //       });
-              //       it('Should not delete a request', async () => {
-              //         const res = await request(app)
-              //           .delete('/requests/0')
-              //           .set('authorization', tokenUser);
-              //         expect(res).to.have.status(404);
-              //       });
-              //     });
-              //   });
-              // });
-            });
+                  describe('DELETE/:id /requests/:id', () => {
+                    it('Should delete a request', async () => {
+                      const res = await request(app)
+                        .delete('/requests/12')
+                        .set('authorization', tokenUser);
+                      expect(res).to.have.status(200);
+                    });
+                    it('Should not delete a request', async () => {
+                      const res = await request(app)
+                        .delete('/requests/0')
+                        .set('authorization', tokenUser);
+                      expect(res).to.have.status(404);
+                    });
+                  });
+              });
           });
           });
         });
