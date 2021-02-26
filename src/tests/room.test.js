@@ -121,7 +121,7 @@ describe('Rooms', () => {
   });
   describe(' Returning selected room of specific hotel', () => {
     it('should return selected room', async () => {
-      const roomId = 4;
+      const roomId = 1;
       const hotelId = 1;
       chai
         .request(app)
