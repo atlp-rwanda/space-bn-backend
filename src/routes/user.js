@@ -1,9 +1,11 @@
 import express from 'express';
 import multer from 'multer';
 import profileRouters from './profile';
+import { authUser } from '../middlewares/authManager';
+
 const router = express.Router();
 
-import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById, logout, verifyUser, resendVerificationEmail} from '../controllers/user';
+import {signup, signin, getAllUsers, getUserById, updateUserById, deleteUserById, logout, verifyUser, resendVerificationEmail, addImage } from '../controllers/user';
 
 import SchemaValidator from '../middlewares/SchemaValidator';
 
@@ -212,9 +214,9 @@ router.get('/:id', checkAuthentication, getUserById);
  *            type: string
  *          password:
  *            type: string
-
  */
 router.put('/:id', checkAuthentication, validateRequest, updateUserById);
+router.put('/addimage/:id', authUser, addImage);
 
 /**
  * @swagger

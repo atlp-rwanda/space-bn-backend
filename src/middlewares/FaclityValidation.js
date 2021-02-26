@@ -10,7 +10,7 @@ config();
 const _schema = Joi.object().keys({
   location: Joi.string().required().max(70),
   address: Joi.string().required().max(70),
-  images: Joi.string().max(100),
+  image: Joi.string(),
   roomNumber: Joi.number().optional(),
   roomDetails: Joi.string().optional()
 });
@@ -20,6 +20,7 @@ const _validateFacility = async (req, res, next) => {
   const error = (['POST', 'PUT', 'PATCH'].includes(req.method))
     ? Joi.validate(req.body, _schema).error
     : null;
+  
   const loggedinUser = req.headers.authorization;
   const validUser = loggedinUser
     ? jwt.decode(loggedinUser.split(' ')[1], process.env.JWT_KEY, { expiresIn: '10h' })

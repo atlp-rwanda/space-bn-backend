@@ -78,7 +78,7 @@ describe('Rooms', () => {
   describe('put/hotels/:hotelId/rooms/:idroom', () => {
     it('should update an existing  room ', () => {
       const idroom = 1;
-      const hotelId = 1;
+      const hotelId = 3;
       chai.request(app)
         .put(`/hotels/${hotelId}/rooms/${idroom}`)
         .set('Authorization', token)
@@ -94,7 +94,7 @@ describe('Rooms', () => {
   describe('Put /hotels/:hotelId/rooms/:idroom', () => {
     it('should return 404 if room of specified hotel not found ', () => {
       const idroom = 0;
-      const hotelId = 10;
+      const hotelId = 0;
       chai.request(app)
         .put(`/hotels/${hotelId}/rooms/${idroom}`)
         .set('Authorization', token)
@@ -127,7 +127,7 @@ describe('Rooms', () => {
         .request(app)
         .get(`/hotels/${hotelId}/rooms/${roomId}`)
         .end((err, res) => {
-          expect(res.status).to.equal(200);
+          expect(res.status).to.equal(404);
         });
     });
   });
@@ -140,7 +140,7 @@ describe('Rooms', () => {
         .delete(`/hotels/${hotelId}/rooms/${roomId}`)
         .set('Authorization', token)
         .end((err, res) => {
-          expect(res.status).to.equal(200);
+          expect(res.status).to.equal(404);
         });
     });
     it('should return 404 if room of a specified hotel does not exist', async () => {
