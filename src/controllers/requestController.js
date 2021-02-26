@@ -81,8 +81,7 @@ export default class requestController {
       const userId = id;
       const status = await savedRequest.dataValues.requestStatus;
       const reqId = savedRequest.dataValues.id;
-      console.log("My request status: "+status);
-      checkRequestAndNotify('PENDING', 'PENDING', userId, reqId, 'Request created', 'Your request has been created');
+      checkRequestAndNotify(status, 'PENDING', userId, reqId, 'Request created', 'Your request has been created');
 
       return res.status(201).json({ message: res.__('Request created successfully!'), savedRequest });
     } catch (error) {

@@ -150,32 +150,32 @@ describe('REQUEST Endpoints', () => {
                   });
                 })
   
-                  // it('Should not create a request with empty dateStart', async () => {
-                  //   const res = await request(app)
-                  //     .post('/requests')
-                  //     .set('authorization', tokenUser)
-                  //     .send({
-                  //       idRoom: 1,
-                  //       hotelName: 'Marriott',
-                  //       dateStart: '',
-                  //       dateEnd: '2021-01-19'
-                  //     });
-                  //   expect(res).to.have.status(400);
-                  // });
+                  it('Should not create a request with empty dateStart', async () => {
+                    const res = await request(app)
+                      .post('/requests')
+                      .set('authorization', tokenUser)
+                      .send({
+                        idRoom: 1,
+                        hotelName: 'Marriott',
+                        dateStart: '',
+                        dateEnd: '2021-01-19'
+                      });
+                    expect(res).to.have.status(400);
+                  });
   
-                  // it('Should not create a request with unexisting idRoom', async () => {
-                  //   const res = await request(app)
-                  //     .post('/requests')
-                  //     .set('authorization', tokenUser)
-                  //     .send({
-                  //       hotelName:'Marriott',
-                  //       idRoom: 100,
-                  //       dateStart: '2021-01-19',
-                  //       dateEnd: '2021-02-19'
-                  //     });
-                  //   expect(res).to.have.status(403);
-                  //   expect(res.body).to.have.property('message');
-                  // });
+                  it('Should not create a request with unexisting idRoom', async () => {
+                    const res = await request(app)
+                      .post('/requests')
+                      .set('authorization', tokenUser)
+                      .send({
+                        hotelName:'Marriott',
+                        idRoom: 100,
+                        dateStart: '2021-01-19',
+                        dateEnd: '2021-02-19'
+                      });
+                    expect(res).to.have.status(403);
+                    expect(res.body).to.have.property('message');
+                  });
   
                 describe('GET /requests', () => {
                   it('Should get all requests', async () => {
@@ -277,7 +277,7 @@ describe('REQUEST Endpoints', () => {
                       expect(res).to.have.status(404);
                     });
                   });
-          });
+              });
           });
           });
         });
