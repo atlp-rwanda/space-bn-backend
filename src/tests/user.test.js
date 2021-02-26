@@ -23,7 +23,7 @@ describe('User registration', () => {
       .field('identification_number', '1122020333')
       .then((res) => {
         expect(res).to.have.status(201);
-        expect(res.body.message).to.be.equal('User registered');
+        expect(res.body.message).to.be.equal('You are registered, Please check your email to verify your account');
         expect(res.body.user_details.id).to.exist;
         expect(res.body.user_details.firstname).to.exist;
         expect(res.body.user_details.lastname).to.exist;

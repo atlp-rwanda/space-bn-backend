@@ -61,7 +61,7 @@ export const signup = (req, res) => {
           const token = jwt.sign(JSON.parse(JSON.stringify(user1)), process.env.JWT_KEY, { expiresIn: '1h' });
           jwt.verify(token, process.env.JWT_KEY, () => {});
           res.status(201).json({
-            message: res.__('User registered'),
+            message: res.__('You are registered, Please check your email to verify your account'),
             user_details: user1,
             token: `JWT ${token}`
           });
@@ -164,7 +164,7 @@ export const verifyUser = async (req, res) => {
       res.status(400).send(template(user.firstname, null, 'This email is already verified, please click here to login', 'Go to Login'));
     }
     await model.User.update({ isVerified: true }, { where: { email: user.email } });
-    res.status(200).redirect('https://space-barefootnomad.netlify.app');
+    res.status(200).redirect('https://space-barefootnomad.netlify.app/login');
   } catch (error) {
     res.status(400).send(template('User', null, 'Invalid Token, Please signup again', 'Go to Signup'));
   }
