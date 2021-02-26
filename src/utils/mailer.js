@@ -37,7 +37,7 @@ const mailer = async (emailToSend) => {
         html: data,
         mail_settings: {
           sandbox_mode: {
-            enable: true
+            enable: process.env.NODE_ENV === 'test' ? true : false
           }
         },
       };

@@ -1,7 +1,7 @@
 {
 	"Welcome to barefoot nomad": "Bienvenue chez barefoot nomad",
 	"Email already registered": "Email déjà enregistré",
-	"User registered": "Utilisateur enregistré",
+	"You are registered, Please check your email to verify your account": "Vous êtes inscrit, veuillez vérifier votre messagerie pour vérifier votre compte",
 	"Authentication failed. User not found.": "Authentification échouée. Utilisateur non trouvé.",
 	"Authentication failed. Wrong password.": "Authentification échouée. Mauvais mot de passe.",
 	"Error": "Erreur",
