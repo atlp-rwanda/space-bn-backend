@@ -101,20 +101,20 @@ export default class managerController {
       if (!existingUser) res.status(404).json({ message: res.__('User does not exist.') });
       const { roleId } = existingUser;
 
-      if (roleId === 1 || roleId === 2) res.status(403).json({ message: 'Access denied! to this user!' });
+      if (roleId === 1 || roleId === 2) res.status(403).json({ message: res.__('Access denied! to this user!') });
       const existingManager = await findUserById(_managerId);
 
       if (!existingManager) res.status(404).json({ message: res.__('Manager Id does not exist.') });
       const savedManagerId = existingManager.roleId;
 
-      if (savedManagerId !== 2) res.status(403).json({ message: 'Wrong Manager Id!' });
+      if (savedManagerId !== 2) res.status(403).json({ message: res.__('Wrong Manager Id!') });
       const managerId = _managerId;
 
       await User.update({ managerId }, { where: { id: _userId } });
 
       res.status(201).json({ message: res.__('Manager Id is assigned successfully!') });
     } catch (error) {
-      return res.status(500).send({ error: 'Internal Server Error!' });
+      return res.status(500).send({ error: res.__('Internal Server Error!') });
     }
   }
 }

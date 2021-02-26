@@ -96,7 +96,7 @@ export default class requestController {
       const userId = req.userData.id,
         userRequestIds = await mapUserRequestIds(userId);
 
-      if (!userRequestIds) res.status(404).json({ message: 'No request found!' });
+      if (!userRequestIds) res.status(404).json({ message: res.__('No request found!') });
       const requestId = req.params.id,
         overallRequest = await findRequestById(requestId);
 
@@ -108,7 +108,8 @@ export default class requestController {
 
       if (requestStatus !== 'PENDING') return res.status(403).json({ message: res.__('Only PENDING request can be edited!') });
       await request.update(req.body, { where: { id: requestId } });
-
+      const {managerId} = req.userData
+      checkRequestAndNotify(requestStatus, 'PENDING', managerId, requestId, 'Request updated', 'User has updated request');
       const updatedRequest = await findRequestById(requestId);
 
       res.status(200).json({ message: res.__('Requested updated successfully'), updatedRequest });

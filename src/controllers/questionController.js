@@ -47,7 +47,7 @@ export default class questionController {
         { roleId } = req.userData,
         existingQuestion = await Question.findOne({ where: { id } });
 
-      if (roleId !== 1) res.status(401).json({ message: 'Access denied!' });
+      if (roleId !== 1) res.status(401).json({ message: res.__('Access denied!') });
 
       if (!existingQuestion) res.status(404).json({ message: res.__('Question Id does not exist!') });
       await Question.destroy({ where: { id } });
